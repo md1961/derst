@@ -1,7 +1,54 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+[
+  Lineage,
+].each do |model|
+  model.destroy_all
+end
+
+%w[
+  インテント系
+  エタン系
+  オリオール系
+  オーエンテューダー系
+  カーレッド系
+  クラリオン系
+  グレイソヴリン系
+  サンインロー系
+  サーゲイロード系
+  スインフォード系
+  ゼダーン系
+  ソヴリンパス系
+  ダンテ系
+  テディ系
+  トウルビヨン系
+  トムフール系
+  ニアークティック系
+  ネイティヴダンサー系
+  ネヴァーベンド系
+  ノーザンダンサー系
+  ハイペリオン系
+  ハビタット系
+  ヒムヤー系
+  ファイントップ系
+  フェアウェイ系
+  フェアトライアル系
+  フォルティノ系
+  ブラントーム系
+  ブレニム系
+  プリンスキロ系
+  プリンスビオ系
+  プリンスリーギフト系
+  プリンスローズ系
+  ヘイルトゥリーズン系
+  ボワルセル系
+  ボールドルーラー系
+  マイバブー系
+  モスボロー系
+  リボー系
+  レイズアネイティヴ系
+  レッドゴッド系
+  レリック系
+  ロイヤルチャージャー系
+  ロックフェラ系
+].each do |name|
+  Lineage.create!(name: name.chomp('系'))
+end
