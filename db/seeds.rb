@@ -1,5 +1,6 @@
 [
   Lineage,
+  RootLineage,
 ].each do |model|
   model.destroy_all
 end
@@ -51,4 +52,22 @@ end
   ロックフェラ系
 ].each do |name|
   Lineage.create!(name: name.chomp('系'))
+end
+
+[
+  [ 1, 'ファロス'],
+  [ 2, 'テディ'],
+  [ 3, 'シックル'],
+  [ 4, 'ハンプトン'],
+  [ 5, 'ヒムヤー'],
+  [ 6, 'ファラモンド'],
+  [ 7, 'ヘロド'],
+  [ 8, 'フェアウェイ'],
+  [ 9, 'スインフォード'],
+  [10, 'セントサイモン'],
+  [11, 'マッチェム'],
+  [12, 'エクリプス'],
+  [13, 'ファラリス'],
+].each do |number, name|
+  RootLineage.create!(number: number, name: name)
 end
