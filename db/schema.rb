@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_021420) do
+ActiveRecord::Schema.define(version: 2019_09_01_024222) do
 
   create_table "lineages", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 2019_09_01_021420) do
     t.string "name_eng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sires", force: :cascade do |t|
+    t.string "name"
+    t.string "name_eng"
+    t.integer "lineage_id"
+    t.integer "father_id"
+    t.integer "root_lineage_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lineage_id"], name: "index_sires_on_lineage_id"
+    t.index ["root_lineage_id"], name: "index_sires_on_root_lineage_id"
   end
 
 end
