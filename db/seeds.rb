@@ -1,55 +1,21 @@
 [
   Lineage,
   RootLineage,
+  Sire,
 ].each do |model|
   model.destroy_all
 end
 
 %w[
-  インテント系
-  エタン系
-  オリオール系
-  オーエンテューダー系
-  カーレッド系
-  クラリオン系
-  グレイソヴリン系
-  サンインロー系
-  サーゲイロード系
-  スインフォード系
-  ゼダーン系
-  ソヴリンパス系
-  ダンテ系
-  テディ系
-  トウルビヨン系
-  トムフール系
-  ニアークティック系
-  ネイティヴダンサー系
-  ネヴァーベンド系
-  ノーザンダンサー系
-  ハイペリオン系
-  ハビタット系
-  ヒムヤー系
-  ファイントップ系
-  フェアウェイ系
-  フェアトライアル系
-  フォルティノ系
-  ブラントーム系
-  ブレニム系
-  プリンスキロ系
-  プリンスビオ系
-  プリンスリーギフト系
-  プリンスローズ系
-  ヘイルトゥリーズン系
-  ボワルセル系
-  ボールドルーラー系
-  マイバブー系
-  モスボロー系
-  リボー系
-  レイズアネイティヴ系
-  レッドゴッド系
-  レリック系
-  ロイヤルチャージャー系
-  ロックフェラ系
+  インテント系 エタン系 オリオール系 オーエンテューダー系 カーレッド系
+  クラリオン系 グレイソヴリン系 サンインロー系 サーゲイロード系 スインフォード系
+  ゼダーン系 ソヴリンパス系 ダンテ系 テディ系 トウルビヨン系
+  トムフール系 ニアークティック系 ネイティヴダンサー系 ネヴァーベンド系 ノーザンダンサー系
+  ハイペリオン系 ハビタット系 ヒムヤー系 ファイントップ系 フェアウェイ系
+  フェアトライアル系 フォルティノ系 ブラントーム系 ブレニム系 プリンスキロ系
+  プリンスビオ系 プリンスリーギフト系 プリンスローズ系 ヘイルトゥリーズン系 ボワルセル系
+  ボールドルーラー系 マイバブー系 モスボロー系 リボー系 レイズアネイティヴ系
+  レッドゴッド系 レリック系 ロイヤルチャージャー系 ロックフェラ系
 ].each do |name|
   Lineage.create!(name: name.chomp('系'))
 end
@@ -70,4 +36,14 @@ end
   [13, 'ファラリス'],
 ].each do |number, name|
   RootLineage.create!(number: number, name: name)
+end
+
+File.open('db/sires.txt') do |f|
+  while line = f.gets
+    next if line.starts_with?('馬名')
+    name, lineage_name = line.split
+    lineage = Lineage.find_by(name: lineage_name.chomp('系'))
+    raise "Cannot find Lineage '#{lineage_name}' for '#{name}'" unless lineage
+    Sire.create!(name: name, lineage: lineage)
+  end
 end
