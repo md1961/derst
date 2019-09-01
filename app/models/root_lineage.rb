@@ -1,0 +1,2 @@
+class RootLineage < ApplicationRecord
+end

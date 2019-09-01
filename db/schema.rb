@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_003534) do
+ActiveRecord::Schema.define(version: 2019_09_01_021420) do
 
   create_table "lineages", force: :cascade do |t|
     t.string "name"
+    t.string "name_eng"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "root_lineages", force: :cascade do |t|
+    t.integer "number", null: false
+    t.string "name", null: false
     t.string "name_eng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
