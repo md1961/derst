@@ -1,7 +1,7 @@
 [
-  Lineage,
-  RootLineage,
   Sire,
+  RootLineage,
+  Lineage,
 ].each do |model|
   model.destroy_all
 end
@@ -42,6 +42,7 @@ File.open('db/sires.txt') do |f|
   while line = f.gets
     next if line.starts_with?('馬名')
     name, lineage_name = line.split
+    name.gsub!('_', ' ')
     lineage = Lineage.find_by(name: lineage_name.chomp('系'))
     raise "Cannot find Lineage '#{lineage_name}' for '#{name}'" unless lineage
     Sire.create!(name: name, lineage: lineage)
