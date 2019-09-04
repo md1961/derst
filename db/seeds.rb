@@ -50,7 +50,7 @@ File.open('db/sires.txt') do |f|
     key = name =~ /\A[A-Z .']\z/ ? :name_eng : :name 
     sire = Sire.create!(key => name)
 
-    sire.create_sire_trait!(
+    sire.create_trait!(
       lineage:      lineage,
       fee:          fee,
       min_distance: min_distance,
