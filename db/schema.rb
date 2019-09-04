@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_024222) do
+ActiveRecord::Schema.define(version: 2019_09_03_234647) do
 
   create_table "lineages", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "name_eng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,15 +27,32 @@ ActiveRecord::Schema.define(version: 2019_09_01_024222) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sire_traits", force: :cascade do |t|
+    t.integer "sire_id", null: false
+    t.integer "lineage_id", null: false
+    t.integer "fee", null: false
+    t.integer "min_distance", null: false
+    t.integer "max_distance", null: false
+    t.string "dirt", null: false
+    t.string "growth", null: false
+    t.string "temper", null: false
+    t.string "contend", null: false
+    t.string "health", null: false
+    t.string "achievement", null: false
+    t.string "stability", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lineage_id"], name: "index_sire_traits_on_lineage_id"
+    t.index ["sire_id"], name: "index_sire_traits_on_sire_id"
+  end
+
   create_table "sires", force: :cascade do |t|
     t.string "name"
     t.string "name_eng"
-    t.integer "lineage_id"
     t.integer "father_id"
     t.integer "root_lineage_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lineage_id"], name: "index_sires_on_lineage_id"
     t.index ["root_lineage_id"], name: "index_sires_on_root_lineage_id"
   end
 

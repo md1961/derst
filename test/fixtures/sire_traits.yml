@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sire: one
+  lineage: one
+  fee: 1
+  min_distance: 1
+  max_distance: 1
+  dirt: MyString
+  growth: MyString
+  temper: MyString
+  contend: MyString
+  health: MyString
+
+two:
+  sire: two
+  lineage: two
+  fee: 1
+  min_distance: 1
+  max_distance: 1
+  dirt: MyString
+  growth: MyString
+  temper: MyString
+  contend: MyString
+  health: MyString
