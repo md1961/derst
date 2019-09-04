@@ -1,2 +1,18 @@
-<h1>Sires#index</h1>
-<p>Find me in app/views/sires/index.html.erb</p>
+<table class="table_base">
+  <tbody>
+    <% @sires.each do |sire| -%>
+      <tr>
+        <td><%= sire.name %></td>
+        <td><%= sire.name_eng %></td>
+        <% trait = sire.trait -%>
+        <% %i[
+             fee distances dirt growth temper contend health achievement stability
+           ].each do |name| -%>
+          <td class="<%= name == :fee ? 'numeric' : '' %>">
+            <%= trait.send(name) %>
+          </td>
+        <% end -%>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
