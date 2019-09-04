@@ -41,10 +41,27 @@ end
 File.open('db/sires.txt') do |f|
   while line = f.gets
     next if line.starts_with?('馬名')
-    name, lineage_name = line.split
-    name.gsub!('_', ' ')
+    name, lineage_name, fee, min_distance, max_distance, dirt, \
+        growth, temper, contend, health, achievement, stability = line.split
     lineage = Lineage.find_by(name: lineage_name.chomp('系'))
     raise "Cannot find Lineage '#{lineage_name}' for '#{name}'" unless lineage
-    Sire.create!(name: name, lineage: lineage)
+
+    name.gsub!('_', ' ')
+    key = name =~ /\A[A-Z .']\z/ ? :name_eng : :name 
+    sire = Sire.create!(key => name)
+
+    sire.create_sire_trait!(
+      lineage:      lineage,
+      fee:          fee,
+      min_distance: min_distance,
+      max_distance: max_distance,
+      dirt:         dirt,
+      growth:       growth,
+      temper:       temper,
+      contend:      contend,
+      health:       health,
+      achievement:  achievement,
+      stability:    stability,
+    )
   end
 end
