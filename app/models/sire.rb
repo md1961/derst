@@ -6,7 +6,7 @@ class Sire < ApplicationRecord
   has_many :inbreed_effects, through: :sire_inbreed_effects
 
   def self.english_name?(name)
-    name =~ /\A[A-Za-z .']+\z/
+    name =~ /\A[A-Za-z .'-]+\z/
   end
 
   def name
