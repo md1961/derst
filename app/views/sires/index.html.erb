@@ -1,13 +1,19 @@
 <table class="table_base">
+  <thead>
+    <tr>
+      <th>
+      <% trait_names.each do |name| -%>
+        <th><%= SireTrait.human_attribute_name(name) %></th>
+      <% end -%>
+    </tr>
+  </thead>
   <tbody>
     <% @sires.each do |sire| -%>
       <tr>
         <td><%= sire.name %></td>
         <% trait = sire.trait -%>
-        <% %i[
-             fee distances dirt growth temper contend health achievement stability
-           ].each do |name| -%>
-          <td class="<%= name == :fee ? 'numeric' : '' %>">
+        <% trait_names.each do |name| -%>
+          <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
             <%= trait.send(name) %>
           </td>
         <% end -%>

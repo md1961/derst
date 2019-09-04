@@ -1,0 +1,14 @@
+---
+ja:
+  activerecord:
+    models:
+    attributes:
+      sire_trait:
+        distances: 距離
+        dirt: ダート
+        growth: 成長
+        temper: 気性
+        contend: 底力
+        health: 健康
+        achievement: 実績
+        stability: 安定
