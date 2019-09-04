@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_234647) do
+ActiveRecord::Schema.define(version: 2019_09_04_020049) do
+
+  create_table "inbreed_effects", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "abbr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "lineages", force: :cascade do |t|
     t.string "name", null: false

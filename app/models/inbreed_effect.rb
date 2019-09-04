@@ -1,0 +1,2 @@
+class InbreedEffect < ApplicationRecord
+end
