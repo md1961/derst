@@ -12,6 +12,11 @@ class Sire < ApplicationRecord
     name =~ /\A[A-Za-z .'-]+\z/
   end
 
+  def self.find_by_name(name)
+    key = english_name?(name) ? :name_eng : :name_jp
+    find_by(key => name)
+  end
+
   def name
     name_jp || name_eng
   end
