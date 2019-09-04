@@ -5,6 +5,9 @@ class Sire < ApplicationRecord
   has_many :sire_inbreed_effects, dependent: :destroy
   has_many :inbreed_effects, through: :sire_inbreed_effects
 
+  validates :name_jp , uniqueness: true, allow_nil: true
+  validates :name_eng, uniqueness: true, allow_nil: true
+
   def self.english_name?(name)
     name =~ /\A[A-Za-z .'-]+\z/
   end
