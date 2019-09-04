@@ -48,7 +48,7 @@ File.open('db/sires.txt') do |f|
     raise "Cannot find Lineage '#{lineage_name}' for '#{name}'" unless lineage
 
     name.gsub!('_', ' ')
-    key = name =~ /\A[A-Za-z .']+\z/ ? :name_eng : :name
+    key = Sire.english_name?(name) ? :name_eng : :name
     sire = Sire.create!(key => name)
 
     sire.create_trait!(
