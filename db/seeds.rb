@@ -39,6 +39,7 @@ end
 end
 
 File.open('db/sires.txt') do |f|
+  count = 1
   while line = f.gets
     next if line.starts_with?('馬名')
     name, lineage_name, fee, min_distance, max_distance, dirt, \
@@ -47,7 +48,7 @@ File.open('db/sires.txt') do |f|
     raise "Cannot find Lineage '#{lineage_name}' for '#{name}'" unless lineage
 
     name.gsub!('_', ' ')
-    key = name =~ /\A[A-Z .']\z/ ? :name_eng : :name 
+    key = name =~ /\A[A-Za-z .']+\z/ ? :name_eng : :name
     sire = Sire.create!(key => name)
 
     sire.create_trait!(
@@ -63,5 +64,9 @@ File.open('db/sires.txt') do |f|
       achievement:  achievement,
       stability:    stability,
     )
+
+    print "#{count} "
+    count += 1
   end
+  puts
 end
