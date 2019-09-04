@@ -1,0 +1,442 @@
+P.103
+ファロス Pharos nil 1
+ネアルコ Nearco Pharos 1 スピード スタミナ
+ナスルーラ Nasrullah Nearco 1 スピード◎ 気性難
+トウルビヨン Tourbillon nil 7 底力
+プリンスビオ Prince_Bio nil 10 ダート 回復
+フェアトライアル Fair_Trial nil 8 底力
+ロイヤルチャージャー Royal_Charger nil 1 スピード
+ローズプリンス Rose_Prince nil 10
+
+5
+アボッツトレイス Abbots_Trace nil
+アリバイ Alibhai nil 4 ダート スピード
+アリジェ Alizier nil スタミナ
+アルバール Arbar nil 7
+アンダーウッド Underwood nil
+アンビオリックス Ambiorix Tourbillon
+アンブレーカブル Unbreakable nil 3
+インディアンヘンプ Indian_Hemp nil 1
+インテント Intent nil 11
+ウインドフィールズ Windfields nil
+ウォーレリック War_Relic nil 11 底力
+エイトサーティ Eight_Thirty nil 12
+エスカミーロ Escamillo nil
+オリオール Aureole nil 4 底力 気性難
+オーオンテューダー Owen_Tudor nil 4 スピード◎
+オーシャンスウェル Ocean_Swell nil 8
+カウントフリート Count_Fleet nil 12
+カバーラップ Cover_Up nil 4
+ガルフストリーム Gulf_Stream nil
+カーレッド Khaled nil 4 ダート 気性難
+キングオブザチューダーズ King_of_the_Tudors nil
+クラフティアドミラル Crafty_Admiral nil 2 スピード
+グレイソヴリン Grey_Sovereign Nasrullah 1 スピード◎ 底力
+クレペロ Crepello nil 9
+ゲインズボロー Gainsborough nil 4
+ケースエース Case_Ace nil
+コズミックボム Cosmic_Bomb nil
+ゴヤマ Goyama nil
+コロナック Coronach nil 11
+コートハーウェル Court_Harwell nil 10
+ゴールデンクラウド Golden_Cloud nil 12
+ザソリサイター The_Solicitor nil 8
+ザボス The_Boss nil 12
+ザライマー The_Rhymer nil 9
+サンアゲイン Sun_Again nil 2
+サーギャラハッド Sir_Gallahad nil 2 底力
+サーコスモ Sir_Cosmo The_Boss スピード
+ジェダー Djeddah nil
+ジェットパイロット Jet_Pilot nil 9
+ジェベル Djebel Tourbillon スピード◎
+シカンブル Sicambre Prince_Bio 底力 気性難
+シャトーブスコー Chateau_Bouscaut nil 12 スタミナ
+シャノン Shannon nil 9
+シャントゥール Chanteur Chateau_Bouscaut
+スタイミー Stymie nil
+ストレイトディール Straight_Deal nil
+セフト nil nil 7
+ソラリオ Solario nil スタミナ
+ソルフェリノ Solferino nil 8
+ソードダンサー Sword_Dancer nil 2
+ソーヴレイン Souverain nil 10
+ダイオライト nil nil 底力
+ダライアス Darius nil 1
+ダンキューピッド Dan_Cupid nil 3
+ダンテ Dante nil
+タンティエーム Tantieme nil 2 スタミナ
+ターントゥ Turn-to Royal_Charger 1 底力 回復
+チキーノ Ticino nil 12
+ディターミン Determine nil 4
+チムール Timor nil 7
+テヘラン Tehran nil 10
+テューダーミントスレル Tudor_Minstrel nil 4 スピード 底力ダウン
+トゥールマン Tourment nil 7
+ドナテロ Donatello nil スタミナ
+トラフィックジャッジ Traffic_Judge nil 4
+トリプリケート nil nil 12
+トリムドン Trimdon nil 4
+ネイティヴダンサー Native_Dancer nil 3 スピード◎ スタミナ
+ニアルーラ Nearula nil 1
+ニアークティック Nearctic Nearco スピード
+ニンバス nil Nearco 1
+ノーズマン Norseman nil 9
+ノーホーム Noholme nil 4
+ハイペリオン Hyperion Gainsborough スピード スタミナ
+パノナマ Panorama nil スピード
+パパゲーノ Pappageno nil 10
+バブルス Bubbles nil
+バラディア Balladier nil 5
+バリモス Ballymoss nil スタミナ
+パレスタイン Palestine Fair_Trial スピード
+パレスティニアン Palestinian Sun_Again
+パン Pan nil
+ハードリドン nil nil 1
+バーラム Bahram nil 9 底力
+ヒエロクルズ Hierocles nil
+ビッグゲーム Big_Game nil スピード
+ヒラリー Hillary nil
+ヒルゲイル Hill_Gail nil 2
+ファラモンド Pharamond nil 6
+ファインアート Fine_Art nil 4
+ファリス Pharis Pharos 1 スピード
+ファーストランディング First_Landing nil
+フェアウェイ Fairway nil 8 スピード
+フェアコピー Fair_Copy nil 8
+フェアリーフルマー Fairey_Fulmar nil
+フォルモル Formor nil
+フォントネイ Fontenay nil 7
+ブラックウイング nil nil
+プラッシー Plassy nil 4
+ブラントーム Brantome nil 9 底力
+プリシピテイション Precipitation nil 11 スタミナ
+プリメロ nil nil 底力
+ブリュムー Brumeux nil 2
+プリンスキロ Princequillo nil 10 ダート 回復
+プリンスシュヴァリエ Prince_Chevalier nil 10
+プリンスジョン Prince_John Princequillo スピード
+プリンスリーギフト Princely_Gift Nasrullah スピード◎ 早熟
+プリンスローズ Prince_Rose Rose_Prince 底力
+フリーアメリカ Free_America nil 9
+フリーフォーオール Free_for_All nil 5
+ブルドッグ Bull_Dog nil 2 スピード
+ブルペイジ Bull_Page nil
+ブルリー Bull_Lea nil 2 スタミナ 回復
+ブルーソーズ Blue_Swords nil
+ブルーラークスパー Blue_Larkspur nil 底力
+フレアズ Flares nil 2
+ブレニム Blenheim nil 9
+ヘイルトゥリーズン Hail_to_Reason nil 底力
+ペティション Petition nil 底力
+ベリーニ Bellini nil 10
+ホイッスラー Whistler nil 12
+ポリネシアン Polynesian Unbreakable
+ボレアリス Borealis nil
+ボーサン Beau_Son nil
+ボーマックス Beau_Max nil
+マイリージャン Milesian nil 7 スピード 底力ダウン
+マトリース Matrice nil 8
+マンノウォー Man_o'War nil 11 スタミナ
+マームード Mahmoud nil
+ミゴリ Migoli nil 10
+ミスティフライト Misty_Flight nil 10
+ミューセ Mieuxce nil スタミナ
+メナウ Menow nil 6
+メリディエン Meridien nil 7
+モスボロー Mossborough nil 底力
+ラスタムパシャ Rustom_Pasha nil
+リアルト Rialto nil 10
+ルラヴァンドゥ Le_Lavandou nil
+レリック Relic War_Relic スタミナ
+ロイヤルミンストレル Royal_Minstrel nil 7
+ロックフェラ Rockefella Hyperion 底力
+ローマン Roman Sir_Gallahad 底力
+ヴァトゥー Vatout nil 10
+ヴァトラー Vatellor nil 10 スタミナ
+ヴューマノワール Vieux_Manoir Brantome 晩成
+
+4
+アドミラルズヴォヤージ Admiral's_Voyage Crafty_Admiral
+アバーナント Abernant Owen_Tudor スピード
+アブドス Abdos Arbar
+アリストファネス Aristophanes Hyperion
+アンタントコーディアル Entente_Cordiale Djebel
+アンビオポイズ Ambiopoise Ambiorix
+インテンショナリー Intentionally Intent
+ウィルサマーズ Will_Somers Tudor_Minstrel
+エタン nil Native_Dancer スピード
+オキュパイ Occupy Bull_Dog
+オルジニ Orsini Ticino
+オンリーフォアライフ nil Chanteur
+カイスノス Kythnos Nearula
+カバーラップ二世 nil Cover_Up
+ガルカドール nil Djebel
+カリム nil Nearco スピード
+ガーサント nil Bubbles スピード 気性難
+ギャラントマン Gallant_Man Migoli スタミナ 底力ダウン
+クラナック Cranach Coronach
+クラリオン Clarion Djebel
+グリーンチケット Greenticket Traffic_Judge
+ゲイタイム nil Rockefella 晩成
+コズミックボム Cosminc_Bomb Pharamond
+コリレイション Correlation Free_America
+コートマーシャル Court_Martial Fair_Trial スピード
+サウンドトラック nil Whistler
+ザパイキング The_Pie_King The_Solicitor
+ザフェニックス The_Phoenix Chateau_Bouscaut 12
+サヤジラオ Sayajirao Nearco
+サングロウ Sunglow Sun_Again
+サーゲイロード Sir_Gaylord Turn-to スピード スタミナ
+シェスーン Sheshoon Precipitation
+ジェットアクション Jet_Action Jet_Pilot
+シグナルライト Signal_Light Pharos
+シャルロットヴィル Charlottesville Prince_Chevalier
+ジョンズジョイ Johns_Joy Bull_Dog
+シングシング Sing_Sing Tudor_Minstrel スピード 底力ダウン
+シーオーエリン Sea_O_Erin Shannon
+シーバード Sea_Bird Dan_Cupid スタミナ
+スコット nil Souverain
+ストレイタス Stratus ニンバス
+スパイソング Spy_Song Balladier スピード
+スワップス Swaps Khaled ダート 底力
+ゼダーン nil Grey_Sovereign スピード
+ソロナウェー nil Solferino
+タネルコ Tanerko Tantieme 早熟
+ダブルジェイ Double_Jay Balladier スピード
+ダマスカス Damascus Sword_Dancer ダート
+タルヤー Tulyar Tehran
+チャモセア Chamossaire Precipitation
+チョップチョップ Chop_Chop Flares
+テイルオブトゥーシティーズ Tale_of_Two_Cities Tehran
+デディケイト Dedicate Princequillo
+テネラニ Tenerani Bellini
+デリングドゥー Derring-do Darius
+ドナテロ Donatello Blenheim スタミナ
+トムフール Tom_Fool Menow スピード
+トゥルノワ Tournoi Tourbillon
+ドーナットキング Donut_King Determine
+ナイトインベーダー Night_Invader Misty_Flight
+ネヴァーセイダイ Never_Say_Die Nasrullah スピード 気性難
+ネヴァーベンド Never_Bend Nasrullah スピード◎
+ネヴァービート nil Never_Say_Die スタミナ 気性難
+ナシュア Nashua Nasrullah
+ナッシュヴィル Nashville Nasrullah
+ノーザンダンサー Northern_Dancer Nearctic 底力
+ノーダブル Nodouble Noholme
+ハクリョウ nil nil
+バステッド Busted Crepello 底力 晩成
+パゴパゴ Pago_Pago Matrice
+ハニウェイ Honeyway Fairway
+ハニーズアリバイ Honeys_Alibi Alibhai
+パパフォアウェイ Pappa_Fourway Pappageno
+ハビタット Habitat Sir_Gaylord スピード◎ 早熟
+ハヤタケ nil セフト
+バンビュール Bambure Court_Harwell
+パーシャンガルフ Persian_Gulf Bahram ダート
+ハーディカヌート nil ハードリドン
+ビッグゲーム Big_Game Bahram スピード
+ビュイソンアルダン Buisson_Ardent Relic
+ファイントップ Fine_Top Fine_Art
+ファストネットロック Fastnet_Rock Ocean_Swell
+ファーストフィドル First_Fiddle Royal_Minstrel
+フォルティノ nil Grey_Sovereign スタミナ
+フランシスエス Francis_S. Royal_Charger
+プリシプティック Preciptic Precipitation
+プリンスタジ Prince_Taj Prince_Bio
+フリートナスルーラ Fleet_Nasrullah Nasrullah 回復
+フリーマン Free_Man Norseman
+プロミスドランド Promised_Land Palestinian 2
+フロリバンダ nil nil
+プロント Pronto Timor
+バルコネイジ Balconaje Pronto
+ヘイスティロード Hasty_Road Roman
+ベタービー Better_Bee トリプリケート
+ペルメル Pall_Mall Palestine
+ヘンリーザセヴンス Henry_the_Seventh King_of_the_Tudors
+ボレアリス Borealis Brumeux
+ボレロ Bolero Eight_Thirty
+ボワルセル Bois_Roussel Vatout スタミナ 回復
+ボーガー Beau_Gar Count_Fleet
+ボールドルーラー Bold_Ruler Nasrullah スピード◎ ダート
+ボールドアンドブレイヴ Bold_and_Brave Bold_Ruler
+ボールドネシアン Boldnesian Bold_Ruler
+マイバブー My_Babu Djebel スピード
+マザリン Mazarin Mieuxce
+マタドア nil Golden_Cloud
+マーシャス Marsyas Trimdon
+マーシャル Martial Hill_Gail
+マーチパスト March_Past Petition
+ムルヌ Mourne Vieux_Manoir
+メディアム Medium Meridien
+メネトリエール Menetrier Fair_Copy
+モンタヴァル nil Norseman
+モンパルナス Montparnasse Gulf_Stream 4
+ユアハイネス nil Chamossaire
+ユアホウスト Your_Host Alibhai
+ライジングフレーム nil The_Phoenix スピード 底力ダウン
+ライトロイヤル Right_Royal Owen_Tudor スタミナ
+ラウンドテーブル Round_Table Princequillo スピード 回復
+ラティフィケイション nil Court_Martial
+ラフンタンブル Rougn'n_Tumble Free_for_All
+リボー Ribot Tenerani 底力 気性難
+リライアンス Reliance Tantieme
+ルアール Le_Haar Vieux_Manoir
+ルフィルー Le_Filou Vatellor
+ルボープランス Le_Beau_Prince Fontenay
+ルルヴァンステル Le_Levanstell Le_Lavandou
+レイズアネイティヴ Raise_a_Native Native_Dancer 底力
+ワイルドリスク Wild_Risk Rialto スタミナ
+ワードン Worden Wild_Risk スタミナ 晩成
+ヴァルドロワール Val_de_Loir Vieux_Manoir スタミナ
+ヴァーテックス Vertex The_Rhymer
+ラッキーデボネア Lucky_Debonair Vertex スピード
+ヴァンダル Vandale Plassy スタミナ
+ヴィエナ nil Aureole スタミナ 早熟
+ヴィオロンドゥリングル Violon_d'lngres Tourment
+ヴィクトリアパーク Victoria_Park Chop_Chop
+TVラーク T.V.Lark Indian_Hemp
+
+3
+アイアンリージ nil スコット
+アイスカペイド Icecapade Nearctic
+アリシドン Alycidon Donatello スタミナ
+アルサイド Alcide Alycidon スタミナ
+アリダー Alydar Raise_a_Native 底力
+トムロルフ Tom_Rolfe Ribot 晩成
+ホイストザフラッグ Hoist_the_Flag Tom_Rolfe
+アレッジド Alleged Hoist_the_Flag 底力
+アンダースタンディング Understanding Promised_Land
+インリアリティ In_Reality Intentionally スピード 底力
+インヴォルヴメント Involvement Intent
+エクスクルシヴネイティヴ Exclusive_Native Raise_a_Native
+エクスビュリ Exbury Le_Haar
+エルバジェ Herbager Vandale スタミナ
+オンリーフォアライフ nil Chanteur 晩成
+カラムーン Kalamoun ゼダーン スタミナ 気性難
+カロ Caro フォルティノ 早熟
+ニジンスキー Nijinsky Northern_Dancer スピード スタミナ
+カーリアン Caerleon Nijinsky スピード
+キングズトゥループ King's_Troop Princely_Gift
+クイーンズハザー Queen's_Hussar March_Past
+グリーンダンサー Green_Dancer nil スタミナ 底力ダウン
+グレイドーン Grey_Dawn Herbager 回復
+クレイロン Klairon Clarion
+リュティエ Luthier Klairon スピード◎ 早熟
+ダンディルート nil Luthier 底力 早熟
+クレヴァートリック Clever_Trick Icecapade
+グレートネフュー Great_Nephew Honeyway 底力
+グロースターク Graustark Ribot スピード
+ケネディロード Kennedy_Road Victoria_Park
+コリムスキー nil Northern_Dancer
+コーニッシュプリンス Cornish_Prince Bold_Ruler
+ゴールデンイーグル Golden_Eagle Right_Royal
+サイレントスクリーン Silent_Screen Prince_John
+ザミンストレル The_Minstrel Northern_Dancer 底力ダウン
+サドラーズウェルズ Sadler's_Wells Northern_Dancer 底力
+サラスト Sallust Pall_Mall
+サンクタス Sanctus Fine_Top スピード 気性難
+サーアイヴァー Sir_Ivor Sir_Gaylord
+ジェスター Jester Tom_Fool
+ジムフレンチ nil Graustark
+ジャカオ Djakao Tanerko スピード
+シャトーゲイ nil Swaps スピード スタミナ
+シャーペンアップ Sharpen_Up エタン
+ヒンドスタン nil Bois_Roussel スタミナ 晩成
+シンザン nil ヒンドスタン スピード
+シービークロス nil フォルティノ 底力
+シーホーク nil Herbager スタミナ 晩成
+スターモス Star_Moss Mossborough
+スティールハート nil Habitat
+ストップザミュージック Stop_the_Music Hail_to_Reason
+スノッブ nil Mourne スピード
+セダン nil Prince_Bio 回復
+ザマザーン Zamazaan Exbury
+セクレタリアト Secretariat Bold_Ruler 気性難
+ソヴリンパス Sovereign_Path Grey_Sovereign スピード 底力ダウン
+ウルヴァーホロウ Wolver_Hollow Sovereign_Path
+ソヴリンエディション Sovereign_Edition Sovereign_Path
+ダイハード nil Never_Say_Die
+ダンチヒ Danzig Northern_Dancer スピード◎ 早熟
+ターゴワイス nil Round_Table
+チャイナロック nil Rockefella ダート 回復
+ティムタム Tim_Tam Tom_Fool
+テスコボーイ nil Princely_Gift 底力 気性難
+チューダーメロディ Tudor_Melody Tudor_Minstrel スピード 気性難
+テュデナム nil Tudor_Melody 底力 晩成
+テンパランスヒル Temperence_Hill Stop_the_Music
+トウショウボーイ nil テスコボーイ スピード
+ドクターファーガー Dr._Fager Rougn'n_Tumble
+トップサイダー Topsider Northern_Dancer
+トライマイベスト nil Northern_Dancer
+ドローン Drone Sir_Gaylord
+ナイスダンサー nil Northern_Dancer
+ヌレイエフ Nureyev Northern_Dancer スピード
+ノウンファクト Known_Fact In_Reality
+ノーザンベイビー Northern_Baby Northern_Dancer スピード
+ノースフィールズ Northfields Northern_Dancer
+ハイセイコー nil チャイナロック
+ハイトップ High_Top Derring-do 底力
+バウンティアス nil Rockefella
+バックパサー Buckpasser Tom_Fool スピード ダート
+ハロウェー nil Fairway
+パーソロン nil Milesian スピード 底力
+パーダオ Pardao nil
+ハードツービート nil ハーディカヌート
+ヒズマジェスティ His_Majesty Ribot 底力
+ビゼンニシキ nil ダンディルート
+ファーザーズイメージ nil Swaps
+フォルリ Forli Aristophanes 回復
+レッドゴッド Red_God Nasrullah 底力 気性難
+ブラッシンググルーム Blushing_Groom Red_God 底力 気性難
+プルーデント Prudent My_Babu
+ヘイルトゥリーズン Hail_to_Reason Turn-to 底力
+ヘイロー Halo Hail_to_Reason スピード
+ボイズィーボーイ nil King's_Troop
+ポッセ nil Forli
+ポーカー Poker Round_Table
+ボールドイーグル Bald_Eagle Nasrullah
+ボールドラッド(USA) nil Bold_Ruler 底力 ダート
+ボールドリーズニング Bold_Reasoning Boldnesian
+ボールドアンドエイブル nil ボールドラッド(USA) スピード
+ホーンビーム Hornbeam Hyperion
+マラケート nil Lucky_Debonair
+マルゼンスキー nil Nijinsky スピード
+マーシュアスダンサー Marshua's_Dancer Raise_a_Native
+ミスタープロスペクター Mr._Prospector Raise_a_Native スピード
+ウッドマン Woodman Mr._Prospector
+ミスティ Misti Medium
+ミルリーフ Mill_Reef Never_Bend スタミナ 底力
+ミルジョージ nil Mill_Reef
+ミンスキー nil Northern_Dancer
+ムーティエ nil Sicambre 気性難
+メジロアサマ nil パーソロン
+メジロサンマン nil Charlottesville 底力
+ラグーザ Ragusa Ribot
+ラジャババ Raja_Baba Bold_Ruler スピード ダート
+ラニャン Lanyon Cornish_Prince
+ラバス Labus Busted
+ラバージョン nil Damascus
+ランザガントレット Run_the_Gantlet Tom_Rolfe
+ラークスパー nil Never_Say_Die
+リヴァーマン Riverman Never_Bend
+リファール Lyphard Northern_Dancer スピード
+リイフォー nil Lyphard
+リマンド nil Alcide
+ルファビュルー Le_Fabuleux Wild_Risk スタミナ
+ルークン Ruken Nashville
+レヴモス Levmoss Le_Levanstell
+レヴュワー Reviewer Bold_Ruler
+ロベルト Roberto Hail_to_Reason スタミナ 早熟
+ワットアプレジャー What_a_Pleasure Bold_Ruler スピード
+フーリッシュプレジャー Foolish_Pleasure What_a_Pleasure
+オネストプレジャー Honest_Pleasure What_a_Pleasure
+ヴァイスリージェント Vice_Regent Northern_Dancer
+ヴァルデス Valdez Exclusive_Native
+ヴィミー nil Wild_Risk スタミナ 晩成
+ヴェイグリーノーヴル Vaguely_Noble ヴィエナ スタミナ
+ヴェンチア nil Relic 底力 晩成
+
+アカラッド Akarad Labus
+インターメゾ nil Hornbeam スタミナ
+クリス Kris Sharpen_Up
+シアトルスルー Seattle_Slew Bold_Reasoning 底力 早熟
