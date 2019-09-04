@@ -1,5 +1,6 @@
 [
   Sire,
+  InbreedEffect,
   RootLineage,
   Lineage,
 ].each do |model|
@@ -38,6 +39,21 @@ end
   RootLineage.create!(number: number, name: name)
 end
 
+[
+  %w[スピード SP],
+  %w[スピード◎ SP◎],
+  %w[スタミナ STM],
+  %w[底力 底],
+  %w[底力ダウン DWN],
+  %w[気性難 難],
+  %w[ダート ダ],
+  %w[回復 回],
+  %w[早熟 早],
+  %w[晩成 晩],
+].each do |name, abbr|
+  InbreedEffect.create!(name: name, abbr: abbr)
+end
+
 File.open('db/sires.txt') do |f|
   count = 1
   while line = f.gets
@@ -70,3 +86,38 @@ File.open('db/sires.txt') do |f|
   end
   puts
 end
+
+=begin
+File.open('db/bloodlines.txt') do |f|
+  count = 1
+  while line = f.gets
+    items = line.split
+    next if items.size <= 1
+    name_jp, name_eng, father_name, *rests = items
+
+    name_eng = nil if name_eng == 'nil'
+    if father_name == 'nil'
+      father_name = nil
+    else
+      father = Sire.find_by_name(father_name)
+      raise "Cannot find Sire '#{father_name}' for '#{name_jp}(#{name_eng})'" unless father
+    end
+
+    root_lineage_id = rests.shift if rests.first.to_i > 0
+
+    inbreed_effects = items.map { |name|
+      InbreedEffect.find_by(name: name).tap { |effect|
+        raise "Cannot find InbreedEffect '#{name}' for '#{name_jp}(#{name_eng})'" unless effect
+      }
+    }
+
+    sire = Sire.find_by_name(name_jp)
+    sire = Sire.find_by_name(name_eng) unless sire
+    sire = Sire.create!(name_jp: name_jp, name_eng: name_eng, father: father) unless sire
+
+    print "#{count} "
+    count += 1
+  end
+  puts
+end
+=end
