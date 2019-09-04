@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sire: one
+  inbreed_effect: one
+
+two:
+  sire: two
+  inbreed_effect: two

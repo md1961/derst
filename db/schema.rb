@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_04_020049) do
+ActiveRecord::Schema.define(version: 2019_09_04_025302) do
 
   create_table "inbreed_effects", force: :cascade do |t|
     t.string "name", null: false
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 2019_09_04_020049) do
     t.string "name_eng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sire_inbreed_effects", force: :cascade do |t|
+    t.integer "sire_id", null: false
+    t.integer "inbreed_effect_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inbreed_effect_id"], name: "index_sire_inbreed_effects_on_inbreed_effect_id"
+    t.index ["sire_id"], name: "index_sire_inbreed_effects_on_sire_id"
   end
 
   create_table "sire_traits", force: :cascade do |t|
