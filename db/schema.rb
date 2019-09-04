@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_09_03_234647) do
   end
 
   create_table "sires", force: :cascade do |t|
-    t.string "name"
+    t.string "name_jp"
     t.string "name_eng"
     t.integer "father_id"
     t.integer "root_lineage_id"

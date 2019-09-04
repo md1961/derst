@@ -6,4 +6,8 @@ class Sire < ApplicationRecord
   def self.english_name?(name)
     name =~ /\A[A-Za-z .']+\z/
   end
+
+  def name
+    name_jp || name_eng
+  end
 end
