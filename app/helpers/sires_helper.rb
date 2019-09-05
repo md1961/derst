@@ -6,7 +6,10 @@ module SiresHelper
 
   def father_in_bloodline(sire, generation, number)
     father = sire.bloodline_father(generation, number)
-    return nil unless father
-    father.name_eng || father.name_jp
+    if father
+      father.name_eng || father.name_jp
+    else
+      render partial: 'father_input', locals: {generation: generation, number: number}
+    end
   end
 end

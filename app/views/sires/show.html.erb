@@ -35,4 +35,14 @@
     <tr>
       <td>            <%= father_in_bloodline(@sire, 4, 8) %></td>
     </tr>
+  </table>
+
+  <datalist id="father_candidates">
+    <% Sire.where.not(name_eng: nil).order(:name_eng).each do |sire| -%>
+      <option value="<%= sire.name_eng %>">
+    <% end -%>
+    <% Sire.where(name_eng: nil).order(:name_jp).each do |sire| -%>
+      <option value="<%= sire.name_jp %>">
+    <% end -%>
+  </datalist>
 </div>
