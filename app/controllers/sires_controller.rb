@@ -1,7 +1,7 @@
 class SiresController < ApplicationController
 
   def index
-    @sires = Sire.breedable
+    @sires = Sire.breedable.order(fee: :desc)
   end
 
   def show
