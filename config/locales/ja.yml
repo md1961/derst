@@ -4,6 +4,7 @@ ja:
     models:
     attributes:
       sire_trait:
+        lineage: 系統
         distances: 距離
         dirt: ダート
         growth: 成長
