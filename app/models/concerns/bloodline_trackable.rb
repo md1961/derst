@@ -22,6 +22,14 @@ module BloodlineTrackable
       else
         maternal_lines.find_by(generation: 3)&.father
       end
+  # 父　父父　父父父　父父父父
+  #                   父父母父
+  #           父母父　父母父父
+  #                   父母母父
+  #     母父　母父父　母父父父
+  #                   母父母父
+  #           母母父　母母父父
+  #                   母母母父
     when 4
       case number
       when 1
@@ -31,11 +39,11 @@ module BloodlineTrackable
       when 3
         bloodline_father(3, 2)&.father
       when 4
-        bloodline_father(2, 2)&.bloodline_father(2, 2)
+        bloodline_father(1, 1)&.bloodline_father(3, 4)
       when 5
         bloodline_father(3, 3)&.father
       when 6
-        bloodline_father(2, 3)&.bloodline_father(2, 2)
+        bloodline_father(2, 2)&.bloodline_father(2, 2)
       when 7
         bloodline_father(3, 4)&.father
       else
