@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sire: one
+  generation: 1
+  father_id: 1
+
+two:
+  sire: two
+  generation: 1
+  father_id: 1
