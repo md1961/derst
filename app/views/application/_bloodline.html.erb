@@ -1,4 +1,5 @@
 <div class="application_bloodline">
+  <%= form_with url: bloodline_update_path, local: true, method: :patch do |f| %>
     <table class="table_base">
       <tr>
         <td rowspan="8"><%= father_in_bloodline(horse, 1, 1) %></td>
@@ -33,6 +34,11 @@
       </tr>
     </table>
 
+    <%= hidden_field_tag :type, horse.class.name %>
+    <%= hidden_field_tag :id  , horse.id %>
+
+    <%= submit_tag %>
+
     <datalist id="father_candidates">
       <% Sire.where.not(name_eng: nil).order(:name_eng).each do |sire| -%>
         <option value="<%= sire.name_eng %>">
@@ -41,4 +47,5 @@
         <option value="<%= sire.name_jp %>">
       <% end -%>
     </datalist>
+  <% end -%>
 </div>
