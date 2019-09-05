@@ -3,46 +3,5 @@
     <%= @sire.name %>
   </div>
 
-  <table class="table_base">
-    <tr>
-      <td rowspan="8"><%= father_in_bloodline(@sire, 1, 1) %></td>
-      <td rowspan="4"><%= father_in_bloodline(@sire, 2, 1) %></td>
-      <td rowspan="2"><%= father_in_bloodline(@sire, 3, 1) %></td>
-      <td>            <%= father_in_bloodline(@sire, 4, 1) %></td>
-    </tr>
-    <tr>
-      <td>            <%= father_in_bloodline(@sire, 4, 2) %></td>
-    </tr>
-    <tr>
-      <td rowspan="2"><%= father_in_bloodline(@sire, 3, 2) %></td>
-      <td>            <%= father_in_bloodline(@sire, 4, 3) %></td>
-    </tr>
-    <tr>
-      <td>            <%= father_in_bloodline(@sire, 4, 4) %></td>
-    </tr>
-    <tr>
-      <td rowspan="4"><%= father_in_bloodline(@sire, 2, 2) %></td>
-      <td rowspan="2"><%= father_in_bloodline(@sire, 3, 3) %></td>
-      <td>            <%= father_in_bloodline(@sire, 4, 5) %></td>
-    </tr>
-    <tr>
-      <td>            <%= father_in_bloodline(@sire, 4, 6) %></td>
-    </tr>
-    <tr>
-      <td rowspan="2"><%= father_in_bloodline(@sire, 3, 4) %></td>
-      <td>            <%= father_in_bloodline(@sire, 4, 7) %></td>
-    </tr>
-    <tr>
-      <td>            <%= father_in_bloodline(@sire, 4, 8) %></td>
-    </tr>
-  </table>
-
-  <datalist id="father_candidates">
-    <% Sire.where.not(name_eng: nil).order(:name_eng).each do |sire| -%>
-      <option value="<%= sire.name_eng %>">
-    <% end -%>
-    <% Sire.where(name_eng: nil).order(:name_jp).each do |sire| -%>
-      <option value="<%= sire.name_jp %>">
-    <% end -%>
-  </datalist>
+  <%= render partial: 'bloodline', locals: {horse: @sire} %>
 </div>
