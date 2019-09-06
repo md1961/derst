@@ -1,8 +1,11 @@
 <div class="sires_index">
-  <%= form_with model: @sire_filter, local: true do |f| %>
-    <%= f.select :stability, %w[- A B C] %>
-    <%= f.submit %>
-  <% end -%>
+  <div id="sire_filter" hidden>
+    <%= form_with model: @sire_filter, local: true do |f| %>
+      <%= f.select :stability, %w[- A B C] %>
+      <%= f.submit %>
+    <% end -%>
+  </div>
+  <span id="button_to_show_sire_filter" class="button">[+]</span>
 
   <table class="table_base">
     <thead>
