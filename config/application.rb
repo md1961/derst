@@ -17,5 +17,7 @@ module Derst
     # the framework and any gems in your application.
 
     config.i18n.default_locale = :ja
+
+    config.action_controller.include_all_helpers = false
   end
 end
