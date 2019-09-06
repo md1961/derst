@@ -1,4 +1,9 @@
 <div class="sires_index">
+  <%= form_with model: @sire_filter, local: true do |f| %>
+    <%= f.select :stability, %w[- A B C] %>
+    <%= f.submit %>
+  <% end -%>
+
   <table class="table_base">
     <thead>
       <tr>
