@@ -1,7 +1,7 @@
 <div class="sires_index">
   <div id="sire_filter" hidden>
     <%= form_with model: @sire_filter, local: true do |f| %>
-      <%= f.select :stability, %w[- A B C] %>
+      <%= f.select :stability, options_for_abc %>
       <%= f.submit %>
     <% end -%>
   </div>
