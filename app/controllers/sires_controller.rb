@@ -18,7 +18,6 @@ class SiresController < ApplicationController
 
   def create
     @sire = Sire.new(sire_params)
-    @sire.father = Sire.find_by_name(params[:father])
     if @sire.save
       redirect_to horse_back_path
     else
@@ -30,7 +29,7 @@ class SiresController < ApplicationController
   end
 
   def update
-    if @sire.update(sire_params.merge(father: Sire.find_by_name(params[:father])))
+    if @sire.update(sire_params)
       redirect_to horse_back_path
     else
       render :new
@@ -44,7 +43,11 @@ class SiresController < ApplicationController
     end
 
     def sire_params
-      params.require(:sire).permit(:name_jp, :name_eng, :root_lineage_id).reject { |k, v| v.blank? }
+      params.require(:sire).permit(:name_jp, :name_eng, :root_lineage_id).reject { |k, v|
+        v.blank? && k != 'root_lineage_id'
+      }.tap { |p|
+        p[:father] = Sire.find_by_name(params[:father])
+      }
     end
 
     def set_horse_back
