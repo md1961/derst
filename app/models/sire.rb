@@ -26,6 +26,10 @@ class Sire < ApplicationRecord
     name_jp || name_eng
   end
 
+  def root_lineage_number
+    root_lineage&.number || father&.root_lineage_number
+  end
+
   def to_s
     name
   end
