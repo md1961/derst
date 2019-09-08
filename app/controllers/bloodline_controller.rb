@@ -8,7 +8,7 @@ class BloodlineController < ApplicationController
     key =~ /\Afather(\d)(\d)\z/
     generation = Regexp.last_match(1).to_i
     number     = Regexp.last_match(2).to_i
-    is_updated = horse.update_bloodline_father!(generation, number, father_name)
+    is_updated = horse.update_bloodline_father(generation, number, father_name)
 
     if is_updated || params_father.empty?
       redirect_to horse
@@ -17,6 +17,15 @@ class BloodlineController < ApplicationController
                                 horse_back_type: horse.class.name, horse_back_id: horse.id,
                                 generation: generation, number: number)
     end
+  end
+
+  def destroy
+    horse_class = params[:type].constantize
+    horse = horse_class.find(params[:id])
+    generation = params[:generation].to_i
+    number     = params[:number    ].to_i
+    horse.destroy_bloodline_father(generation, number)
+    redirect_to horse
   end
 
   private

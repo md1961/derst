@@ -12,12 +12,22 @@ module BloodlineTrackable
     child_of_bloodline_father(generation, number)&.father
   end
 
-  def update_bloodline_father!(generation, number, name)
+  def update_bloodline_father(generation, number, name)
     sire = Sire.find_by_name(name)
     return false unless sire
     # TODO: Display error message when no child_of_bloodline_father.
     child_of_bloodline_father(generation, number)&.update!(father: sire)
     true
+  end
+
+  def destroy_bloodline_father(generation, number)
+    child = child_of_bloodline_father(generation, number)
+    case child
+    when Sire
+      child.update!(father: nil)
+    when SireMaternalLine
+      child.destroy
+    end
   end
 
   private

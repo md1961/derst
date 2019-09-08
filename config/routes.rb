@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :sires, except: %i[destroy]
 
   patch 'bloodline/update'
+  get 'bloodline/destroy'
 
   resources :sire_filters, only: %i[index create]
 end
