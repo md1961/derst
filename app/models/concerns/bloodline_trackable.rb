@@ -1,5 +1,13 @@
 module BloodlineTrackable
 
+  def all_bloodline_father_present?
+    (1 .. 4).all? { |generation|
+      (1 .. 2 ** (generation - 1)).all? { |number|
+        bloodline_father(generation, number)
+      }
+    }
+  end
+
   def bloodline_father(generation, number)
     child_of_bloodline_father(generation, number)&.father
   end
