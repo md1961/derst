@@ -1,5 +1,5 @@
 class SiresController < ApplicationController
-  before_action :set_sire      , only: %i[show edit]
+  before_action :set_sire      , only: %i[show edit update]
   before_action :set_horse_back, only: %i[new create edit update]
 
   def index
@@ -29,6 +29,14 @@ class SiresController < ApplicationController
   def edit
   end
 
+  def update
+    if @sire.update(sire_params.merge(father: Sire.find_by_name(params[:father])))
+      redirect_to horse_back_path
+    else
+      render :new
+    end
+  end
+
   private
 
     def set_sire
@@ -36,7 +44,7 @@ class SiresController < ApplicationController
     end
 
     def sire_params
-      params.require(:sire).permit(:name_jp, :name_eng).reject { |k, v| v.blank? }
+      params.require(:sire).permit(:name_jp, :name_eng, :root_lineage_id).reject { |k, v| v.blank? }
     end
 
     def set_horse_back

@@ -11,9 +11,10 @@
     <div class="field">
       <%= f.label :father %>
       <input type="search" name="father" value="<%= @sire.father %>" autocomplete="on" list="father_candidates">
-      <!--
-      <%#= f.text_field :father, type: 'search', autocomplete: 'on' %>
-      -->
+    </div>
+    <div class="field">
+      <%= f.label :root_lineage %>
+      <%= f.select :root_lineage_id, options_for_root_linenage %>
     </div>
 
     <%= hidden_field_tag :horse_back_type, @horse_back.class.name %>
