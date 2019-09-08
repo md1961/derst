@@ -6,9 +6,10 @@ module BloodlineTrackable
 
   def update_bloodline_father!(generation, number, name)
     sire = Sire.find_by_name(name)
-    # TODO: Display error message when cannot find sire by name.
-    return unless sire
-    child_of_bloodline_father(generation, number).update!(father: sire)
+    return false unless sire
+    # TODO: Display error message when no child_of_bloodline_father.
+    child_of_bloodline_father(generation, number)&.update!(father: sire)
+    true
   end
 
   private

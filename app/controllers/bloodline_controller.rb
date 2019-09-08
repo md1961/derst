@@ -4,16 +4,17 @@ class BloodlineController < ApplicationController
     horse_class = params[:type].constantize
     horse = horse_class.find(params[:id])
 
-    ApplicationRecord.transaction do
-      params_father.each do |key, father_name|
-        next unless key =~ /\Afather(\d)(\d)\z/
-        generation = Regexp.last_match(1).to_i
-        number     = Regexp.last_match(2).to_i
-        horse.update_bloodline_father!(generation, number, father_name)
-      end
-    end
+    key, father_name = params_father.first
+    key =~ /\Afather(\d)(\d)\z/
+    generation = Regexp.last_match(1).to_i
+    number     = Regexp.last_match(2).to_i
+    is_updated = horse.update_bloodline_father!(generation, number, father_name)
 
-    redirect_to horse
+    if is_updated || params_father.empty?
+      redirect_to horse
+    else
+      redirect_to new_sire_path(name: father_name, type: horse.class.name, id: horse.id)
+    end
   end
 
   private

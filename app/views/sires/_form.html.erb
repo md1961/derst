@@ -1,0 +1,29 @@
+<div class="sires_form">
+  <%= form_with model: @sire, local: true do |f| %>
+    <div class="field">
+      <%= f.label :name_jp %>
+      <%= f.text_field :name_jp %>
+    </div>
+    <div class="field">
+      <%= f.label :name_eng %>
+      <%= f.text_field :name_eng %>
+    </div>
+    <div class="field">
+      <%= f.label :father %>
+      <input type="search" name="father" value="<%= @sire.father %>" autocomplete="on" list="father_candidates">
+      <!--
+      <%#= f.text_field :father, type: 'search', autocomplete: 'on' %>
+      -->
+    </div>
+
+    <%= hidden_field_tag :type, @horse_back.class.name %>
+    <%= hidden_field_tag :id  , @horse_back.id %>
+
+    <div class="submit">
+      <%= f.submit %>
+      <%= link_to 'Cancel', @horse_back %>
+    </div>
+  <% end -%>
+
+  <%= render 'father_candidates' %>
+</div>
