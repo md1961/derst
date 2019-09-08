@@ -16,6 +16,11 @@
       <%= f.label :root_lineage %>
       <%= f.select :root_lineage_id, options_for_root_linenage %>
     </div>
+    <div class="field">
+      <%= f.label :inbreed_effect_ids %>
+      <%= f.collection_select :inbreed_effect_ids, InbreedEffect.order(:id), :id, :name,
+            {include_hidden: false}, multiple: true, size: InbreedEffect.count %>
+    </div>
 
     <%= hidden_field_tag :horse_back_type, @horse_back.class.name %>
     <%= hidden_field_tag :horse_back_id  , @horse_back.id %>

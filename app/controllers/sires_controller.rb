@@ -43,7 +43,7 @@ class SiresController < ApplicationController
     end
 
     def sire_params
-      params.require(:sire).permit(:name_jp, :name_eng, :root_lineage_id).reject { |k, v|
+      params.require(:sire).permit(:name_jp, :name_eng, :root_lineage_id, inbreed_effect_ids: []).reject { |k, v|
         v.blank? && k != 'root_lineage_id'
       }.tap { |p|
         p[:father] = Sire.find_by_name(params[:father])
