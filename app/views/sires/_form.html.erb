@@ -2,7 +2,7 @@
   <%= form_with model: @sire, local: true do |f| %>
     <div class="field">
       <%= f.label :name_jp %>
-      <%= f.text_field :name_jp %>
+      <%= f.text_field :name_jp, autofocus: true %>
     </div>
     <div class="field">
       <%= f.label :name_eng %>
