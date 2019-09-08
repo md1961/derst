@@ -23,7 +23,9 @@
           <td class="numeric">
             <%= link_to seq_num, sire %>
           </td>
-          <td><%= sire.name %></td>
+          <td style="<%= sire.all_bloodline_father_present? ? '' : 'color: red' %>">
+            <%= sire.name %>
+          </td>
           <% trait = sire.trait -%>
           <% trait_names.each do |name| -%>
             <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
