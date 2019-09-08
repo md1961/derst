@@ -37,7 +37,10 @@
     <%= hidden_field_tag :type, horse.class.name %>
     <%= hidden_field_tag :id  , horse.id %>
 
-    <%= submit_tag %>
+    <div class="submit">
+      <%= submit_tag %>
+      <%= link_to 'Canecl', sires_path %>
+    </div>
 
     <datalist id="father_candidates">
       <% Sire.where.not(name_eng: nil).order(:name_eng).each do |sire| -%>
