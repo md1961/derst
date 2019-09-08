@@ -40,8 +40,8 @@ class SiresController < ApplicationController
     end
 
     def set_horse_back
-      model = params[:type].constantize
-      @horse_back = model.find(params[:id])
+      model = params[:horse_back_type].constantize
+      @horse_back = model.find(params[:horse_back_id])
       @generation = params[:generation]
       @number     = params[:number]
     end
