@@ -38,7 +38,9 @@
     <%= hidden_field_tag :id  , horse.id %>
 
     <div class="submit">
-      <%= submit_tag %>
+      <% unless horse.all_bloodline_father_present? -%>
+        <%= submit_tag %>
+      <% end -%>
       <%= link_to 'Canecl', sires_path %>
     </div>
 
