@@ -29,7 +29,7 @@ module BloodlineTrackable
         when 1
           father&.father
         when 2
-          father&.maternal_lines.find_or_initialize_by(generation: 2)
+          father&.maternal_lines&.find_or_initialize_by(generation: 2)
         when 3
           bloodline_father(2, 2)
         else
@@ -48,15 +48,15 @@ module BloodlineTrackable
         when 1
           bloodline_father(3, 1)
         when 2
-          bloodline_father(2, 1)&.maternal_lines.find_or_initialize_by(generation: 2)
+          bloodline_father(2, 1)&.maternal_lines&.find_or_initialize_by(generation: 2)
         when 3
           bloodline_father(3, 2)
         when 4
-          bloodline_father(1, 1)&.maternal_lines.find_or_initialize_by(generation: 3)
+          bloodline_father(1, 1)&.maternal_lines&.find_or_initialize_by(generation: 3)
         when 5
           bloodline_father(3, 3)
         when 6
-          bloodline_father(2, 2)&.maternal_lines.find_or_initialize_by(generation: 2)
+          bloodline_father(2, 2)&.maternal_lines&.find_or_initialize_by(generation: 2)
         when 7
           bloodline_father(3, 4)
         else
