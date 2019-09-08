@@ -1,3 +1,4 @@
-<% id = "father#{generation}#{number}" -%>
+<% id = "father#{generation}#{number}"
+   name_input = @name_input && @name_input[[generation, number]]-%>
 
-<input type="search" name="<%= id %>" autocomplete="on" list="father_candidates">
+<input type="search" name="<%= id %>" value="<%= name_input %>"autocomplete="on" list="father_candidates">

@@ -9,6 +9,7 @@ class SiresController < ApplicationController
   end
 
   def show
+    @name_input = {[params[:generation].to_i, params[:number].to_i] => params[:name_input]}
   end
 
   def new
@@ -19,7 +20,7 @@ class SiresController < ApplicationController
     @sire = Sire.new(sire_params)
     @sire.father = Sire.find_by_name(params[:father])
     if @sire.save
-      redirect_to @horse_back
+      redirect_to horse_back_path
     else
       render :new
     end
@@ -41,5 +42,12 @@ class SiresController < ApplicationController
     def set_horse_back
       model = params[:type].constantize
       @horse_back = model.find(params[:id])
+      @generation = params[:generation]
+      @number     = params[:number]
+    end
+
+    def horse_back_path
+      path_name = :sire_path
+      send(path_name, @horse_back, name_input: @sire.name_jp, generation: @generation, number: @number)
     end
 end

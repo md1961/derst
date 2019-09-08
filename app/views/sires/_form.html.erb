@@ -18,6 +18,8 @@
 
     <%= hidden_field_tag :type, @horse_back.class.name %>
     <%= hidden_field_tag :id  , @horse_back.id %>
+    <%= hidden_field_tag :generation, @generation %>
+    <%= hidden_field_tag :number    , @number %>
 
     <div class="submit">
       <%= f.submit %>
