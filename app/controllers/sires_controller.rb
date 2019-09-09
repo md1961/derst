@@ -8,6 +8,11 @@ class SiresController < ApplicationController
     @sires = Sire.includes(:trait)
               .breedable.where(@sire_filter.conditions)
               .order(fee: :asc, name_jp: :desc)
+
+    if v = params[:entering_bloodline]
+      session[:entering_bloodline_for_sire] = v == 'true'
+    end
+    @entering_bloodline = session[:entering_bloodline_for_sire]
   end
 
   def show
