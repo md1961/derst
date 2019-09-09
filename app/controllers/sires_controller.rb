@@ -5,7 +5,9 @@ class SiresController < ApplicationController
   def index
     @sire_filter = SireFilter.new(sire_filter_params)
 
-    @sires = Sire.breedable.where(@sire_filter.conditions).order(fee: :asc, name_jp: :desc)
+    @sires = Sire.includes(:trait)
+              .breedable.where(@sire_filter.conditions)
+              .order(fee: :asc, name_jp: :desc)
   end
 
   def show

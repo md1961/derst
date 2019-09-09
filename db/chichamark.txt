@@ -1,3 +1,4 @@
+* チーチャマーク *
 モーニングフローリック
   Grey Dawn
     Herbager
@@ -13,3 +14,21 @@
     Ragusa
       Ribot
       Big Game
+
+* タケノマジック *
+ダンサーズイメージ
+  Native Dancer
+    Polynesian
+      Unbreakable
+      Discovery
+    Noor
+      Nasrullah
+      Challenger
+  ファバージ
+    Princely Gift
+      Nasrullah
+      Legend of France
+    ヒンドスタン
+      Bois Roussel
+      トサミドリ
+
