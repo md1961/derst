@@ -44,7 +44,7 @@
           <% mating = Mating.new(sire, @mare, mare_inbreeds) -%>
           <td class="centered"><%= mating.nicks?       ? '〇' : '' %></td>
           <td class="centered"><%= mating.interesting? ? '〇' : '' %></td>
-          <td><%= mating.h_inbreeds.map { |f, gs| "#{f.name} #{gs.join('x')}" }.join(', ') %></td>
+          <td><%= inbreed_display(mating) %></td>
         <% end -%>
       </tr>
     <% end -%>
