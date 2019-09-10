@@ -20,4 +20,12 @@ module ApplicationHelper
       render partial: 'father_input', locals: {generation: generation, number: number}
     end
   end
+
+  def sire_trait_names
+    %i[lineage fee distances growth dirt temper contend health achievement stability]
+  end
+
+  def options_for_abc
+    %w[- A B C A-B B-C]
+  end
 end

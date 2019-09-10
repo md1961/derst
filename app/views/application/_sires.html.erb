@@ -11,12 +11,15 @@
     <tr>
       <th>
       <th>
-      <% trait_names.each do |name| -%>
+      <% sire_trait_names.each do |name| -%>
         <th><%= SireTrait.human_attribute_name(name) %></th>
       <% end -%>
+      <th>インブリード</th>
+      <th>面白</th>
     </tr>
   </thead>
   <tbody>
+    <% mare_inbreeds = @mare&.h_inbreeds -%>
     <% @sires.each.with_index(1) do |sire, seq_num| -%>
       <% has_all_fathers = @entering_bloodline && sire.all_bloodline_father_present? -%>
       <tr>
@@ -27,10 +30,16 @@
           <%= sire.name %>
         </td>
         <% trait = sire.trait -%>
-        <% trait_names.each do |name| -%>
+        <% sire_trait_names.each do |name| -%>
           <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
             <%= trait.send(name) %>
           </td>
+        <% end -%>
+
+        <% if @mare -%>
+          <% mating = Mating.new(sire, @mare, mare_inbreeds) -%>
+          <td><%= mating.h_inbreeds.map { |f, gs| "#{f.name} #{gs.join('x')}" }.join(', ') %></td>
+          <td class="centered"><%= mating.interesting? ? '〇' : '' %></td>
         <% end -%>
       </tr>
     <% end -%>
