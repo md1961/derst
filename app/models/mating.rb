@@ -11,13 +11,13 @@ class Mating
     [@sire, @mare].flat_map { |h| h.root_lineage_numbers }.uniq.size >= 6
   end
 
-  private
-
-    def h_inbreeds
-      @h_inbreeds ||= @mare_inbreeds.each_with_object(@sire.h_inbreeds) { |(father, generations), h|
-        h[father]&.concat(generations)
-      }.reject { |father, generations|
-        generations.size <= 1
-      }.to_h
-    end
+  def h_inbreeds
+    @h_inbreeds ||= @mare_inbreeds.each_with_object(@sire.h_inbreeds) { |(father, generations), h|
+      h[father]&.concat(generations)
+    }.reject { |father, generations|
+      generations.size <= 1
+    }.map { |father, generations|
+      [father, generations.sort]
+    }.to_h
+  end
 end
