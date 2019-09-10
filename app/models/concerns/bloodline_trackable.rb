@@ -1,10 +1,18 @@
 module BloodlineTrackable
 
+  def each_generation_and_number
+    Enumerator.new do |y|
+      (1 .. 4).each do |generation|
+        (1 .. 2 ** (generation - 1)).each do |number|
+          y << [generation, number]
+        end
+      end
+    end
+  end
+
   def all_bloodline_father_present?
-    (1 .. 4).all? { |generation|
-      (1 .. 2 ** (generation - 1)).all? { |number|
-        bloodline_father(generation, number)
-      }
+    each_generation_and_number.all? { |generation, number|
+      bloodline_father(generation, number)
     }
   end
 
