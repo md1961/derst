@@ -1,6 +1,7 @@
 <div id="sire_filter" hidden>
   <%= form_with model: @sire_filter, local: true do |f| %>
     <%= f.select :stability, options_for_abc %>
+    <%= hidden_field_tag :mare_id, @mare&.id %>
     <%= f.submit %>
   <% end -%>
 </div>
@@ -14,8 +15,10 @@
       <% sire_trait_names.each do |name| -%>
         <th><%= SireTrait.human_attribute_name(name) %></th>
       <% end -%>
-      <th>インブリード</th>
-      <th>面白</th>
+      <% if @mare -%>
+        <th>インブリード</th>
+        <th>面白</th>
+      <% end -%>
     </tr>
   </thead>
   <tbody>

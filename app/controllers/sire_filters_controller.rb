@@ -1,6 +1,7 @@
 class SireFiltersController < ApplicationController
 
   def create
-    redirect_to sires_path(sire_filter: sire_filter_params)
+    path_name = params[:mare_id].to_i > 0 ? :matings_path : :sires_path
+    redirect_to send(path_name, sire_filter: sire_filter_params, mare_id: params[:mare_id])
   end
 end
