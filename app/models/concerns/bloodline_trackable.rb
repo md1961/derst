@@ -20,6 +20,14 @@ module BloodlineTrackable
     child_of_bloodline_father(generation, number)&.father
   end
 
+  def h_inbreeds
+    each_generation_and_number.each_with_object(
+        Hash.new { |h, k| h[k] = [] })  { |(generation, number), h|
+      father = bloodline_father(generation, number)
+      h[father] << generation + 1 if father
+    }
+  end
+
   def update_bloodline_father(generation, number, name)
     sire = Sire.find_by_name(name)
     return false unless sire
