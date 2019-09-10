@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_09_10_010547) do
 
   create_table "mares", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "father_id"
     t.integer "lineage_id"
     t.integer "price"
     t.integer "speed"
