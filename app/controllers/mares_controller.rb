@@ -10,5 +10,6 @@ class MaresController < ApplicationController
   end
 
   def show
+    @mare = Mare.find(params[:id])
   end
 end
