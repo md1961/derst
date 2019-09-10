@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_010547) do
+ActiveRecord::Schema.define(version: 2019_09_10_015727) do
 
   create_table "inbreed_effects", force: :cascade do |t|
     t.string "name", null: false
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2019_09_10_010547) do
     t.string "name_eng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "mare_maternal_lines", force: :cascade do |t|
+    t.integer "mare_id", null: false
+    t.integer "generation", null: false
+    t.integer "father_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mare_id"], name: "index_mare_maternal_lines_on_mare_id"
   end
 
   create_table "mares", force: :cascade do |t|
