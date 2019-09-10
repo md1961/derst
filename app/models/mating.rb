@@ -7,6 +7,10 @@ class Mating
     @mare_inbreeds = mare_inbreeds || @mare.h_inbreeds
   end
 
+  def nicks?
+    Nick.good?(@sire, @mare)
+  end
+
   def interesting?
     [@sire, @mare].flat_map { |h| h.root_lineage_numbers }.uniq.size >= 6
   end
