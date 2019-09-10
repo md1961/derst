@@ -34,6 +34,18 @@
       </tr>
     </table>
 
+    <div class="root_lineages">
+      <table class="table_base">
+        <tr>
+          <% (1 .. 4).to_a.each do |number| -%>
+            <td class="centered">
+              <%= horse.bloodline_father(3, number)&.root_lineage_number %>
+            </td>
+          <% end -%>
+        </tr>
+      </table>
+    </div>
+
     <%= hidden_field_tag :type, horse.class.name %>
     <%= hidden_field_tag :id  , horse.id %>
 

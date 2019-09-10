@@ -4,15 +4,4 @@
   </div>
 
   <%= render partial: 'bloodline', locals: {horse: @mare} %>
-
-  <div class="root_lineages">
-    <table class="table_base">
-      <tr>
-        <% (1 .. 4).to_a.each do |number| -%>
-          <td class="centered">
-            <%= @mare.bloodline_father(3, number)&.root_lineage_number %>
-          </td>
-        <% end -%>
-      </tr>
-    </table>
 </div>
