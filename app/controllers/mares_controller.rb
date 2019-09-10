@@ -11,5 +11,6 @@ class MaresController < ApplicationController
 
   def show
     @mare = Mare.find(params[:id])
+    @name_input = {[params[:generation].to_i, params[:number].to_i] => params[:name_input]}
   end
 end
