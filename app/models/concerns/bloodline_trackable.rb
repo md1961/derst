@@ -20,6 +20,10 @@ module BloodlineTrackable
     child_of_bloodline_father(generation, number)&.father
   end
 
+  def root_lineage_numbers
+    (1 .. 4).map { |number| bloodline_father(3, number)&.root_lineage_number }
+  end
+
   def h_inbreeds
     each_generation_and_number.each_with_object(
         Hash.new { |h, k| h[k] = [] })  { |(generation, number), h|
