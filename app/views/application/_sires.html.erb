@@ -16,8 +16,9 @@
         <th><%= SireTrait.human_attribute_name(name) %></th>
       <% end -%>
       <% if @mare -%>
+        <th>ニ</th>
+        <th>面</th>
         <th>インブリード</th>
-        <th>面白</th>
       <% end -%>
     </tr>
   </thead>
@@ -41,8 +42,9 @@
 
         <% if @mare -%>
           <% mating = Mating.new(sire, @mare, mare_inbreeds) -%>
-          <td><%= mating.h_inbreeds.map { |f, gs| "#{f.name} #{gs.join('x')}" }.join(', ') %></td>
+          <td class="centered"><%= mating.nicks?       ? '〇' : '' %></td>
           <td class="centered"><%= mating.interesting? ? '〇' : '' %></td>
+          <td><%= mating.h_inbreeds.map { |f, gs| "#{f.name} #{gs.join('x')}" }.join(', ') %></td>
         <% end -%>
       </tr>
     <% end -%>
