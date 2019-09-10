@@ -1,0 +1,38 @@
+<div id="sire_filter" hidden>
+  <%= form_with model: @sire_filter, local: true do |f| %>
+    <%= f.select :stability, options_for_abc %>
+    <%= f.submit %>
+  <% end -%>
+</div>
+<span id="button_to_show_sire_filter" class="button">[+]</span>
+
+<table class="table_base">
+  <thead>
+    <tr>
+      <th>
+      <th>
+      <% trait_names.each do |name| -%>
+        <th><%= SireTrait.human_attribute_name(name) %></th>
+      <% end -%>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sires.each.with_index(1) do |sire, seq_num| -%>
+      <% has_all_fathers = @entering_bloodline && sire.all_bloodline_father_present? -%>
+      <tr>
+        <td class="numeric">
+          <%= link_to seq_num, sire, tabindex: has_all_fathers ? -1 : 0 %>
+        </td>
+        <td style="<%= !@entering_bloodline || has_all_fathers ? '' : 'color: red' %>">
+          <%= sire.name %>
+        </td>
+        <% trait = sire.trait -%>
+        <% trait_names.each do |name| -%>
+          <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
+            <%= trait.send(name) %>
+          </td>
+        <% end -%>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
