@@ -30,6 +30,14 @@ class Sire < ApplicationRecord
     root_lineage&.number || father&.root_lineage_number
   end
 
+  def eql?(other)
+    id == other.id
+  end
+
+  def hash
+    id.hash
+  end
+
   def to_s
     name
   end
