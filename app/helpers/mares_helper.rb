@@ -1,0 +1,2 @@
+module MaresHelper
+end
