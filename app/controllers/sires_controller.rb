@@ -65,7 +65,7 @@ class SiresController < ApplicationController
     end
 
     def horse_back_path
-      path_name = :sire_path
+      path_name = @horse_back.is_a?(Sire) ? :sire_path : :mare_path
       send(path_name, @horse_back, name_input: @sire.name_jp, generation: @generation, number: @number)
     end
 end
