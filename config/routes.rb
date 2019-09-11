@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'sires#index'
+  root 'ranches#show'
+
+  resources :ranches, only: %i[show]
 
   resources :sires, except: %i[destroy]
   resources :mares, only: %i[index show]

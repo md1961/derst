@@ -1,0 +1,2 @@
+module RanchesHelper
+end
