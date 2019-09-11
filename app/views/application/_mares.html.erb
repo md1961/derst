@@ -13,7 +13,7 @@
       <% has_all_fathers = @entering_bloodline && mare.all_bloodline_father_present? -%>
       <tr>
         <td class="numeric">
-          <%= link_to seq_num, mare, tabindex: has_all_fathers ? -1 : 0 %>
+          <%= link_to seq_num, mare_path(mare, ranch_id: @ranch), tabindex: has_all_fathers ? -1 : 0 %>
         </td>
         <td style="<%= !@entering_bloodline || has_all_fathers ? '' : 'color: red' %>">
           <%= mare.name %>

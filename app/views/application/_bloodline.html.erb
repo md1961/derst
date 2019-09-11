@@ -51,7 +51,7 @@
       <% unless horse.all_bloodline_father_present? -%>
         <%= submit_tag %>
       <% end -%>
-      <%= link_to 'Cancel', horse.is_a?(Sire) ? sires_path : mares_path %>
+      <%= link_to 'Cancel', @ranch || (horse.is_a?(Sire) ? sires_path : mares_path) %>
     </div>
 
     <%= render 'father_candidates' %>
