@@ -6,6 +6,7 @@
       <% mare_trait_names.each do |name| -%>
         <th><%= SireTrait.human_attribute_name(name) %></th>
       <% end -%>
+      <th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
             <%= mare.send(name) %>
           </td>
         <% end -%>
+        <td><%= link_to_if mare.all_bloodline_father_present?, '配', matings_path(mare_id: mare) %></td>
       </tr>
     <% end -%>
   </tbody>
