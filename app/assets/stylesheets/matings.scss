@@ -1,3 +1,6 @@
-// Place all the styles related to the matings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.matings_index {
+
+  tbody tr:hover {
+    background-color: cyan;
+  }
+}
