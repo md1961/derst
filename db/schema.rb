@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_002059) do
+ActiveRecord::Schema.define(version: 2019_09_11_002343) do
 
   create_table "centers", force: :cascade do |t|
     t.string "name", null: false
@@ -116,6 +116,15 @@ ActiveRecord::Schema.define(version: 2019_09_11_002059) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["root_lineage_id"], name: "index_sires_on_root_lineage_id"
+  end
+
+  create_table "stables", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "center_id", null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["center_id"], name: "index_stables_on_center_id"
   end
 
 end
