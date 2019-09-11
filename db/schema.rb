@@ -74,13 +74,16 @@ ActiveRecord::Schema.define(version: 2019_09_11_014829) do
   create_table "racers", force: :cascade do |t|
     t.string "name", null: false
     t.integer "ranch_id", null: false
+    t.integer "father_id"
+    t.integer "mother_id"
     t.integer "year_birth"
     t.string "comment_age2"
     t.string "comment_age3"
     t.integer "stable_id"
-    t.integer "weight_fat"
+    t.integer "weight_max"
     t.integer "weight_best"
     t.integer "weight_lean"
+    t.string "remark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ranch_id"], name: "index_racers_on_ranch_id"
