@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_003138) do
+ActiveRecord::Schema.define(version: 2019_09_11_004653) do
 
   create_table "centers", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 2019_09_11_003138) do
   create_table "nicks", force: :cascade do |t|
     t.integer "lineage1_id", null: false
     t.integer "lineage2_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ranches", force: :cascade do |t|
+    t.string "name"
+    t.integer "year"
+    t.integer "month"
+    t.integer "week"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

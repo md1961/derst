@@ -1,0 +1,2 @@
+class Ranch < ApplicationRecord
+end
