@@ -6,6 +6,7 @@
       <% @racers.each do |racer| -%>
         <% if racer == @racer_to_edit -%>
           <%= form_with model: racer, local: true do |f| %>
+            <%= racer.errors.messages unless racer.errors.empty? %>
             <%= render partial: 'racers/racer', locals: {racer: racer, f: f} %>
           <% end -%>
         <% else -%>

@@ -13,6 +13,8 @@ class RacersController < ApplicationController
   private
 
     def racer_params
-      params.require(:racer).permit(:weight_fat, :weight_best, :weight_lean)
+      params.require(:racer).permit(
+        :comment_age2, :comment_age3, :weight_fat, :weight_best, :weight_lean
+      )
     end
 end
