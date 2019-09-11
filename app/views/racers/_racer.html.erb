@@ -4,6 +4,7 @@
 <td><%= attr_display(racer, :weight_best, f) %></td>
 <td><%= attr_display(racer, :weight_lean, f) %></td>
 <% if f -%>
+  <%= hidden_field_tag :ranch_id, @ranch.id %>
   <td>
     <%= f.submit %>
     <%= link_to 'Cancel', @ranch %>

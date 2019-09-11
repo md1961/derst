@@ -4,7 +4,7 @@ module RanchesHelper
     if !f
       racer.send(attr_name)
     else
-      f.number_field attr_name
+      f.number_field attr_name, step: 2
     end
   end
 end
