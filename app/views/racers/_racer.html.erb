@@ -3,7 +3,9 @@
 <td><%= "#{racer.age}歳" %></td>
 <td><%= racer_attr_display(racer, :comment_age2, f) %></td>
 <td><%= racer_attr_display(racer, :comment_age3, f) %></td>
-<td><%= racer_attr_display(racer, :stable      , f) %></td>
+<td title="<%= racer.stable&.jockeys&.join(' ') %>">
+    <%= racer_attr_display(racer, :stable      , f) %>
+</td>
 <td><%= racer_attr_display(racer, :weight_fat  , f) %></td>
 <td><%= racer_attr_display(racer, :weight_fat  , f) %></td>
 <td><%= racer_attr_display(racer, :weight_best , f) %></td>
