@@ -9,7 +9,7 @@ class MatingsController < ApplicationController
               .breedable.where(@sire_filter.conditions)
               .order(fee: :asc, name_jp: :desc)
 
-    @entering_bloodline = false
+    @ranch = Ranch.find_by(id: params[:ranch_id])
   end
 
   def show
