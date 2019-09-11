@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :matings, only: %i[index show]
 
+  resources :racers, only: %i[update]
+
   patch 'bloodline/update'
   get 'bloodline/destroy'
 
