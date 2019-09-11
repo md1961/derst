@@ -1,6 +1,10 @@
 module RanchesHelper
 
-  def attr_display(racer, attr_name, f)
+  def date_display(ranch)
+    "#{ranch.year} 年 #{ranch.month} 月 #{ranch.week} 週"
+  end
+
+  def racer_attr_display(racer, attr_name, f)
     if !f
       racer.send(attr_name)
     else

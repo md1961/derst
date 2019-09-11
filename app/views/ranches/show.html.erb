@@ -1,5 +1,11 @@
 <div class="ranches_show">
-  <%= render 'mares' %>
+  <div class="date">
+    <%= date_display(@ranch) %>
+  </div>
+
+  <div class="mares">
+    <%= render 'mares' %>
+  </div>
 
   <div class="racers">
     <%= render 'racers/racers' %>

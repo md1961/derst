@@ -1,8 +1,8 @@
 <td><%= link_to 'E', ranch_path(@ranch, racer_id_to_edit: racer) %></td>
 <td><%= racer.name %></td>
-<td><%= attr_display(racer, :weight_fat , f)  %></td>
-<td><%= attr_display(racer, :weight_best, f) %></td>
-<td><%= attr_display(racer, :weight_lean, f) %></td>
+<td><%= racer_attr_display(racer, :weight_fat , f)  %></td>
+<td><%= racer_attr_display(racer, :weight_best, f) %></td>
+<td><%= racer_attr_display(racer, :weight_lean, f) %></td>
 <% if f -%>
   <%= hidden_field_tag :ranch_id, @ranch.id %>
   <td>
