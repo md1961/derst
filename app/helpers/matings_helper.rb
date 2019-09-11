@@ -11,7 +11,10 @@ module MatingsHelper
     end
 
     h_inbreeds.map { |father, generations|
-      "#{father.name} #{generations.join('x')}"
+      effects = ""
+      effects = "(#{father.inbreed_effects.map(&:abbr).join(' ')})" \
+        unless father.inbreed_effects.empty?
+      "#{father.name}#{effects} #{generations.join('x')}"
     }.join(', ') + additional
   end
 end
