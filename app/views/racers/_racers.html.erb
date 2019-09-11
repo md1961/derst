@@ -11,12 +11,12 @@
         <th>太残</th>
         <th>ベスト</th>
         <th>痩せ</th>
-        <th>
+        <th>特記事項</th>
       </tr>
     </thead>
     <tbody>
       <% @racers.each do |racer| -%>
-        <% if racer == @racer_to_edit -%>
+        <% if racer.id == @racer_id_to_edit -%>
           <%= form_with model: racer, local: true do |f| %>
             <%= racer.errors.messages unless racer.errors.empty? %>
             <%= render partial: 'racers/racer', locals: {racer: racer, f: f} %>
