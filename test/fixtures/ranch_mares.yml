@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ranch: one
+  mare: one
+  year_birth: 1
+
+two:
+  ranch: two
+  mare: two
+  year_birth: 1

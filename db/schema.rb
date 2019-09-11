@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_004653) do
+ActiveRecord::Schema.define(version: 2019_09_11_010142) do
 
   create_table "centers", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(version: 2019_09_11_004653) do
     t.integer "lineage2_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ranch_mares", force: :cascade do |t|
+    t.integer "ranch_id", null: false
+    t.integer "mare_id", null: false
+    t.integer "year_birth"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mare_id"], name: "index_ranch_mares_on_mare_id"
+    t.index ["ranch_id"], name: "index_ranch_mares_on_ranch_id"
   end
 
   create_table "ranches", force: :cascade do |t|
