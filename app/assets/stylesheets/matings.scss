@@ -1,5 +1,9 @@
 .matings_index {
 
+  #head_interesting {
+    cursor: pointer;
+  }
+
   tbody tr:hover {
     background-color: cyan;
   }
