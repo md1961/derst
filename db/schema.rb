@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_014829) do
     t.string "comment_age2"
     t.string "comment_age3"
     t.integer "stable_id"
-    t.integer "weight_max"
+    t.integer "weight_fat"
     t.integer "weight_best"
     t.integer "weight_lean"
     t.string "remark"
