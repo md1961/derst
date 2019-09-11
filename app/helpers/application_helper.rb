@@ -25,6 +25,10 @@ module ApplicationHelper
     %i[lineage fee distances growth dirt temper contend health achievement stability]
   end
 
+  def mare_trait_names
+    %i[lineage price speed stamina has_child rating type]
+  end
+
   def options_for_abc
     %w[- A B C A-B B-C]
   end

@@ -1,0 +1,29 @@
+<table class="table_base">
+  <thead>
+    <tr>
+      <th>
+      <th>
+      <% mare_trait_names.each do |name| -%>
+        <th><%= SireTrait.human_attribute_name(name) %></th>
+      <% end -%>
+    </tr>
+  </thead>
+  <tbody>
+    <% @mares.each.with_index(1) do |mare, seq_num| -%>
+      <% has_all_fathers = @entering_bloodline && mare.all_bloodline_father_present? -%>
+      <tr>
+        <td class="numeric">
+          <%= link_to seq_num, mare, tabindex: has_all_fathers ? -1 : 0 %>
+        </td>
+        <td style="<%= !@entering_bloodline || has_all_fathers ? '' : 'color: red' %>">
+          <%= mare.name %>
+        </td>
+        <% mare_trait_names.each do |name| -%>
+          <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>">
+            <%= mare.send(name) %>
+          </td>
+        <% end -%>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
