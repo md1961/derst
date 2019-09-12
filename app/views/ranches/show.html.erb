@@ -1,6 +1,7 @@
 <div class="ranches_show">
   <div class="date">
     <%= date_display(@ranch) %>
+    <%= button_to '翌週', next_week_ranch_path(@ranch), method: :patch %>
   </div>
 
   <div class="mares">

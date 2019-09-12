@@ -1,5 +1,21 @@
 .ranches_show {
 
+  .date {
+    display: flex;
+
+    form {
+      margin-left: 10px;
+    }
+
+    input[type="submit"] {
+      font-size: 8px;
+    }
+  }
+
+  .mares {
+    margin-top: 10px;
+  }
+
   .racers {
     margin-top: 10px;
   }

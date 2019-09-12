@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'ranches#show'
 
-  resources :ranches, only: %i[show]
+  resources :ranches, only: %i[show] do
+    member do
+      patch :next_week
+    end
+  end
 
   resources :sires, except: %i[destroy]
   resources :mares, only: %i[index show]
