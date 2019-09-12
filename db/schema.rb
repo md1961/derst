@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_012833) do
+ActiveRecord::Schema.define(version: 2019_09_12_020242) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -112,6 +112,23 @@ ActiveRecord::Schema.define(version: 2019_09_12_012833) do
     t.datetime "updated_at", null: false
     t.index ["ranch_id"], name: "index_racers_on_ranch_id"
     t.index ["stable_id"], name: "index_racers_on_stable_id"
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.integer "month", null: false
+    t.integer "week", null: false
+    t.integer "course_id", null: false
+    t.string "age", null: false
+    t.integer "grade_id", null: false
+    t.string "name"
+    t.string "abbr"
+    t.boolean "is_turf", default: true, null: false
+    t.integer "weight", null: false
+    t.integer "prize1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_races_on_course_id"
+    t.index ["grade_id"], name: "index_races_on_grade_id"
   end
 
   create_table "ranch_mares", force: :cascade do |t|

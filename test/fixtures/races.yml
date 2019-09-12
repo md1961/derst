@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  month: 1
+  week: 1
+  course: one
+  age: MyString
+  grade: one
+  name: MyString
+  abbr: MyString
+  weight: 1
+  prize1: 1
+
+two:
+  month: 1
+  week: 1
+  course: two
+  age: MyString
+  grade: two
+  name: MyString
+  abbr: MyString
+  weight: 1
+  prize1: 1
