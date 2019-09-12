@@ -10,12 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_000622) do
+ActiveRecord::Schema.define(version: 2019_09_12_012833) do
+
+  create_table "areas", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "location", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "centers", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "area_id", null: false
+    t.boolean "is_clockwise", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_courses_on_area_id"
   end
 
   create_table "grades", force: :cascade do |t|
