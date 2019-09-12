@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 2019_09_12_225957) do
     t.integer "grade_id", null: false
     t.string "name"
     t.string "abbr"
+    t.integer "limitation", default: 0, null: false
     t.boolean "is_turf", default: true, null: false
     t.integer "distance", null: false
     t.integer "weight", null: false
