@@ -5,7 +5,7 @@ module RanchesHelper
   end
 
   def racer_sex_display(racer)
-    {male: '牡', female: '牝', gelding: '騸'}[racer.sex.to_sym]
+    {male: '牡', female: '牝', gelding: '騸'}.fetch(racer.sex&.to_sym, '-')
   end
 
   def racer_attr_display(racer, attr_name, f)
