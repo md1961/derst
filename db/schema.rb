@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_014829) do
+ActiveRecord::Schema.define(version: 2019_09_12_000622) do
 
   create_table "centers", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "abbr"
+    t.integer "ordering", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
