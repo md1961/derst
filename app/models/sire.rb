@@ -22,6 +22,10 @@ class Sire < ApplicationRecord
     find_by(key => name)
   end
 
+  def domestic?
+    name_eng.blank?
+  end
+
   def name
     name_jp || name_eng
   end

@@ -12,6 +12,7 @@
     <tr>
       <th>
       <th>
+      <th>産</th>
       <% sire_trait_names.each do |name| -%>
         <th><%= SireTrait.human_attribute_name(name) %></th>
       <% end -%>
@@ -33,6 +34,7 @@
         <td style="<%= !@entering_bloodline || has_all_fathers ? '' : 'color: red' %>">
           <%= sire.name %>
         </td>
+        <td><%= sire.domestic? ? '内' : '' %></td>
         <% trait = sire.trait -%>
         <% sire_trait_names.each do |name| -%>
           <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
