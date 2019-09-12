@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2019_09_12_020242) do
     t.string "name"
     t.string "abbr"
     t.boolean "is_turf", default: true, null: false
+    t.integer "distance", null: false
     t.integer "weight", null: false
     t.integer "prize1"
     t.datetime "created_at", null: false
