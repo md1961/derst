@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mare: 
+  sire: one
+  h_inbreeds_in_json: MyString
+
+two:
+  mare: 
+  sire: two
+  h_inbreeds_in_json: MyString
