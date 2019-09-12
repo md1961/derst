@@ -1,5 +1,6 @@
 <td><%= link_to 'E', ranch_path(@ranch, racer_id_to_edit: racer) %></td>
 <td><%= racer.name %></td>
+<td><%= racer_sex_display(racer) %></td>
 <td class="numeric"><%= "#{racer.age}歳" %></td>
 
 <td><%= racer_attr_display(racer, :comment_age2, f) %></td>

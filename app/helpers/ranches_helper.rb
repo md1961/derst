@@ -4,6 +4,10 @@ module RanchesHelper
     "#{ranch.year} 年 #{ranch.month} 月 #{ranch.week} 週"
   end
 
+  def racer_sex_display(racer)
+    {male: '牡', female: '牝', gelding: '騸'}[racer.sex.to_sym]
+  end
+
   def racer_attr_display(racer, attr_name, f)
     if !f
       racer.send(attr_name)
