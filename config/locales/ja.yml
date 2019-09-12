@@ -13,3 +13,10 @@ ja:
         health: 健康
         achievement: 実績
         stability: 安定
+      mare:
+        lineage: 系統
+        price: 価格
+        speed: スピ
+        stamina: スタ
+        rating: 評価
+        type: タイプ

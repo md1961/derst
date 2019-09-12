@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def mare_trait_names
-    %i[lineage price speed stamina has_child rating type]
+    %i[lineage price speed stamina rating type]
   end
 
   def options_for_abc
