@@ -11,9 +11,9 @@ end
   %w[900万下 9],
   %w[1600万下 16],
   %w[オープン OP],
-  %w[GⅢ],
-  %w[GⅡ],
-  %w[GⅠ],
+  %w[GⅢ Ⅲ],
+  %w[GⅡ Ⅱ],
+  %w[GⅠ Ⅰ],
 ].each.with_index(1) do |(name, abbr), ordering|
   Grade.create!(name: name, abbr: abbr, ordering: ordering)
 end
