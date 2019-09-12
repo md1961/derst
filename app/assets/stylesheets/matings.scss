@@ -1,7 +1,16 @@
 .matings_index {
 
+  #button_to_show_sire_filter {
+    float: right;
+    margin-right: 50px;
+  }
+
   #head_interesting {
     cursor: pointer;
+  }
+
+  td:not(.allows_wrap) {
+    white-space: nowrap;
   }
 
   tbody tr:hover {
