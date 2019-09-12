@@ -4,6 +4,12 @@ module RanchesHelper
     "#{ranch.year} 年 #{ranch.month} 月 #{ranch.week} 週"
   end
 
+  def racer_name_display(racer)
+    mark = ''
+    mark = '[父] ' if racer.father.domestic?
+    "#{mark}#{racer.name}"
+  end
+
   def racer_sex_display(racer)
     {male: '牡', female: '牝', gelding: '騸'}.fetch(racer.sex&.to_sym, '-')
   end
