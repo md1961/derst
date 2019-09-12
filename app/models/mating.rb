@@ -1,10 +1,13 @@
 class Mating
   attr_reader :sire, :mare
 
+  @@h_inbreeds_cache = {}
+
   def initialize(sire, mare, mare_inbreeds = nil)
     @sire = sire
     @mare = mare
     @mare_inbreeds = mare_inbreeds || @mare.h_inbreeds
+    read_caches
   end
 
   def nicks?
@@ -35,6 +38,12 @@ class Mating
     end
 
     def fetch_h_inbreeds_from_cache
-      inbreed_cache&.fetch_h_inbreeds
+      @@h_inbreeds_cache.dig(@mare.id, @sire.id)&.fetch_h_inbreeds
+    end
+
+    def read_caches
+      @@h_inbreeds_cache[@mare.id] ||= InbreedCache.where(mare: @mare).map { |inbreed_cache|
+        [inbreed_cache.sire.id, inbreed_cache]
+      }.to_h
     end
 end
