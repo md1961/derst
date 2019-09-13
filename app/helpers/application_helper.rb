@@ -20,7 +20,7 @@ module ApplicationHelper
       items << father.name_eng if father.name_eng
       items << father.inbreed_effects.join(' ') unless father.inbreed_effects.empty?
 
-      fathers_inbreed = @mating.h_inbreeds.keys
+      fathers_inbreed = @mating&.h_inbreeds&.keys || []
       content_tag :div, class: fathers_inbreed.include?(father) ? 'inbreed' : '' do
         safe_join(items, '<br>'.html_safe)
       end
