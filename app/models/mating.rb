@@ -3,9 +3,9 @@ class Mating
 
   @@h_inbreeds_cache = {}
 
-  def initialize(sire, mare, mare_inbreeds = nil)
-    @sire = sire
+  def initialize(mare, sire, mare_inbreeds = nil)
     @mare = mare
+    @sire = sire
     @mare_inbreeds = mare_inbreeds || @mare.h_inbreeds
     read_caches
   end

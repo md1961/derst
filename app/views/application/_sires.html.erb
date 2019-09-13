@@ -46,7 +46,7 @@
         <% end -%>
 
         <% if @mare -%>
-          <% mating = Mating.new(sire, @mare, mare_inbreeds)
+          <% mating = Mating.new(@mare, sire, mare_inbreeds)
              is_nicks       = mating.nicks?
              is_interesting = mating.interesting? -%>
            <td class="centered <%= is_nicks ? 'nicks' : '' %>">
