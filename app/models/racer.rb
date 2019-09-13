@@ -6,6 +6,8 @@ class Racer < ApplicationRecord
 
   enum sex: {male: 1, female: 2, gelding: 3}
 
+  validates :name, presence: true, uniqueness: true
+
   def age
     return nil unless year_birth
     ranch.year - year_birth + 1
