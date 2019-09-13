@@ -10,5 +10,9 @@
 
   <div class="racers">
     <%= render 'racers/racers' %>
+
+    <div class="links">
+      <%= link_to '新規', new_racer_path(ranch_id: @ranch.id) %>
+    </div>
   </div>
 </div>

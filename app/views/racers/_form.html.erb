@@ -1,0 +1,37 @@
+<div class="racers_form">
+  <%# name: string, ranch_id: integer, father_id: integer, mother_id: integer, year_birth: integer, remark: string, sex: integer %>
+  <%= form_with model: @racer, local: true do |f| %>
+    <%= @racer.errors unless @racer.errors.empty? %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :sex %>
+      <%= f.select :sex, [['牡', :male], ['牝', :female], ['騸', :gelding]] %>
+    </div>
+    <div class="field">
+      <%= f.label :father %>
+      <input type="search" name="father" value="<%= @racer.father %>" autocomplete="on" list="father_candidates">
+    </div>
+    <div class="field">
+      <%= f.label :mother %>
+      <input type="search" name="mother" value="<%= @racer.mother %>" autocomplete="on" list="mother_candidates">
+    </div>
+    <div class="field">
+      <%= f.label :age %>
+      <%= f.text_field :age, size: 1 %>
+    </div>
+
+    <%= f.hidden_field :ranch_id %>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end -%>
+
+  <%= render 'father_candidates' %>
+  <%= render 'mother_candidates' %>
+</div>
+

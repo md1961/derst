@@ -1,5 +1,18 @@
 class RacersController < ApplicationController
 
+  def new
+    @racer = Racer.new(ranch_id: params[:ranch_id])
+  end
+
+  def create
+    @racer = Racer.new(racer_params)
+    if @racer.save
+      redirect_to @racer.ranch
+    else
+      render :new
+    end
+  end
+
   def update
     racer = Racer.find(params[:id])
     ranch = Ranch.find(params[:ranch_id])
@@ -14,7 +27,11 @@ class RacersController < ApplicationController
 
     def racer_params
       params.require(:racer).permit(
+        :ranch_id, :name, :sex, :age,
         :comment_age2, :comment_age3, :stable_id, :weight_fat, :weight_best, :weight_lean, :remark
-      )
+      ).tap { |p|
+        p[:father] = Sire.find_by_name( params[:father])
+        p[:mother] = Mare.find_by(name: params[:mother])
+      }
     end
 end
