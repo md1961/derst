@@ -1,9 +1,5 @@
 <div class="mares_show">
-  <div class="name">
-    <%= @mare.name %>
-  </div>
-
-  <%= render partial: 'bloodline', locals: {horse: @mare} %>
+  <%= render partial: 'mare', locals: {mare: @mare} %>
 
   <%= link_to 'Back', @ranch || mares_path %>
 </div>

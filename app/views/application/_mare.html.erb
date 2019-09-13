@@ -1,0 +1,31 @@
+<div class="application_mare">
+  <div class="name_and_trait">
+    <div class="name">
+      <%= mare.name %>
+    </div>
+    <div class="trait">
+      <table class="table_base">
+        <thead>
+          <tr>
+            <% mare_trait_names.each do |name| -%>
+              <th><%= Mare.human_attribute_name(name) %></th>
+            <% end -%>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% mare_trait_names.each do |name| -%>
+              <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>">
+                <%= mare.send(name) %>
+              </td>
+            <% end -%>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bloodline">
+    <%= render partial: 'bloodline', locals: {horse: mare} %>
+  </div>
+</div>
