@@ -1,9 +1,24 @@
 <div class="matings_show">
-  <div class="sire">
-    <%= render partial: 'sire', locals: {sire: @sire} %>
-  </div>
+  <div style="display: flex;">
+    <div class="sire">
+      <%= render partial: 'sire', locals: {sire: @sire} %>
+    </div>
 
-  <%= render partial: 'mare', locals: {mare: @mare} %>
+    <div class="mare">
+      <%= render partial: 'mare', locals: {mare: @mare} %>
+    </div>
+
+    <div class="mating">
+      <table class="table_base">
+        <tr>
+          <th>ニックス</th>
+          <td><%= @mating.nicks? ? '〇': '×' %></td>
+          <th>面白い</th>
+          <td><%= @mating.interesting? ? '〇': '×' %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
   <%= link_to 'Back', matings_path(mare_id: @mare, ranch_id: @ranch&.id) %>
 </div>
