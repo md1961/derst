@@ -4,6 +4,18 @@ module RanchesHelper
     "#{ranch.year} 年 #{ranch.month} 月 #{ranch.week} 週"
   end
 
+  H_NOTICE = {
+    [1, 2] => :mare_sale,
+    [2, 2] => :mare_sale,
+    [7, 2] => :age2_sale,
+    [8, 2] => :age2_sale,
+  }
+
+  def notice(ranch)
+    key = H_NOTICE[[ranch.month, ranch.week]]
+    key && t(".notice.#{key}")
+  end
+
   def racer_name_display(racer)
     mark = ''
     mark = '[父] ' if racer.father.domestic?

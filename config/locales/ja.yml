@@ -1,5 +1,10 @@
 ---
 ja:
+  ranches:
+    show:
+      notice:
+        mare_sale: 来週は繁殖牝馬のセールがあります。
+        age2_sale: 来週は２歳馬のセールがあります。
   activerecord:
     models:
     attributes:

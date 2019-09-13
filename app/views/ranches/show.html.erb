@@ -4,6 +4,10 @@
     <%= button_to '翌週', next_week_ranch_path(@ranch), method: :patch %>
   </div>
 
+  <div class="notice">
+    <%= notice(@ranch) %>
+  </div>
+
   <div class="mares">
     <%= render 'mares' %>
   </div>
