@@ -34,14 +34,17 @@ class Mating
   private
 
     def inbreed_cache
+      return nil
       @inbreed_cache ||= InbreedCache.find_or_create_by(mare: @mare, sire: @sire)
     end
 
     def fetch_h_inbreeds_from_cache
+      return nil
       @@h_inbreeds_cache.dig(@mare.id, @sire.id)&.fetch_h_inbreeds
     end
 
     def read_caches
+      return
       @@h_inbreeds_cache[@mare.id] ||= InbreedCache.where(mare: @mare).map { |inbreed_cache|
         [inbreed_cache.sire.id, inbreed_cache]
       }.to_h
