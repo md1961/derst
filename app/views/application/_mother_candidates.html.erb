@@ -1,0 +1,5 @@
+<datalist id="mother_candidates">
+  <% Mare.order(:name).each do |mare| -%>
+    <option value="<%= mare.name %>">
+  <% end -%>
+</datalist>
