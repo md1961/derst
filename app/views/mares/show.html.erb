@@ -4,4 +4,6 @@
   </div>
 
   <%= render partial: 'bloodline', locals: {horse: @mare} %>
+
+  <%= link_to 'Back', @ranch || mares_path %>
 </div>
