@@ -18,6 +18,7 @@ class Sire < ApplicationRecord
   end
 
   def self.find_by_name(name)
+    return nil unless name
     key = english_name?(name) ? :name_eng : :name_jp
     find_by(key => name)
   end
