@@ -5,3 +5,18 @@
     margin-right: 200px;
   }
 }
+
+.application_sire {
+
+  .name_and_trait {
+    display: flex;
+
+    .trait {
+      margin-left: 10px;
+    }
+  }
+
+  .bloodline {
+    margin-top: 10px;
+  }
+}

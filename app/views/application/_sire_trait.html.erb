@@ -1,0 +1,21 @@
+<table class="table_base">
+  <thead>
+    <tr>
+      <th>
+      <% sire_trait_names.each do |name| -%>
+        <th><%= SireTrait.human_attribute_name(name) %></th>
+      <% end -%>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= sire.domestic? ? '国内産' : '海外産' %></td>
+      <% trait = sire.trait -%>
+      <% sire_trait_names.each do |name| -%>
+        <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
+          <%= trait.send(name) %>
+        </td>
+      <% end -%>
+    </tr>
+  </tbody>
+</table>

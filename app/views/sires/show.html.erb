@@ -1,9 +1,5 @@
 <div class="sires_show">
-  <div class="name">
-    <%= @sire.name %>
-  </div>
-
-  <%= render partial: 'bloodline', locals: {horse: @sire} %>
+  <%= render partial: 'sire', locals: {sire: @sire} %>
 
   <%= link_to 'Back', sires_path %>
 </div>

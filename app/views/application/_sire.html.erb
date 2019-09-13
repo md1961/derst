@@ -1,0 +1,14 @@
+<div class="application_sire">
+  <div class="name_and_trait">
+    <div class="name">
+      <%= sire.name %>
+    </div>
+    <div class="trait">
+      <%= render partial: 'sire_trait', locals: {sire: sire} %>
+    </div>
+  </div>
+
+  <div class="bloodline">
+    <%= render partial: 'bloodline', locals: {horse: sire} %>
+  </div>
+</div>

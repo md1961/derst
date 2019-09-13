@@ -1,9 +1,7 @@
 <div class="matings_show">
-  <div class="name">
-    <%= @sire.name %>
+  <div class="sire">
+    <%= render partial: 'sire', locals: {sire: @sire} %>
   </div>
-
-  <%= render partial: 'bloodline', locals: {horse: @sire} %>
 
   <div class="name">
     <%= @mare.name %>
