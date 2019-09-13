@@ -30,8 +30,10 @@ class RacersController < ApplicationController
         :ranch_id, :name, :sex, :age,
         :comment_age2, :comment_age3, :stable_id, :weight_fat, :weight_best, :weight_lean, :remark
       ).tap { |p|
-        p[:father] = Sire.find_by_name( params[:father])
-        p[:mother] = Mare.find_by(name: params[:mother])
+        father = Sire.find_by_name( params[:father])
+        mother = Mare.find_by(name: params[:mother])
+        p[:father] = father if father
+        p[:mother] = mother if mother
       }
     end
 end
