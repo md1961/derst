@@ -1,7 +1,7 @@
 <div class="ranches_show">
   <div class="date">
     <%= date_display(@ranch) %>
-    <%= button_to '翌週', next_week_ranch_path(@ranch), method: :patch %>
+    <%= button_to '翌週', next_week_ranch_path(@ranch), method: :patch, tabindex: -1 %>
   </div>
 
   <div class="notice">

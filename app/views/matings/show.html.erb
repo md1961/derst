@@ -1,2 +1,15 @@
-<h1>Matings#show</h1>
-<p>Find me in app/views/matings/show.html.erb</p>
+<div class="matings_show">
+  <div class="name">
+    <%= @sire.name %>
+  </div>
+
+  <%= render partial: 'bloodline', locals: {horse: @sire} %>
+
+  <div class="name">
+    <%= @mare.name %>
+  </div>
+
+  <%= render partial: 'bloodline', locals: {horse: @mare} %>
+
+  <%= link_to 'Back', matings_path(mare_id: @mare, ranch_id: @ranch&.id) %>
+</div>

@@ -13,5 +13,8 @@ class MatingsController < ApplicationController
   end
 
   def show
+    @mare = Mare.find(params[:id])
+    @sire = Sire.find(params[:sire_id])
+    @ranch = Ranch.find_by(id: params[:ranch_id])
   end
 end
