@@ -3,6 +3,6 @@ class Stable < ApplicationRecord
   has_many :jockeys
 
   def to_s
-    name
+    "#{name}(#{center.name == '美浦' ? 'E' : 'W'})"
   end
 end
