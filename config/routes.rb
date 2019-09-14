@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :racers, only: %i[new create update]
 
+  resources :races, only: %i[index]
+
   patch 'bloodline/update'
   get 'bloodline/destroy'
 

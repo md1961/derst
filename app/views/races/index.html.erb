@@ -1,0 +1,5 @@
+<div class="races_index">
+  <% @races_by_course.map do |course, races| -%>
+    <%= render partial: 'races_by_course', locals: {course: course, races: races} %>
+  <% end -%>
+</div>

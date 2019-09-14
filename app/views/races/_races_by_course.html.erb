@@ -1,0 +1,18 @@
+<table class="table_base">
+  <caption><%= course %></caption>
+  <% races_by = races.group_by { |race|
+    [race.age, race.grade] }.map { |age_grade, races|
+      [age_grade, races.group_by(&:week)]
+    }.to_h %>
+  <% races_by.each do |age_grade, races_by_week| -%>
+    <tr>
+      <td><%= age_grade.join(' ') %></td>
+      <% (1 .. 4).each do |week| -%>
+        <td>
+          <% races = races_by_week[week] -%>
+          <%= safe_join(races, '<br>'.html_safe) if races %>
+        </td>
+      <% end -%>
+    </tr>
+  <% end -%>
+</table>
