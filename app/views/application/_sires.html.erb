@@ -30,7 +30,7 @@
       <% has_all_fathers = @entering_bloodline && sire.all_bloodline_father_present? -%>
       <tr>
         <td class="numeric">
-          <% path = @mare ? mating_path(@mare, sire_id: sire.id, ranch_id: @ranch.id) \
+          <% path = @mare ? mating_path(@mare, sire_id: sire.id, ranch_id: @ranch&.id) \
                           : sire -%>
           <%= link_to seq_num, path, tabindex: has_all_fathers ? -1 : 0 %>
         </td>
