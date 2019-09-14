@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_225957) do
+ActiveRecord::Schema.define(version: 2019_09_14_072837) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 2019_09_12_225957) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "sex"
+    t.integer "grade_id"
     t.index ["ranch_id"], name: "index_racers_on_ranch_id"
     t.index ["stable_id"], name: "index_racers_on_stable_id"
   end

@@ -2,6 +2,7 @@ class Racer < ApplicationRecord
   belongs_to :father, class_name: 'Sire'
   belongs_to :mother, class_name: 'Mare'
   belongs_to :ranch
+  belongs_to :grade , optional: true
   belongs_to :stable, optional: true
 
   enum sex: {male: 1, female: 2, gelding: 3}
