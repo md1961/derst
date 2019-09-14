@@ -1,7 +1,9 @@
 <div class="application_sire">
   <div class="name_and_trait">
     <div class="name">
-      <%= sire.name %>
+      <%= sire.name_jp %>
+      &nbsp;
+      <%= sire.name_eng %>
     </div>
     <div class="trait">
       <%= render partial: 'sire_trait', locals: {sire: sire} %>
