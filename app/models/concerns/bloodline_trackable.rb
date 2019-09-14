@@ -1,5 +1,5 @@
 module BloodlineTrackable
-  using SireFatherCache
+  #using SireFatherCache
 
   def each_generation_and_number
     Enumerator.new do |y|
