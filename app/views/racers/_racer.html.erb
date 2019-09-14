@@ -3,6 +3,9 @@
   <td><%= racer_name_display(racer) %></td>
   <td><%= racer_sex_display(racer) %></td>
   <td class="numeric"><%= "#{racer.age}歳" %></td>
+  <td class="centered">
+    <%= racer_attr_display(racer, :grade, f) %>
+  </td>
 
   <td><%= racer_attr_display(racer, :comment_age2, f) %></td>
   <td><%= racer_attr_display(racer, :comment_age3, f) %></td>

@@ -29,6 +29,9 @@ module RanchesHelper
   def racer_attr_display(racer, attr_name, f)
     if !f
       racer.send(attr_name)
+    elsif attr_name == :grade
+      f.select :grade_id, [['-', nil]] + Grade.where("name NOT LIKE 'G%'").pluck(:name, :id),
+                  {}, autofocus: true
     elsif attr_name == :stable
       f.select :stable_id, [['-', nil]] + Stable.pluck(:name, :id)
     elsif attr_name.to_s.starts_with?('weight_')
