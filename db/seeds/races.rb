@@ -44,7 +44,7 @@ end
   # enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2}
   # age constant separate handicap
 
-  %w[5 3 東京 4 g1 日本ダービー ダービー 0 t 2400 a 5000],
+  #%w[5 3 東京 4 g1 日本ダービー ダービー 0 t 2400 a 5000],
 ].each do |month, week, course_name, age, grade_name, name, abbr,
             limitation, surface, distance, weight, prize1|
   course = Course.find_by(name: course_name)
@@ -72,7 +72,7 @@ end
     course:     course,
     age:        age,
     grade:      grade,
-    name:       name,
+    name:       name == 'nil' ? nil : name,
     abbr:       abbr,
     limitation: limitation.to_i,
     is_turf:    is_turf,
