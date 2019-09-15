@@ -19,7 +19,8 @@
       <% (1 .. 4).each do |week| -%>
         <td>
           <% races = races_by_week[week]&.map { |race|
-               content_tag :span, race.to_s, class: [race.limitation, race.surface].join(' ')
+               content_tag :span, race.to_s,
+                 class: [race.limitation, race.surface, race.grade.high_stake? ? 'high_stake' : ''].join(' ')
              } -%>
           <%= safe_join(races, '<br>'.html_safe) if races %>
         </td>
