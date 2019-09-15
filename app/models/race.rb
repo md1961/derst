@@ -18,6 +18,10 @@ class Race < ApplicationRecord
     where("age IN (?)", ages)
   }
 
+  scope :in_or_after, ->(month, week) {
+    where("(month = :month AND week >= :week) OR month > :month", month: month, week: week)
+  }
+
   def to_s
     a = []
     a << "#{distance}#{dirt? ? 'D' : nil}#{limitation_to_s}"
