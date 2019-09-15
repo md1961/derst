@@ -1,5 +1,7 @@
 class Grade < ApplicationRecord
 
+  scope :open_or_higher, -> { where("ordering >= 6") }
+
   def self.open
     @@grade_open ||= find_by(abbr: 'OP')
   end
