@@ -6,6 +6,18 @@ class Race < ApplicationRecord
   enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2}
   enum weight: {age_constant: 1, constant: 2, separate: 3, handicap: 4}
 
+  scope :for_age, ->(age) {
+    ages = case age
+           when 3
+             %w[3]
+           when 4
+             %w[4 4U]
+           else
+             %w[5 5U]
+           end
+    where("age IN (?)", ages)
+  }
+
   def to_s
     a = []
     a << "#{distance}#{dirt? ? 'D' : nil}#{limitation_to_s}"
