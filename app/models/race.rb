@@ -15,7 +15,12 @@ class Race < ApplicationRecord
            else
              %w[5 5U]
            end
-    where("age IN (?)", ages)
+    where(age: ages)
+  }
+
+  scope :for_grade, ->(grade) {
+    grade = Grade.open_or_higher if grade.abbr == 'OP'
+    where(grade: grade)
   }
 
   scope :in_or_after, ->(month, week) {
