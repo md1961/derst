@@ -6,7 +6,7 @@ Race.where(month: month).destroy_all
   %w[1 東京 4 m nil 1200 d d a 0],
   %w[1 東京 4 m nil 1600 t 0 a 0],
   %w[1 東京 4 5 カトレア賞 1600 d 0 a 0],
-  %w[1 東京 4 o クイーンC 1600 t f s 0],
+  %w[1 東京 4 g3 クイーンC 1600 t f s 0],
   %w[1 東京 5u 5 nil 1600 d 0 a 0],
   %w[1 東京 5u 9 nil 1400 d f a 0],
   %w[1 東京 5u 9 大島特別 2100 d 0 a 0],
