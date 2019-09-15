@@ -70,7 +70,7 @@ end
     month:      month.to_i,
     week:       week.to_i,
     course:     course,
-    age:        age,
+    age:        age.upcase,
     grade:      grade,
     name:       name == 'nil' ? nil : name,
     abbr:       abbr,

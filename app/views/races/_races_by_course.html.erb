@@ -1,10 +1,19 @@
 <table class="table_base">
   <caption><%= course %></caption>
-  <% races_by = races.group_by { |race|
-    [race.age, race.grade] }.map { |age_grade, races|
-      [age_grade, races.group_by(&:week)]
-    }.to_h %>
-  <% races_by.each do |age_grade, races_by_week| -%>
+  <%
+      races_by = races.group_by { |race|
+        grade = race.grade
+        grade = Grade.open if grade.high_stake?
+        [race.age, grade]
+      }.map { |age_grade, races|
+        [age_grade, races.group_by(&:week)]
+      }.to_h
+      age_grades = races_by.keys.sort_by { |age, grade|
+        [{'3' => 1, '4' => 2, '5U' => 3, '4U' => 4}[age], grade.ordering]
+      }
+  -%>
+  <% age_grades.each do |age_grade| -%>
+    <% races_by_week = races_by[age_grade] -%>
     <tr>
       <td><%= age_grade.join(' ') %></td>
       <% (1 .. 4).each do |week| -%>
