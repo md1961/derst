@@ -1,3 +1,10 @@
-// Place all the styles related to the races controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.races_index {
+
+  span.female_only {
+    color: red;
+  }
+
+  span.dirt {
+    color: brown;
+  }
+}
