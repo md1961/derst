@@ -96,8 +96,6 @@ Race.where(month: 1).destroy_all
 
   abbr = nil if abbr == 'nil'
 
-  is_turf = surface.upcase != 'D'
-
   weight = {a: 1, c: 2, s: 3, h: 4}[weight[0].downcase.to_sym]
 
   Race.create!(
@@ -109,7 +107,7 @@ Race.where(month: 1).destroy_all
     name:       name == 'nil' ? nil : name,
     abbr:       abbr,
     limitation: limitation == 'f' ? 1 : limitation == 'd' ? 2 : limitation.to_i,
-    is_turf:    is_turf,
+    surface:    surface.downcase == 'd' ? 1 : 0,
     distance:   distance.to_i,
     weight:     weight,
     prize1:     prize1 && prize1.to_i

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_14_072837) do
+ActiveRecord::Schema.define(version: 2019_09_15_022419) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -135,12 +135,12 @@ ActiveRecord::Schema.define(version: 2019_09_14_072837) do
     t.string "name"
     t.string "abbr"
     t.integer "limitation", default: 0, null: false
-    t.boolean "is_turf", default: true, null: false
     t.integer "distance", null: false
     t.integer "weight", null: false
     t.integer "prize1"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "surface", default: 0, null: false
     t.index ["course_id"], name: "index_races_on_course_id"
     t.index ["grade_id"], name: "index_races_on_grade_id"
   end

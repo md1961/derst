@@ -2,12 +2,13 @@ class Race < ApplicationRecord
   belongs_to :course
   belongs_to :grade
 
+  enum surface: {turf: 0, dirt: 1}
   enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2}
   enum weight: {age_constant: 1, constant: 2, separate: 3, handicap: 4}
 
   def to_s
     a = []
-    a << "#{distance}#{is_turf ? nil : 'D'}#{limitation_to_s}"
+    a << "#{distance}#{dirt? ? 'D' : nil}#{limitation_to_s}"
     a << name
     a << grade.name if grade.high_stake?
     a << weight_to_s
