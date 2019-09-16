@@ -9,6 +9,7 @@ module RanchesHelper
     [2, 2] => :mare_sale,
     [7, 2] => :age2_sale,
     [8, 2] => :age2_sale,
+    [1, 4] => :ranch_expansion
   }
 
   def notice(ranch)
