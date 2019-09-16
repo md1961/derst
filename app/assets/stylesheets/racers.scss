@@ -12,6 +12,19 @@
 
 .racers_show {
 
+  .name {
+    display: flex;
+
+    form {
+      margin-left: 20px;
+    }
+  }
+
+  .tables {
+    display: flex;
+    margin-top: 10px;
+  }
+
   #race_candidates {
     margin-left: 20px;
   }

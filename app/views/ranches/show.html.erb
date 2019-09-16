@@ -1,7 +1,7 @@
 <div class="ranches_show">
   <div class="date">
     <%= date_display(@ranch) %>
-    <%= button_to '翌週', next_week_ranch_path(@ranch), method: :patch, tabindex: -1 %>
+    <%= button_to_next_week(@ranch) %>
   </div>
 
   <div class="notice">
@@ -16,7 +16,7 @@
     <%= render 'racers/racers' %>
 
     <div class="links">
-      <%= link_to '新規', new_racer_path(ranch_id: @ranch.id) %>
+      <%= link_to '新規競走馬', new_racer_path(ranch_id: @ranch.id) %>
     </div>
   </div>
 </div>

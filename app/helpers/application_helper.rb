@@ -1,5 +1,26 @@
 module ApplicationHelper
 
+  def button_to_next_week(ranch)
+    racer = nil
+    if ranch.is_a?(Racer)
+      racer = ranch
+      ranch = racer.ranch
+    end
+    button_to '翌週', next_week_ranch_path(ranch, racer_id: racer&.id), method: :patch, tabindex: -1
+  end
+
+  def sire_trait_names
+    %i[lineage fee distances growth dirt temper contend health achievement stability]
+  end
+
+  def mare_trait_names
+    %i[lineage price speed stamina rating type]
+  end
+
+  def options_for_abc
+    %w[- A B C A-B B-C]
+  end
+
   def father_in_bloodline(horse, generation, number)
     father = horse.bloodline_father(generation, number)
     if father
@@ -27,17 +48,5 @@ module ApplicationHelper
     else
       render partial: 'father_input', locals: {generation: generation, number: number}
     end
-  end
-
-  def sire_trait_names
-    %i[lineage fee distances growth dirt temper contend health achievement stability]
-  end
-
-  def mare_trait_names
-    %i[lineage price speed stamina rating type]
-  end
-
-  def options_for_abc
-    %w[- A B C A-B B-C]
   end
 end

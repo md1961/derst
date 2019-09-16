@@ -1,8 +1,9 @@
 <div class="racers_show">
-  <div>
+  <div class="name">
     <%= @racer.name %>
+    <%= button_to_next_week(@racer) %>
   </div>
-  <div style="display: flex;">
+  <div class="tables">
     <table class="table_base">
       <tr>
         <th>体重</th>
@@ -56,5 +57,9 @@
         </tbody>
       </table>
     </div>
+  </div>
+
+  <div class="links">
+    <%= link_to 'Back', @racer.ranch %>
   </div>
 </div>

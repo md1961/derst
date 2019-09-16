@@ -9,7 +9,8 @@ class RanchesController < ApplicationController
 
   def next_week
     ranch = Ranch.find(params[:id])
+    racer = Racer.find_by(id: params[:racer_id])
     ranch.go_to_next_week
-    redirect_to ranch
+    redirect_to racer || ranch
   end
 end
