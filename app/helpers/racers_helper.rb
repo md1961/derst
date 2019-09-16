@@ -24,6 +24,7 @@ module RacersHelper
     a << "#{race.distance}#{race.dirt? ? 'D' : ''}"
     a << (race.female_only? ? '牝' : race.domestic_only? ? '父' : nil)
     a << race.name
+    a << race.weight_to_s
 
     safe_join([
       content_tag(:td, course, class: transport),
