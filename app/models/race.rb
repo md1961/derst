@@ -23,6 +23,13 @@ class Race < ApplicationRecord
     where(grade: grade)
   }
 
+  scope :unlimited_for, ->(racer) {
+    limitations = [0]
+    limitations << 1 if racer.female?
+    limitations << 2 if racer&.father&.domestic?
+    where(limitation: limitations)
+  }
+
   scope :in_or_after, ->(month, week) {
     where("(month = :month AND week >= :week) OR month > :month", month: month, week: week)
   }
