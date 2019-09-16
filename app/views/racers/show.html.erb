@@ -7,17 +7,17 @@
       <tr>
         <th>父</th>
         <% father = @racer.father -%>
-        <td><%= safe_join([father.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
+        <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
       </tr>
       <tr>
         <th>母</th>
         <% mother = @racer.mother -%>
-        <td><%= safe_join([mother.name, mare_trait_display(mother)], '<br>'.html_safe) %></td>
+        <td><%= safe_join([mother&.name, mare_trait_display(mother)], '<br>'.html_safe) %></td>
       </tr>
       <tr>
         <th>母父</th>
-        <% father = @racer.mother.father -%>
-        <td><%= safe_join([father.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
+        <% father = @racer.mother&.father -%>
+        <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
       </tr>
     </table>
 
@@ -33,11 +33,11 @@
               </td>
               <td><%= race_display(races.first) %></td>
             </tr>
-            <tr>
-              <% races[1 .. -1].each do |race| -%>
+            <% races[1 .. -1].each do |race| -%>
+              <tr>
                 <td><%= race_display(race) %></td>
-              <% end -%>
-            </tr>
+              </tr>
+            <% end -%>
           <% end -%>
         </tbody>
       </table>
