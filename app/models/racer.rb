@@ -17,4 +17,9 @@ class Racer < ApplicationRecord
   def age=(value)
     self.year_birth = value.blank? ? nil : ranch.year - value.to_i + 1
   end
+
+  def race_candidates
+    return [] unless ranch && age && grade
+    Race.for_age(age).for_grade(grade).in_or_after(ranch.month, ranch.week)
+  end
 end

@@ -2,7 +2,7 @@
   <div>
     <%= @racer.name %>
   </div>
-  <div>
+  <div style="display: flex;">
     <table class="table_base">
       <tr>
         <th>父</th>
@@ -20,5 +20,27 @@
         <td><%= safe_join([father.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
       </tr>
     </table>
+
+    <div id="race_candidates">
+      <table class="table_base">
+        <tbody>
+          <% @racer.race_candidates.group_by { |race|
+            [race.month, race.week]
+          }.each do |(month, week), races| -%>
+            <tr>
+              <td rowspan="<%= races.size %>">
+                <%= "#{month}月#{week}週" %>
+              </td>
+              <td><%= race_display(races.first) %></td>
+            </tr>
+            <tr>
+              <% races[1 .. -1].each do |race| -%>
+                <td><%= race_display(race) %></td>
+              <% end -%>
+            </tr>
+          <% end -%>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
