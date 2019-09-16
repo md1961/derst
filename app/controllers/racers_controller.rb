@@ -1,5 +1,9 @@
 class RacersController < ApplicationController
 
+  def show
+    @racer = Racer.find(params[:id])
+  end
+
   def new
     @racer = Racer.new(ranch_id: params[:ranch_id])
   end
