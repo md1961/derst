@@ -13,14 +13,21 @@ module RacersHelper
   end
 
   def race_display(race)
+    course = race.course
+    stable = @racer.stable
+    transport = course.same_from?(stable) ? 'same' \
+              : course.on_the_day_from?(stable) ? 'on_day' : 'remote'
+
     a = []
-    a << race.course
     a << race.age.sub(/\A(\d)/, '\1歳').sub('U', '上')
     a << race.grade
     a << "#{race.distance}#{race.dirt? ? 'D' : ''}"
     a << (race.female_only? ? '牝' : race.domestic_only? ? '父' : nil)
     a << race.name
 
-    a.join(' ')
+    safe_join([
+      content_tag(:td, course, class: transport),
+      content_tag(:td, a.join(' '))
+    ])
   end
 end

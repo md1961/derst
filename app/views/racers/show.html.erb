@@ -27,15 +27,16 @@
           <% @racer.race_candidates.group_by { |race|
             [race.month, race.week]
           }.each do |(month, week), races| -%>
+            <% races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
             <tr>
               <td rowspan="<%= races.size %>">
                 <%= "#{month}月#{week}週" %>
               </td>
-              <td><%= race_display(races.first) %></td>
+              <%= race_display(races.first) %>
             </tr>
             <% races[1 .. -1].each do |race| -%>
               <tr>
-                <td><%= race_display(race) %></td>
+                <%= race_display(race) %>
               </tr>
             <% end -%>
           <% end -%>

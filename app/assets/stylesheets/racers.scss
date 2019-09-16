@@ -15,4 +15,13 @@
   #race_candidates {
     margin-left: 20px;
   }
+
+  td.same {
+    font-weight: bold;
+    background-color: cyan;
+  }
+
+  td.remote {
+    color: red;
+  }
 }
