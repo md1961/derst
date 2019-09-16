@@ -9,8 +9,8 @@ end
   ['Hokkaido', 0],
   ['Tohoku'  , 2],
   ['Kanto'   , 4],
-  ['Chubu'   , 5],
-  ['Kansai'  , 6],
+  ['Chubu'   , 6],
+  ['Kansai'  , 5],
   ['Kyushu'  , 8]
 ].each do |name, location|
   Area.create!(name: name, location: location)
