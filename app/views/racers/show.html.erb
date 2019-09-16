@@ -5,6 +5,9 @@
   <div style="display: flex;">
     <table class="table_base">
       <tr>
+        <th>体重</th>
+        <td class="numeric"><%= "#{@racer.weight_best}kg" %></td>
+      </tr>
         <th>父</th>
         <% father = @racer.father -%>
         <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
@@ -19,6 +22,12 @@
         <% father = @racer.mother&.father -%>
         <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
       </tr>
+      <tr>
+        <th>厩舎</th>
+        <td class="centered" title="<%= @racer.stable&.jockeys&.join(' ') %>">
+          <%= @racer.stable %>
+        </td>
+      </tr>
     </table>
 
     <div id="race_candidates">
@@ -32,7 +41,7 @@
               <td rowspan="<%= races.size %>">
                 <%= "#{month}月#{week}週" %>
               </td>
-              <td rowspan="<%= races.size %>" class="weeks_later">
+              <td rowspan="<%= races.size %>" class="numeric">
                 <% weeks_later = @racer.ranch.weeks_later_of(month, week) -%>
                 <%= weeks_later.zero? ? '今週' : "#{weeks_later}週後" %>
               </td>
