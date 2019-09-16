@@ -15,7 +15,7 @@
   <% age_grades.each do |age_grade| -%>
     <% races_by_week = races_by[age_grade] -%>
     <tr>
-      <td><%= age_grade.join(' ') %></td>
+      <th><%= age_grade.join(' ') %></th>
       <% (1 .. 4).each do |week| -%>
         <td>
           <% races = races_by_week[week]&.map { |race|
