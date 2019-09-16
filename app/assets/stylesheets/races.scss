@@ -1,5 +1,9 @@
 .races_index {
 
+  .races_by_course {
+    margin-top: 10px;
+  }
+
   span.dirt {
     color: brown;
   }
@@ -10,5 +14,13 @@
 
   span.high_stake {
     background-color: palegreen;
+  }
+
+  .links {
+    margin-top: 10px;
+
+    a {
+      margin-left: 20px;
+    }
   }
 }

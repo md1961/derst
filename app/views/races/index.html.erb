@@ -1,5 +1,16 @@
 <div class="races_index">
+  <%= "#{@month}月" %>
+
   <% @races_by_course.map do |course, races| -%>
-    <%= render partial: 'races_by_course', locals: {course: course, races: races} %>
+    <div class="races_by_course">
+      <%= render partial: 'races_by_course', locals: {course: course, races: races} %>
+    </div>
   <% end -%>
+
+  <div class="links">
+    <% month_prev = @month == 1  ? 12 : @month - 1
+       month_next = @month == 12 ?  1 : @month + 1 -%>
+    <%= link_to "< #{month_prev}月", races_path(month: month_prev) %>
+    <%= link_to "> #{month_next}月", races_path(month: month_next) %>
+  </div>
 </div>
