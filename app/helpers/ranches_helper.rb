@@ -17,10 +17,14 @@ module RanchesHelper
     key && t(".notice.#{key}")
   end
 
-  def racer_name_display(racer)
-    mark = ''
-    mark = '[父] ' if racer.father.domestic?
-    "#{mark}#{racer.name}"
+  def racer_name_display(racer, f)
+    if f && racer.stable.nil?
+      f.text_field :name
+    else
+      mark = ''
+      mark = '[父] ' if racer.father.domestic?
+      "#{mark}#{racer.name}"
+    end
   end
 
   def racer_sex_display(racer)

@@ -15,8 +15,10 @@
   <div class="racers">
     <%= render 'racers/racers' %>
 
-    <div class="links">
-      <%= link_to '新規競走馬', new_racer_path(ranch_id: @ranch.id) %>
-    </div>
+    <% if @racer_id_to_edit.zero? -%>
+      <div class="links">
+        <%= link_to '新規競走馬', new_racer_path(ranch_id: @ranch.id) %>
+      </div>
+    <% end -%>
   </div>
 </div>
