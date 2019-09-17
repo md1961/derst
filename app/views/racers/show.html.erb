@@ -40,14 +40,24 @@
             <% race = result.race -%>
             <tr>
               <td><%= "#{race.month}.#{race.week}" %></td>
-              <%= race_display(race) %>
+              <td><%= race.course %></td>
+              <td><%= race_name_display(race) %></td>
+              <td><%= race_distance_display(race) %></td>
+              <td><%= [race_limitation_display(race), race.handicap? ? '[H]' : nil].compact.join(' ') %></td>
+              <% if result.place.nil? -%>
+                <%= form_with model: result, local: true do |f| %>
+                  <%= render partial: 'result', locals: {result: result, f: f} %>
+                <% end -%>
+              <% else -%>
+                <%= render partial: 'result', locals: {result: result, f: nil} %>
+              <% end -%>
             </tr>
           <% end -%>
 
           <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
             <tr>
-              <td colspan="4">
-                <%= select_tag :race_id, race_options_for_select(@racer) %>
+              <td colspan="10">
+                <%= select_tag :race_id, race_options_for_select_for(@racer) %>
                 <%= f.submit %>
               </td>
             </tr>

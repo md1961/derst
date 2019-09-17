@@ -1,0 +1,7 @@
+<% result_attr_names.each do |name| -%>
+  <td><%= result_attr_display(result, name, f) %></td>
+<% end -%>
+
+<% if f -%>
+  <td><%= f.submit %></td>
+<% end -%>
