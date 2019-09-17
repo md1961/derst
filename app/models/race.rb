@@ -41,6 +41,10 @@ class Race < ApplicationRecord
     for_age(age).where(grade: grades).unlimited_for(racer)
   }
 
+  scope :before, ->(month, week) {
+    where("(month = :month AND week < :week) OR month < :month", month: month, week: week)
+  }
+
   scope :in_or_after, ->(month, week) {
     where("(month = :month AND week >= :week) OR month > :month", month: month, week: week)
   }
