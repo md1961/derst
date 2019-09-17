@@ -28,7 +28,7 @@ module RacersHelper
 
     safe_join([
       content_tag(:td, course, class: transport),
-      content_tag(:td, a.join(' '))
+      content_tag(:td, a.join(' '), class: race.grade == @racer.grade ? '' : 'overgrade')
     ])
   end
 end

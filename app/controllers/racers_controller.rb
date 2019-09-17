@@ -2,6 +2,7 @@ class RacersController < ApplicationController
 
   def show
     @racer = Racer.find(params[:id])
+    @includes_overgrade = params[:includes_overgrade] == 'true'
   end
 
   def new

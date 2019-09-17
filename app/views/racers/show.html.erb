@@ -34,9 +34,9 @@
     <div id="race_candidates">
       <table class="table_base">
         <tbody>
-          <% @racer.race_candidates.group_by { |race|
-            [race.month, race.week]
-          }.each do |(month, week), races| -%>
+          <% @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
+               [race.month, race.week]
+             }.each do |(month, week), races| -%>
             <% races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
             <tr>
               <td rowspan="<%= races.size %>">
@@ -56,6 +56,12 @@
           <% end -%>
         </tbody>
       </table>
+    </div>
+
+    <div class="links">
+      <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
+                                           : ['格上挑戦', racer_path(@racer, includes_overgrade: true)] -%>
+      <%= link_to label, path %>
     </div>
   </div>
 
