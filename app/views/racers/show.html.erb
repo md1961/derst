@@ -4,32 +4,57 @@
     <%= button_to_next_week(@racer) %>
   </div>
   <div class="tables">
-    <table class="table_base">
-      <tr>
-        <th>体重</th>
-        <td class="numeric"><%= "#{@racer.weight_best}kg" %></td>
-      </tr>
-        <th>父</th>
-        <% father = @racer.father -%>
-        <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
-      </tr>
-      <tr>
-        <th>母</th>
-        <% mother = @racer.mother -%>
-        <td><%= safe_join([mother&.name, mare_trait_display(mother)], '<br>'.html_safe) %></td>
-      </tr>
-      <tr>
-        <th>母父</th>
-        <% father = @racer.mother&.father -%>
-        <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
-      </tr>
-      <tr>
-        <th>厩舎</th>
-        <td class="centered" title="<%= @racer.stable&.jockeys&.join(' ') %>">
-          <%= @racer.stable %>
-        </td>
-      </tr>
-    </table>
+    <div id="traits_and_results">
+      <table class="table_base">
+        <tr>
+          <th>体重</th>
+          <td class="numeric"><%= "#{@racer.weight_best}kg" %></td>
+        </tr>
+          <th>父</th>
+          <% father = @racer.father -%>
+          <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
+        </tr>
+        <tr>
+          <th>母</th>
+          <% mother = @racer.mother -%>
+          <td><%= safe_join([mother&.name, mare_trait_display(mother)], '<br>'.html_safe) %></td>
+        </tr>
+        <tr>
+          <th>母父</th>
+          <% father = @racer.mother&.father -%>
+          <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
+        </tr>
+        <tr>
+          <th>厩舎</th>
+          <td class="centered" title="<%= @racer.stable&.jockeys&.join(' ') %>">
+            <%= @racer.stable %>
+          </td>
+        </tr>
+      </table>
+
+      <table id="results" class="table_base">
+        <thead>
+        </thead>
+        <tbody>
+          <% @racer.results.each do |result| -%>
+            <% race = result.race -%>
+            <tr>
+              <td><%= "#{race.month}.#{race.week}" %></td>
+              <%= race_display(race) %>
+            </tr>
+          <% end -%>
+
+          <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
+            <tr>
+              <td colspan="4">
+                <%= select_tag :race_id, race_options_for_select(@racer) %>
+                <%= f.submit %>
+              </td>
+            </tr>
+          <% end -%>
+        </tbody>
+      </table>
+    </div>
 
     <div id="race_candidates">
       <table class="table_base">

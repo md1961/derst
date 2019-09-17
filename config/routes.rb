@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   resources :matings, only: %i[index show]
 
-  resources :racers, only: %i[show new create update]
+  resources :racers, only: %i[show new create update] do
+    member do
+      post :create_result
+    end
+  end
 
   resources :races, only: %i[index]
 

@@ -28,6 +28,12 @@ class RacersController < ApplicationController
     end
   end
 
+  def create_result
+    racer = Racer.find(params[:id])
+    racer.results.create!(race_id: params[:race_id])
+    redirect_to racer
+  end
+
   private
 
     def racer_params

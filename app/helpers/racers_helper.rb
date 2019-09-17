@@ -31,4 +31,14 @@ module RacersHelper
       content_tag(:td, a.join(' '), class: race.grade == @racer.grade ? '' : 'overgrade')
     ])
   end
+
+  def race_options_for_select(racer)
+    options_for_select(
+      racer.race_candidates(includes_overgrade: true).find_all { |race|
+        race.month == racer.ranch.month && race.week == racer.ranch.week
+      }.map { |race|
+        [race_display(race).gsub(/<[^>]?*>/, ''), race.id]
+      }
+    )
+  end
 end
