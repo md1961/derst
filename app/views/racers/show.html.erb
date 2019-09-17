@@ -34,6 +34,10 @@
 
       <table id="results" class="table_base">
         <thead>
+          <th colspan="5">
+          <% result_attr_names.each do |name| -%>
+            <th><%= Result.human_attribute_name(name) %></th>
+          <% end -%>
         </thead>
         <tbody>
           <% @racer.results.each do |result| -%>

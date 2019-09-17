@@ -26,3 +26,24 @@ ja:
         stamina: スタ
         rating: 評価
         type: タイプ
+      result:
+        surface_condition: 馬場
+        num_racers: 頭数
+        num_frame: 馬番
+        rank_odds: 人気
+        odds: オッズ
+        place: 着順
+        weight: 体重
+        mark_development: 展
+        mark_stamina: ス
+        mark_contend: 根
+        mark_temper: 気
+        mark_odds: 人
+        age: 齢
+        load: 斤量
+        jockey: 騎手
+        for_bad_surface: 悪
+        position: 展開
+        direction: 指示
+        comment_paddock: パドック
+        comment_race: レース
