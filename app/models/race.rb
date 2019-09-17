@@ -6,7 +6,7 @@ class Race < ApplicationRecord
   enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2}
   enum weight: {age_constant: 1, constant: 2, separate: 3, handicap: 4}
 
-  scope :for_age_and_grade, ->(age, grade, includes_overgrade: includes_overgrade) {
+  scope :for_age, ->(age) {
     ages = case age
            when 3
              %w[3]
@@ -15,6 +15,20 @@ class Race < ApplicationRecord
            else
              %w[4U 5 5U]
            end
+    where(age: ages)
+  }
+
+  scope :unlimited_for, ->(racer) {
+    limitations = [0]
+    limitations << 1 if racer.female?
+    limitations << 2 if racer&.father&.domestic?
+    where(limitation: limitations)
+  }
+
+  scope :for_racer, ->(racer, includes_overgrade: includes_overgrade) {
+    age   = racer.age
+    grade = racer.grade
+
     grades = [grade]
     if includes_overgrade
       if grade.abbr == '16'
@@ -23,20 +37,8 @@ class Race < ApplicationRecord
         grades = Grade.where(abbr: %w[5 9 16 OP Ⅲ])
       end
     end
-    where(age: ages, grade: grades)
-  }
 
-  scope :for_grades, ->(grades) {
-    grades = Array(grades)
-    grades = Grade.open_or_higher if grades.size == 1 && grades[0].abbr == 'OP'
-    where(grade: grades)
-  }
-
-  scope :unlimited_for, ->(racer) {
-    limitations = [0]
-    limitations << 1 if racer.female?
-    limitations << 2 if racer&.father&.domestic?
-    where(limitation: limitations)
+    for_age(age).where(grade: grades).unlimited_for(racer)
   }
 
   scope :in_or_after, ->(month, week) {

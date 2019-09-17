@@ -20,8 +20,7 @@ class Racer < ApplicationRecord
 
   def race_candidates(includes_overgrade: false)
     return [] unless ranch && age && grade
-    Race.for_age_and_grade(age, grade, includes_overgrade: includes_overgrade)
-        .unlimited_for(self)
+    Race.for_racer(self, includes_overgrade: includes_overgrade)
         .in_or_after(ranch.month, ranch.week)
   end
 end
