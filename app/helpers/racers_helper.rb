@@ -82,7 +82,7 @@ module RacersHelper
     if !f
       result.send(name)
     elsif name == :jockey
-      f.select :jockey_id, options_for_select(Jockey.pluck(:name, :id))
+      f.select :jockey_id, options_for_select([['-', nil]] + Jockey.pluck(:name, :id))
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name)
     else
@@ -93,15 +93,15 @@ module RacersHelper
   def result_options_for_select_for(name)
     case name
     when :surface_condition
-      %w[良 稍 重 不]
+      %w[－ 良 稍 重 不]
     when :mark_development, :mark_stamina, :mark_contend, :mark_temper, :mark_odds
       %w[－ △ ▲ 〇 ◎]
     when :for_bad_surface
       %w[－ 〇 ◎]
     when :position
-      %w[自在 逃げ 先行 中団 追込]
+      %w[－ 自在 逃げ 先行 中団 追込]
     else
-      %w[任せ 逃げ 先行 中団 追込]
+      %w[－ 任せ 逃げ 先行 中団 追込]
     end
   end
 end
