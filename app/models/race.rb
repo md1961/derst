@@ -25,8 +25,8 @@ class Race < ApplicationRecord
     where(limitation: limitations)
   }
 
-  scope :for_racer, ->(racer, includes_overgrade: includes_overgrade) {
-    age   = racer.age
+  scope :for_racer, ->(racer, for_next_year: false, includes_overgrade: includes_overgrade) {
+    age   = racer.age + (for_next_year ? 1 : 0)
     grade = racer.grade
 
     grades = [grade]
