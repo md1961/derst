@@ -18,8 +18,10 @@ class Racer < ApplicationRecord
     self.year_birth = value.blank? ? nil : ranch.year - value.to_i + 1
   end
 
-  def race_candidates
+  def race_candidates(includes_overgrade: false)
     return [] unless ranch && age && grade
-    Race.for_age(age).for_grade(grade).unlimited_for(self).in_or_after(ranch.month, ranch.week)
+    Race.for_age_and_grade(age, grade, includes_overgrade: includes_overgrade)
+        .unlimited_for(self)
+        .in_or_after(ranch.month, ranch.week)
   end
 end
