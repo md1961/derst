@@ -18,4 +18,18 @@ class MatingsController < ApplicationController
     @mating = Mating.new(@mare, @sire)
     @ranch = Ranch.find_by(id: params[:ranch_id])
   end
+
+  def new
+    @mating = Mating.new(nil, nil)
+  end
+
+  def create
+    mare = Mare.find_by(name: params[:mating][:mare])
+    sire = Sire.find_by_name( params[:mating][:sire])
+    if mare.nil? || sire.nil?
+      redirect_to new_mating_path
+    else
+      redirect_to mating_path(id: mare, sire_id: sire.id)
+    end
+  end
 end

@@ -1,0 +1,17 @@
+<div class="matings_new">
+  <%= form_with model: @mating, local: true do |f| %>
+    <div class="field">
+      <%= f.label :sire %>
+      <input type="search" name="mating[sire]" value="<%= @mating.sire %>" autocomplete="on" list="father_candidates">
+    </div>
+    <div class="field">
+      <%= f.label :mare %>
+      <input type="search" name="mating[mare]" value="<%= @mating.mare %>" autocomplete="on" list="mother_candidates">
+    </div>
+
+    <%= f.submit %>
+  <% end -%>
+
+  <%= render 'father_candidates' %>
+  <%= render 'mother_candidates' %>
+</div>

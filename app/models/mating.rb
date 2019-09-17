@@ -1,12 +1,14 @@
 class Mating
-  attr_reader :sire, :mare
+  include ActiveModel::Model
+
+  attr_accessor :sire, :mare
 
   @@h_inbreeds_cache = {}
 
   def initialize(mare, sire, mare_inbreeds = nil)
     @mare = mare
     @sire = sire
-    @mare_inbreeds = mare_inbreeds || @mare.h_inbreeds
+    @mare_inbreeds = mare_inbreeds || @mare&.h_inbreeds
     read_caches
   end
 
