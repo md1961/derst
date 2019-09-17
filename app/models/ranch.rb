@@ -9,7 +9,7 @@ class Ranch < ApplicationRecord
       diff += 4 * 12 if diff < 0
     else
       month_diff = month - self.month
-      month_diff + 12 if month_diff < 0
+      month_diff += 12 if month_diff < 0
       diff = month_diff * 4 + week - self.week
     end
     diff
