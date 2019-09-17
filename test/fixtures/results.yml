@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  surface_condition: 1
+  num_racers: 1
+  num_frame: 1
+  rank_odds: 1
+  odds: 1.5
+  place: 1
+  weight: 1
+  mark_development: 1
+  mark_stamina: 1
+  mark_contend: 1
+  mark_temper: 1
+  mark_odds: 1
+  age: 1
+  load: 1
+  jockey: one
+  for_bad_surface: 1
+  position: 1
+  direction: 1
+  comment_paddock: MyString
+  comment_race: MyString
+
+two:
+  surface_condition: 1
+  num_racers: 1
+  num_frame: 1
+  rank_odds: 1
+  odds: 1.5
+  place: 1
+  weight: 1
+  mark_development: 1
+  mark_stamina: 1
+  mark_contend: 1
+  mark_temper: 1
+  mark_odds: 1
+  age: 1
+  load: 1
+  jockey: two
+  for_bad_surface: 1
+  position: 1
+  direction: 1
+  comment_paddock: MyString
+  comment_race: MyString
