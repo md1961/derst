@@ -74,7 +74,7 @@
       </table>
     </div>
 
-    <% if @racer.results.last&.place.present? -%>
+    <% if @racer.results.empty? || @racer.results.last.place.present? -%>
       <div id="race_candidates">
         <div class="links">
           <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
