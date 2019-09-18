@@ -40,12 +40,9 @@ module RacersHelper
               : course.on_the_day_from?(stable) ? 'on_day' : 'remote'
 
     a = []
-    a << race_age_display(race.age)
-    a << race.grade
+    a << race.age
     a << race_distance_display(race)
-    a << race_limitation_display(race)
-    a << race.name
-    a << race.weight_to_s
+    a << race_name_display(race)
 
     safe_join([
       content_tag(:td, course, class: transport),
@@ -88,7 +85,7 @@ module RacersHelper
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name)
     else
-      size = name.to_s.starts_with?('comment_') ? 8 : name == :weight ? 4 : 2
+      size = name.to_s.starts_with?('comment_') ? 12 : name == :weight ? 4 : 2
       f.text_field name, size: size
     end
   end

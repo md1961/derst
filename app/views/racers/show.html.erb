@@ -51,7 +51,10 @@
                 <%= form_with model: result, local: true do |f| %>
                   <%= render partial: 'result', locals: {result: result, f: f} %>
                 <% end -%>
-                <td><%= button_to '削除', result, method: :delete, class: 'destroy' %></td>
+                  <td class="numeric">
+                    <%= button_to '削除', result, method: :delete, class: 'destroy' %>
+                  </td>
+                </tr>
               <% else -%>
                 <%= render partial: 'result', locals: {result: result, f: nil} %>
               <% end -%>
@@ -86,12 +89,12 @@
                }.each do |(month, week), races| -%>
               <% races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
               <tr>
-                <td rowspan="<%= races.size %>">
-                  <%= "#{month}月#{week}週" %>
+                <td rowspan="<%= races.size %>" class="numeric">
+                  <%= "#{month}.#{week}" %>
                 </td>
                 <td rowspan="<%= races.size %>" class="numeric">
                   <% weeks_later = @racer.ranch.weeks_later_of(month, week) -%>
-                  <%= weeks_later.zero? ? '今週' : "#{weeks_later}週後" %>
+                  <%= weeks_later.zero? ? '-' : "#{weeks_later}w" %>
                 </td>
                 <%= race_display(races.first) %>
               </tr>
