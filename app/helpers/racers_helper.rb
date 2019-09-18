@@ -17,10 +17,11 @@ module RacersHelper
   end
 
   def race_name_display(race)
+    addition = ["", race_limitation_display(race), race.handicap? ? '[H]' : nil].compact.join(' ')
     if race.name
-      "#{race.name}(#{race.grade.abbr})"
+      "#{race.name}#{addition}(#{race.grade.abbr})"
     else
-      "#{race_age_display(race.age)}#{race.grade}"
+      "#{race_age_display(race.age)}#{race.grade}#{addition}"
     end
   end
 
