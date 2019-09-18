@@ -54,14 +54,6 @@ module RacersHelper
   end
 
   def race_options_for_select_for(racer)
-
-=begin
-    racer.age = 4
-    racer.grade = Grade.find_by(abbr: '5')
-    racer.ranch.month = 7
-    racer.ranch.week  = 1
-=end
-
     options_for_select(
       racer.race_candidates(includes_overgrade: true).find_all { |race|
         race.month == racer.ranch.month && race.week == racer.ranch.week

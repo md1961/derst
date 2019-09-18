@@ -71,7 +71,7 @@
       </table>
     </div>
 
-    <% if @racer.results.last.place.present? -%>
+    <% if @racer.results.last&.place.present? -%>
       <div id="race_candidates">
         <table class="table_base">
           <tbody>
