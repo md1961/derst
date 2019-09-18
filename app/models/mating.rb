@@ -51,4 +51,22 @@ class Mating
         [inbreed_cache.sire.id, inbreed_cache]
       }.to_h
     end
+
+    def filename_for_cache
+      "db/cache/matings/mare-#{@mare.id}.txt"
+    end
+
+    def write_inbreed_cache
+      return unless @mare
+      return if File.exists?(filename_for_cache)
+      mare_inbreeds = @mare.h_inbreeds
+      File.open(filename_for_cache, 'w') do |f|
+        f.write(
+          Sire.breedable.map { |sire|
+            mating = Mating.new(@mare, sire, mare_inbreeds)
+            [sire.id, mating.h_inbreeds]
+          }.to_h.to_json
+        )
+      end
+    end
 end
