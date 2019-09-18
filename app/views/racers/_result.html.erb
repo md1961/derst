@@ -1,4 +1,7 @@
-<% result_attr_names.each do |name| -%>
+<% attr_names = result_attr_names
+   attr_names.reject! { |name| name.to_s.starts_with?('comment_') } if f -%>
+
+<% attr_names.each do |name| -%>
   <td class="centered <%= name %>">
     <%= result_attr_display(result, name, f) %>
   </td>
@@ -6,5 +9,12 @@
 
 <% if f -%>
   <tr>
-    <td colspan="24" class="numeric"><%= f.submit %></td>
+    <td colspan="19">
+    <td colspan="3">
+      <%= result_attr_display(result, :comment_paddock, f) %>
+    </td>
+    <td colspan="3">
+      <%= result_attr_display(result, :comment_race, f) %>
+    </td>
+  </tr>
 <% end -%>

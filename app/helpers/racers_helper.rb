@@ -85,7 +85,7 @@ module RacersHelper
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name)
     else
-      size = name.to_s.starts_with?('comment_') ? 12 : name == :weight ? 4 : 2
+      size = name.to_s.starts_with?('comment_') ? 14 : name == :weight ? 3 : 1
       f.text_field name, size: size
     end
   end

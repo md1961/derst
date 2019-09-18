@@ -50,6 +50,8 @@
               <% if result.place.nil? -%>
                 <%= form_with model: result, local: true do |f| %>
                   <%= render partial: 'result', locals: {result: result, f: f} %>
+                <tr>
+                  <td colspan="24" class="numeric"><%= f.submit %></td>
                 <% end -%>
                   <td class="numeric">
                     <%= button_to '削除', result, method: :delete, class: 'destroy' %>
