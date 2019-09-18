@@ -67,7 +67,8 @@ module RacersHelper
     %i[
       surface_condition num_racers num_frame rank_odds odds place weight
       mark_development mark_stamina mark_contend mark_temper mark_odds
-      age load jockey for_bad_surface position direction comment_paddock comment_race
+      age load jockey for_bad_surface position direction condition
+      comment_paddock comment_race
     ]
   end
 
@@ -75,7 +76,7 @@ module RacersHelper
     %i[
       surface_condition
       mark_development mark_stamina mark_contend mark_temper mark_odds
-      for_bad_surface position direction
+      for_bad_surface position direction condition
     ]
   end
 
@@ -87,7 +88,8 @@ module RacersHelper
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name)
     else
-      f.text_field name, size: (name == :weight ? 4 : 2)
+      size = name.to_s.starts_with?('comment_') ? 8 : name == :weight ? 4 : 2
+      f.text_field name, size: size
     end
   end
 
@@ -98,9 +100,11 @@ module RacersHelper
     when :mark_development, :mark_stamina, :mark_contend, :mark_temper, :mark_odds
       %w[－ △ ▲ 〇 ◎]
     when :for_bad_surface
-      %w[－ 〇 ◎]
+      %w[－ △ 〇 ◎]
     when :position
       %w[－ 自在 逃げ 先行 中団 追込]
+    when :condition
+      %w[－ ◎ 〇 △ ▽]
     else
       %w[－ 任せ 逃げ 先行 中団 追込]
     end

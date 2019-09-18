@@ -35,6 +35,10 @@
     td.place {
       font-weight: bold;
     }
+
+    td.comment_paddock, td.comment_race {
+      text-align: left;
+    }
   }
 
   #race_candidates {

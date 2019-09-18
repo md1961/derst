@@ -73,6 +73,12 @@
 
     <% if @racer.results.last&.place.present? -%>
       <div id="race_candidates">
+        <div class="links">
+          <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
+                                               : ['格上挑戦', racer_path(@racer, includes_overgrade: true)] -%>
+          <%= link_to label, path %>
+        </div>
+
         <table class="table_base">
           <tbody>
             <% @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
@@ -97,12 +103,6 @@
             <% end -%>
           </tbody>
         </table>
-      </div>
-
-      <div class="links">
-        <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
-                                             : ['格上挑戦', racer_path(@racer, includes_overgrade: true)] -%>
-        <%= link_to label, path %>
       </div>
     <% end -%>
   </div>

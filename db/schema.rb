@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_17_014752) do
+ActiveRecord::Schema.define(version: 2019_09_18_110504) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 2019_09_17_014752) do
     t.string "comment_race"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "condition"
     t.index ["jockey_id"], name: "index_results_on_jockey_id"
     t.index ["race_id"], name: "index_results_on_race_id"
     t.index ["racer_id"], name: "index_results_on_racer_id"
