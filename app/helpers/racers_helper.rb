@@ -94,7 +94,7 @@ module RacersHelper
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name)
     else
-      f.text_field name, size: 2
+      f.text_field name, size: (name == :weight ? 4 : 2)
     end
   end
 

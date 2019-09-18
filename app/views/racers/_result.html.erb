@@ -1,5 +1,7 @@
 <% result_attr_names.each do |name| -%>
-  <td><%= result_attr_display(result, name, f) %></td>
+  <td class="centered <%= name %>">
+    <%= result_attr_display(result, name, f) %>
+  </td>
 <% end -%>
 
 <% if f -%>

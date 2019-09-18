@@ -6,6 +6,12 @@ class ResultsController < ApplicationController
     redirect_to result.racer
   end
 
+  def destroy
+    result = Result.find(params[:id])
+    result.destroy
+    redirect_to result.racer
+  end
+
   private
 
     def result_params

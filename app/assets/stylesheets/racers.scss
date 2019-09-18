@@ -27,23 +27,31 @@
 
   #results {
     margin-top: 10px;
+
+    td.num_racers, td.num_frame, td.rank_odds, td.odds, td.weight {
+      text-align: right;
+    }
+
+    td.place {
+      font-weight: bold;
+    }
   }
 
   #race_candidates {
     margin-left: 20px;
-  }
 
-  td.same {
-    font-weight: bold;
-    background-color: cyan;
-  }
+    td.same {
+      font-weight: bold;
+      background-color: cyan;
+    }
 
-  td.remote {
-    color: red;
-  }
+    td.remote {
+      color: red;
+    }
 
-  td.overgrade {
-    background-color: lightgray;
+    td.overgrade {
+      background-color: lightgray;
+    }
   }
 
   .links {

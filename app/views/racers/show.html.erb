@@ -52,6 +52,7 @@
                 <%= form_with model: result, local: true do |f| %>
                   <%= render partial: 'result', locals: {result: result, f: f} %>
                 <% end -%>
+                <td><%= button_to '削除', result, method: :delete, class: 'destroy' %></td>
               <% else -%>
                 <%= render partial: 'result', locals: {result: result, f: nil} %>
               <% end -%>
@@ -70,38 +71,40 @@
       </table>
     </div>
 
-    <div id="race_candidates">
-      <table class="table_base">
-        <tbody>
-          <% @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
-               [race.month, race.week]
-             }.each do |(month, week), races| -%>
-            <% races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
-            <tr>
-              <td rowspan="<%= races.size %>">
-                <%= "#{month}月#{week}週" %>
-              </td>
-              <td rowspan="<%= races.size %>" class="numeric">
-                <% weeks_later = @racer.ranch.weeks_later_of(month, week) -%>
-                <%= weeks_later.zero? ? '今週' : "#{weeks_later}週後" %>
-              </td>
-              <%= race_display(races.first) %>
-            </tr>
-            <% races[1 .. -1].each do |race| -%>
+    <% if @racer.results.last.place.present? -%>
+      <div id="race_candidates">
+        <table class="table_base">
+          <tbody>
+            <% @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
+                 [race.month, race.week]
+               }.each do |(month, week), races| -%>
+              <% races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
               <tr>
-                <%= race_display(race) %>
+                <td rowspan="<%= races.size %>">
+                  <%= "#{month}月#{week}週" %>
+                </td>
+                <td rowspan="<%= races.size %>" class="numeric">
+                  <% weeks_later = @racer.ranch.weeks_later_of(month, week) -%>
+                  <%= weeks_later.zero? ? '今週' : "#{weeks_later}週後" %>
+                </td>
+                <%= race_display(races.first) %>
               </tr>
+              <% races[1 .. -1].each do |race| -%>
+                <tr>
+                  <%= race_display(race) %>
+                </tr>
+              <% end -%>
             <% end -%>
-          <% end -%>
-        </tbody>
-      </table>
-    </div>
+          </tbody>
+        </table>
+      </div>
 
-    <div class="links">
-      <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
-                                           : ['格上挑戦', racer_path(@racer, includes_overgrade: true)] -%>
-      <%= link_to label, path %>
-    </div>
+      <div class="links">
+        <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
+                                             : ['格上挑戦', racer_path(@racer, includes_overgrade: true)] -%>
+        <%= link_to label, path %>
+      </div>
+    <% end -%>
   </div>
 
   <div class="links">
