@@ -9,7 +9,7 @@ class Mating
     @mare = mare
     @sire = sire
     @mare_inbreeds = mare_inbreeds || @mare&.h_inbreeds
-    read_caches
+    #read_caches
   end
 
   def nicks?
@@ -28,28 +28,29 @@ class Mating
           generations.size <= 1
         }.map { |father, generations|
           [father, generations.sort]
-        }.to_h.tap { |h|
-          inbreed_cache&.update_inbreeds(h)
-        }
+        }.to_h
   end
 
   private
 
-    def inbreed_cache
-      return nil
-      @inbreed_cache ||= InbreedCache.find_or_create_by(mare: @mare, sire: @sire)
-    end
-
     def fetch_h_inbreeds_from_cache
-      return nil
-      @@h_inbreeds_cache.dig(@mare.id, @sire.id)&.fetch_h_inbreeds
+      @@h_inbreeds_cache.dig(@mare.id, @sire.id.to_s)
     end
 
     def read_caches
-      return
-      @@h_inbreeds_cache[@mare.id] ||= InbreedCache.where(mare: @mare).map { |inbreed_cache|
-        [inbreed_cache.sire.id, inbreed_cache]
-      }.to_h
+      #return
+      h_sires = {}
+      @@h_inbreeds_cache[@mare.id] ||= File.open(filename_for_cache) { |f|
+        JSON.parse(f.read).map { |sire_id, h_inbreeds|
+          [
+            sire_id.to_i,
+            h_inbreeds.map { |father_name, generations|
+              sire = h_sires[father_name] ||= Sire.find_by_name(father_name)
+              [sire, generations]
+            }.to_h
+          ]
+        }.to_h
+      }
     end
 
     def filename_for_cache
