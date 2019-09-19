@@ -28,13 +28,20 @@ class Race < ApplicationRecord
   scope :for_racer, ->(racer, for_next_year: false, includes_overgrade: false) {
     age   = racer.age + (for_next_year ? 1 : 0)
     grade = racer.grade
+    month = racer.ranch.month
 
     grades = [grade]
     if includes_overgrade
-      if grade.abbr == '16'
-        grades = Grade.where(abbr: %w[16 OP Ⅲ])
-      elsif [3, 4].include?(age) && %w[5 9].include?(grade.abbr)
-        grades = Grade.where(abbr: %w[5 9 16 OP Ⅲ])
+      if (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '5'
+        grades = Grade.where(abbr: %w[5 9 16 OP Ⅲ Ⅱ])
+      elsif (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '9'
+        grades = Grade.where(abbr: %w[9 16 OP Ⅲ Ⅱ])
+      elsif grade.abbr == '5'
+        grades = Grade.where(abbr: %w[5 9])
+      elsif grade.abbr == '9'
+        grades = Grade.where(abbr: %w[9 16])
+      elsif grade.abbr == '16'
+        grades = Grade.where(abbr: %w[16 OP Ⅲ Ⅱ])
       end
     end
 
