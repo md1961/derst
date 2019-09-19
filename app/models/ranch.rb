@@ -7,28 +7,10 @@ class Ranch < ApplicationRecord
     MonthWeek.new(month, week)
   end
 
-  def weeks_later_of(month, week)
-    if month == self.month
-      diff = week - self.week
-      diff += 4 * 12 if diff < 0
-    else
-      month_diff = month - self.month
-      month_diff += 12 if month_diff < 0
-      diff = month_diff * 4 + week - self.week
-    end
-    diff
-  end
-
   def go_to_next_week
-    attrs = {week: week + 1}
-    if attrs[:week] > 4
-      attrs[:week] = 1
-      attrs[:month] = month + 1
-      if attrs[:month] > 12
-        attrs[:month] = 1
-        attrs[:year] = year + 1
-      end
-    end
+    next_week = month_week.next
+    attrs = next_week.to_params
+    attrs.merge!(year: year + 1) if next_week.first_of_year?
     update!(attrs)
   end
 end
