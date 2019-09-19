@@ -81,11 +81,17 @@ module RacersHelper
     if !f
       result.send(name)
     elsif name == :jockey
-      f.select :jockey_id, options_for_select([['-', nil]] + Jockey.pluck(:name, :id))
+      f.select :jockey_id, options_for_select([['-', nil]] + Jockey.pluck(:name, :id), selected: result.jockey_id)
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name)
     else
-      size = name.to_s.starts_with?('comment_') ? 14 : name == :weight ? 3 : 1
+      size = name.to_s.starts_with?('comment_') ? 14 : name == :weight ? 3 : 2
+      size = {
+        odds:   4,
+        weight: 4,
+        comment_paddock: 20,
+        comment_race:    20,
+      }[name] || 2
       f.text_field name, size: size
     end
   end
@@ -101,7 +107,7 @@ module RacersHelper
     when :position
       %w[－ 自在 逃げ 先行 中団 追込]
     when :condition
-      %w[－ ◎ 〇 △ ▽]
+      %w[－ ◎ ↑ 〇 △ ▽]
     else
       %w[－ 任せ 逃げ 先行 中団 追込]
     end

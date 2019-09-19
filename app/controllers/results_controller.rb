@@ -18,7 +18,7 @@ class ResultsController < ApplicationController
       params.require(:result).permit(
           :surface_condition, :num_racers, :num_frame, :rank_odds, :odds, :place, :weight,
           :mark_development, :mark_stamina, :mark_contend, :mark_temper, :mark_odds,
-          :age, :load, :jockey_id, :for_bad_surface, :position, :direction,
+          :age, :load, :jockey_id, :for_bad_surface, :position, :direction, :condition,
           :comment_paddock, :comment_race
       )
     end
