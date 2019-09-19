@@ -1,6 +1,8 @@
+<% shortcut = index < 10 ? index.to_s : ('a'.ord + index - 10).chr -%>
+
 <tr>
-  <td><%= link_to_if @racer_id_to_edit.zero?, 'S', racer %></td>
-  <td><%= link_to_if @racer_id_to_edit.zero?, 'E', ranch_path(@ranch, racer_id_to_edit: racer) %></td>
+  <td><%= link_to_if @racer_id_to_edit.zero?, shortcut.upcase, racer, data: {shortcut: shortcut} %></td>
+  <td><%= link_to_if @racer_id_to_edit.zero?, 'e', ranch_path(@ranch, racer_id_to_edit: racer) %></td>
   <td><%= racer_name_display(racer, f) %></td>
   <td><%= racer_sex_display(racer) %></td>
   <td class="numeric"><%= "#{racer.age}歳" %></td>

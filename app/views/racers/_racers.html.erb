@@ -14,14 +14,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @racers.each do |racer| -%>
+      <% @racers.each.with_index(1) do |racer, index| -%>
         <% if racer.id == @racer_id_to_edit -%>
           <%= form_with model: racer, local: true do |f| %>
             <%= racer.errors.messages unless racer.errors.empty? %>
-            <%= render partial: 'racers/racer', locals: {racer: racer, f: f} %>
+            <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: f} %>
           <% end -%>
         <% else -%>
-          <%= render partial: 'racers/racer', locals: {racer: racer, f: nil} %>
+          <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: nil} %>
         <% end -%>
       <% end -%>
     </tbody>
