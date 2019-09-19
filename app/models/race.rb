@@ -48,7 +48,12 @@ class Race < ApplicationRecord
       end
     end
 
-    for_age(age).where(grade: grades).unlimited_for(racer)
+    if racer.downgrade_in_summer?
+      before_downgrade_in_summer.for_age(age).where(grade: grades).unlimited_for(racer)
+        .or(downgrade_in_summer.for_age(age).where(grade: grade.one_down).unlimited_for(racer))
+    else
+      for_age(age).where(grade: grades).unlimited_for(racer)
+    end
   }
 
   scope :before, ->(month, week) {
