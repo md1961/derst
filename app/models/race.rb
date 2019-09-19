@@ -31,6 +31,8 @@ class Race < ApplicationRecord
   scope :for_racer, ->(racer, for_next_year: false, includes_overgrade: false) {
     age   = racer.age + (for_next_year ? 1 : 0)
     grade = racer.grade
+    is_new_racer = grade.abbr == '新'
+    #grade = Grade.find_by(abbr: '未') if is_new_racer && for_next_year
     month = racer.ranch.month
 
     grades = [grade]
@@ -48,12 +50,22 @@ class Race < ApplicationRecord
       end
     end
 
-    if racer.downgrade_in_summer?
+    if is_new_racer
+      month_week = racer.ranch.month_week
+      for_age(age).where(grade: grade).unlimited_for(racer).in_or_after(month_week)
+        .or(for_age(age).where(grade: Grade.find_by(abbr: '未')).unlimited_for(racer)
+              .in_or_after(month_week.first_of_next_month)
+           )
+    elsif racer.downgrade_in_summer?
       before_downgrade_in_summer.for_age(age).where(grade: grades).unlimited_for(racer)
         .or(downgrade_in_summer.for_age(age).where(grade: grade.one_down).unlimited_for(racer))
     else
       for_age(age).where(grade: grades).unlimited_for(racer)
     end
+  }
+
+  scope :in_month_of, ->(month_week) {
+    where("month = ?", month_week.month)
   }
 
   scope :before, ->(month_week) {

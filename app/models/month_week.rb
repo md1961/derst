@@ -38,6 +38,12 @@ class MonthWeek
     self.class.new(new_month, new_week)
   end
 
+  def first_of_next_month
+    next_month = month + 1
+    next_month = 1 if next_month > 12
+    self.class.new(next_month, 1)
+  end
+
   def ==(other)
     raise "Argument must be a MonthWeek (#{other.class} given)" unless other.is_a?(self.class)
     month == other.month && week == other.week
