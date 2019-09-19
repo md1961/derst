@@ -6,6 +6,9 @@ class Race < ApplicationRecord
   enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2}
   enum weight: {age_constant: 1, constant: 2, separate: 3, handicap: 4}
 
+  scope :downgrade_in_summer       , -> { where("course_id  = 2 OR  month >= 8") }
+  scope :before_downgrade_in_summer, -> { where("course_id != 2 AND month <  8") }
+
   scope :for_age, ->(age) {
     ages = case age
            when 3
