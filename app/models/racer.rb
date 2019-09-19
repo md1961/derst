@@ -19,6 +19,11 @@ class Racer < ApplicationRecord
     self.year_birth = value.blank? ? nil : ranch.year - value.to_i + 1
   end
 
+  # TODO: Take 'net prize' into account in #downgrade_in_summer?()
+  def downgrade_in_summer?
+    age == 5 && grade.ordering >= Grade.find_by(abbr: '9').ordering
+  end
+
   def race_candidates(includes_overgrade: false)
     return [] unless ranch && age && grade
     Race.for_racer(self, includes_overgrade: includes_overgrade)
