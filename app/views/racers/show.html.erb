@@ -65,7 +65,7 @@
 
           <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
             <tr>
-              <td class="numeric"><%= "#{@racer.ranch.month}.#{@racer.ranch.week}" %></td>
+              <td class="numeric"><%= @racer.ranch.month_week %></td>
               <td colspan="10">
                 <%= select_tag :race_id, race_options_for_select_for(@racer) %>
                 <%= f.submit %>
@@ -87,15 +87,15 @@
         <table class="table_base">
           <tbody>
             <% @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
-                 [race.month, race.week]
-               }.each do |(month, week), races| -%>
+                 race.month_week
+               }.each do |month_week, races| -%>
               <% races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
               <tr>
                 <td rowspan="<%= races.size %>" class="numeric">
-                  <%= "#{month}.#{week}" %>
+                  <%= month_week %>
                 </td>
                 <td rowspan="<%= races.size %>" class="numeric">
-                  <% weeks_later = @racer.ranch.weeks_later_of(month, week) -%>
+                  <% weeks_later = month_week - @racer.ranch.month_week -%>
                   <%= weeks_later.zero? ? '-' : "#{weeks_later}w" %>
                 </td>
                 <%= race_display(races.first) %>
