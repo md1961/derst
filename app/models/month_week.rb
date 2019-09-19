@@ -55,6 +55,10 @@ class MonthWeek
     {month: month, week: week}
   end
 
+  def to_a
+    [month, week]
+  end
+
   def to_s
     [month, week].join('.')
   end

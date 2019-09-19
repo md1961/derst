@@ -56,11 +56,13 @@ class Race < ApplicationRecord
     end
   }
 
-  scope :before, ->(month, week) {
+  scope :before, ->(month_week) {
+    month, week = month_week.to_a
     where("(month = :month AND week < :week) OR month < :month", month: month, week: week)
   }
 
-  scope :in_or_after, ->(month, week) {
+  scope :in_or_after, ->(month_week) {
+    month, week = month_week.to_a
     where("(month = :month AND week >= :week) OR month > :month", month: month, week: week)
   }
 
