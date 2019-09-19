@@ -53,7 +53,7 @@ module RacersHelper
   def race_options_for_select_for(racer)
     options_for_select(
       racer.race_candidates(includes_overgrade: true).find_all { |race|
-        race.month == racer.ranch.month && race.week == racer.ranch.week
+        race.month_week == racer.ranch.month_week
       }.map { |race|
         [race_display(race).gsub(/<[^>]?*>/, ''), race.id]
       }
