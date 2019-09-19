@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :races, only: %i[index]
 
-  resources :results, only: %i[update destroy]
+  resources :results, only: %i[edit update destroy]
 
   patch 'bloodline/update'
   get 'bloodline/destroy'

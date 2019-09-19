@@ -38,6 +38,7 @@
           <% result_attr_names.each do |name| -%>
             <th><%= Result.human_attribute_name(name) %></th>
           <% end -%>
+          <th>
         </thead>
         <tbody>
           <% @racer.results.each do |result| -%>
@@ -47,7 +48,7 @@
               <td><%= race.course %></td>
               <td><%= race_name_display(race) %></td>
               <td><%= race_distance_display(race) %></td>
-              <% if result.place.nil? -%>
+              <% if result.place.nil? || result.id == @result_id_to_edit -%>
                 <%= form_with model: result, local: true do |f| %>
                   <%= render partial: 'result', locals: {result: result, f: f} %>
                 <tr>
@@ -60,6 +61,7 @@
               <% else -%>
                 <%= render partial: 'result', locals: {result: result, f: nil} %>
               <% end -%>
+              <td><%= link_to 'e', edit_result_path(result) %></td>
             </tr>
           <% end -%>
 
@@ -76,7 +78,7 @@
       </table>
     </div>
 
-    <% if @racer.results.empty? || @racer.results.last.place.present? -%>
+    <% if (@racer.results.empty? || @racer.results.last.place.present?) && @result_id_to_edit.zero? -%>
       <div id="race_candidates">
         <div class="links">
           <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \

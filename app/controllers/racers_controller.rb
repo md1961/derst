@@ -2,6 +2,7 @@ class RacersController < ApplicationController
 
   def show
     @racer = Racer.find(params[:id])
+    @result_id_to_edit = params[:result_id_to_edit].to_i
     @includes_overgrade = params[:includes_overgrade] == 'true'
     @weeks_for_race_candidates = 12
   end

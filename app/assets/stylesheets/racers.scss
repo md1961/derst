@@ -39,6 +39,10 @@
     td.comment_paddock, td.comment_race {
       text-align: left;
     }
+
+    input[type="text"] {
+      text-align: right;
+    }
   }
 
   #race_candidates {

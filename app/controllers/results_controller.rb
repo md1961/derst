@@ -1,5 +1,10 @@
 class ResultsController < ApplicationController
 
+  def edit
+    result = Result.find(params[:id])
+    redirect_to racer_path(result.racer, result_id_to_edit: result.id)
+  end
+
   def update
     result = Result.find(params[:id])
     result.update!(result_params)
