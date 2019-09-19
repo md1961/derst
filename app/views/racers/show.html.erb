@@ -105,6 +105,7 @@
                   <%= race_display(race) %>
                 </tr>
               <% end -%>
+              <% break if weeks_later >= @weeks_for_race_candidates -%>
             <% end -%>
           </tbody>
         </table>
