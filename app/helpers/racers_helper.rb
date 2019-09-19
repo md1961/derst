@@ -51,11 +51,17 @@ module RacersHelper
   end
 
   def race_options_for_select_for(racer)
-    options_for_select(
+    grouped_options_for_select(
+      [['', ['-']]] + \
       racer.race_candidates(includes_overgrade: true).find_all { |race|
         race.month_week == racer.ranch.month_week
-      }.map { |race|
-        [race_display(race).gsub(/<[^>]?*>/, ''), race.id]
+      }.group_by(&:grade).map { |grade, races|
+        [
+          grade,
+          races.map { |race|
+            [race_display(race).gsub(/<[^>]?*>/, ''), race.id]
+          }
+        ]
       }
     )
   end

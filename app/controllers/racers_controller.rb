@@ -32,7 +32,7 @@ class RacersController < ApplicationController
 
   def create_result
     racer = Racer.find(params[:id])
-    racer.results.create!(race_id: params[:race_id])
+    racer.results.create(race_id: params[:race_id])
     redirect_to racer
   end
 

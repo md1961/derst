@@ -68,7 +68,7 @@
           <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
             <tr>
               <td class="numeric"><%= @racer.ranch.month_week %></td>
-              <td colspan="10">
+              <td colspan="25">
                 <%= select_tag :race_id, race_options_for_select_for(@racer) %>
                 <%= f.submit %>
               </td>
