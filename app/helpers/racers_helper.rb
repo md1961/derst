@@ -83,11 +83,24 @@ module RacersHelper
     ]
   end
 
+  def options_for_select_for_jockey(jockey)
+    h_options = Jockey.all.group_by(&:center_and_stable).map { |cs, jockeys|
+      [
+        cs,
+        jockeys.map { |j| [j.name, j.id] }
+      ]
+    }.to_h
+    keys = @racer.stable.center.name == '美浦' ? ['美浦 専属', '美浦', '短期', '栗東 専属', '栗東'] \
+                                               : ['栗東 専属', '栗東', '短期', '美浦 専属', '美浦']
+    options = keys.map { |key| [key, h_options[key]] }
+    grouped_options_for_select([['', ['-']]] + options, jockey&.id)
+  end
+
   def result_attr_display(result, name, f)
     if !f
       result.send(name)
     elsif name == :jockey
-      f.select :jockey_id, options_for_select([['-', nil]] + Jockey.pluck(:name, :id), selected: result.jockey_id)
+      f.select :jockey_id, options_for_select_for_jockey(result.jockey)
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name)
     else
