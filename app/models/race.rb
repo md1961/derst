@@ -64,6 +64,10 @@ class Race < ApplicationRecord
     where("(month = :month AND week >= :week) OR month > :month", month: month, week: week)
   }
 
+  def month_week
+    MonthWeek.new(month, week)
+  end
+
   def to_s
     a = []
     a << "#{distance}#{dirt? ? 'D' : nil}#{limitation_to_s}"

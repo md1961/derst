@@ -3,6 +3,10 @@ class Ranch < ApplicationRecord
   has_many :mares, through: :ranch_mares
   has_many :racers
 
+  def month_week
+    MonthWeek.new(month, week)
+  end
+
   def weeks_later_of(month, week)
     if month == self.month
       diff = week - self.week
