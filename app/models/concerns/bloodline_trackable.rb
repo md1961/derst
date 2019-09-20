@@ -46,7 +46,7 @@ module BloodlineTrackable
     case child
     when Sire
       child.update!(father: nil)
-    when SireMaternalLine
+    when SireMaternalLine, MareMaternalLine
       child.destroy
     end
   end
@@ -75,14 +75,6 @@ module BloodlineTrackable
         else
           maternal_lines.find_or_initialize_by(generation: 3)
         end
-    # 父　父父　父父父　父父父父
-    #                   父父母父
-    #           父母父　父母父父
-    #                   父母母父
-    #     母父　母父父　母父父父
-    #                   母父母父
-    #           母母父　母母父父
-    #                   母母母父
       when 4
         case number
         when 1
