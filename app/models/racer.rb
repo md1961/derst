@@ -20,6 +20,10 @@ class Racer < ApplicationRecord
     self.year_birth = value.blank? ? nil : ranch.year - value.to_i + 1
   end
 
+  def target?(race)
+    target_races.map(&:race).include?(race)
+  end
+
   # TODO: Take 'net prize' into account in #downgrade_in_summer?()
   def downgrade_in_summer?
     age == 5 && grade.ordering >= Grade.find_by(abbr: '9').ordering

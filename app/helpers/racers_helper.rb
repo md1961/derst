@@ -44,9 +44,13 @@ module RacersHelper
     a << race_distance_display(race)
     a << race_name_display(race)
 
+    path, method, clazz = @racer.target?(race) \
+        ? [target_race_path(@racer.target_races.find_by(race: race)), :delete, 'target'] \
+        : [target_races_path(racer_id: @racer.id, race_id: race.id) , :post  , ''      ]
     safe_join([
       content_tag(:td, course, class: transport),
-      content_tag(:td, a.join(' '), class: race.grade == @racer.grade ? '' : 'overgrade')
+      content_tag(:td, button_to(' ', path, method: method, class: clazz)),
+      content_tag(:td, a.join(' '), class: race.grade == @racer.grade ? '' : 'overgrade'),
     ])
   end
 

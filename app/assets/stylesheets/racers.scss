@@ -60,6 +60,14 @@
     td.overgrade {
       background-color: lightgray;
     }
+
+    input[type="submit"] {
+      height: 16px;
+    }
+
+    input.target {
+      background-color: red;
+    }
   }
 
   .links {
