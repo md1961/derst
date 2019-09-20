@@ -31,18 +31,23 @@ module RanchesHelper
     {male: '牡', female: '牝', gelding: '騸'}.fetch(racer.sex&.to_sym, '-')
   end
 
-  def racer_attr_display(racer, attr_name, f)
-    if !f
-      racer.send(attr_name)
-    elsif attr_name == :grade
+  def racer_attr_display(racer, name, f)
+    if !f || (!racer.stable && name == :grade) \
+          || (racer.stable && name.to_s.starts_with?('comment_')) \
+          || (racer.age != 2 && name == :comment_age2) \
+          || (racer.age != 3 && name == :comment_age3) \
+          || ((!racer.results.empty? || racer.age < 3) && name == :stable) \
+          || (!racer.stable && name.to_s.starts_with?('weight_'))
+      racer.send(name)
+    elsif name == :grade
       f.select :grade_id, [['-', nil]] + Grade.where("name NOT LIKE 'G%'").pluck(:name, :id),
                   {}, autofocus: true
-    elsif attr_name == :stable
+    elsif name == :stable
       f.select :stable_id, [['-', nil]] + Stable.pluck(:name, :id)
-    elsif attr_name.to_s.starts_with?('weight_')
-      f.number_field attr_name, step: 2
+    elsif name.to_s.starts_with?('weight_')
+      f.number_field name, step: 2
     else
-      f.text_field attr_name
+      f.text_field name
     end
   end
 end
