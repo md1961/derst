@@ -25,6 +25,6 @@ class ResultsController < ApplicationController
           :mark_development, :mark_stamina, :mark_contend, :mark_temper, :mark_odds,
           :age, :load, :jockey_id, :for_bad_surface, :position, :direction, :condition,
           :comment_paddock, :comment_race
-      )
+      ).tap { |p| p[:jockey_id] = nil if p[:jockey_id].to_i.zero? }
     end
 end
