@@ -30,6 +30,12 @@
             <%= @racer.stable %>
           </td>
         </tr>
+        <tr>
+          <th>主戦騎手</th>
+          <td class="centered">
+            <%= @racer.stable&.jockeys&.join('、') %>
+          </td>
+        </tr>
       </table>
 
       <table id="results" class="table_base">
