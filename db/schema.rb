@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_232841) do
+ActiveRecord::Schema.define(version: 2019_09_20_011532) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -261,6 +261,15 @@ ActiveRecord::Schema.define(version: 2019_09_19_232841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["center_id"], name: "index_stables_on_center_id"
+  end
+
+  create_table "target_races", force: :cascade do |t|
+    t.integer "racer_id", null: false
+    t.integer "race_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["race_id"], name: "index_target_races_on_race_id"
+    t.index ["racer_id"], name: "index_target_races_on_racer_id"
   end
 
 end

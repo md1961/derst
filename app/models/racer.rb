@@ -5,6 +5,7 @@ class Racer < ApplicationRecord
   belongs_to :grade , optional: true
   belongs_to :stable, optional: true
   has_many :results
+  has_many :target_races
 
   enum sex: {male: 1, female: 2, gelding: 3}
 
