@@ -44,6 +44,10 @@ class MonthWeek
     self.class.new(next_month, 1)
   end
 
+  def ordering_from(base_month_week)
+    month * 10 + week + (month < base_month_week.month ? 1000 : 0)
+  end
+
   def ==(other)
     raise "Argument must be a MonthWeek (#{other.class} given)" unless other.is_a?(self.class)
     month == other.month && week == other.week
