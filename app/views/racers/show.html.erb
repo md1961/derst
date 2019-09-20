@@ -100,11 +100,11 @@
                   <% weeks_later = month_week - @racer.ranch.month_week -%>
                   <%= weeks_later.zero? ? '-' : "#{weeks_later}w" %>
                 </td>
-                <%= race_display(races.first) %>
+                <%= race_display(races.first, @racer, displays_target_button: true) %>
               </tr>
               <% races[1 .. -1].each do |race| -%>
                 <tr>
-                  <%= race_display(race) %>
+                  <%= race_display(race, @racer, displays_target_button: true) %>
                 </tr>
               <% end -%>
               <% break if weeks_later >= @weeks_for_race_candidates -%>

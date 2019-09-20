@@ -19,4 +19,17 @@
   .links {
     margin-top: 10px;
   }
+
+  td.same_area {
+    font-weight: bold;
+  }
+
+  td.on_day {
+    color: red;
+  }
+
+  td.remote {
+    color: red;
+    font-weight: bold;
+  }
 }

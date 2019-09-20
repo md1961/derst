@@ -49,4 +49,54 @@ module ApplicationHelper
       render partial: 'father_input', locals: {generation: generation, number: number}
     end
   end
+
+  def race_age_display(age)
+    age.sub(/\A(\d)/, '\1歳').sub('U', '上')
+  end
+
+  def race_name_display(race)
+    addition = race_addition_display(race)
+    if race.name
+      "#{race.name}#{addition}(#{race.grade.abbr})"
+    else
+      "#{race_age_display(race.age)}#{race.grade}#{addition}"
+    end
+  end
+
+  def race_distance_display(race)
+    "#{race.distance}#{race.dirt? ? 'D' : ''}"
+  end
+
+  def race_limitation_display(race)
+    race.female_only? ? '牝' : race.domestic_only? ? '父' : nil
+  end
+
+  def race_addition_display(race)
+    ["", race_limitation_display(race), race.handicap? ? '[H]' : nil].compact.join(' ')
+  end
+
+  def race_display(race, racer, displays_target_button: false)
+    course = race.course
+    stable = racer.stable
+    transport = course.same_from?(stable) ? 'same_area' \
+              : course.on_the_day_from?(stable) ? 'on_day' : 'remote'
+
+    a = []
+    a << race.age
+    a << race_distance_display(race)
+    a << race_name_display(race)
+
+    button_to_target = nil
+    if displays_target_button
+      path, method, clazz = racer.target?(race) \
+          ? [target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
+          : [target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
+      button_to_target = content_tag(:td, button_to(' ', path, method: method, class: clazz))
+    end
+    safe_join([
+      content_tag(:td, course, class: transport),
+      button_to_target,
+      content_tag(:td, a.join(' '), class: race.grade == racer.grade ? '' : 'overgrade'),
+    ].compact)
+  end
 end
