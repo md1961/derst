@@ -60,8 +60,8 @@
                 </tr>
               <% else -%>
                 <%= render partial: 'result', locals: {result: result, f: nil} %>
+                <td><%= link_to 'e', edit_result_path(result), tabindex: -1 %></td>
               <% end -%>
-              <td><%= link_to 'e', edit_result_path(result) %></td>
             </tr>
           <% end -%>
 
