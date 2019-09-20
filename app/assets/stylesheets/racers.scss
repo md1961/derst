@@ -25,6 +25,14 @@
     margin-top: 10px;
   }
 
+  #traits {
+    display: flex;
+
+    table {
+      margin-right: 10px;
+    }
+  }
+
   #results {
     margin-top: 10px;
 
@@ -75,6 +83,6 @@
   }
 
   .links {
-    margin-left: 10px;
+    margin-top: 10px;
   }
 }
