@@ -1,9 +1,9 @@
 month = 8
 
-Race.where(month: month).destroy_all
+#Race.where(month: month).destroy_all
 
 [
-  %w[1 新潟 3 n nil 1000 d 0 a 0],
+  %w[1 新潟 3 n nil 1000 t 0 a 0],
   %w[1 新潟 4u m nil 1200 d 0 a 0],
   %w[1 新潟 4u m nil 1800 t 0 a 0],
   %w[1 新潟 4u 5 nil 1000 t f a 0],
