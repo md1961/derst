@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <% if %w[ranches racers].include?(controller.controller_name) -%>
+      <%= render 'top_bar' %>
+    <% end -%>
+
     <%= yield %>
   </body>
 </html>

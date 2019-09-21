@@ -1,0 +1,12 @@
+<% ranch = @ranch || @racer.ranch -%>
+
+<div id="top_bar">
+  <div class="date">
+    <%= date_display(ranch) %>
+    <%= button_to_next_week(ranch) %>
+  </div>
+
+  <div class="notice">
+    <%= notice(ranch) %>
+  </div>
+</div>

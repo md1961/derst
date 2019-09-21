@@ -1,22 +1,5 @@
 module RanchesHelper
 
-  def date_display(ranch)
-    "#{ranch.year} 年 #{ranch.month} 月 #{ranch.week} 週"
-  end
-
-  H_NOTICE = {
-    [1, 2] => :mare_sale,
-    [2, 2] => :mare_sale,
-    [7, 2] => :age2_sale,
-    [8, 2] => :age2_sale,
-    [1, 4] => :ranch_expansion
-  }
-
-  def notice(ranch)
-    key = H_NOTICE[[ranch.month, ranch.week]]
-    key && t(".notice.#{key}")
-  end
-
   def racer_name_display(racer, f)
     if f && racer.stable.nil?
       f.text_field :name
