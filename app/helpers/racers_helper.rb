@@ -49,7 +49,7 @@ module RacersHelper
     h_options = Jockey.all.group_by(&:center_and_stable).map { |cs, jockeys|
       [
         cs,
-        jockeys.map { |j| [j.name, j.id] }
+        jockeys.sort_by(&:ordering).map { |j| [j.name, j.id] }
       ]
     }.to_h
     keys = @racer.stable.center.name == '美浦' ? ['美浦 専属', '美浦', '短期', '栗東 専属', '栗東'] \

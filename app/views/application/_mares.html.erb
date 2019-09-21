@@ -25,7 +25,7 @@
           </td>
         <% end -%>
         <td><%= link_to_if mare.all_bloodline_father_present?, '配',
-                  matings_path(mare_id: mare, ranch_id: @ranch) %></td>
+                  matings_path(mare_id: mare, ranch_id: @ranch), target: '_blank', tabindex: -1 %></td>
       </tr>
     <% end -%>
   </tbody>

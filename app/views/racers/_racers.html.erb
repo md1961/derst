@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @racers.each.with_index(1) do |racer, index| -%>
+      <% @racers.sort_by { |r| -r.age }.each.with_index(1) do |racer, index| -%>
         <% if racer.id == @racer_id_to_edit -%>
           <%= form_with model: racer, local: true do |f| %>
             <%= racer.errors.messages unless racer.errors.empty? %>
