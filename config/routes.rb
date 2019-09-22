@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   resources :target_races, only: %i[create destroy]
 
+  resources :post_races, only: %i[index create edit update destroy]
+
   patch 'bloodline/update'
   get 'bloodline/destroy'
 

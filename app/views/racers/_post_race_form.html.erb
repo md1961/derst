@@ -1,0 +1,6 @@
+<%= form_with model: post_race, local: true do |f| %>
+  <%= f.label :comment %>
+  <%= f.text_field :comment, size: 30 %>
+  <%= f.hidden_field :result_id, value: @racer.results.last&.id %>
+  <%= f.submit %>
+<% end -%>

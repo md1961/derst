@@ -69,8 +69,11 @@
                 <%= form_with model: result, local: true do |f| %>
                   <%= render partial: 'result', locals: {result: result, f: f} %>
                 <tr>
-                  <td colspan="24" class="numeric"><%= f.submit %></td>
+                  <td colspan="22" class="numeric"><%= f.submit %></td>
                 <% end -%>
+                  <td colspan="2" class="numeric">
+                    <%= link_to 'Cancel', @racer %>
+                  </td>
                   <td class="numeric">
                     <%= button_to '削除', result, method: :delete, class: 'destroy' %>
                   </td>
@@ -80,17 +83,36 @@
                 <td><%= link_to 'e', edit_result_path(result), tabindex: -1 %></td>
               <% end -%>
             </tr>
+            <% if post_race = result.post_race -%>
+              <% if @post_race -%>
+                <td colspan="24">
+                  <%= render partial: 'post_race_form', locals: {post_race: @post_race} %>
+                </td>
+                <td colspan="2">
+                  <%= button_to '削除', @post_race, method: :delete, class: 'destroy' %>
+                </td>
+              <% else -%>
+                <td colspan="25" class="centered">
+                  <%= post_race.comment %>
+                </td>
+                <td><%= link_to 'e', edit_post_race_path(post_race), tabindex: -1 %></td>
+              <% end -%>
+            <% end -%>
           <% end -%>
 
-          <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
-            <tr>
+          <tr>
+            <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
               <td class="numeric"><%= @racer.ranch.month_week %></td>
-              <td colspan="25">
+              <td colspan="15">
                 <%= select_tag :race_id, race_options_for_select_for(@racer) %>
                 <%= f.submit %>
               </td>
-            </tr>
-          <% end -%>
+            <% end -%>
+
+            <td colspan="10">
+              <%= render partial: 'post_race_form', locals: {post_race: PostRace.new} %>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

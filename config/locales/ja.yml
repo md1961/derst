@@ -48,3 +48,5 @@ ja:
         condition: 調
         comment_paddock: パドック
         comment_race: レース
+      post_race:
+        comment: レース間コメント
