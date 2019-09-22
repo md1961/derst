@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_20_011532) do
+ActiveRecord::Schema.define(version: 2019_09_22_030829) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -106,6 +106,14 @@ ActiveRecord::Schema.define(version: 2019_09_20_011532) do
     t.integer "lineage2_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "post_races", force: :cascade do |t|
+    t.integer "result_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["result_id"], name: "index_post_races_on_result_id"
   end
 
   create_table "racers", force: :cascade do |t|
