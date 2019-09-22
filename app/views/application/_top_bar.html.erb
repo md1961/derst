@@ -3,7 +3,7 @@
 <div id="top_bar">
   <div class="date">
     <%= date_display(ranch) %>
-    <%= button_to_next_week(ranch) %>
+    <%= button_to_next_week(@ranch || @racer) %>
   </div>
 
   <div class="notice">
