@@ -1,8 +1,7 @@
 <table class="table_base">
   <thead>
     <tr>
-      <th>
-      <th>
+      <th colspan="3">
       <% mare_trait_names.each do |name| -%>
         <th><%= Mare.human_attribute_name(name) %></th>
       <% end -%>
@@ -19,6 +18,11 @@
         <td style="<%= !@entering_bloodline || has_all_fathers ? '' : 'color: red' %>">
           <%= mare.name %>
         </td>
+        <% if @ranch -%>
+          <td class="numeric">
+            <%= "#{@ranch.ranch_mares.find_by(mare: mare).age}歳" %>
+          </td>
+        <% end -%>
         <% mare_trait_names.each do |name| -%>
           <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>">
             <%= mare.send(name) %>
