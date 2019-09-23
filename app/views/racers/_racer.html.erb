@@ -1,47 +1,45 @@
 <% shortcut = index < 10 ? index.to_s : ('a'.ord + index - 10).chr -%>
 
-<tr>
-  <td><%= link_to_if @racer_id_to_edit.zero?, shortcut.upcase, racer, data: {shortcut: shortcut} %></td>
-  <td><%= link_to_if @racer_id_to_edit.zero?, 'e', ranch_path(@ranch, racer_id_to_edit: racer) %></td>
-  <td><%= racer_name_display(racer, f) %></td>
-  <td><%= racer_sex_display(racer) %></td>
-  <td class="numeric"><%= "#{racer.age}歳" %></td>
-  <td class="centered">
-    <%= racer_attr_display(racer, :grade, f) %>
-  </td>
+<td><%= link_to_if @racer_id_to_edit.zero?, shortcut.upcase, racer, data: {shortcut: shortcut} %></td>
+<td><%= link_to_if @racer_id_to_edit.zero?, 'e', ranch_path(@ranch, racer_id_to_edit: racer) %></td>
+<td><%= racer_name_display(racer, f) %></td>
+<td><%= racer_sex_display(racer) %></td>
+<td class="numeric"><%= "#{racer.age}歳" %></td>
+<td class="centered">
+  <%= racer_attr_display(racer, :grade, f) %>
+</td>
 
-  <td><%= racer_attr_display(racer, :comment_age2, f) %></td>
-  <td><%= racer_attr_display(racer, :comment_age3, f) %></td>
-  <td class="centered" title="<%= racer.stable&.jockeys&.join('　') %>">
-    <%= racer_attr_display(racer, :stable, f) %>
-  </td>
-  <td class="numeric">
-    <%= racer_attr_display(racer, :weight_fat, f) %>
-  </td>
-  <td class="numeric emphasized">
-    <%= racer_attr_display(racer, :weight_best , f) %>
-  </td>
-  <td class="numeric">
-    <%= racer_attr_display(racer, :weight_lean, f) %>
-  </td>
-  <td><%= racer_attr_display(racer, :remark, f) %></td>
+<td><%= racer_attr_display(racer, :comment_age2, f) %></td>
+<td><%= racer_attr_display(racer, :comment_age3, f) %></td>
+<td class="centered" title="<%= racer.stable&.jockeys&.join('　') %>">
+  <%= racer_attr_display(racer, :stable, f) %>
+</td>
+<td class="numeric">
+  <%= racer_attr_display(racer, :weight_fat, f) %>
+</td>
+<td class="numeric emphasized">
+  <%= racer_attr_display(racer, :weight_best , f) %>
+</td>
+<td class="numeric">
+  <%= racer_attr_display(racer, :weight_lean, f) %>
+</td>
+<td><%= racer_attr_display(racer, :remark, f) %></td>
 
-  <% if f -%>
-    <%= hidden_field_tag :ranch_id, @ranch.id %>
+<% if f -%>
+  <%= hidden_field_tag :ranch_id, @ranch.id %>
 
-    <td>
-      <%= f.submit %>
-      <%= link_to 'Cancel', @ranch %>
-    </td>
-  <% else -%>
-    <% racer.target_races.map(&:race).sort_by { |race|
-         race.month_week.ordering_from(@ranch.month_week)
-       }.each do |race| -%>
-      <% n_weeks_between = racer.results.empty? ? nil \
-                              : "#{race.month_week - racer.results.last.race.month_week}w" -%>
-      <td class="numeric"><%= race.month_week %></td>
-      <td class="numeric"><%= n_weeks_between %></td>
-      <%= race_display(race, racer) %>
-    <% end -%>
+  <td>
+    <%= f.submit %>
+    <%= link_to 'Cancel', @ranch %>
+  </td>
+<% else -%>
+  <% racer.target_races.map(&:race).sort_by { |race|
+       race.month_week.ordering_from(@ranch.month_week)
+     }.each do |race| -%>
+    <% n_weeks_between = racer.results.empty? ? nil \
+                            : "#{race.month_week - racer.results.last.race.month_week}w" -%>
+    <td class="numeric"><%= race.month_week %></td>
+    <td class="numeric"><%= n_weeks_between %></td>
+    <%= race_display(race, racer) %>
   <% end -%>
-</tr>
+<% end -%>

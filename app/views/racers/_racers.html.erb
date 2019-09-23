@@ -15,14 +15,20 @@
     </thead>
     <tbody>
       <% @racers.sort_by { |r| -r.age }.each.with_index(1) do |racer, index| -%>
-        <% if racer.id == @racer_id_to_edit -%>
-          <%= form_with model: racer, local: true do |f| %>
-            <%= racer.errors.messages unless racer.errors.empty? %>
-            <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: f} %>
+        <tr>
+          <% if racer.id == @racer_id_to_edit -%>
+            <%= form_with model: racer, local: true do |f| %>
+              <%= racer.errors.messages unless racer.errors.empty? %>
+              <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: f} %>
+            <% end -%>
+            <td>
+              <%= button_to '引退', retire_racer_path(racer), method: :patch, tabindex: -1,
+                                      data: {confirm: "「#{racer.name}」を引退させますか？"} %>
+            </td>
+          <% else -%>
+            <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: nil} %>
           <% end -%>
-        <% else -%>
-          <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: nil} %>
-        <% end -%>
+        </tr>
       <% end -%>
     </tbody>
   </table>

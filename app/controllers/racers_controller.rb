@@ -37,6 +37,13 @@ class RacersController < ApplicationController
     redirect_to racer
   end
 
+  def retire
+    racer = Racer.find(params[:id])
+    ranch = racer.ranch
+    racer.retire!
+    redirect_to ranch
+  end
+
   private
 
     def racer_params
