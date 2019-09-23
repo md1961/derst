@@ -34,4 +34,8 @@ class Racer < ApplicationRecord
         .before(ranch.month_week)
         .order(:month, :week) \
   end
+
+  def retire!
+    update!(is_active: false)
+  end
 end
