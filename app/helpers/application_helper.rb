@@ -126,7 +126,7 @@ module ApplicationHelper
       path, method, clazz = racer.target?(race) \
           ? [target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
           : [target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
-      button_to_target = content_tag(:td, button_to(' ', path, method: method, class: clazz))
+      button_to_target = content_tag(:td, button_to(' ', path, method: method, class: clazz, tabindex: -1))
     end
     safe_join([
       content_tag(:td, course, class: transport),

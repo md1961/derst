@@ -120,6 +120,10 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="links">
+        <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'} %>
+      </div>
     </div>
 
     <% if (@racer.results.empty? || @racer.results.last.place.present?) && @result_id_to_edit.zero? -%>
@@ -127,7 +131,7 @@
         <div class="links">
           <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
                                                : ['格上挑戦', racer_path(@racer, includes_overgrade: true)] -%>
-          <%= link_to label, path %>
+          <%= link_to label, path, tabindex: -1 %>
         </div>
 
         <table class="table_base">
@@ -157,9 +161,5 @@
         </table>
       </div>
     <% end -%>
-  </div>
-
-  <div class="links">
-    <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'} %>
   </div>
 </div>
