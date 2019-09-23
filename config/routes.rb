@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :matings, only: %i[index show new create]
 
+  resources :ranch_mares, only: %i[new create destroy]
+
   resources :racers, only: %i[show new create update] do
     member do
       post :create_result

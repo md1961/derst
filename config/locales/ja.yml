@@ -3,7 +3,7 @@ ja:
   notice:
     mare_sale: 来週は繁殖牝馬のセールがあります。
     age2_sale: 来週は２歳馬のセールがあります。
-    new_birth: そろそろ産駒が来る可能性があります。
+    new_birth: そろそろ産駒が生まれる可能性があります。
     ranch_expansion: 来週は牧場拡張の打診がある可能性があります。
   activerecord:
     models:

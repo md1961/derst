@@ -106,12 +106,16 @@
           <% end -%>
 
           <tr>
-            <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
-              <td class="numeric"><%= @racer.ranch.month_week %></td>
-              <td colspan="15">
-                <%= select_tag :race_id, race_options_for_select_for(@racer) %>
-                <%= f.submit %>
-              </td>
+            <% if @racer.results.last&.place.blank? -%>
+              <td colspan="16">
+            <% else -%>
+              <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
+                <td class="numeric"><%= @racer.ranch.month_week %></td>
+                <td colspan="15">
+                  <%= select_tag :race_id, race_options_for_select_for(@racer) %>
+                  <%= f.submit %>
+                </td>
+              <% end -%>
             <% end -%>
 
             <td colspan="10">

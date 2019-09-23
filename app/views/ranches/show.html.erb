@@ -1,6 +1,12 @@
 <div class="ranches_show">
   <div class="mares">
     <%= render 'mares' %>
+
+    <% if @racer_id_to_edit.zero? -%>
+      <div class="links">
+        <%= link_to '新規繁殖牝馬', new_ranch_mare_path(ranch_id: @ranch.id) %>
+      </div>
+    <% end -%>
   </div>
 
   <div class="racers">
