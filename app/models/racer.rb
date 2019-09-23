@@ -11,6 +11,8 @@ class Racer < ApplicationRecord
 
   enum sex: {male: 1, female: 2, gelding: 3}
 
+  scope :active, -> { where(is_active: true) }
+
   validates :name, presence: true, uniqueness: true
 
   def target?(race)
