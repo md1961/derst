@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <% @mares.each.with_index(1) do |mare, seq_num| -%>
-      <% has_all_fathers = seq_num <= 124 || @entering_bloodline && mare.all_bloodline_father_present? -%>
+      <% has_all_fathers = @entering_bloodline && mare.all_bloodline_father_present? -%>
       <tr>
         <td class="numeric">
           <%= link_to seq_num, mare_path(mare, ranch_id: @ranch), tabindex: has_all_fathers || @ranch ? -1 : 0 %>
