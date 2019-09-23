@@ -14,7 +14,7 @@ module ApplicationHelper
 
   def notice(ranch)
     key = H_NOTICE[[ranch.month, ranch.week]]
-    key && t(".notice.#{key}")
+    key && t("notice.#{key}")
   end
 
   def button_to_next_week(ranch)

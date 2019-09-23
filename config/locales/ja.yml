@@ -1,11 +1,9 @@
 ---
 ja:
-  ranches:
-    show:
-      notice:
-        mare_sale: 来週は繁殖牝馬のセールがあります。
-        age2_sale: 来週は２歳馬のセールがあります。
-        ranch_expansion: 来週は牧場拡張の打診がある可能性があります。
+  notice:
+    mare_sale: 来週は繁殖牝馬のセールがあります。
+    age2_sale: 来週は２歳馬のセールがあります。
+    ranch_expansion: 来週は牧場拡張の打診がある可能性があります。
   activerecord:
     models:
     attributes:
