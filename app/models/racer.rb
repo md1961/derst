@@ -16,6 +16,8 @@ class Racer < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  before_update :update_grade
+
   def expecting_race?
     !results.empty? && results.last.place.blank?
   end
@@ -43,4 +45,10 @@ class Racer < ApplicationRecord
   def retire!
     update!(is_active: false)
   end
+
+  private
+
+    def update_grade
+      self.grade = Grade.find_by(abbr: '新') if grade.nil? && stable
+    end
 end
