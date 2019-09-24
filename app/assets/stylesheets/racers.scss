@@ -1,5 +1,13 @@
 .racers_racers {
 
+  td.expecting_race {
+    background-color: red;
+
+    a {
+    color: white;
+    }
+  }
+
   td.emphasized {
     font-weight: bold;
   }
