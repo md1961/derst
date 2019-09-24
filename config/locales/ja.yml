@@ -25,6 +25,14 @@ ja:
         stamina: スタ
         rating: 評価
         type: タイプ
+      racer:
+        comment_age2: ２歳時
+        comment_age3: ３歳時
+        stable:       厩舎
+        weight_fat:   太残
+        weight_best : ベスト
+        weight_lean:  痩せ
+        remark:       特記事項
       result:
         surface_condition: 場
         num_racers: 頭

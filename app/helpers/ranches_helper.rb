@@ -1,5 +1,9 @@
 module RanchesHelper
 
+  def racer_attr_names
+    %i[comment_age2 comment_age3 stable weight_fat weight_best weight_lean remark]
+  end
+
   def racer_name_display(racer, f)
     if f && racer.stable.nil?
       f.text_field :name

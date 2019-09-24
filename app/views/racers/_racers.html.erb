@@ -4,13 +4,9 @@
       <tr>
         <th colspan="4">
         <th colspan="2">
-        <th>2歳時</th>
-        <th>3歳時</th>
-        <th>厩舎</th>
-        <th>太残</th>
-        <th>ベスト</th>
-        <th>痩せ</th>
-        <th>特記事項</th>
+        <% racer_attr_names.each do |name| -%>
+          <th><%= Racer.human_attribute_name(name) %></th>
+        <% end -%>
       </tr>
     </thead>
     <tbody>

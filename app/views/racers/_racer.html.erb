@@ -5,15 +5,9 @@
 <td><%= racer_name_display(racer, f) %></td>
 <td><%= racer_sex_display(racer) %></td>
 <td class="numeric"><%= "#{racer.age}歳" %></td>
-<%= racer_attr_display_in_td(racer, :grade, f) %>
-
-<%= racer_attr_display_in_td(racer, :comment_age2, f) %>
-<%= racer_attr_display_in_td(racer, :comment_age3, f) %>
-<%= racer_attr_display_in_td(racer, :stable, f) %>
-<%= racer_attr_display_in_td(racer, :weight_fat, f) %>
-<%= racer_attr_display_in_td(racer, :weight_best , f) %>
-<%= racer_attr_display_in_td(racer, :weight_lean, f) %>
-<%= racer_attr_display_in_td(racer, :remark, f) %>
+<% ([:grade] + racer_attr_names).each do |name| -%>
+  <%= racer_attr_display_in_td(racer, name, f) %>
+<% end -%>
 
 <% if f -%>
   <%= hidden_field_tag :ranch_id, @ranch.id %>
