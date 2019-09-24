@@ -9,4 +9,10 @@ class SireFilter
     values = stability.split(/[^ABC]/)
     "stability IN ('#{values.join("', '")}')"
   end
+
+  def to_params
+    {
+      stability: stability,
+    }
+  end
 end
