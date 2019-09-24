@@ -107,7 +107,7 @@
 
           <% if @racer.is_active -%>
             <tr>
-              <% if @racer.results.last&.place.blank? -%>
+              <% if @racer.expecting_race? -%>
                 <td colspan="16">
               <% else -%>
                 <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
@@ -132,9 +132,7 @@
       </div>
     </div>
 
-    <% if @racer.is_active \
-          && (@racer.results.empty? || @racer.results.last.place.present?) \
-          && @result_id_to_edit.zero? -%>
+    <% if @racer.is_active && !@racer.expecting_race? && @result_id_to_edit.zero? -%>
       <div id="race_candidates">
         <div class="links">
           <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
