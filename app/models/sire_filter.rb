@@ -4,10 +4,7 @@ class SireFilter
   attr_accessor :stability
 
   def conditions
-    return "" if stability.nil? || stability !~ /[ABC]/
-    return "stability = '#{stability}'" if stability.length == 1
-    values = stability.split(/[^ABC]/)
-    "stability IN ('#{values.join("', '")}')"
+    %i[stability].map { |name| condition(name) }.compact.join(' AND ')
   end
 
   def to_params
@@ -15,4 +12,12 @@ class SireFilter
       stability: stability,
     }
   end
+
+  private
+
+    def condition(name, delimiter = /[^ABC]/)
+      values = send(name)&.split(delimiter) || []
+      return nil if values.empty?
+      "#{name} IN ('#{values.join("', '")}')"
+    end
 end
