@@ -18,4 +18,32 @@
       </div>
     <% end -%>
   </div>
+
+  <div class="retired_racers">
+    <span id="show_retired_racers" class="button">[引退馬]</span>
+    <table class="table_base" hidden>
+      <thead>
+        <tr>
+          <th colspan="3">
+          <th colspan="2">
+          <% racer_attr_names(is_active: false).each do |name| -%>
+            <th><%= Racer.human_attribute_name(name) %></th>
+          <% end -%>
+        </tr>
+      </thead>
+      <tbody>
+        <% Racer.retired.order(:year_birth).each.with_index(1) do |racer, index| -%>
+          <tr>
+            <td class="numeric"><%= link_to index, racer %></td>
+            <td><%= racer_name_display(racer, nil) %></td>
+            <td><%= racer_sex_display(racer) %></td>
+            <td class="numeric"><%= "#{racer.age}歳" %></td>
+            <% ([:grade] + racer_attr_names(is_active: false)).each do |name| -%>
+              <%= racer_attr_display_in_td(racer, name, nil) %>
+            <% end -%>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
 </div>
