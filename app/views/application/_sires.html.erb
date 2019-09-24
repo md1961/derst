@@ -36,7 +36,8 @@
         <td class="numeric">
           <% path = @mare ? mating_path(@mare, sire_id: sire.id, ranch_id: @ranch&.id) \
                           : sire -%>
-          <%= link_to seq_num, path, tabindex: has_all_fathers ? -1 : 0 %>
+          <%= link_to seq_num, path, target: @mare ? '_blank' : '',
+                                     tabindex: has_all_fathers ? -1 : 0 %>
         </td>
         <td style="<%= !@entering_bloodline || has_all_fathers ? '' : 'color: red' %>">
           <%= sire.name %>
