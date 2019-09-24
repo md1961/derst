@@ -42,6 +42,13 @@ class Racer < ApplicationRecord
         .order(:month, :week) \
   end
 
+  def change_grade_to_no_win!
+    return unless grade&.new_racer?
+    return if results.empty?
+    return if results.first.race.month == ranch.month
+    update!(grade: Grade.find_by(abbr: '未'))
+  end
+
   def retire!
     update!(is_active: false)
   end
