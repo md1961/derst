@@ -10,6 +10,10 @@ class Grade < ApplicationRecord
     name.starts_with?('G')
   end
 
+  def new_racer?
+    abbr == '新'
+  end
+
   def one_down
     self.class.where("ordering < ?", ordering).order(ordering: :desc).first
   end
