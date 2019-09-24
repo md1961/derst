@@ -1,14 +1,19 @@
 class SireFilter
   include ActiveModel::Model
 
-  attr_accessor :stability
+  attr_accessor :temper, :contend, :health, :stability
 
   def conditions
-    %i[stability].map { |name| condition(name) }.compact.join(' AND ')
+    %i[
+      temper contend health stability
+    ].map { |name| condition(name) }.compact.join(' AND ')
   end
 
   def to_params
     {
+      temper: temper,
+      contend: contend,
+      health: health,
       stability: stability,
     }
   end
