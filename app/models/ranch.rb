@@ -11,6 +11,12 @@ class Ranch < ApplicationRecord
     next_week = month_week.next
     attrs = next_week.to_params
     attrs.merge!(year: year + 1) if next_week.first_of_year?
-    update!(attrs)
+
+    ApplicationRecord.transaction do
+      update!(attrs)
+      racers.each do |racer|
+        racer.change_grade_to_no_win!
+      end
+    end
   end
 end

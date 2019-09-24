@@ -32,7 +32,6 @@ class Race < ApplicationRecord
     age   = racer.age + (for_next_year ? 1 : 0)
     grade = racer.grade
     is_new_racer = grade.abbr == '新'
-    #grade = Grade.find_by(abbr: '未') if is_new_racer && for_next_year
     month = racer.ranch.month
 
     grades = [grade]
