@@ -9,6 +9,10 @@
       <%= f.submit %>
     <% end -%>
   </div>
+
+  <div class="count">
+    <%= "#{@sires.count} / #{Sire.breedable.count}" %>
+  </div>
 </div>
 
 <table class="table_base">
