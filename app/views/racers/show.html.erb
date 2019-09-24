@@ -105,23 +105,25 @@
             <% end -%>
           <% end -%>
 
-          <tr>
-            <% if @racer.results.last&.place.blank? -%>
-              <td colspan="16">
-            <% else -%>
-              <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
-                <td class="numeric"><%= @racer.ranch.month_week %></td>
-                <td colspan="15">
-                  <%= select_tag :race_id, race_options_for_select_for(@racer) %>
-                  <%= f.submit %>
-                </td>
+          <% if @racer.is_active -%>
+            <tr>
+              <% if @racer.results.last&.place.blank? -%>
+                <td colspan="16">
+              <% else -%>
+                <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
+                  <td class="numeric"><%= @racer.ranch.month_week %></td>
+                  <td colspan="15">
+                    <%= select_tag :race_id, race_options_for_select_for(@racer) %>
+                    <%= f.submit %>
+                  </td>
+                <% end -%>
               <% end -%>
-            <% end -%>
 
-            <td colspan="10">
-              <%= render partial: 'post_race_form', locals: {post_race: PostRace.new} %>
-            </td>
-          </tr>
+              <td colspan="10">
+                <%= render partial: 'post_race_form', locals: {post_race: PostRace.new} %>
+              </td>
+            </tr>
+          <% end -%>
         </tbody>
       </table>
 
@@ -130,7 +132,9 @@
       </div>
     </div>
 
-    <% if (@racer.results.empty? || @racer.results.last.place.present?) && @result_id_to_edit.zero? -%>
+    <% if @racer.is_active \
+          && (@racer.results.empty? || @racer.results.last.place.present?) \
+          && @result_id_to_edit.zero? -%>
       <div id="race_candidates">
         <div class="links">
           <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
