@@ -1,0 +1,14 @@
+<div class="ranch_mares_form">
+  <%= form_with model: @ranch_mare, local: true do |f| %>
+    <div class="field">
+      <%= f.label :mare %>
+      <input type="search" name="ranch_mare[mare]" value="<%= @ranch_mare.mare %>" autocomplete="on" list="mother_candidates">
+    </div>
+    <div class="field">
+      <%= f.label :age %>
+      <%= f.text_field :age %>
+    </div>
+  <% end -%>
+
+  <%= render 'mother_candidates' %>
+</div>

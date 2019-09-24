@@ -2,6 +2,10 @@
 
   .mares {
     margin-top: 10px;
+
+    input[type="submit"] {
+      height: 18px;
+    }
   }
 
   .racers, .retired_racers {

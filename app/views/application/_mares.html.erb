@@ -5,7 +5,7 @@
       <% mare_trait_names.each do |name| -%>
         <th><%= Mare.human_attribute_name(name) %></th>
       <% end -%>
-      <th>
+      <th colspan="2">
     </tr>
   </thead>
   <tbody>
@@ -18,9 +18,10 @@
         <td style="<%= !@entering_bloodline || has_all_fathers ? '' : 'color: red' %>">
           <%= mare.name %>
         </td>
+        <% ranch_mare = @ranch&.ranch_mares&.find_by(mare: mare) -%>
         <% if @ranch -%>
           <td class="numeric">
-            <%= "#{@ranch.ranch_mares.find_by(mare: mare).age}歳" %>
+            <%= "#{ranch_mare.age}歳" %>
           </td>
         <% end -%>
         <% mare_trait_names.each do |name| -%>
@@ -29,6 +30,12 @@
           </td>
         <% end -%>
         <td><%= link_to '配', matings_path(mare_id: mare, ranch_id: @ranch), target: '_blank', tabindex: -1 %></td>
+        <% if @ranch -%>
+          <td>
+            <%= button_to '売却', ranch_mare, method: :destroy,
+                                    data: {confirm: "「#{mare.name}」を売却してよろしいですか?"} %>
+          </td>
+        <% end -%>
       </tr>
     <% end -%>
   </tbody>
