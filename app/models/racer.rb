@@ -16,6 +16,10 @@ class Racer < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  def expecting_race?
+    !results.empty? && results.last.place.blank?
+  end
+
   def target?(race)
     target_races.map(&:race).include?(race)
   end
