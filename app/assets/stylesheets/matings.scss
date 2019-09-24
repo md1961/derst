@@ -1,8 +1,11 @@
 .matings_index {
 
-  #button_to_show_sire_filter {
-    float: right;
-    margin-right: 50px;
+  .top {
+    display: flex;
+  }
+
+  #sire_filter {
+    margin-left: 20px;
   }
 
   #head_interesting {

@@ -1,12 +1,15 @@
-<div id="sire_filter" hidden>
-  <%= form_with model: @sire_filter, local: true do |f| %>
-    <%= f.select :stability, options_for_abc %>
-    <%= hidden_field_tag :mare_id, @mare&.id %>
-    <%= hidden_field_tag :ranch_id, @ranch&.id %>
-    <%= f.submit %>
-  <% end -%>
+<div class="top">
+  <%= @mare&.name %>
+
+  <div id="sire_filter">
+    <%= form_with model: @sire_filter, local: true do |f| %>
+      <%= f.select :stability, options_for_abc %>
+      <%= hidden_field_tag :mare_id, @mare&.id %>
+      <%= hidden_field_tag :ranch_id, @ranch&.id %>
+      <%= f.submit %>
+    <% end -%>
+  </div>
 </div>
-<span id="button_to_show_sire_filter" class="button">[+]</span>
 
 <table class="table_base">
   <thead>
