@@ -14,6 +14,14 @@ module RanchesHelper
     {male: '牡', female: '牝', gelding: '騸'}.fetch(racer.sex&.to_sym, '-')
   end
 
+  def racer_attr_display_in_td(racer, name, f)
+    classes = []
+    classes << 'numeric'  if name.to_s.starts_with?('weight_')
+    classes << 'centered' if name == :stable
+    classes << 'emphasized' if name == :weight_best
+    content_tag :td, racer_attr_display(racer, name, f), class: classes.join(' ')
+  end
+
   def racer_attr_display(racer, name, f)
     if !f || (!racer.stable && name == :grade) \
           || (racer.stable && name.to_s.starts_with?('comment_')) \
