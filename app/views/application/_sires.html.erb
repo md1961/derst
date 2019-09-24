@@ -24,6 +24,7 @@
       <% elsif @mare -%>
         <td><%= link_to '配合', matings_path(mare_id: @mare.id,
                                              displays_inbreeds: true,
+                                             sire_filter: @sire_filter.to_params,
                                              ranch_id: @ranch&.id) %></td>
       <% end -%>
     </tr>
