@@ -38,6 +38,10 @@ module ApplicationHelper
     %i[lineage price speed stamina rating type]
   end
 
+  def options_for_growth
+    %w[- 早熟 普通 晩成 持続 早熟,普通 普通,晩成]
+  end
+
   def options_for_abc
     %w[- A B C A-B B-C]
   end

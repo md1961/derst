@@ -3,6 +3,8 @@
 
   <div id="sire_filter">
     <%= form_with model: @sire_filter, local: true do |f| %>
+      <%= f.label '成長' %>
+      <%= f.select :growth, options_for_growth %>
       <%= f.label '気性' %>
       <%= f.select :temper, options_for_abc %>
       <%= f.label '根性' %>
