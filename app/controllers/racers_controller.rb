@@ -33,7 +33,17 @@ class RacersController < ApplicationController
 
   def create_result
     racer = Racer.find(params[:id])
-    racer.results.create(race_id: params[:race_id])
+    attrs = {race_id: params[:race_id], age: racer.age}
+    last_result = racer.results.last
+    if last_result
+      %i[
+        weight mark_development mark_stamina mark_contend mark_temper mark_odds
+        load jockey_id for_bad_surface position
+      ].each do |name|
+        attrs[name] = last_result.send(name)
+      end
+    end
+    racer.results.create(attrs)
     redirect_to racer
   end
 
