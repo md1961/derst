@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   resources :matings, only: %i[index show new create]
 
-  resource :mating_list
+  resource :mating_list do
+    get :delete
+  end
 
   resources :ranch_mares, only: %i[new create destroy]
 

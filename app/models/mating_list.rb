@@ -25,7 +25,7 @@ class MatingList
     self
   end
 
-  def to_json_in_session
+  def to_json
     JSON.generate(@matings.map { |mating|
       [mating.mare.id, mating.sire.id]
     })
