@@ -21,6 +21,13 @@ class MatingListsController < ApplicationController
     redirect_to mating_list_path
   end
 
+  def destroy
+    @mating_list.clear
+
+    save_mating_list
+    redirect_to mating_list_path
+  end
+
   def prev
     mating = @mating_list.prev_of(@mating)
     redirect_to mating_path(mating.mare.id, sire_id: mating.sire.id, in_list: true)

@@ -14,6 +14,10 @@
   </table>
 
   <div class="actions">
+    <% unless @mating_list.empty? -%>
+      <%= button_to '全削除', mating_list_path, method: :delete, data: {confirm: "全削除？"}, tabindex: -1 %>
+    <% end -%>
+
     <hr>
     追加：
     <%= form_with url: mating_list_path, method: :patch, local: true do |f| %>
