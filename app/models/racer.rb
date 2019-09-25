@@ -18,6 +18,10 @@ class Racer < ApplicationRecord
 
   before_update :update_grade
 
+  def net_prize
+    results.map(&:net_prize).sum
+  end
+
   def expecting_race?
     !results.empty? && results.last.place.blank?
   end
