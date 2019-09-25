@@ -15,10 +15,17 @@
             <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
           </tr>
           <tr>
-            <th></th>
             <% mother = @racer.mother
-               inbreed = inbreed_display(Mating.new(mother, father)).gsub(', ', '<br>').html_safe -%>
-            <td><%= inbreed.blank? ? '（アウトブリード）' : inbreed %></td>
+               mating = Mating.new(mother, father)
+               inbreed = inbreed_display(mating).gsub(', ', '<br>').html_safe -%>
+           <td colspan="2">
+             <%= inbreed.blank? ? '（アウトブリード）' : inbreed %>
+           </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= "ニックス #{mating.nicks? ? '○' : '×'}、面白 #{mating.interesting? ? '○' : '×'}" %>
+            </td>
           </tr>
           <tr>
             <th>母</th>
