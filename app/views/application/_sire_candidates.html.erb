@@ -1,0 +1,5 @@
+<datalist id="sire_candidates">
+  <% Sire.joins(:trait).where.not(name_jp: nil).order(:name_jp).each do |sire| -%>
+    <option value="<%= sire.name_jp %>">
+  <% end -%>
+</datalist>
