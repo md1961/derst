@@ -15,6 +15,20 @@ class MatingList
     @matings.each(&block)
   end
 
+  def prev_of(mating)
+    return nil if @matings.empty?
+    index = @matings.find_index(mating)
+    return nil unless index
+    @matings[index - 1]
+  end
+
+  def next_of(mating)
+    return nil if @matings.empty?
+    index = @matings.find_index(mating)
+    return nil unless index
+    @matings[(index + 1) % @matings.size]
+  end
+
   def <<(mating)
     @matings << mating
     self
