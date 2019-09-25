@@ -98,7 +98,7 @@ module ApplicationHelper
   end
 
   def race_name_display(race)
-    addition = race_addition_display(race)
+    addition = ' ' + race_addition_display(race)
     if race.name
       "#{race.name}#{addition}(#{race.grade.abbr})"
     else
@@ -107,7 +107,7 @@ module ApplicationHelper
   end
 
   def race_distance_display(race)
-    "#{race.distance}#{race.dirt? ? 'D' : ''}"
+    "#{race.dirt? ? 'D' : ''}#{race.distance}"
   end
 
   def race_limitation_display(race)
