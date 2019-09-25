@@ -14,10 +14,14 @@
   <%= hidden_field_tag :ranch_id, @ranch.id %>
 
   <td>
+  <td>
     <%= f.submit %>
     <%= link_to 'Cancel', @ranch %>
   </td>
 <% else -%>
+  <td class="numeric">
+    <%= racer.results.empty? ? "" : "#{@ranch.month_week - racer.results.last.race.month_week}w" %>
+  </td>
   <% racer.target_races.map(&:race).sort_by { |race|
        race.month_week.ordering_from(@ranch.month_week)
      }.each do |race| -%>
