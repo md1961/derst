@@ -11,6 +11,10 @@ class MatingList
     @matings = matings
   end
 
+  def empty?
+    @matings.empty?
+  end
+
   def each(&block)
     @matings.each(&block)
   end
@@ -37,6 +41,10 @@ class MatingList
   def delete(mating)
     @matings.delete(mating)
     self
+  end
+
+  def clear
+    @matings = []
   end
 
   def to_json
