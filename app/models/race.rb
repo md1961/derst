@@ -77,6 +77,37 @@ class Race < ApplicationRecord
     where("(month = :month AND week >= :week) OR month > :month", month: month, week: week)
   }
 
+  def prize_for(place)
+    raise "Not implemented for place #{place}" unless place == 1
+    raise "Not implemented for high stake" if grade.high_stake?
+    raise "Not implemented for new racer" if grade.new_racer?
+    raise "Not implemented for no win" if grade.abbr == '未'
+    case grade.abbr
+    when '5'
+      name ? 1050 : 750
+    when '9'
+      name ? 1450 : 1100
+    when '16'
+      1800
+    when 'OP'
+      age == 3 ? 1600 : 2400
+    else
+      raise "Not supposed to reach here"
+    end
+  end
+
+  def net_prize_for(place)
+    return 0 if  grade.high_stake? && place >= 3
+    return 0 if !grade.high_stake? && place >= 2
+
+    if %w[新 未].include?(grade.abbr)
+      return place == 1 ? 400 : 0
+    end
+
+    prize = prize_for(place)
+    prize < 1200 ? 400 : (prize / 2).floor(-1)
+  end
+
   def month_week
     MonthWeek.new(month, week)
   end
