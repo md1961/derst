@@ -20,6 +20,11 @@ class MatingList
     self
   end
 
+  def delete(mating)
+    @matings.delete(mating)
+    self
+  end
+
   def to_json_in_session
     JSON.generate(@matings.map { |mating|
       [mating.mare.id, mating.sire.id]
