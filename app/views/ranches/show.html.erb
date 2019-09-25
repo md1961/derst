@@ -4,7 +4,7 @@
 
     <% if @racer_id_to_edit.zero? -%>
       <div class="links">
-        <%= link_to '新規繁殖牝馬', new_ranch_mare_path(ranch_id: @ranch.id) %>
+        <%= link_to '新規繁殖牝馬', new_ranch_mare_path(ranch_id: @ranch.id), tabindex: -1 %>
       </div>
     <% end -%>
   </div>
@@ -14,7 +14,7 @@
 
     <% if @racer_id_to_edit.zero? -%>
       <div class="links">
-        <%= link_to '新規競走馬', new_racer_path(ranch_id: @ranch.id) %>
+        <%= link_to '新規競走馬', new_racer_path(ranch_id: @ranch.id), tabindex: -1 %>
       </div>
     <% end -%>
   </div>
