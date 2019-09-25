@@ -31,6 +31,10 @@ class Mating
         }.to_h
   end
 
+  def to_s
+    "#{mare.name} x #{sire.name}"
+  end
+
   private
 
     def fetch_h_inbreeds_from_cache
