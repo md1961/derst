@@ -42,6 +42,15 @@ class Racer < ApplicationRecord
         .order(:month, :week) \
   end
 
+  def place_records
+    [results.size] \
+    + results.pluck(:place).group_by(&:to_i).find_all { |place, _|
+        place <= 3
+      }.map { |place, places|
+        [place, places.size]
+      }.to_h.fetch_values(1, 2, 3) { 0 }
+  end
+
   def change_grade_to_no_win!
     return unless grade&.new_racer?
     return if results.empty?
