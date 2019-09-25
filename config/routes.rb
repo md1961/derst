@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resource :mating_list do
     get :delete
+    get :prev, :next
   end
 
   resources :ranch_mares, only: %i[new create destroy]

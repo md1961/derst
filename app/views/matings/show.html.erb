@@ -21,4 +21,11 @@
   </div>
 
   <%= link_to 'Back', matings_path(mare_id: @mare, ranch_id: @ranch&.id) %>
+
+  <% if @in_list -%>
+    <div class="in_list">
+      <%= link_to '<', prev_mating_list_path(mare_id: @mating.mare.id, sire_id: @mating.sire.id), id: 'to_prev_mating' %>
+      <%= link_to '>', next_mating_list_path(mare_id: @mating.mare.id, sire_id: @mating.sire.id), id: 'to_next_mating' %>
+    </div>
+  <% end -%>
 </div>

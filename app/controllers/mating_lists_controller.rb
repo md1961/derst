@@ -1,5 +1,5 @@
 class MatingListsController < ApplicationController
-  before_action :set_mating, only: %i[update delete]
+  before_action :set_mating, only: %i[update delete prev next]
   before_action :set_mating_list
 
   KEY_MATING_LIST_IN_JSON = :mating_list_in_json
@@ -19,6 +19,16 @@ class MatingListsController < ApplicationController
 
     save_mating_list
     redirect_to mating_list_path
+  end
+
+  def prev
+    mating = @mating_list.prev_of(@mating)
+    redirect_to mating_path(mating.mare.id, sire_id: mating.sire.id, in_list: true)
+  end
+
+  def next
+    mating = @mating_list.next_of(@mating)
+    redirect_to mating_path(mating.mare.id, sire_id: mating.sire.id, in_list: true)
   end
 
   private

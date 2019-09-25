@@ -16,6 +16,7 @@ class MatingsController < ApplicationController
     @sire = Sire.find(params[:sire_id])
     @mating = Mating.new(@mare, @sire)
     @ranch = Ranch.find_by(id: params[:ranch_id])
+    @in_list = params[:in_list] == 'true'
   end
 
   def new

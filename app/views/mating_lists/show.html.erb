@@ -4,7 +4,7 @@
       <% @mating_list.each do |mating| -%>
         <tr>
           <td><%= mating %></td>
-          <td><%= link_to '配', mating_path(mating.mare, sire_id: mating.sire.id), target: '_blank' %></td>
+          <td><%= link_to '配', mating_path(mating.mare, sire_id: mating.sire.id, in_list: true), target: '_blank' %></td>
           <td><%= link_to '削除', delete_mating_list_path(mare_id: mating.mare.id, sire_id: mating.sire.id) %></td>
         </tr>
       <% end -%>
