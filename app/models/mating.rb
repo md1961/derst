@@ -1,7 +1,7 @@
 class Mating
   include ActiveModel::Model
 
-  attr_accessor :sire, :mare
+  attr_accessor :mare, :sire
 
   @@h_inbreeds_cache = {}
 
@@ -29,6 +29,11 @@ class Mating
         }.map { |father, generations|
           [father, generations.sort]
         }.to_h
+  end
+
+  def ==(other)
+    return false unless other.is_a?(self.class)
+    mare.id == other.mare.id && sire.id == other.sire.id
   end
 
   def to_s
