@@ -61,6 +61,7 @@ class Racer < ApplicationRecord
   end
 
   def race_candidates(includes_overgrade: false)
+    includes_overgrade = true if age == 4 && %w[5 9 16].include?(grade.abbr) && ranch.month <= 7
     return [] unless ranch && age && grade
     Race.for_racer(self, includes_overgrade: includes_overgrade)
         .in_or_after(ranch.month_week)
