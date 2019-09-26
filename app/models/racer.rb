@@ -21,7 +21,7 @@ class Racer < ApplicationRecord
   end
 
   def net_prize
-    results.map(&:net_prize).sum
+    results.includes(race: :grade).map(&:net_prize).sum
   end
 
   def grade_from_net_prize
