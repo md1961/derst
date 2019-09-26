@@ -1,7 +1,7 @@
 class RacersController < ApplicationController
 
   def show
-    @racer = Racer.find(params[:id])
+    @racer = Racer.includes(results: :race).find(params[:id])
     @result_id_to_edit = params[:result_id_to_edit].to_i
     @post_race = PostRace.find_by(id: params[:post_race_id_to_edit])
     @includes_overgrade = params[:includes_overgrade] == 'true'
