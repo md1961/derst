@@ -15,6 +15,7 @@ class Racer < ApplicationRecord
 
   scope :active , -> { where(is_active: true ) }
   scope :retired, -> { where(is_active: false) }
+  scope :stabled, -> { active.where.not(stable: nil) }
   scope :older_first, -> { order(:year_birth) }
 
   validates :name, presence: true, uniqueness: true
