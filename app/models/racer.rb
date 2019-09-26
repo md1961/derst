@@ -92,4 +92,8 @@ class Racer < ApplicationRecord
   def retire!
     update!(is_active: false)
   end
+
+  def to_s
+    name
+  end
 end
