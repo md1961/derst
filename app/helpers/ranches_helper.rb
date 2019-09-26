@@ -21,9 +21,10 @@ module RanchesHelper
 
   def racer_attr_display_in_td(racer, name, f)
     classes = []
-    classes << 'numeric'  if name.to_s.starts_with?('weight_')
-    classes << 'centered' if name == :stable
-    classes << 'emphasized' if name == :weight_best
+    classes << 'numeric'     if name.to_s.starts_with?('weight_')
+    classes << 'centered'    if name == :stable
+    classes << 'emphasized'  if name == :weight_best
+    classes << 'grade_given' if name == :grade && racer.grade_given
     content_tag :td, racer_attr_display(racer, name, f), class: classes.join(' ')
   end
 
