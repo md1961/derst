@@ -19,7 +19,7 @@ class Racer < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def grade
-    grade_given || grade_from_net_prize
+    @grade ||= grade_given || grade_from_net_prize
   end
 
   def net_prize
