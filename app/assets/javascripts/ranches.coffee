@@ -1,6 +1,6 @@
 $ ->
   $(window).on 'keydown', (e) ->
-    if $('input[type="text]').length > 0 || e.ctrlKey
+    if $('input[type="text"]').is(':focus') || e.ctrlKey
       return
     key = String.fromCharCode(e.which).toLowerCase()
     $('a[data-shortcut="' + key + '"]').focus()
