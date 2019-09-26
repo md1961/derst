@@ -36,7 +36,7 @@ module RanchesHelper
           || (!racer.stable && name.to_s.starts_with?('weight_'))
       racer.send(name)
     elsif name == :grade
-      f.select :grade_id, [['-', nil]] + Grade.where("name NOT LIKE 'G%'").pluck(:name, :id),
+      f.select :grade_given_id, [['-', nil]] + Grade.where("name NOT LIKE 'G%'").pluck(:name, :id),
                   {}, autofocus: true
     elsif name == :stable
       f.select :stable_id, [['-', nil]] + Stable.pluck(:name, :id)

@@ -58,7 +58,7 @@ class RacersController < ApplicationController
 
     def racer_params
       params.require(:racer).permit(
-        :ranch_id, :name, :sex, :age, :grade_id,
+        :ranch_id, :name, :sex, :age, :grade_given_id,
         :comment_age2, :comment_age3, :stable_id, :weight_fat, :weight_best, :weight_lean, :remark
       ).tap { |p|
         father = Sire.find_by_name( params[:father])

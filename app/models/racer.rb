@@ -4,7 +4,7 @@ class Racer < ApplicationRecord
   belongs_to :father, class_name: 'Sire'
   belongs_to :mother, class_name: 'Mare'
   belongs_to :ranch
-  belongs_to :grade , optional: true
+  belongs_to :grade_given, class_name: 'Grade', optional: true
   belongs_to :stable, optional: true
   has_many :results
   has_many :target_races
@@ -16,7 +16,9 @@ class Racer < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  before_update :update_grade
+  def grade
+    grade_given || grade_from_net_prize
+  end
 
   def net_prize
     results.map(&:net_prize).sum
@@ -85,10 +87,4 @@ class Racer < ApplicationRecord
   def retire!
     update!(is_active: false)
   end
-
-  private
-
-    def update_grade
-      self.grade = Grade.find_by(abbr: '新') if grade.nil? && stable
-    end
 end
