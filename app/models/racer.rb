@@ -22,6 +22,26 @@ class Racer < ApplicationRecord
     results.map(&:net_prize).sum
   end
 
+  def grade_from_net_prize
+    return nil if stable.nil? && results.empty?
+    np = net_prize
+    np /= 2 if age >= 6 || (age == 5 && ranch.month >= 8)
+    abbr = if np > 1600
+             'OP'
+           elsif np > 900
+             '16'
+           elsif np > 500
+             '9'
+           elsif np > 0
+             '5'
+           elsif results.empty? || results.first.race.month_week == ranch.month_week
+             '新'
+           else
+             '未'
+           end
+    Grade.find_by(abbr: abbr)
+  end
+
   def expecting_race?
     !results.empty? && results.last.place.blank?
   end

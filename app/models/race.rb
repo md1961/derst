@@ -24,7 +24,7 @@ class Race < ApplicationRecord
   scope :unlimited_for, ->(racer) {
     limitations = [0]
     limitations << 1 if racer.female?
-    limitations << 2 if racer&.father&.domestic?
+    limitations << 2 if racer.father&.domestic?
     where(limitation: limitations)
   }
 
