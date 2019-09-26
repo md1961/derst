@@ -30,14 +30,15 @@ class Racer < ApplicationRecord
     return nil if stable.nil? && results.empty?
     np = net_prize
     np /= 2 if age >= 6 || (age == 5 && ranch.month >= 8)
+    month = ranch.month
     abbr = if np > 1600
              'OP'
            elsif np > 900
-             '16'
+             (age == 3 || (age == 4 && month <= 6)) ? 'OP' : '16'
            elsif np > 500
-             '9'
+             (age == 3 || (age == 4 && month <= 5)) ? 'OP' : '9'
            elsif np > 0
-             '5'
+             age == 3 && month <= 9 ? 'OP' : '5'
            elsif results.empty? || results.first.race.month_week == ranch.month_week
              '新'
            else
