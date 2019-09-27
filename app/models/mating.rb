@@ -40,6 +40,24 @@ class Mating
     }.round * 3 + (nicks? ? 10 : 0) + (interesting? ? 10 : 0)
   end
 
+  def inbreed_display
+    h = h_inbreeds
+    additional = ""
+
+    thickest = h.values.sort.first
+    if [[2, 2], [2, 3], [3, 3]].include?(thickest)
+      h = h.reject { |_, v| v != thickest }.to_h
+      additional = ", ..."
+    end
+
+    h.map { |father, generations|
+      effects = ""
+      effects = "(#{father.inbreed_effects.map(&:abbr).join(' ')})" \
+        unless father.inbreed_effects.empty?
+      "#{father.name}#{effects} #{generations.join('x')}"
+    }.join(', ') + additional
+  end
+
   def ==(other)
     return false unless other.is_a?(self.class)
     mare.id == other.mare.id && sire.id == other.sire.id

@@ -82,7 +82,7 @@
            <td class="centered <%= is_interesting ? 'interesting' : '' %>">
              <%= is_interesting ? '〇' : '' %>
            </td>
-          <td class="allows_wrap"><%= inbreed_display(mating) %></td>
+          <td class="allows_wrap"><%= mating.inbreed_display %></td>
         <% end -%>
       </tr>
     <% end -%>
