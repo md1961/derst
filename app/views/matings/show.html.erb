@@ -12,9 +12,14 @@
       <table class="table_base">
         <tr>
           <th>ニックス</th>
-          <td><%= @mating.nicks? ? '〇': '×' %></td>
+          <td class="value"><%= @mating.nicks? ? '〇': '×' %></td>
           <th>面白い</th>
-          <td><%= @mating.interesting? ? '〇': '×' %></td>
+          <td class="value"><%= @mating.interesting? ? '〇': '×' %></td>
+        </tr>
+        <tr>
+          <td colspan="4" class="inbreed_display">
+            <%= inbreed_display(@mating).gsub(', ', '<br>').html_safe %>
+          </td>
         </tr>
       </table>
     </div>

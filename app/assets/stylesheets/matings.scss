@@ -39,6 +39,24 @@
     margin-left: 20px;
   }
 
+  .mating {
+    margin-top: 70px;
+    margin-left: 20px;
+
+    th {
+      width: 50px;
+    }
+
+    td.value {
+      width: 20px;
+      text-align: center;
+    }
+
+    td.inbreed {
+      width: 140px;
+    }
+  }
+
   .in_list {
     margin-top: 10px;
 
