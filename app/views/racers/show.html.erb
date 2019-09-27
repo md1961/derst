@@ -17,7 +17,7 @@
           <tr>
             <% mother = @racer.mother
                mating = Mating.new(mother, father)
-               inbreed = inbreed_display(mating).gsub(', ', '<br>').html_safe -%>
+               inbreed = mating.inbreed_display.gsub(', ', '<br>').html_safe -%>
            <td colspan="2">
              <%= inbreed.blank? ? '（アウトブリード）' : inbreed %>
            </td>

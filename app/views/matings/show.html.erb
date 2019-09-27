@@ -18,7 +18,7 @@
         </tr>
         <tr>
           <td colspan="4" class="inbreed_display">
-            <%= inbreed_display(@mating).gsub(', ', '<br>').html_safe %>
+            <%= @mating.inbreed_display.gsub(', ', '<br>').html_safe %>
           </td>
         </tr>
       </table>
