@@ -58,6 +58,15 @@ class Mating
     }.join(', ') + additional
   end
 
+  def to_h
+    {
+      score: score,
+      nicks: nicks?,
+      interesting: interesting?,
+      inbreed: inbreed_display
+    }
+  end
+
   def ==(other)
     return false unless other.is_a?(self.class)
     mare.id == other.mare.id && sire.id == other.sire.id
