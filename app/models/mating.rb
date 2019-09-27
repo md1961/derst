@@ -31,6 +31,15 @@ class Mating
         }.to_h
   end
 
+  def score
+    h_inbreeds.reduce(0) { |value, (father, generations)|
+      return -20 if (generations <=> [3, 3]) <= 0
+      divisor = 1
+      divisor = 2.0 if generations == [5, 5]
+      value + father.inbreed_effects.map(&:score).sum / divisor
+    }.round * 3 + (nicks? ? 10 : 0) + (interesting? ? 10 : 0)
+  end
+
   def ==(other)
     return false unless other.is_a?(self.class)
     mare.id == other.mare.id && sire.id == other.sire.id
