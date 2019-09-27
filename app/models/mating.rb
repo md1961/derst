@@ -9,7 +9,7 @@ class Mating
     @mare = mare
     @sire = sire
     @mare_inbreeds = mare_inbreeds || @mare&.h_inbreeds
-    #read_cache
+    read_cache
   end
 
   def nicks?
@@ -62,6 +62,19 @@ class Mating
     }.join(', ') + additional
   end
 
+  def write_cache
+    return unless @mare
+    mare_inbreeds = @mare.h_inbreeds
+    File.open(filename_for_cache, 'w') do |f|
+      f.write(
+        Sire.breedable.map { |sire|
+          mating = Mating.new(@mare, sire, mare_inbreeds)
+          [sire.id, mating.to_h]
+        }.to_h.to_json
+      )
+    end
+  end
+
   def to_h
     {
       score: score,
@@ -87,31 +100,15 @@ class Mating
     end
 
     def read_cache
-      contents = nil
-      if File.exists?(filename_for_cache)
-        contents = File.open(filename_for_cache) { |f| f.read }
-      end
-      if contents.blank?
-        write_cache
-        contents = File.open(filename_for_cache) { |f| f.read }
-      end
-      @@h_inbreeds_cache[@mare.id] ||= JSON.parse(contents)
+      return unless File.exists?(filename_for_cache)
+      @@h_inbreeds_cache[@mare.id] ||= File.open(filename_for_cache) { |f|
+        contents = f.read
+        return if contents.blank?
+        JSON.parse(contents)
+      }
     end
 
     def filename_for_cache
       "db/cache/matings/mare-#{@mare.id}.txt"
-    end
-
-    def write_cache
-      return unless @mare
-      mare_inbreeds = @mare.h_inbreeds
-      File.open(filename_for_cache, 'w') do |f|
-        f.write(
-          Sire.breedable.map { |sire|
-            mating = Mating.new(@mare, sire, mare_inbreeds)
-            [sire.id, mating.to_h]
-          }.to_h.to_json
-        )
-      end
     end
 end
