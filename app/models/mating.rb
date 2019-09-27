@@ -9,7 +9,7 @@ class Mating
     @mare = mare
     @sire = sire
     @mare_inbreeds = mare_inbreeds || @mare&.h_inbreeds
-    #read_caches
+    #read_cache
   end
 
   def nicks?
@@ -21,26 +21,30 @@ class Mating
   end
 
   def h_inbreeds
-    @h_inbreeds ||= fetch_h_inbreeds_from_cache \
-     || @mare_inbreeds.each_with_object(@sire.h_inbreeds) { |(father, generations), h|
-          h[father].concat(generations) if h[father].size > 0
-        }.reject { |father, generations|
-          generations.size <= 1
-        }.map { |father, generations|
-          [father, generations.sort]
-        }.to_h
+    @h_inbreeds ||= \
+      @mare_inbreeds.each_with_object(@sire.h_inbreeds) { |(father, generations), h|
+        h[father].concat(generations) if h[father].size > 0
+      }.reject { |father, generations|
+        generations.size <= 1
+      }.map { |father, generations|
+        [father, generations.sort]
+      }.to_h
   end
 
   def score
-    h_inbreeds.reduce(0) { |value, (father, generations)|
-      return -20 if (generations <=> [3, 3]) <= 0
-      divisor = 1
-      divisor = 2.0 if generations == [5, 5]
-      value + father.inbreed_effects.map(&:score).sum / divisor
-    }.round * 3 + (nicks? ? 10 : 0) + (interesting? ? 10 : 0)
+    @score ||= fetch_from_cache(:score) \
+      || h_inbreeds.reduce(0) { |value, (father, generations)|
+           return -20 if (generations <=> [3, 3]) <= 0
+           divisor = 1
+           divisor = 2.0 if generations == [5, 5]
+           value + father.inbreed_effects.map(&:score).sum / divisor
+         }.round * 3 + (nicks? ? 10 : 0) + (interesting? ? 10 : 0)
   end
 
   def inbreed_display
+    s = fetch_from_cache(:inbreed)
+    return s if s
+
     h = h_inbreeds
     additional = ""
 
@@ -78,33 +82,28 @@ class Mating
 
   private
 
-    def fetch_h_inbreeds_from_cache
-      @@h_inbreeds_cache.dig(@mare.id, @sire.id.to_s)
+    def fetch_from_cache(name)
+      @@h_inbreeds_cache.dig(@mare.id, @sire.id.to_s, name.to_s)
     end
 
-    def read_caches
-      #return
-      h_sires = {}
-      @@h_inbreeds_cache[@mare.id] ||= File.open(filename_for_cache) { |f|
-        JSON.parse(f.read).map { |sire_id, h_inbreeds|
-          [
-            sire_id.to_i,
-            h_inbreeds.map { |father_name, generations|
-              sire = h_sires[father_name] ||= Sire.find_by_name(father_name)
-              [sire, generations]
-            }.to_h
-          ]
-        }.to_h
-      }
+    def read_cache
+      contents = nil
+      if File.exists?(filename_for_cache)
+        contents = File.open(filename_for_cache) { |f| f.read }
+      end
+      if contents.blank?
+        write_cache
+        contents = File.open(filename_for_cache) { |f| f.read }
+      end
+      @@h_inbreeds_cache[@mare.id] ||= JSON.parse(contents)
     end
 
     def filename_for_cache
       "db/cache/matings/mare-#{@mare.id}.txt"
     end
 
-    def write_inbreed_cache
+    def write_cache
       return unless @mare
-      return if File.exists?(filename_for_cache)
       mare_inbreeds = @mare.h_inbreeds
       File.open(filename_for_cache, 'w') do |f|
         f.write(
