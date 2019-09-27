@@ -34,6 +34,7 @@
         <th><%= SireTrait.human_attribute_name(name) %></th>
       <% end -%>
       <% if @displays_inbreeds -%>
+        <th>点</th>
         <th>ニ</th>
         <th id="head_interesting">面</th>
         <th>インブリード</th>
@@ -70,7 +71,11 @@
         <% if @displays_inbreeds -%>
           <% mating = Mating.new(@mare, sire, mare_inbreeds)
              is_nicks       = mating.nicks?
-             is_interesting = mating.interesting? -%>
+             is_interesting = mating.interesting?
+             score          = mating.score -%>
+           <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>">
+             <%= score %>
+           </td>
            <td class="centered <%= is_nicks ? 'nicks' : '' %>">
              <%= is_nicks ? '〇' : '' %>
            </td>
