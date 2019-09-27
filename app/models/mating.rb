@@ -5,7 +5,7 @@ class Mating
 
   @@h_inbreeds_cache = {}
 
-  def initialize(mare, sire, mare_inbreeds = nil)
+  def initialize(mare, sire = nil, mare_inbreeds = nil)
     @mare = mare
     @sire = sire
     @mare_inbreeds = mare_inbreeds || @mare&.h_inbreeds
@@ -110,7 +110,7 @@ class Mating
         f.write(
           Sire.breedable.map { |sire|
             mating = Mating.new(@mare, sire, mare_inbreeds)
-            [sire.id, mating.h_inbreeds]
+            [sire.id, mating.to_h]
           }.to_h.to_json
         )
       end
