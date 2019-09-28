@@ -23,6 +23,7 @@ Race.includes(:grade).order(:age, :grade_id, :month, :week).find_all { |race|
   puts [
     race.id.to_s.ljust(7),
     race.age.ljust(2),
+    race.course,
     race.grade,
     race.month_week.to_s.rjust(4),
     race.name.mb_ljust(max_name_len),
