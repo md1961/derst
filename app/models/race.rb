@@ -55,7 +55,7 @@ class Race < ApplicationRecord
         .or(for_age(age).where(grade: Grade.find_by(abbr: '未')).unlimited_for(racer)
               .in_or_after(month_week.first_of_next_month)
            )
-    elsif racer.downgrade_in_summer?
+    elsif racer.downgrade_in_summer? && racer.ranch.month <= 7
       before_downgrade_in_summer.for_age(age).where(grade: grades).unlimited_for(racer)
         .or(downgrade_in_summer.for_age(age).where(grade: grade.one_down).unlimited_for(racer))
     else
