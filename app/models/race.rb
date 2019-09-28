@@ -81,8 +81,11 @@ class Race < ApplicationRecord
     raise "Not implemented for place #{place}" unless place == 1
     raise "Not implemented for high stake" if grade.high_stake?
     raise "Not implemented for new racer" if grade.new_racer?
-    raise "Not implemented for no win" if grade.abbr == '未'
     case grade.abbr
+    when '新'
+      600
+    when '未'
+      500
     when '5'
       name ? 1050 : 750
     when '9'
@@ -99,11 +102,6 @@ class Race < ApplicationRecord
   def net_prize_for(place)
     return 0 if  grade.high_stake? && place >= 3
     return 0 if !grade.high_stake? && place >= 2
-
-    if %w[新 未].include?(grade.abbr)
-      return place == 1 ? 400 : 0
-    end
-
     prize = prize_for(place)
     prize < 1200 ? 400 : (prize / 2).floor(-1)
   end
