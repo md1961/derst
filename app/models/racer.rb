@@ -41,7 +41,7 @@ class Racer < ApplicationRecord
              (age == 3 || (age == 4 && month <= 5)) ? 'OP' : '9'
            elsif np > 0
              age == 3 && month <= 9 ? 'OP' : '5'
-           elsif results.empty? || results.first.race.month_week == ranch.month_week
+           elsif results.empty? || results.first.race.month == ranch.month
              '新'
            else
              '未'
