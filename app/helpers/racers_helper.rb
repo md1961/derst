@@ -65,11 +65,11 @@ module RacersHelper
       f.select :jockey_id, options_for_select_for_jockey(result.jockey)
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name)
+    elsif name == :weight
+      f.number_field name, step: 2
     else
-      size = name.to_s.starts_with?('comment_') ? 14 : name == :weight ? 3 : 2
       size = {
         odds:   4,
-        weight: 4,
         comment_paddock: 20,
         comment_race:    20,
       }[name] || 2
