@@ -1,5 +1,5 @@
 $ ->
-  $(window).on 'keydown', (e) ->
+  $(window).on 'keypress', (e) ->
     if $('input[type="text"]').is(':focus') || e.ctrlKey
       return
     key = String.fromCharCode(e.which).toLowerCase()
@@ -17,8 +17,6 @@ $ ->
         $('#to_next_racer')[0].click()
       return
 
+    key = '=' if key == '"'
     links = $('a[data-shortcut="' + key + '"]')
-    if key == 'b' && $('.ranches_show').length == 0
-      links[0].click()
-    else
-      links.focus()
+    links[0].click()
