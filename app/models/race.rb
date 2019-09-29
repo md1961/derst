@@ -81,7 +81,6 @@ class Race < ApplicationRecord
   def prize_for(place)
     raise "Not implemented for place #{place}" unless place == 1
     raise "Not implemented for high stake" if grade.high_stake?
-    raise "Not implemented for new racer" if grade.new_racer?
     case grade.abbr
     when '新'
       600
