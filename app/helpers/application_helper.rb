@@ -121,7 +121,8 @@ module ApplicationHelper
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target,
-      content_tag(:td, a.join(' '), class: race.grade == racer.grade ? '' : 'overgrade'),
+      content_tag(:td, a.join(' '), class: race.grade.high_stake? ? 'high_stake' \
+                                         : race.grade == racer.grade ? '' : 'overgrade'),
     ].compact)
   end
 end
