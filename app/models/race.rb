@@ -35,6 +35,7 @@ class Race < ApplicationRecord
     month = racer.ranch.month
 
     grades = [grade]
+    grades.concat(Grade.where(abbr: %w[Ⅲ Ⅱ Ⅰ])) if grade.abbr == 'OP'
     if includes_overgrade
       if (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '5'
         grades = Grade.where(abbr: %w[5 9 16 OP Ⅲ Ⅱ])
