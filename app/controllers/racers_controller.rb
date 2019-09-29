@@ -9,7 +9,7 @@ class RacersController < ApplicationController
 
     racers = Racer.stabled.older_first
     index = racers.find_index(@racer)
-    @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1)
+    @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index
   end
 
   def new
