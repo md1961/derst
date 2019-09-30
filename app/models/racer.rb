@@ -64,6 +64,14 @@ class Racer < ApplicationRecord
     age == 5 && grade.ordering >= Grade.find_by(abbr: '9').ordering
   end
 
+  def condition
+    weeklies.find_by(age: age, month: ranch.month, week: ranch.week)&.condition
+  end
+
+  def condition=(value)
+    weeklies.find_or_create_by!(age: age, month: ranch.month, week: ranch.week).update!(condition: value)
+  end
+
   def race_candidates(includes_overgrade: false)
     includes_overgrade = true if age == 4 && %w[5 9 16].include?(grade.abbr) && ranch.month <= 7
     return [] unless ranch && age && grade
