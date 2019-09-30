@@ -8,6 +8,7 @@ class Racer < ApplicationRecord
   belongs_to :stable, optional: true
   has_many :results
   has_many :target_races
+  has_many :weeklies
   has_one :in_ranch
 
   enum sex: {male: 1, female: 2, gelding: 3}

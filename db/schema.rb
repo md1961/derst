@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_023506) do
+ActiveRecord::Schema.define(version: 2019_09_30_055013) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -306,6 +306,17 @@ ActiveRecord::Schema.define(version: 2019_09_30_023506) do
     t.datetime "updated_at", null: false
     t.index ["race_id"], name: "index_target_races_on_race_id"
     t.index ["racer_id"], name: "index_target_races_on_racer_id"
+  end
+
+  create_table "weeklies", force: :cascade do |t|
+    t.integer "racer_id", null: false
+    t.integer "age", null: false
+    t.integer "month", null: false
+    t.integer "week", null: false
+    t.string "condition"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["racer_id"], name: "index_weeklies_on_racer_id"
   end
 
 end
