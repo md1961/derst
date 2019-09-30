@@ -80,8 +80,13 @@ class Race < ApplicationRecord
   }
 
   def prize_for(place)
+    if grade.high_stake?
+      raise "Not implemented for place #{place} of high-stake" if place > 2
+      return prize_pattern.prizes.find_by(place: place).amount
+    end
+
     raise "Not implemented for place #{place}" unless place == 1
-    raise "Not implemented for high stake" if grade.high_stake?
+
     case grade.abbr
     when '新'
       600
