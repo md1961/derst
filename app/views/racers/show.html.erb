@@ -154,6 +154,31 @@
         </tbody>
       </table>
 
+      <table id="conditions" class="table_base">
+        <thead>
+          <tr>
+            <th>
+            <% (1 .. 12).each do |month| -%>
+              <th colspan="4" class="centered"><%= "#{month}月" %></th>
+            <% end -%>
+          </tr>
+          <tr>
+            <th>
+            <% (12 * 4).times do |w| -%>
+              <th><%= w % 4 + 1 %></th>
+            <% end -%>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>3歳</th>
+            <% (12 * 4).times do |w| -%>
+              <td class="centered"></td>
+            <% end -%>
+          </tr>
+        </tbody>
+      </table>
+
       <div class="links">
         <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'} %>
         <% if @prev_racer && @next_racer -%>
