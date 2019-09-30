@@ -51,6 +51,10 @@ class RacersController < ApplicationController
     redirect_to racer
   end
 
+  def weekly
+    raise
+  end
+
   def graze
     racer = Racer.find(params[:id])
     racer.graze!
