@@ -59,6 +59,10 @@ class Racer < ApplicationRecord
     target_races.map(&:race).include?(race)
   end
 
+  def race_in?(age, month, week)
+    results.joins(:race).where(age: age, 'races.month': month, 'races.week': week).count > 0
+  end
+
   # TODO: Take 'net prize' into account in #downgrade_in_summer?()
   def downgrade_in_summer?
     age == 5 && grade.ordering >= Grade.find_by(abbr: '9').ordering
