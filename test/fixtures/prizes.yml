@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prize_pattern: one
+  place: 1
+  amount: 1
+
+two:
+  prize_pattern: two
+  place: 1
+  amount: 1
