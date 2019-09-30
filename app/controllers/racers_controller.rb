@@ -37,7 +37,7 @@ class RacersController < ApplicationController
 
   def create_result
     racer = Racer.find(params[:id])
-    attrs = {race_id: params[:race_id], age: racer.age}
+    attrs = {race_id: params[:race_id], age: racer.age, condition: racer.condition}
     last_result = racer.results.last
     if last_result
       %i[
