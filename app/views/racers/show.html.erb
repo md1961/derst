@@ -164,8 +164,8 @@
           </tr>
           <tr>
             <th>
-            <% (12 * 4).times do |w| -%>
-              <th><%= w % 4 + 1 %></th>
+            <% (1 .. 4).cycle(12) do |week| -%>
+              <th><%= week %></th>
             <% end -%>
           </tr>
         </thead>
@@ -173,21 +173,22 @@
           <% (3 .. @racer.age).each do |age| -%>
             <tr>
               <th><%= "#{age}歳" %></th>
-              <% (12 * 4).times do |w| -%>
-                <td class="centered"></td>
+              <% (1 .. 12).each do |month| -%>
+                <% (1 .. 4).each do |week| -%>
+                  <td class="centered">
+                    <%= @racer.weeklies.find_by(age: age, month: month, week: week)&.condition %>
+                  </td>
+                <% end -%>
               <% end -%>
             </tr>
           <% end -%>
         </tbody>
       </table>
 
-      <%= form_with url: weekly_racer_path(@racer), local: true do |f| -%>
-        <%= select_tag :condition, options_for_select(%w[- ◎ ○ ↑ △ ▽ × 太 重]) %>
-        <%= submit_tag %>
-      <% end -%>
+      <%= form_for_weekly(@racer) %>
 
       <div class="links">
-        <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'} %>
+        <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'}, tabindex: -1 %>
         <% if @prev_racer && @next_racer -%>
           <%= link_to "<(#{@prev_racer})", @prev_racer, id: 'to_prev_racer', tabindex: -1 %>
           <%= link_to "(#{@next_racer})>", @next_racer, id: 'to_next_racer', tabindex: -1 %>
