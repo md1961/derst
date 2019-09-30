@@ -1,6 +1,7 @@
 class Race < ApplicationRecord
   belongs_to :course
   belongs_to :grade
+  belongs_to :prize_pattern, optional: true
 
   enum surface: {turf: 0, dirt: 1}
   enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2}
