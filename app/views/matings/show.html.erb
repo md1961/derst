@@ -18,7 +18,8 @@
         </tr>
         <tr>
           <td colspan="4" class="inbreed_display">
-            <%= @mating.inbreed_display.gsub(', ', '<br>').html_safe %>
+            <% inbreed = @mating.inbreed_display.gsub(', ', '<br>').html_safe -%>
+            <%= inbreed.blank? ? '（アウトブリード）' : inbreed %>
           </td>
         </tr>
       </table>
