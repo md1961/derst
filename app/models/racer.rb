@@ -91,6 +91,14 @@ class Racer < ApplicationRecord
     update!(grade: Grade.find_by(abbr: '未'))
   end
 
+  def graze!
+    create_in_ranch!(month: ranch.month, week: ranch.week)
+  end
+
+  def ungraze!
+    in_ranch.destroy
+  end
+
   def retire!
     update!(is_active: false)
   end
