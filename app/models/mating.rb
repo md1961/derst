@@ -25,7 +25,7 @@ class Mating
       @mare_inbreeds.each_with_object(@sire.h_inbreeds) { |(father, generations), h|
         h[father].concat(generations) if h[father].size > 0
       }.reject { |father, generations|
-        generations.size <= 1
+        generations.size <= 1 || !@mare_inbreeds.has_key?(father)
       }.map { |father, generations|
         [father, generations.sort]
       }.to_h
