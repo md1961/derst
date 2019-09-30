@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_27_013948) do
+ActiveRecord::Schema.define(version: 2019_09_30_000428) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -117,6 +117,20 @@ ActiveRecord::Schema.define(version: 2019_09_27_013948) do
     t.index ["result_id"], name: "index_post_races_on_result_id"
   end
 
+  create_table "prize_patterns", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prizes", force: :cascade do |t|
+    t.integer "prize_pattern_id", null: false
+    t.integer "place", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prize_pattern_id"], name: "index_prizes_on_prize_pattern_id"
+  end
+
   create_table "racers", force: :cascade do |t|
     t.string "name", null: false
     t.integer "ranch_id", null: false
@@ -155,8 +169,10 @@ ActiveRecord::Schema.define(version: 2019_09_27_013948) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "surface", default: 0, null: false
+    t.integer "prize_pattern_id"
     t.index ["course_id"], name: "index_races_on_course_id"
     t.index ["grade_id"], name: "index_races_on_grade_id"
+    t.index ["prize_pattern_id"], name: "index_races_on_prize_pattern_id"
   end
 
   create_table "ranch_mares", force: :cascade do |t|
