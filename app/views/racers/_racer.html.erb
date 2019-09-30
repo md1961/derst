@@ -37,7 +37,11 @@
     <%= racer.results.empty? ? "" \
         : "#{@ranch.month_week - (racer.in_ranch ? racer.in_ranch.month_week : racer.results.last.race.month_week)}w" %>
   </td>
-  <td><%= form_for_weekly(racer) %></td>
+  <td>
+    <% if racer.stable -%>
+      <%= form_for_weekly(racer) %>
+    <% end -%>
+  </td>
   <td>
     <% label, path, clazz = racer.in_ranch ? ['厩', ungraze_racer_path(racer), 'in_ranch'] \
                                            : ['放',   graze_racer_path(racer), ''        ] -%>
