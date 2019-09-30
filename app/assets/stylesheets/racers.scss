@@ -8,6 +8,10 @@
     }
   }
 
+  td.in_ranch {
+    background-color: palegreen;
+  }
+
   td.emphasized {
     font-weight: bold;
   }
@@ -19,6 +23,11 @@
   input[type="number"] {
     width: 50px;
     text-align: right;
+  }
+
+  input.in_ranch {
+    color: green;
+    font-weight: bold;
   }
 }
 

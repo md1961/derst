@@ -8,7 +8,7 @@
   end
 -%>
 
-<td class="<%= racer.expecting_race? ? 'expecting_race' : '' %>">
+<td class="<%= racer.expecting_race? ? 'expecting_race' : racer.in_ranch ? 'in_ranch' : '' %>">
   <%= link_to_if @racer_id_to_edit.zero?, shortcut_show.upcase, racer,
                                           data: {shortcut: shortcut_show} %></td>
 <td>
@@ -33,8 +33,14 @@
     <%= link_to 'Cancel', @ranch, data: {shortcut: 'b'} %>
   </td>
 <% else -%>
-  <td class="numeric">
-    <%= racer.results.empty? ? "" : "#{@ranch.month_week - racer.results.last.race.month_week}w" %>
+  <td class="numeric <%= racer.in_ranch ? 'in_ranch' : '' %>">
+    <%= racer.results.empty? ? "" \
+        : "#{@ranch.month_week - (racer.in_ranch ? racer.in_ranch.month_week : racer.results.last.race.month_week)}w" %>
+  </td>
+  <td>
+    <% label, path, clazz = racer.in_ranch ? ['厩', ungraze_racer_path(racer), 'in_ranch'] \
+                                           : ['放',   graze_racer_path(racer), ''        ] -%>
+    <%= button_to label, path, method: :patch, class: clazz %>
   </td>
   <% racer.target_races.map(&:race).sort_by { |race|
        race.month_week.ordering_from(@ranch.month_week)

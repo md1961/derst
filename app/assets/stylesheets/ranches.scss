@@ -10,6 +10,10 @@
 
   .racers, .retired_racers {
     margin-top: 10px;
+
+    input[type="submit"] {
+      height: 18px;
+    }
   }
 
   .links {
