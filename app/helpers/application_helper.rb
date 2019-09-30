@@ -113,10 +113,13 @@ module ApplicationHelper
 
     button_to_target = nil
     if displays_target_button
-      path, method, clazz = racer.target?(race) \
-          ? [target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
-          : [target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
-      button_to_target = content_tag(:td, button_to(' ', path, method: method, class: clazz, tabindex: -1))
+      is_target = racer.target?(race)
+      label, path, method, clazz = race.month_week == racer.ranch.month_week \
+          ? ['E', create_result_racer_path(racer, race_id: race.id)       , :post  , is_target ? 'target' : ''] \
+        : is_target \
+          ? [' ' ,target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
+          : [' ' ,target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
+      button_to_target = content_tag(:td, button_to(label, path, method: method, class: clazz, tabindex: -1), class: 'centered')
     end
     safe_join([
       content_tag(:td, course, class: transport),
