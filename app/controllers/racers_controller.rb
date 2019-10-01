@@ -7,7 +7,7 @@ class RacersController < ApplicationController
     @includes_overgrade = params[:includes_overgrade] == 'true'
     @weeks_for_race_candidates = 12
 
-    racers = Racer.stabled.older_first
+    racers = Racer.in_stable.older_first
     index = racers.find_index(@racer)
     @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index
   end
