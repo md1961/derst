@@ -37,16 +37,18 @@
     <%= racer.results.empty? ? "" \
         : "#{@ranch.month_week - (racer.in_ranch ? racer.in_ranch.month_week : racer.results.last.race.month_week)}w" %>
   </td>
-  <td>
-    <% if racer.stable -%>
-      <%= form_for_weekly(racer) %>
-    <% end -%>
-  </td>
-  <td>
-    <% label, path, clazz = racer.in_ranch ? ['厩', ungraze_racer_path(racer), 'in_ranch'] \
-                                           : ['放',   graze_racer_path(racer), ''        ] -%>
-    <%= button_to label, path, method: :patch, class: clazz, tabindex: -1 %>
-  </td>
+  <% unless racer.stable -%>
+    <td colspan="2">
+  <% else -%>
+    <td>
+        <%= form_for_weekly(racer) %>
+    </td>
+    <td>
+      <% label, path, clazz = racer.in_ranch ? ['厩', ungraze_racer_path(racer), 'in_ranch'] \
+                                             : ['放',   graze_racer_path(racer), ''        ] -%>
+      <%= button_to label, path, method: :patch, class: clazz, tabindex: -1 %>
+    </td>
+  <% end -%>
   <% racer.target_races.map(&:race).sort_by { |race|
        race.month_week.ordering_from(@ranch.month_week)
      }.each do |race| -%>
