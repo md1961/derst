@@ -69,9 +69,13 @@ class Racer < ApplicationRecord
     results.joins(:race).where(age: age, 'races.month': month, 'races.week': week).count > 0
   end
 
-  # TODO: Take 'net prize' into account in #downgrade_in_summer?()
   def downgrade_in_summer?
-    age == 5 && grade.ordering >= Grade.find_by(abbr: '9').ordering
+    age == 5 && ranch.month <= 7 \
+      && (
+           (grade.abbr == 'OP' && net_prize <= 3200) \
+        || (grade.abbr == '16' && net_prize <= 1800) \
+        || (grade.abbr ==  '9' && net_prize <= 1000)
+      )
   end
 
   def condition
