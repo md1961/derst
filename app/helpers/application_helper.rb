@@ -49,7 +49,7 @@ module ApplicationHelper
   def father_in_bloodline(horse, generation, number)
     father = horse.bloodline_father(generation, number)
     if father
-      items = if @mating
+      items = if @mare || @mating
                 [father.name_jp]
               else
                 [safe_join(
