@@ -101,10 +101,19 @@
   }
 
   #race_candidates {
-    margin-left: 20px;
+    position: fixed;
+    right: 0;
+    top: 50px;
+    bottom: 0;
+    overflow-y: auto;
+    width: 320px;
 
     .links {
       margin-bottom: 5px;
+    }
+
+    td {
+      white-space: nowrap;
     }
 
     td.same_area {
