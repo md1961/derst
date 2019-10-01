@@ -24,6 +24,10 @@ class Racer < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  def self.num_in_ranch
+    active.count - in_stable.count
+  end
+
   def grade
     @grade ||= grade_given || grade_from_net_prize
   end
