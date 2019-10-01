@@ -1,0 +1,18 @@
+<div class="races_weights">
+  <% @results_by_sex.each do |sex, results| -%>
+    <table class="table_base">
+      <caption><%= sex %></caption>
+      <tbody>
+        <% results.each do |result| -%>
+          <% race  = result.race  -%>
+          <tr>
+            <td><%= result.age %></td>
+            <td class="numeric"><%= race.month %></td>
+            <td class="centered"><%= race.grade.abbr %></td>
+            <td><%= result.load %></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  <% end -%>
+</div>

@@ -26,7 +26,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :races, only: %i[index]
+  resources :races, only: %i[index] do
+    collection do
+      get :weights
+    end
+  end
 
   resources :results, only: %i[edit update destroy]
 
