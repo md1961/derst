@@ -107,13 +107,6 @@ class Racer < ApplicationRecord
       }.to_h.fetch_values(1, 2, 3) { 0 }
   end
 
-  def change_grade_to_no_win!
-    return unless grade&.new_racer?
-    return if results.empty?
-    return if results.first.race.month == ranch.month
-    update!(grade: Grade.find_by(abbr: '未'))
-  end
-
   def create_mare
     return nil unless female?
     Mare.create!(name: name, father: father, lineage: father.trait.lineage).tap { |mare|
