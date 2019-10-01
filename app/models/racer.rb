@@ -114,6 +114,15 @@ class Racer < ApplicationRecord
     update!(grade: Grade.find_by(abbr: '未'))
   end
 
+  def create_mare
+    return nil unless female?
+    Mare.create!(name: name, father: father, lineage: father.trait.lineage).tap { |mare|
+      mare.maternal_lines.create!(generation: 2, father: mother.father)
+      mare.maternal_lines.create!(generation: 3, father: mother.bloodline_father(2, 2))
+      mare.maternal_lines.create!(generation: 4, father: mother.bloodline_father(3, 4))
+    }
+  end
+
   def graze!
     create_in_ranch!(month: ranch.month, week: ranch.week)
   end
