@@ -32,9 +32,15 @@
 }
 
 .racers_show {
+  margin-top: 60px;
 
   .name {
-    margin-top: 10px;
+    position: fixed;
+    top: 34px;
+    left: 0;
+    right: 0;
+    padding: 4px 8px;
+    background-color: white;
   }
 
   .tables {
