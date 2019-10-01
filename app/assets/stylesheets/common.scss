@@ -22,6 +22,21 @@ form .submit {
     form {
       margin-left: 10px;
     }
+
+    #vacancy_in_ranch {
+      margin-left: 20px;
+
+      &.none {
+        color: red;
+        background-color: yellow;
+        font-weight: bold;
+      }
+
+      &.one {
+        color: red;
+        background-color: yellow;
+      }
+    }
   }
 
   .notice {
