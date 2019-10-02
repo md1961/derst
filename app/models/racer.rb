@@ -20,6 +20,10 @@ class Racer < ApplicationRecord
   scope :in_stable, -> {
     active.where.not(stable: nil).eager_load(:in_ranch).where('in_ranches.racer_id': nil)
   }
+  scope :in_ranch, -> {
+    relation = active.eager_load(:in_ranch)
+    relation.where("in_ranches.racer_id > 0").or(relation.where(stable: nil))
+  }
   scope :older_first, -> { order(:year_birth) }
 
   validates :name, presence: true, uniqueness: true
