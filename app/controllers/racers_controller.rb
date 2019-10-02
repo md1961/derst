@@ -47,7 +47,9 @@ class RacersController < ApplicationController
         attrs[name] = last_result.send(name)
       end
     end
-    racer.results.create(attrs)
+    racer.results.create(attrs).tap { |result|
+      result.set_load_from_racer_and_race!
+    }
     redirect_to racer
   end
 
