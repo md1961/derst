@@ -131,7 +131,7 @@ module ApplicationHelper
 
   def form_for_weekly(racer)
     form_with url: weekly_racer_path(racer), local: true do
-      concat select_tag :condition, options_for_select(%w[- ◎ ○ ↑ △ ▽ × 太 重], racer.condition)
+      concat select_tag :condition, options_for_select(%w[- ◎ ○ ↑ △ ▽ × 休 太 重], racer.condition)
       concat submit_tag :enter, hidden: 'hidden'
     end
   end
