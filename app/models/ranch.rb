@@ -3,6 +3,10 @@ class Ranch < ApplicationRecord
   has_many :mares, through: :ranch_mares
   has_many :racers
 
+  def in_week_of?(month, week)
+    self.month == month && self.week == week
+  end
+
   def month_week
     MonthWeek.new(month, week)
   end
