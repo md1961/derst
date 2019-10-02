@@ -12,8 +12,12 @@
     margin-left: 20px;
   }
 
-  #header_interesting {
+  #header_nicks, #header_interesting {
     cursor: pointer;
+
+    &.nicks_only, &.interesting_only {
+      background-color: cyan;
+    }
   }
 
   td:not(.allows_wrap) {
