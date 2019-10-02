@@ -1,15 +1,26 @@
 <div class="racers_show">
   <div class="name">
     <%= @racer.name %>
+    <table class="table_base">
+      <tr>
+        <th>体重</th>
+        <td class="numeric"><%= "#{@racer.weight_best}kg" %></td>
+        <th>厩舎</th>
+        <td class="centered" title="<%= @racer.stable&.jockeys&.join('　') %>">
+          <%= @racer.stable %>
+        </td>
+        <th>主戦騎手</th>
+        <td class="centered">
+          <%= @racer.stable&.jockeys&.join('、') %>
+        </td>
+      </tr>
+    </table>
   </div>
   <div class="tables">
     <div id="traits_and_results">
       <div id="traits">
         <table class="table_base">
           <tr>
-            <th>体重</th>
-            <td class="numeric"><%= "#{@racer.weight_best}kg" %></td>
-          </tr>
             <th>父</th>
             <% father = @racer.father -%>
             <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
@@ -47,18 +58,6 @@
             <tr>
               <th>３歳時</th>
               <td><%= @racer.comment_age3 %></td>
-            </tr>
-            <tr>
-              <th>厩舎</th>
-              <td class="centered" title="<%= @racer.stable&.jockeys&.join('　') %>">
-                <%= @racer.stable %>
-              </td>
-            </tr>
-            <tr>
-              <th>主戦騎手</th>
-              <td class="centered">
-                <%= @racer.stable&.jockeys&.join('、') %>
-              </td>
             </tr>
           </table>
 
