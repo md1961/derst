@@ -61,6 +61,10 @@ class Racer < ApplicationRecord
     Grade.find_by(abbr: abbr)
   end
 
+  def in_stable?
+    is_active && stable && !in_ranch
+  end
+
   def expecting_race?
     !results.empty? && results.last.place.blank?
   end
