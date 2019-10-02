@@ -64,6 +64,7 @@ class Mating
 
   def write_cache
     return unless @mare
+    return if read_cache
     mare_inbreeds = @mare.h_inbreeds
     File.open(filename_for_cache, 'w') do |f|
       f.write(
