@@ -100,13 +100,14 @@ class Mating
     end
 
     def read_cache
-      return unless @mare
-      return unless File.exists?(filename_for_cache)
+      return false unless @mare
+      return false unless File.exists?(filename_for_cache)
       @@h_inbreeds_cache[@mare.id] ||= File.open(filename_for_cache) { |f|
         contents = f.read
-        return if contents.blank?
+        return false if contents.blank?
         JSON.parse(contents)
       }
+      true
     end
 
     def filename_for_cache
