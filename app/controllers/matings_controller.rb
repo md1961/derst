@@ -7,6 +7,7 @@ class MatingsController < ApplicationController
               .breedable.where(@sire_filter.conditions)
               .order(fee: :asc, name_jp: :desc)
     @displays_inbreeds = params[:displays_inbreeds] == 'true'
+    Mating.new(@mare).write_cache if @displays_inbreeds
 
     @ranch = Ranch.find_by(id: params[:ranch_id])
   end
