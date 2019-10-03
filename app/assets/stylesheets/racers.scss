@@ -38,7 +38,7 @@
 .racers_show {
   margin-top: 60px;
 
-  .name {
+  .name_and_traits {
     position: fixed;
     top: 30px;
     left: 0;
@@ -56,12 +56,11 @@
     }
   }
 
-  .tables {
-    display: flex;
-    margin-top: 10px;
+  .results_and_conditions {
+    margin-top: 180px;
   }
 
-  #traits {
+  #racers_traits {
     display: flex;
 
     table {

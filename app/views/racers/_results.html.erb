@@ -1,0 +1,72 @@
+<table id="results" class="table_base">
+  <thead>
+    <th colspan="4">
+    <% result_attr_names.each do |name| -%>
+      <th><%= Result.human_attribute_name(name) %></th>
+    <% end -%>
+    <th>
+  </thead>
+  <tbody>
+    <% @racer.results.each do |result| -%>
+      <% race = result.race -%>
+      <tr>
+        <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
+        <td><%= race.course %></td>
+        <td><%= race_name_display(race) %></td>
+        <td><%= race_distance_display(race) %></td>
+        <% if result.place.nil? || result.id == @result_id_to_edit -%>
+          <%= form_with model: result, local: true do |f| %>
+            <%= render partial: 'result', locals: {result: result, f: f} %>
+          <tr>
+            <td colspan="22" class="numeric"><%= f.submit %></td>
+          <% end -%>
+            <td colspan="2" class="numeric">
+              <%= link_to 'Cancel', @racer %>
+            </td>
+            <td class="numeric">
+              <%= button_to '削除', result, method: :delete, class: 'destroy', tabindex: -1 %>
+            </td>
+          </tr>
+        <% else -%>
+          <%= render partial: 'result', locals: {result: result, f: nil} %>
+          <td><%= link_to 'e', edit_result_path(result), tabindex: -1 %></td>
+        <% end -%>
+      </tr>
+      <% if post_race = result.post_race -%>
+        <% if @post_race -%>
+          <td colspan="24">
+            <%= render partial: 'post_race_form', locals: {post_race: @post_race} %>
+          </td>
+          <td colspan="2">
+            <%= button_to '削除', @post_race, method: :delete, class: 'destroy' %>
+          </td>
+        <% else -%>
+          <td colspan="25" class="centered">
+            <%= post_race.comment %>
+          </td>
+          <td><%= link_to 'e', edit_post_race_path(post_race), tabindex: -1 %></td>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+
+    <% if @racer.is_active -%>
+      <tr>
+        <% if @racer.expecting_race? -%>
+          <td colspan="16">
+        <% else -%>
+          <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
+            <td class="numeric"><%= @racer.ranch.month_week %></td>
+            <td colspan="15">
+              <%= select_tag :race_id, race_options_for_select_for(@racer) %>
+              <%= f.submit %>
+            </td>
+          <% end -%>
+        <% end -%>
+
+        <td colspan="10">
+          <%= render partial: 'post_race_form', locals: {post_race: PostRace.new} %>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
