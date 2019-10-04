@@ -42,7 +42,11 @@ module RanchesHelper
     elsif name == :stable
       f.select :stable_id, [['-', nil]] + Stable.pluck(:name, :id)
     elsif name.to_s.starts_with?('weight_')
-      f.number_field name, step: 2
+      safe_join([
+        name == :weight_lean ? content_tag(:span, '<', class: 'lean_to_best button') : nil,
+        f.number_field(name, step: 2),
+        name == :weight_fat  ? content_tag(:span, '>', class: 'fat_to_best  button') : nil
+      ].compact, "\n")
     else
       f.text_field name
     end
