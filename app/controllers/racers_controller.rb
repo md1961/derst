@@ -58,7 +58,8 @@ class RacersController < ApplicationController
     condition = params[:condition]
     condition = nil if condition == '-'
     racer.condition = condition
-    redirect_to racer
+    ranch = Ranch.find_by(id: params[:ranch_id])
+    redirect_to ranch || racer
   end
 
   def graze
