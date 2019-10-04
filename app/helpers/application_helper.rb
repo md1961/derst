@@ -81,10 +81,13 @@ module ApplicationHelper
 
   def race_name_display(race)
     addition = ' ' + race_addition_display(race)
-    if race.name
-      "#{race.name}#{addition}(#{race.grade.abbr})"
-    else
-      "#{race_age_display(race.age)}#{race.grade}#{addition}"
+    name = race.abbr || race.name
+    content_tag :span, class: 'race_name' do
+      (name ?
+        "#{name}#{addition}(#{race.grade.abbr})"
+      :
+        "#{race_age_display(race.age)}#{race.grade}#{addition}"
+      ).html_safe
     end
   end
 
@@ -93,11 +96,16 @@ module ApplicationHelper
   end
 
   def race_limitation_display(race)
-    race.female_only? ? '牝' : race.domestic_only? ? '父' : nil
+      race.female_only?   ? content_tag(:span, '牝', class: 'female_only') \
+    : race.domestic_only? ? content_tag(:span, '父', class: 'domestic_only') : nil
   end
 
   def race_addition_display(race)
-    ["", race_limitation_display(race), race.handicap? ? '[H]' : nil].compact.join(' ')
+    [
+      "",
+      race_limitation_display(race),
+      race.handicap? ? content_tag(:span, '[H]', class: 'handicap') : nil
+    ].compact.join(' ')
   end
 
   def race_display(race, racer, displays_target_button: false)
@@ -124,8 +132,8 @@ module ApplicationHelper
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target,
-      content_tag(:td, a.join(' '), class: race.grade.high_stake? ? 'high_stake' \
-                                         : race.grade == racer.grade ? '' : 'overgrade'),
+      content_tag(:td, safe_join(a, ' '), class: race.grade.high_stake? ? 'high_stake' \
+                                               : race.grade == racer.grade ? '' : 'overgrade'),
     ].compact)
   end
 

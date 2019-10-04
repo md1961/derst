@@ -62,3 +62,18 @@ form .submit {
     }
   }
 }
+
+.race_name {
+
+  .female_only {
+    color: red;
+  }
+
+  .domestic_only {
+    color: green;
+  }
+
+  .handicap {
+    background: lightblue;
+  }
+}
