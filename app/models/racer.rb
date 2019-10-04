@@ -86,6 +86,10 @@ class Racer < ApplicationRecord
       )
   end
 
+  def mare
+    Mare.find_by(name: name)
+  end
+
   def condition
     weeklies.find_by(age: age, month: ranch.month, week: ranch.week)&.condition
   end
