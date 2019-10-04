@@ -73,6 +73,12 @@ class RacersController < ApplicationController
     redirect_to racer.ranch
   end
 
+  def create_mare
+    racer = Racer.find(params[:id])
+    racer.create_mare
+    redirect_to racer
+  end
+
   def retire
     racer = Racer.find(params[:id])
     ranch = racer.ranch

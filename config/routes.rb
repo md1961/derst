@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :racers, only: %i[show new create update] do
     member do
-      post :create_result, :weekly
+      post :create_result, :weekly, :create_mare
       patch :graze, :ungraze, :retire
     end
   end
