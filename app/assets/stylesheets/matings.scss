@@ -12,10 +12,10 @@
     margin-left: 20px;
   }
 
-  #header_nicks, #header_interesting {
+  #header_score, #header_nicks, #header_interesting {
     cursor: pointer;
 
-    &.nicks_only, &.interesting_only {
+    &.excellent_score_only, &.nicks_only, &.interesting_only {
       background-color: cyan;
     }
   }
