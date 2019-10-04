@@ -59,6 +59,9 @@
 
     <%= link_to '配', mating_path(@racer.mother, sire_id: @racer.father.id),
                         target: '_blank', tabindex: -1 %>
+    <% if mare = @racer.mare -%>
+      <%= link_to '繁', matings_path(mare_id: mare), target: '_blank', tabindex: -1 %>
+    <% end -%>
   </div>
 
   <table class="table_base">
