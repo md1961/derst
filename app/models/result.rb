@@ -14,35 +14,20 @@ class Result < ApplicationRecord
     return unless race&.age_constant?
     age = racer.age
     month = racer.ranch.month
-    value = if race.grade.abbr == '新'
+    value = if age <= 4
               53
-            elsif race.grade.abbr == '未'
-              if racer.female?
-                53
-              elsif age == 3
-                54
-              else
-                55
-              end
-            elsif racer.female?
-              if age <= 4
-                53
-              elsif age == 5 and month <= 6
-                54
-              else
-                55
-              end
+            elsif (age == 5 && month >= 6) || (age == 6 && month <= 8)
+              55
             else
-              if age == 3
-                54
-              elsif age == 4
-                55
-              elsif (age == 5 and month <= 6) || age >= 7
-                56
-              else
-                57
-              end
+              54
             end
+    if racer.male?
+      value += if age == 3
+                 month <= 10 ? 0 : 1
+               else
+                 2
+               end
+    end
     update!(load: value)
   end
 end
