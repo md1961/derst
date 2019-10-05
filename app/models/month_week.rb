@@ -12,6 +12,10 @@ class MonthWeek
     [month, week] == [1, 1]
   end
 
+  def last_of_year?
+    [month, week] == [12, 4]
+  end
+
   def -(other)
     raise "Argument must be a MonthWeek (#{other.class} given)" unless other.is_a?(self.class)
     if month == other.month
@@ -33,6 +37,19 @@ class MonthWeek
       new_month += 1
       if new_month > 12
         new_month = 1
+      end
+    end
+    self.class.new(new_month, new_week)
+  end
+
+  def prev
+    new_month = month
+    new_week = week - 1
+    if new_week < 1
+      new_week = 4
+      new_month -= 1
+      if new_month < 1
+        new_month = 12
       end
     end
     self.class.new(new_month, new_week)
