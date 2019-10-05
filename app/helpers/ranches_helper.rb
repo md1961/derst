@@ -34,7 +34,8 @@ module RanchesHelper
           || (racer.age != 2 && name == :comment_age2) \
           || (racer.age != 3 && name == :comment_age3) \
           || ((!racer.results.empty? || racer.age < 3) && name == :stable) \
-          || (!racer.stable && name.to_s.starts_with?('weight_'))
+          || (!racer.stable && name.to_s.starts_with?('weight_')) \
+          || (name == :grade && true)
       racer.send(name)
     elsif name == :grade
       f.select :grade_given_id, [['-', nil]] + Grade.where("name NOT LIKE 'G%'").pluck(:name, :id),
@@ -44,7 +45,7 @@ module RanchesHelper
     elsif name.to_s.starts_with?('weight_')
       safe_join([
         name == :weight_lean ? content_tag(:span, '<', class: 'lean_to_best button') : nil,
-        f.number_field(name, step: 2),
+        f.number_field(name, step: 2, autofocus: name == :weight_fat),
         name == :weight_fat  ? content_tag(:span, '>', class: 'fat_to_best  button') : nil
       ].compact, "\n")
     else
