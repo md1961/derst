@@ -140,7 +140,10 @@ module ApplicationHelper
   def form_for_weekly(racer)
     return nil unless racer.in_stable?
     form_with url: weekly_racer_path(racer), local: true do
-      concat select_tag :condition, options_for_select(%w[- ◎ ○ ↑ △ ▽ × ↓ 休 太 重], racer.condition),
+      concat select_tag :condition, options_for_select(
+                                      %w[- ◎ ○ ↑ △ ▽ × ↓ 休 太 重],
+                                      racer.condition || racer.last_condition
+                                    ),
                                     class: racer.condition.nil? ? 'no_condition': ''
       concat submit_tag :enter, hidden: 'hidden'
       concat hidden_field_tag :ranch_id, @ranch&.id
