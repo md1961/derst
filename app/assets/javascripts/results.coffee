@@ -1,5 +1,5 @@
 $ ->
-  if $('#result_comment_paddock').length > 0
+  if $('#results').hasClass('ready_for_race')
     if $('#result_comment_paddock').val() == ''
       $('#result_comment_paddock').focus()
     else if $('#result_surface_condition').val() == '－'

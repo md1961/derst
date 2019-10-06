@@ -1,4 +1,4 @@
-<table id="results" class="table_base">
+<table id="results" class="table_base <%= Racer.in_stable.map(&:condition).all? ? 'ready_for_race' :'' %>">
   <thead>
     <th colspan="4">
     <% result_attr_names.each do |name| -%>
