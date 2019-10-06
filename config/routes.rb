@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :matings, only: %i[index show new create]
 
-  resource :mating_list do
+  resource :mating_list, only: %i[show] do
     get :delete
     get :prev, :next
   end
