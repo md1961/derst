@@ -100,10 +100,13 @@ class Racer < ApplicationRecord
 
   def last_condition
     month_week = ranch.month_week.prev
+    _age = age - (month_week.last_of_year? ? 1 : 0)
+    month, week = month_week.to_a
+    return '休' if race_in?(_age, month, week)
     weeklies.find_by(
-      age: age - (month_week.last_of_year? ? 1 : 0),
-      month: month_week.month,
-      week: month_week.week
+      age: _age,
+      month: month,
+      week: week
     )&.condition
   end
 
