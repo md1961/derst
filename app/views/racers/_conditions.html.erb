@@ -3,7 +3,9 @@
     <tr>
       <th>
       <% (1 .. 12).each do |month| -%>
-        <th colspan="4" class="centered"><%= "#{month}月" %></th>
+        <th colspan="4" class="centered <%= month == @racer.ranch.month ? 'current' : '' %>">
+          <%= "#{month}月" %>
+        </th>
       <% end -%>
     </tr>
     <tr>

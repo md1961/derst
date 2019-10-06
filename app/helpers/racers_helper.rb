@@ -88,7 +88,7 @@ module RacersHelper
     when :position
       %w[－ 自在 逃げ 先行 中団 追込]
     when :condition
-      %w[－ ◎ ↑ 〇 △ ▽]
+      %w[－ ◎ ↑ ◉  ○ △ ▽]
     else
       %w[－ 任せ 逃げ 先行 中団 追込]
     end
