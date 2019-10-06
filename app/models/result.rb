@@ -12,22 +12,6 @@ class Result < ApplicationRecord
   def set_load_from_racer_and_race!
     return unless racer
     return unless race&.age_constant?
-    age = racer.age
-    month = racer.ranch.month
-    value = if age <= 4
-              53
-            elsif (age == 5 && month >= 6) || (age == 6 && month <= 8)
-              55
-            else
-              54
-            end
-    if racer.male?
-      value += if age == 3
-                 month <= 10 ? 0 : 1
-               else
-                 2
-               end
-    end
-    update!(load: value)
+    update!(load: race.load_for(racer))
   end
 end

@@ -112,6 +112,25 @@ class Race < ApplicationRecord
     prize < 1200 ? 400 : (prize / 2).floor(-1)
   end
 
+  def load_for(racer)
+    age = racer.age
+    value = if age <= 4
+              53
+            elsif (age == 5 && month >= 6) || (age == 6 && month <= 8)
+              55
+            else
+              54
+            end
+    if racer.male?
+      value += if age == 3
+                 month <= 10 ? 0 : 1
+               else
+                 2
+               end
+    end
+    value
+  end
+
   def month_week
     MonthWeek.new(month, week)
   end
