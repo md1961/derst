@@ -5,7 +5,7 @@
     <%= date_display(ranch) %>
     <%= button_to_next_week(@ranch || @racer) %>
 
-    <% max_racers = (@ranch || @racer.ranch).max_racers
+    <% max_racers = ranch.max_racers
        vacancy = max_racers - Racer.num_in_ranch -%>
     <span id="vacancy_in_ranch" class="<%= vacancy.zero? ? 'none' : vacancy == 1 ? 'one' : '' %>">
       <%= "空き #{vacancy} / #{max_racers}" %>

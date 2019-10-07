@@ -140,7 +140,8 @@ module ApplicationHelper
   def button_to_graze(racer)
     label, path, clazz = racer.in_ranch ? ['厩', ungraze_racer_path(racer), 'in_ranch'] \
                                         : ['放',   graze_racer_path(racer), ''        ]
-    button_to label, path, method: :patch, class: clazz, tabindex: -1
+    disabled = label == '放' && Racer.num_in_ranch == (@ranch || racer.ranch).max_racers
+    button_to label, path, method: :patch, disabled: disabled, class: clazz, tabindex: -1
   end
 
   def form_for_weekly(racer)
