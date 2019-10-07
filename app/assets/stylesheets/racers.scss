@@ -1,3 +1,8 @@
+input.in_ranch {
+  color: green;
+  font-weight: bold;
+}
+
 .racers_racers {
 
   td.expecting_race {
@@ -23,11 +28,6 @@
   input[type="number"] {
     width: 50px;
     text-align: right;
-  }
-
-  input.in_ranch {
-    color: green;
-    font-weight: bold;
   }
 }
 

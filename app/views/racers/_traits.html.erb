@@ -68,24 +68,30 @@
     </div>
   </div>
 
-  <table class="table_base">
-    <tr>
-      <th>
-      <td class="centered">
-        <%= "#{@racer.age}歳 #{@racer.grade}" %>
-      </td>
-    </tr>
-    <tr>
-      <th>本賞金</th>
-      <td class="numeric">
-        <%= "#{@racer.net_prize}万円" %>
-      </td>
-    </tr>
-    <tr>
-      <th>
-      <td class="centered">
-        <%= @racer.place_records.join('-') %>
-      </td>
-    </tr>
-  </table>
+  <div>
+    <table class="table_base">
+      <tr>
+        <th>
+        <td class="centered">
+          <%= "#{@racer.age}歳 #{@racer.grade}" %>
+        </td>
+      </tr>
+      <tr>
+        <th>本賞金</th>
+        <td class="numeric">
+          <%= "#{@racer.net_prize}万円" %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+        <td class="centered">
+          <%= @racer.place_records.join('-') %>
+        </td>
+      </tr>
+    </table>
+
+    <div class="links">
+      <%= button_to_graze(@racer) %>
+    </div>
+  </div>
 </div>

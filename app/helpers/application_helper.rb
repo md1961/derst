@@ -138,9 +138,9 @@ module ApplicationHelper
   end
 
   def button_to_graze(racer)
-    label, path, clazz = racer.in_ranch ? ['厩', ungraze_racer_path(racer), 'in_ranch'] \
-                                        : ['放',   graze_racer_path(racer), ''        ]
-    disabled = label == '放' && Racer.num_in_ranch == (@ranch || racer.ranch).max_racers
+    label, path, clazz = racer.in_ranch ? ['入厩', ungraze_racer_path(racer), 'in_ranch'] \
+                                        : ['放牧',   graze_racer_path(racer), ''        ]
+    disabled = label == '放牧' && Racer.num_in_ranch == (@ranch || racer.ranch).max_racers
     button_to label, path, method: :patch, disabled: disabled, class: clazz, tabindex: -1
   end
 
