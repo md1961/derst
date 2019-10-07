@@ -45,9 +45,7 @@
         <%= form_for_weekly(racer) %>
     </td>
     <td>
-      <% label, path, clazz = racer.in_ranch ? ['厩', ungraze_racer_path(racer), 'in_ranch'] \
-                                             : ['放',   graze_racer_path(racer), ''        ] -%>
-      <%= button_to label, path, method: :patch, class: clazz, tabindex: -1 %>
+      <%= button_to_graze(racer) %>
     </td>
   <% end -%>
   <% racer.target_races.map(&:race).sort_by { |race|
