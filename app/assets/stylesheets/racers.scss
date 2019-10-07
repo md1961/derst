@@ -77,6 +77,10 @@
   #results {
     margin-top: 10px;
 
+    th {
+      background-color: lightgray;
+    }
+
     td.num_racers, td.num_frame, td.rank_odds, td.odds, td.weight {
       text-align: right;
     }

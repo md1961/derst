@@ -1,13 +1,14 @@
+<% rows_between_headers = 20 -%>
+
 <table id="results" class="table_base <%= Racer.in_stable.map(&:condition).all? ? 'ready_for_race' :'' %>">
   <thead>
-    <th colspan="4">
-    <% result_attr_names.each do |name| -%>
-      <th><%= Result.human_attribute_name(name) %></th>
-    <% end -%>
-    <th>
+    <%= render 'results_header' %>
   </thead>
   <tbody>
-    <% @racer.results.each do |result| -%>
+    <% @racer.results.each_with_index do |result, index| -%>
+      <% if index > 0 && index % rows_between_headers == 0 -%>
+        <%= render 'results_header' %>
+      <% end -%>
       <% race = result.race -%>
       <tr>
         <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
