@@ -113,6 +113,7 @@ class Race < ApplicationRecord
   end
 
   def load_for(racer)
+    return nil unless age_constant?
     age = racer.age
     value = if age <= 4
               53

@@ -10,8 +10,8 @@ class Result < ApplicationRecord
   end
 
   def set_load_from_racer_and_race!
-    return unless racer
-    return unless race&.age_constant?
-    update!(load: race.load_for(racer))
+    value = race.load_for(racer)
+    return unless value
+    update!(load: value)
   end
 end
