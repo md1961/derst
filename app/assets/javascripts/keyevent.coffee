@@ -2,7 +2,7 @@ $ ->
   $(window).on 'keypress', (e) ->
     if $('input[type="text"]').is(':focus') || e.ctrlKey
       return
-    key = String.fromCharCode(e.which).toLowerCase()
+    key = String.fromCharCode(e.which)
 
     if $('.matings_show').length > 0 && (key == 'j' || key == 'k')
       if key == 'k'
