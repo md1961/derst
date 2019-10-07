@@ -140,7 +140,8 @@ module ApplicationHelper
   def button_to_graze(racer)
     label, path, clazz = racer.in_ranch ? ['入厩', ungraze_racer_path(racer), 'in_ranch'] \
                                         : ['放牧',   graze_racer_path(racer), ''        ]
-    disabled = label == '放牧' && Racer.num_in_ranch == (@ranch || racer.ranch).max_racers
+    disabled = @racer_id_to_edit.to_i > 0 \
+            || label == '放牧' && Racer.num_in_ranch == (@ranch || racer.ranch).max_racers
     button_to label, path, method: :patch, disabled: disabled, class: clazz, tabindex: -1
   end
 
@@ -151,6 +152,7 @@ module ApplicationHelper
                                       %w[- ◎ ↑ ◉  ○ △ ▽ × ↓ 休 太 重],
                                       racer.condition || racer.last_condition
                                     ),
+                                    disabled: @racer_id_to_edit.to_i > 0,
                                     class: racer.condition.nil? ? 'no_condition': ''
       concat submit_tag :enter, hidden: 'hidden'
       concat hidden_field_tag :ranch_id, @ranch&.id
