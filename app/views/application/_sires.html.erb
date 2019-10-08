@@ -73,15 +73,15 @@
              is_nicks       = mating.nicks?
              is_interesting = mating.interesting?
              score          = mating.score -%>
-           <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>">
-             <%= score %>
-           </td>
-           <td class="centered <%= is_nicks ? 'nicks' : '' %>">
-             <%= is_nicks ? '〇' : '' %>
-           </td>
-           <td class="centered <%= is_interesting ? 'interesting' : '' %>">
-             <%= is_interesting ? '〇' : '' %>
-           </td>
+          <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>">
+            <%= score %>
+          </td>
+          <td class="centered <%= is_nicks ? 'nicks' : '' %>">
+            <%= is_nicks ? '〇' : '' %>
+          </td>
+          <td class="centered <%= is_interesting ? 'interesting' : '' %>">
+            <%= is_interesting ? '〇' : '' %>
+          </td>
           <td class="allows_wrap"><%= mating.inbreed_display %></td>
         <% end -%>
       </tr>
