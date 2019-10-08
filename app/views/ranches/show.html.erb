@@ -19,8 +19,8 @@
     <% end -%>
   </div>
 
-  <div class="retired_racers">
-    <span id="show_retired_racers" class="button">[引退馬]</span>
+  <div class="all_racers">
+    <span id="show_all_racers" class="button">[全競争馬]</span>
     <table class="table_base" hidden>
       <thead>
         <tr>
@@ -40,8 +40,15 @@
         </tr>
       </thead>
       <tbody>
-        <% Racer.retired.order(:year_birth).each.with_index(1) do |racer, index| -%>
+        <% racers = Racer.retired.order(:year_birth) \
+                  + [nil] \
+                  + Racer.active .order(:year_birth) -%>
+        <% racers.each.with_index(1) do |racer, index| -%>
           <tr>
+            <% unless racer -%>
+              <td colspan="14">&nbsp;</td>
+              <% next -%>
+            <% end -%>
             <td class="numeric"><%= link_to index, racer %></td>
             <td><%= racer_name_display(racer, nil) %></td>
             <td><%= racer_sex_display(racer) %></td>
@@ -64,7 +71,7 @@
               <%= inbreed.sub(/, [^.].*/, ', ...') %>
             </td>
             <td>
-              <%= "#{racer.results.last.age}歳 #{racer.grade}" %>
+              <%= "#{racer.results.last.age}歳 #{racer.grade}" if racer.results.last %>
             </td>
             <% racer_attr_names(is_active: false).each do |name| -%>
               <%= racer_attr_display_in_td(racer, name, nil) %>

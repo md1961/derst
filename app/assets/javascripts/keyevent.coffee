@@ -4,8 +4,8 @@ $ ->
       return
     key = String.fromCharCode(e.which)
 
-    if $('#show_retired_racers').length > 0 && key == 'r'
-      $('#show_retired_racers')[0].click()
+    if $('#show_all_racers').length > 0 && key == 'z'
+      $('#show_all_racers')[0].click()
       return
 
     if $('.matings_show').length > 0 && (key == 'j' || key == 'k')

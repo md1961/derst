@@ -1,6 +1,7 @@
 $ ->
-  $('#show_retired_racers').on 'click', ->
+  $('#show_all_racers').on 'click', ->
     $(this).next('table').toggle()
+    $('.racers').toggle()
 
   $('span.fat_to_best').on 'click', ->
     weight_fat = $(this).prev('input').val()
