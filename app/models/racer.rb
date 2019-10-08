@@ -77,6 +77,12 @@ class Racer < ApplicationRecord
     results.joins(:race).where(age: age, 'races.month': month, 'races.week': week).count > 0
   end
 
+  def coming_races
+    last_result = results.last
+    last_result = nil if last_result&.place.present?
+    ([last_result] + target_races).compact
+  end
+
   def downgrade_in_summer?
     age == 5 && ranch.month <= 7 \
       && (
