@@ -159,7 +159,9 @@ class Race < ApplicationRecord
     end
 
     def load_of_constant(racer)
-      nil
+      return nil unless age == '4'
+      value = grade.abbr == 'Ⅰ' || month_week.to_a == [10, 2] ? 57 : 56
+      value - (racer.female? ? 2 : 0)
     end
 
     def load_of_separate(racer)
