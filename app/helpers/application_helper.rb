@@ -4,6 +4,13 @@ module ApplicationHelper
     "#{ranch.year} 年 #{ranch.month} 月 #{ranch.week} 週"
   end
 
+  def monetary_display(prize)
+    upper = prize >= 10000 ? "#{prize / 10000}億" : ""
+    prize %= 10000
+    lower = "#{upper.empty? ? prize : prize.to_s.rjust(4, '0')}万円"
+    upper + lower
+  end
+
   H_NOTICE = {
     [1, 2] => :mare_sale,
     [2, 2] => :mare_sale,

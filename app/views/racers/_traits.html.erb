@@ -71,7 +71,7 @@
   <div>
     <table class="table_base">
       <tr>
-        <th>
+        <th>クラス</th>
         <td class="centered">
           <%= "#{@racer.age}歳 #{@racer.grade}" %>
         </td>
@@ -79,11 +79,11 @@
       <tr>
         <th>本賞金</th>
         <td class="numeric">
-          <%= "#{@racer.net_prize}万円" %>
+          <%= monetary_display(@racer.net_prize) %>
         </td>
       </tr>
       <tr>
-        <th>
+        <th>戦績</th>
         <td class="centered">
           <%= @racer.place_records.join('-') %>
         </td>
