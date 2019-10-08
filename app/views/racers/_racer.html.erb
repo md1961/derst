@@ -48,7 +48,7 @@
       <%= button_to_graze(racer) %>
     </td>
   <% end -%>
-  <% racer.target_races.map(&:race).sort_by { |race|
+  <% racer.coming_races.map(&:race).sort_by { |race|
        race.month_week.ordering_from(@ranch.month_week)
      }.each do |race| -%>
     <% n_weeks_between = racer.results.empty? ? nil \
