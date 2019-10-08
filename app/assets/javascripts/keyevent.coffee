@@ -4,7 +4,7 @@ $ ->
       return
     key = String.fromCharCode(e.which)
 
-    if $('#show_retired_racers').length > 0
+    if $('#show_retired_racers').length > 0 && key == 'r'
       $('#show_retired_racers')[0].click()
       return
 
