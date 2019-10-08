@@ -158,9 +158,33 @@ class Race < ApplicationRecord
       value
     end
 
+    H_LOAD_OF_CONSTANT_FOR_4U = {
+    # month, week => 4, 5U
+      [ 6, 1] => [53, 57],
+      [ 7, 4] => [53, 58],
+      [ 6, 4] => [54, 58],
+      [11, 3] => [55, 57],
+      [12, 3] => [55, 57],
+      [10, 4] => [56, 58],
+      [11, 2] => [56, 58],
+    }
+
     def load_of_constant(racer)
-      return nil unless age == '4'
-      value = grade.abbr == 'Ⅰ' || month_week.to_a == [10, 2] ? 57 : 56
+      if age == '4'
+        value = grade.abbr == 'Ⅰ' || month_week.to_a == [10, 2] ? 57 : 56
+      else
+        value = case month_week.to_a
+                when [10, 1]
+                  56
+                when [ 5, 2]
+                  58
+                when [ 2, 4]
+                  racer.age == 5 ? 55 : 56
+                else
+                  values = H_LOAD_OF_CONSTANT_FOR_4U[month_week.to_a]
+                  values[racer.age == 4 ? 0 : 1]
+                end
+      end
       value - (racer.female? ? 2 : 0)
     end
 
