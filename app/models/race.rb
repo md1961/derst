@@ -113,23 +113,7 @@ class Race < ApplicationRecord
   end
 
   def load_for(racer)
-    return nil unless age_constant?
-    age = racer.age
-    value = if age <= 4
-              53
-            elsif (age == 5 && month >= 6) || (age == 6 && month <= 8)
-              55
-            else
-              54
-            end
-    if racer.male?
-      value += if age == 3
-                 month <= 10 ? 0 : 1
-               else
-                 2
-               end
-    end
-    value
+    send("load_of_#{weight}", racer)
   end
 
   def month_week
@@ -152,4 +136,37 @@ class Race < ApplicationRecord
   def weight_to_s
     {constant: '定量', separate: '別定', handicap: 'ハンデ'}[weight.to_sym]
   end
+
+  private
+
+    def load_of_age_constant(racer)
+      age = racer.age
+      value = if age <= 4
+                53
+              elsif (age == 5 && month >= 6) || (age == 6 && month <= 8)
+                55
+              else
+                54
+              end
+      if racer.male?
+        value += if age == 3
+                   month <= 10 ? 0 : 1
+                 else
+                   2
+                 end
+      end
+      value
+    end
+
+    def load_of_constant(racer)
+      nil
+    end
+
+    def load_of_separate(racer)
+      nil
+    end
+
+    def load_of_handicap(racer)
+      nil
+    end
 end
