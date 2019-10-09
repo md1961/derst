@@ -92,6 +92,7 @@
 
     <div class="links">
       <%= button_to_graze(@racer) %>
+      <%= link_to 'Edit', ranch_path(@racer.ranch, racer_id_to_edit: @racer.id) %>
     </div>
   </div>
 </div>

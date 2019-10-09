@@ -71,6 +71,10 @@ input.in_ranch {
       display: flex;
       margin-top: 5px;
       margin-left: 20px;
+
+      input[type="submit"] {
+        margin-right: 20px;
+      }
     }
   }
 
@@ -124,6 +128,10 @@ input.in_ranch {
       font-weight: bold;
     }
 
+    td.current {
+      border: solid 2px red;
+    }
+
     td.race {
       background-color: cyan;
     }
@@ -164,6 +172,7 @@ input.in_ranch {
 
     input[type="submit"] {
       height: 16px;
+      font-weight: bold;
     }
 
     input.target {
