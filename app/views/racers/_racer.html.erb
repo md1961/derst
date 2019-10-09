@@ -19,7 +19,7 @@
 <td><%= racer_sex_display(racer) %></td>
 <td class="numeric"><%= "#{racer.age}歳" %></td>
 <%= racer_attr_display_in_td(racer, :grade, f) %>
-<td class="numeric"><%= racer.net_prize %></td>
+<td class="numeric"><%= racer.stable ? racer.net_prize : nil %></td>
 <% racer_attr_names.each do |name| -%>
   <%= racer_attr_display_in_td(racer, name, f) %>
 <% end -%>
