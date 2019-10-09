@@ -5,8 +5,10 @@
   </div>
 
   <div id="results_and_conditions">
-    <%= render 'results' %>
-    <%= render 'conditions' %>
+    <% if @racer.stable -%>
+      <%= render 'results' %>
+      <%= render 'conditions' %>
+    <% end -%>
 
     <div class="links">
       <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'}, tabindex: -1 %>
