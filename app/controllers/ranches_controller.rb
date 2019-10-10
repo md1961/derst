@@ -5,6 +5,7 @@ class RanchesController < ApplicationController
     @mares  = @ranch.mares
     @racers = @ranch.racers.active.older_first
     @racer_id_to_edit = params[:racer_id_to_edit].to_i
+    @shows_all_racers = params[:shows_all_racers] == 'true'
   end
 
   def next_week

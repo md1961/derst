@@ -9,82 +9,21 @@
     <% end -%>
   </div>
 
-  <div class="racers">
-    <%= render 'racers/racers' %>
+  <% if !@shows_all_racers -%>
+    <div class="racers">
+      <%= render 'racers/racers' %>
 
-    <% if @racer_id_to_edit.zero? -%>
-      <div class="links">
-        <%= link_to '新規競走馬', new_racer_path(ranch_id: @ranch.id), tabindex: -1 %>
-      </div>
-    <% end -%>
-  </div>
+      <% if @racer_id_to_edit.zero? -%>
+        <div class="links">
+          <%= link_to '新規競走馬', new_racer_path(ranch_id: @ranch.id), tabindex: -1 %>
+        </div>
+      <% end -%>
+    </div>
+  <% else -%>
+    <%= render 'racers/all_racers' %>
+  <% end -%>
 
-  <div class="all_racers">
-    <span id="show_all_racers" class="button">[全競争馬]</span>
-    <table class="table_base" hidden>
-      <thead>
-        <tr>
-          <th colspan="4">
-          <th>父</th>
-          <th>母</th>
-          <th>点</th>
-          <th>ニ</th>
-          <th>面</th>
-          <th>インブリード</th>
-          <th>引退時クラス</th>
-          <% racer_attr_names(is_active: false).each do |name| -%>
-            <th><%= Racer.human_attribute_name(name) %></th>
-          <% end -%>
-          <th>戦績</th>
-          <th>本賞金</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% racers = Racer.retired.order(:year_birth) \
-                  + [nil] \
-                  + Racer.active .order(:year_birth) -%>
-        <% racers.each.with_index(1) do |racer, index| -%>
-          <tr>
-            <% unless racer -%>
-              <td colspan="14">&nbsp;</td>
-              <% next -%>
-            <% end -%>
-            <td class="numeric"><%= link_to index, racer %></td>
-            <td><%= racer_name_display(racer, nil) %></td>
-            <td><%= racer_sex_display(racer) %></td>
-            <td class="numeric"><%= "#{racer.age}歳" %></td>
-            <td><%= racer.father %></td>
-            <td><%= racer.mother %></td>
-            <% mating = Mating.new(racer.mother, racer.father)
-               inbreed = mating.inbreed_display
-               inbreed = '（アウトブリード）' if inbreed.blank? -%>
-            <td class="numeric">
-              <%= mating.score %>
-            </td>
-            <td class="centered">
-              <%= mating.nicks? ? '〇' : '×' %>
-            </td>
-            <td class="centered">
-              <%= mating.interesting? ? '〇' : '×' %>
-            </td>
-            <td title="<%= inbreed %>">
-              <%= inbreed.sub(/, [^.].*/, ', ...') %>
-            </td>
-            <td>
-              <%= "#{racer.results.last.age}歳 #{racer.grade}" if racer.results.last %>
-            </td>
-            <% racer_attr_names(is_active: false).each do |name| -%>
-              <%= racer_attr_display_in_td(racer, name, nil) %>
-            <% end -%>
-            <td class="centered">
-              <%= racer.place_records.join('-') %>
-            </td>
-            <td class="numeric">
-              <%= monetary_display(racer.net_prize) %>
-            </td>
-          </tr>
-        <% end -%>
-      </tbody>
-    </table>
+  <div class="links">
+    <%= link_to '[全競争馬]', ranch_path(@ranch, shows_all_racers: !@shows_all_racers), id: 'show_all_racers' %>
   </div>
 </div>
