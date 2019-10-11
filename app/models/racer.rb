@@ -113,7 +113,7 @@ class Racer < ApplicationRecord
       age: _age,
       month: month,
       week: week
-    )&.condition
+    )&.condition || '×'
   end
 
   def race_candidates(includes_overgrade: false)
