@@ -67,7 +67,8 @@ module RacersHelper
     }.to_h
     keys = @racer.stable.center.name == '美浦' ? ['美浦 専属', '美浦', '短期', '栗東 専属', '栗東'] \
                                                : ['栗東 専属', '栗東', '短期', '美浦 専属', '美浦']
-    h_options['短期'] = [Jockey.find_by(name: short_term_jockey_name_in(@racer.ranch.month))]
+    jockey_short = Jockey.find_by(name: short_term_jockey_name_in(@racer.ranch.month))
+    h_options['短期'] = [[jockey_short.name, jockey_short.id]]
     options = keys.map { |key| [key, h_options[key]] }
     grouped_options_for_select([['', ['-']]] + options, jockey&.id)
   end
