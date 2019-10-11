@@ -160,7 +160,8 @@ module ApplicationHelper
                                       racer.condition || racer.last_condition
                                     ),
                                     disabled: @racer_id_to_edit.to_i > 0,
-                                    class: racer.condition.nil? ? 'no_condition': ''
+                                    class: racer.condition.nil? ? 'no_condition': '',
+                                    tabindex: racer.condition ? -1 : 0
       concat submit_tag :enter, hidden: 'hidden'
       concat hidden_field_tag :ranch_id, @ranch&.id
     end
