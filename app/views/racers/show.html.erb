@@ -14,8 +14,10 @@
       <%= form_for_weekly(@racer) %>
       <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'}, tabindex: -1 %>
       <% if @prev_racer && @next_racer -%>
-        <%= link_to "<(#{@prev_racer})", @prev_racer, id: 'to_prev_racer', tabindex: -1 %>
-        <%= link_to "(#{@next_racer})>", @next_racer, id: 'to_next_racer', tabindex: -1 %>
+        <%= link_to "<(#{@prev_racer})", @prev_racer, id: 'to_prev_racer',
+                      class: @prev_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
+        <%= link_to "(#{@next_racer})>", @next_racer, id: 'to_next_racer',
+                      class: @next_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
       <% end -%>
     </div>
   </div>
