@@ -58,6 +58,14 @@ input.in_ranch {
 
   #results_and_conditions {
     margin-top: 180px;
+
+    .links {
+      display: flex;
+
+      form {
+        margin-right: 20px;
+      }
+    }
   }
 
   #racers_traits {

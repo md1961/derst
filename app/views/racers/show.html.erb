@@ -11,6 +11,7 @@
     <% end -%>
 
     <div class="links">
+      <%= form_for_weekly(@racer) %>
       <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'}, tabindex: -1 %>
       <% if @prev_racer && @next_racer -%>
         <%= link_to "<(#{@prev_racer})", @prev_racer, id: 'to_prev_racer', tabindex: -1 %>
