@@ -74,12 +74,15 @@ module RacersHelper
   end
 
   def result_attr_display(result, name, f)
-    if !f
+    in_paddock = result.comment_paddock.blank?
+    if !f || name == :age
       result.send(name)
     elsif name == :jockey
-      f.select :jockey_id, options_for_select_for_jockey(result.jockey)
+      f.select :jockey_id, options_for_select_for_jockey(result.jockey),
+                            {}, tabindex: in_paddock ? -1 : 0
     elsif result_attr_names_using_select.include?(name)
-      f.select name, result_options_for_select_for(name)
+      f.select name, result_options_for_select_for(name),
+                            {}, tabindex: in_paddock ? -1 : 0
     elsif name == :weight
       f.number_field name, step: 2
     else
@@ -88,7 +91,8 @@ module RacersHelper
         comment_paddock: 20,
         comment_race:    20,
       }[name] || 2
-      f.text_field name, size: size
+      f.text_field name, size: size,
+                         tabindex: name == :load && in_paddock ? -1 : 0
     end
   end
 

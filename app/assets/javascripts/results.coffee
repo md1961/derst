@@ -1,7 +1,7 @@
 $ ->
   if $('#results').hasClass('ready_for_race')
     if $('#result_comment_paddock').val() == ''
-      $('#result_comment_paddock').focus()
+      $('#result_weight').focus()
     else if $('#result_surface_condition').val() == '－'
       $('#result_surface_condition').focus()
     else if $('#result_direction').val() == '－'
