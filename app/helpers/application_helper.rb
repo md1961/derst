@@ -4,6 +4,16 @@ module ApplicationHelper
     "#{ranch.year} 年 #{ranch.month} 月 #{ranch.week} 週"
   end
 
+  def racer_name_display(racer, f = nil)
+    if f && racer.stable.nil?
+      f.text_field :name
+    else
+      mark = ''
+      mark = '[父] ' if racer.father.domestic?
+      "#{mark}#{racer.name}"
+    end
+  end
+
   def monetary_display(prize)
     upper = prize >= 10000 ? "#{prize / 10000}億" : ""
     prize %= 10000

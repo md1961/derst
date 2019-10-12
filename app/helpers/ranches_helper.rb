@@ -5,16 +5,6 @@ module RanchesHelper
       - (is_active ? [] : %i[weight_fat weight_lean])
   end
 
-  def racer_name_display(racer, f)
-    if f && racer.stable.nil?
-      f.text_field :name
-    else
-      mark = ''
-      mark = '[父] ' if racer.father.domestic?
-      "#{mark}#{racer.name}"
-    end
-  end
-
   def racer_sex_display(racer)
     {male: '牡', female: '牝', gelding: '騸'}.fetch(racer.sex&.to_sym, '-')
   end
