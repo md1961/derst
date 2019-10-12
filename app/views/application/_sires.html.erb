@@ -1,5 +1,16 @@
 <div class="top">
-  <%= @mare&.name %>
+  <% if @mare -%>
+    <table class="mare_name_and_traits table_base">
+      <tr>
+        <td><%= @mare.name %></td>
+        <td><%= "#{@mare.price}万円" %></td>
+        <td><%= @mare.speed %></td>
+        <td><%= @mare.stamina %></td>
+        <td><%= @mare.rating %></td>
+        <td><%= @mare.type %></td>
+      </tr>
+    </table>
+  <% end -%>
 
   <div id="sire_filter">
     <%= form_with model: @sire_filter, local: true do |f| %>
@@ -24,7 +35,7 @@
   </div>
 </div>
 
-<table class="table_base">
+<table class="sires table_base">
   <thead>
     <tr>
       <th>
