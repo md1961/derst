@@ -18,6 +18,7 @@ class MatingsController < ApplicationController
     @mating = Mating.new(@mare, @sire)
     @ranch = Ranch.find_by(id: params[:ranch_id])
     @in_list = params[:in_list] == 'true'
+    @mating_list = MatingList.build_from_json(session[MatingListsController::KEY_MATING_LIST_IN_JSON])
   end
 
   def new

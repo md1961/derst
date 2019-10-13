@@ -28,10 +28,10 @@
 
   <%= link_to 'Back', matings_path(mare_id: @mare, ranch_id: @ranch&.id) %>
 
-  <% if @in_list -%>
+  <% if @in_list && @mating_list.size > 1 -%>
     <div class="in_list">
-      <%= link_to '<', prev_mating_list_path(mare_id: @mating.mare.id, sire_id: @mating.sire.id), id: 'to_prev_mating' %>
-      <%= link_to '>', next_mating_list_path(mare_id: @mating.mare.id, sire_id: @mating.sire.id), id: 'to_next_mating' %>
+      <%= link_to "< #{@mating_list.prev_of(@mating)}", prev_mating_list_path(mare_id: @mating.mare.id, sire_id: @mating.sire.id), id: 'to_prev_mating' %>
+      <%= link_to "#{@mating_list.next_of(@mating)} >", next_mating_list_path(mare_id: @mating.mare.id, sire_id: @mating.sire.id), id: 'to_next_mating' %>
     </div>
   <% end -%>
 </div>
