@@ -1,6 +1,6 @@
 <% rows_between_headers = 20 -%>
 
-<table id="results" class="table_base <%= Racer.in_stable.map(&:condition).all? ? 'ready_for_race' :'' %>">
+<table id="results" class="table_base <%= Racer.all_training_done? ? 'ready_for_race' : '' %>">
   <thead>
     <%= render 'results_header' %>
   </thead>

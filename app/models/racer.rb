@@ -32,6 +32,10 @@ class Racer < ApplicationRecord
     active.count - in_stable.count
   end
 
+  def self.all_training_done?
+    in_stable.includes(:weeklies).map(&:condition).all?
+  end
+
   def grade
     @grade ||= grade_given || grade_from_net_prize
   end
