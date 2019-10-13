@@ -13,7 +13,7 @@
     </div>
     <div class="field">
       <%= f.label :father %>
-      <input type="search" name="father" value="<%= @racer.father %>" autocomplete="on" list="father_candidates">
+      <input type="search" name="father" value="<%= @racer.father %>" autocomplete="on" list="sire_candidates">
     </div>
     <div class="field">
       <%= f.label :mother %>
@@ -31,7 +31,7 @@
     </div>
   <% end -%>
 
-  <%= render 'father_candidates' %>
+  <%= render 'sire_candidates' %>
   <%= render 'mother_candidates' %>
 </div>
 
