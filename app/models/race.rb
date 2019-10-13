@@ -95,11 +95,11 @@ class Race < ApplicationRecord
     when '5'
       name ? 1050 : 750
     when '9'
-      name ? 1450 : 1100
+      name ? (age == '4' ? 1400 : 1450) : 1100
     when '16'
       1800
     when 'OP'
-      age == 3 ? 1600 : 2400
+      age == '3' ? 1600 : 2400
     else
       raise "Not supposed to reach here"
     end
