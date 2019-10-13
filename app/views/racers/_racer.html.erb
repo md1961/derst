@@ -9,7 +9,8 @@
 -%>
 
 <td class="<%= racer.expecting_race? ? 'expecting_race' \
-             : racer.in_ranch || !racer.stable ? 'in_ranch' : '' %>">
+             : racer.in_ranch ? 'in_ranch' \
+             : !racer.stable  ? 'not_stabled' : '' %>">
   <%= link_to_if @racer_id_to_edit.zero?, shortcut_show.upcase, racer,
                                           data: {shortcut: shortcut_show}, tabindex: -1 %></td>
 <td>

@@ -5,6 +5,10 @@ input.in_ranch {
 
 .racers_racers {
 
+  td a {
+    text-decoration: none;
+  }
+
   td.expecting_race {
     background-color: red;
 
@@ -15,6 +19,14 @@ input.in_ranch {
 
   td.in_ranch {
     background-color: palegreen;
+  }
+
+  td.not_stabled {
+    background-color: forestgreen;
+
+    a {
+      color: white;
+    }
   }
 
   td.emphasized {
