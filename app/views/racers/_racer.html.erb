@@ -36,8 +36,10 @@
 <% else -%>
   <td class="numeric <%= racer.in_ranch ? 'in_ranch' : '' %>">
     <% results = racer.results.find_all(&:place) -%>
-    <%= results.empty? ? "" : "#{@ranch.month_week - (racer.in_ranch ? racer.in_ranch.month_week
-                                                                     : results.last.race.month_week)}w" %>
+    <%= results.empty? && !racer.in_ranch \
+          ? "" \
+          : "#{@ranch.month_week - (racer.in_ranch ? racer.in_ranch.month_week
+                                                   : results.last.race.month_week)}w" %>
   </td>
   <% unless racer.stable -%>
     <td colspan="2">
