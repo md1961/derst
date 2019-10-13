@@ -15,6 +15,10 @@ class MatingList
     @matings.empty?
   end
 
+  def size
+    @matings.size
+  end
+
   def each(&block)
     @matings.each(&block)
   end
