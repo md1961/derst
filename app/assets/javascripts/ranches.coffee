@@ -1,4 +1,11 @@
 $ ->
+  if $('.ranches_show.ready_for_next_week').length > 0
+    next_month_week = $('.ranches_show.ready_for_next_week').eq(0).data('next_month_week')
+    month = next_month_week[0]
+    week  = next_month_week[1]
+    alert('次週「' + month + '月' + week + '週」に進むボタンにフォーカスします')
+    $('#button_to_next_week').focus()
+
   $('#show_all_racers').on 'click', ->
     $(this).next('table').toggle()
     $('.racers').toggle()

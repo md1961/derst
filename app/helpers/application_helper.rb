@@ -44,7 +44,7 @@ module ApplicationHelper
       racer = ranch
       ranch = racer.ranch
     end
-    button_to '翌週', next_week_ranch_path(ranch), method: :patch, tabindex: -1
+    button_to '翌週', next_week_ranch_path(ranch), method: :patch, id: 'button_to_next_week', tabindex: -1
   end
 
   def sire_trait_names

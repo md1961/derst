@@ -1,4 +1,5 @@
-<div class="ranches_show">
+<div class="ranches_show <%= @ready_for_next_week ? 'ready_for_next_week' : '' %>"
+     data-next_month_week="<%= @ranch.month_week.next.to_a %>">
   <div class="mares">
     <%= render 'mares' %>
 
