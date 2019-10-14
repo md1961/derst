@@ -167,7 +167,7 @@ module ApplicationHelper
     return nil unless racer.in_stable?
     form_with url: weekly_racer_path(racer), local: true do
       concat select_tag :condition, options_for_select(
-                                      %w[- ◎ ↑ ◉  ○ △ ▽ × ↓ 休 太 重],
+                                      %w[◎ ↑ ◉  ○ △ ▽ × ↓ 休 太 重],
                                       racer.condition || racer.last_condition
                                     ),
                                     disabled: @racer_id_to_edit.to_i > 0,
