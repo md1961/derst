@@ -22,15 +22,16 @@ module ApplicationHelper
   end
 
   H_NOTICE = {
-    [1, 2] => :mare_sale,
-    [2, 2] => :mare_sale,
-    [2, 4] => :new_birth,
-    [3, 1] => :new_birth,
-    [3, 2] => :new_birth,
-    [3, 3] => :new_birth,
-    [7, 2] => :age2_sale,
-    [8, 2] => :age2_sale,
-    [1, 4] => :ranch_expansion
+    [ 1, 2] => :mare_sale,
+    [ 2, 2] => :mare_sale,
+    [ 2, 4] => :new_birth,
+    [ 3, 1] => :new_birth,
+    [ 3, 2] => :new_birth,
+    [ 3, 3] => :new_birth,
+    [ 7, 2] => :age2_sale,
+    [ 8, 2] => :age2_sale,
+    [ 1, 4] => :ranch_expansion,
+    [12, 4] => :sell_age2
   }
 
   def notice(ranch)
