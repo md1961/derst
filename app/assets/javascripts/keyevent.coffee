@@ -22,6 +22,15 @@ $ ->
         $('#to_next_racer')[0].click()
       return
 
+    if $('#results').hasClass('ready_for_race') && (key == 'a' || key == 'z')
+      value = if key == 'a' then '－' else '◎'
+      $('#result_mark_development').val(value)
+      $('#result_mark_stamina').val(value)
+      $('#result_mark_contend').val(value)
+      $('#result_mark_temper').val(value)
+      $('#result_mark_odds').val(value)
+      return
+
     key = '=' if key == '"'
     links = $('a[data-shortcut="' + key + '"]')
     links[0].click()
