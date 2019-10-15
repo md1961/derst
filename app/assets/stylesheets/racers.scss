@@ -170,6 +170,10 @@ input.in_ranch {
   #racer_menu {
     position: relative;
     bottom: 100px;
+
+    a {
+      margin: 0;
+    }
   }
 
   #race_candidates {
