@@ -29,6 +29,11 @@ input.in_ranch {
     }
   }
 
+  td.current_racer {
+    font-weight: bold;
+    background-color: lightgray;
+  }
+
   td.emphasized {
     font-weight: bold;
   }
@@ -160,6 +165,11 @@ input.in_ranch {
     td.race {
       background-color: cyan;
     }
+  }
+
+  #racer_menu {
+    position: relative;
+    bottom: 100px;
   }
 
   #race_candidates {

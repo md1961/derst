@@ -19,6 +19,16 @@
         <%= link_to "(#{@next_racer})>", @next_racer, id: 'to_next_racer',
                       class: @next_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
       <% end -%>
+
+      <div id="racer_menu" class="racers_racers" hidden>
+        <table class="table_base">
+          <% Racer.active.where.not(stable: nil).each.with_index(1) do |racer, index| -%>
+            <tr>
+              <%= render partial: 'racer', locals: {racer: racer, index: index, f: @racer} %>
+            </tr>
+          <% end -%>
+        </table>
+      </div>
     </div>
   </div>
 

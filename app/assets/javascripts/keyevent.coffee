@@ -8,6 +8,10 @@ $ ->
       $('#show_all_racers')[0].click()
       return
 
+    if $('#racer_menu').length > 0 && key == 'z'
+      $('#racer_menu').toggle()
+      return
+
     if $('.matings_show').length > 0 && (key == 'j' || key == 'k')
       if key == 'k'
         $('#to_prev_mating')[0].click()
@@ -32,5 +36,5 @@ $ ->
       return
 
     key = '=' if key == '"'
-    links = $('a[data-shortcut="' + key + '"]')
+    links = $('a[data-shortcut="' + key + '"]:visible')
     links[0].click()
