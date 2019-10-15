@@ -27,7 +27,7 @@
             <td colspan="14">&nbsp;</td>
             <% next -%>
           <% end -%>
-          <td class="numeric"><%= link_to index, racer %></td>
+          <td class="numeric"><%= link_to index - (racer.is_active ? 1 : 0), racer %></td>
           <td><%= racer_name_display(racer, nil) %></td>
           <td><%= racer_sex_display(racer) %></td>
           <td class="numeric"><%= "#{racer.age}歳" %></td>
