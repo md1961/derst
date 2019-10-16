@@ -86,15 +86,15 @@ module RacersHelper
     elsif name == :weight
       f.number_field name, step: 2
     elsif name == :load
-      f.number_field name, class: result.race.separate? ? 'separate' : ''
+      f.number_field name, class: result.race.separate? ? 'separate' : '',
+                           tabindex: in_paddock ? -1 : 0
     else
       size = {
         odds:   4,
         comment_paddock: 20,
         comment_race:    20,
       }[name] || 2
-      f.text_field name, size: size,
-                         tabindex: name == :load && in_paddock ? -1 : 0
+      f.text_field name, size: size
     end
   end
 

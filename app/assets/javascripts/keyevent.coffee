@@ -26,7 +26,7 @@ $ ->
         $('#to_next_racer')[0].click()
       return
 
-    if $('#results').hasClass('ready_for_race') && (key == 'a' || key == 'z')
+    if $('#results').hasClass('ready_for_race') && (key == 'a' || key == 'y')
       value = if key == 'a' then '－' else '◎'
       $('#result_mark_development').val(value)
       $('#result_mark_stamina').val(value)
