@@ -15,18 +15,21 @@ h_bases = Hash.new(0).tap { |h|
     h[base] += 1
   end
 }
-width = h_bases.keys.map(&:size).max
-h_bases.keys.sort.each do |base|
-  printf("%#{width}s : %2d\n", base, h_bases[base])
-end
-
-puts
 
 h_additions = Hash.new(0).tap { |h|
   additions.each do |addition|
     h[addition] += 1
   end
 }
+
+
+width = h_bases.keys.map(&:size).max
+h_bases.keys.sort.each do |base|
+  printf("%-#{width}s : %2d\n", base, h_bases[base])
+end
+
+puts
+
 width = h_additions.keys.map(&:size).max
 h_additions.keys.sort.each do |addition|
   printf("%-#{width}s : %2d\n", addition, h_additions[addition])

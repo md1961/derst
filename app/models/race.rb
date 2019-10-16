@@ -79,6 +79,16 @@ class Race < ApplicationRecord
     where("(month = :month AND week >= :week) OR month > :month", month: month, week: week)
   }
 
+  H_LOADS_SEPARATE = open('db/loads_separate.txt') { |f|
+    f.each_line.map { |line|
+      [line.split.first, line.chomp.split('=').last.strip]
+    }.reject { |id, loads|
+      loads.empty? || loads.starts_with?('age')
+    }.map { |id, loads|
+      [id.to_i, loads.split('  ')]
+    }.to_h
+  }
+
   def prize_for(place)
     if grade.high_stake?
       raise "Not implemented for place #{place} of high-stake" if place > 2
@@ -189,6 +199,11 @@ class Race < ApplicationRecord
       value - (racer.female? ? 2 : 0)
     end
 
+    # 4-52 5u-54
+    # g1-1+2 g2-1+1 (ex. age3)
+    # g1-1+3 g2-1+2 g3-1+1 (ex. age3)
+    # np {4-11M,5-22M,6u-33M}u 11Me +1
+    # np {4-16M,5-19M,6u-22M}e +1
     def load_of_separate(racer)
       nil
     end
