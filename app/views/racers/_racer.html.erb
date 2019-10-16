@@ -35,7 +35,7 @@
 </td>
 
 <% if is_menu -%>
-  <td class="<%= racer.condition ? '' : 'no_condition' %> centered">
+  <td class="<%= racer.in_ranch || racer.condition ? '' : 'no_condition' %> centered">
     <%= racer.in_ranch ? '' : (racer.condition || racer.last_condition) %>
   </td>
 <% else -%>
