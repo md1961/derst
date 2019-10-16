@@ -147,7 +147,11 @@ module ApplicationHelper
           : [' ' ,target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
       button_to_target = content_tag(:td, button_to(label, path, method: method, class: clazz, tabindex: -1), class: 'centered')
     end
-    load_to_s = "#{race.weight_to_s}#{race.handicap? ? '' : " #{race.load_for(racer)}kg"}"
+    load_to_s = [
+      race.weight_to_s || '馬齢',
+      race.handicap? ? nil : "#{race.load_for(racer)}kg",
+      race.separate? && %w[3 4].include?(race.age) ? "+ 獲得賞金 #{race.age == '3' ? 800 : 1200}万円毎 1kg" : nil
+    ].compact.join(' ')
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target,
