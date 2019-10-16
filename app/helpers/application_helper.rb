@@ -147,11 +147,13 @@ module ApplicationHelper
           : [' ' ,target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
       button_to_target = content_tag(:td, button_to(label, path, method: method, class: clazz, tabindex: -1), class: 'centered')
     end
+    load_to_s = "#{race.weight_to_s}#{race.handicap? ? '' : " #{race.load_for(racer)}kg"}"
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target,
       content_tag(:td, safe_join(a, ' '), class: race.grade.high_stake? ? 'high_stake' \
-                                               : race.grade == racer.grade ? '' : 'overgrade'),
+                                               : race.grade == racer.grade ? '' : 'overgrade',
+                                          title: load_to_s),
     ].compact)
   end
 
