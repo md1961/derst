@@ -205,7 +205,19 @@ class Race < ApplicationRecord
     # np {4-11M,5-22M,6u-33M}u 11Me +1
     # np {4-16M,5-19M,6u-22M}e +1
     def load_of_separate(racer)
-      nil
+      return load_of_age_constant(racer) if %w[3 4].include?(age)
+      base, addition = H_LOADS_SEPARATE[id]
+
+      h_base = base.split.map { |e| e.split('-') }.map { |age, ld|
+        [age.ends_with?('u') ? 'other' : age, ld.to_i]
+      }.to_h
+      load_base = (h_base[age] || h_base['other']) - (racer.female? ? 2 : 0)
+
+      load_base + load_addition(addition)
+    end
+
+    def load_addition(addition)
+      0
     end
 
     def load_of_handicap(racer)
