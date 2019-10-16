@@ -200,10 +200,6 @@ class Race < ApplicationRecord
     end
 
     # 4-52 5u-54
-    # g1-1+2 g2-1+1 (ex. age3)
-    # g1-1+3 g2-1+2 g3-1+1 (ex. age3)
-    # np {4-11M,5-22M,6u-33M}u 11Me +1
-    # np {4-16M,5-19M,6u-22M}e +1
     def load_of_separate(racer)
       return load_of_age_constant(racer) if %w[3 4].include?(age)
       base, addition = H_LOADS_SEPARATE[id]
@@ -213,10 +209,39 @@ class Race < ApplicationRecord
       }.to_h
       load_base = (h_base[age] || h_base['other']) - (racer.female? ? 2 : 0)
 
-      load_base + load_addition(addition)
+      load_base + load_addition(addition, racer)
     end
 
-    def load_addition(addition)
+    # g1-1+2 g2-1+1 (ex. age3)
+    # g1-1+3 g2-1+2 g3-1+1 (ex. age3)
+    # np {4-11M,5-22M,6u-33M}u 11Me +1
+    # np {4-16M,5-19M,6u-22M}e +1
+    def load_addition(addition, racer)
+      if addition.starts_with?('g')
+        addition.split.reject { |e| e =~ /\A[(a]/ }.map { |e|
+          e.split(/[-+]/)
+        }.each do |grade, place, add|
+          n_grade = grade.sub('g', '').to_i
+          return add.to_i if racer.results.high_stake(n_grade).where(place: place).count > 0
+        end
+      elsif addition.starts_with?('np')
+        elems = addition.sub('np ', '').split
+        kind = elems[0][-1] == 'u' ? 'up' : 'each'
+        h_net_prize = elems[0].sub(/[{}]/, '').split(',').map { |e| e.split('-') }.map { |age, np|
+          [age.ends_with?('u') ? 'other' : age.to_i, np.to_i * 100]
+        }.to_h
+        add = elems[-1].to_i
+        if kind == 'up'
+          prize_each = elems[1].to_i * 100
+          prize_thres = h_net_prize[racer.age] || h_net_prize['other']
+          return (racer.net_prize - prize_thres) / prize_each * add
+        else
+          prize_each = h_net_prize[racer.age] || h_net_prize['other']
+          return (racer.net_prize - prize_each) / prize_each * add
+        end
+      else
+        raise "Illegal argument '#{addition}'"
+      end
       0
     end
 
