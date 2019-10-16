@@ -85,6 +85,8 @@ module RacersHelper
                             {}, tabindex: in_paddock ? -1 : 0
     elsif name == :weight
       f.number_field name, step: 2
+    elsif name == :load
+      f.number_field name, class: result.race.separate? ? 'separate' : ''
     else
       size = {
         odds:   4,
