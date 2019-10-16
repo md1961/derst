@@ -4,6 +4,12 @@ class Result < ApplicationRecord
   belongs_to :jockey, optional: true
   has_one :post_race
 
+  scope :high_stake, ->(n_grade) {
+    abbr = {1 => 'Ⅰ', 2 => 'Ⅱ', 3 => 'Ⅲ'}[n_grade]
+    raise "Illegal n_grade (#{n_grade.inspect})" unless abbr
+    joins(race: :grade).where("grades.abbr = '#{abbr}'")
+  }
+
   def net_prize
     return 0 unless place
     race.net_prize_for(place)
