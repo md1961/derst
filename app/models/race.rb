@@ -132,11 +132,15 @@ class Race < ApplicationRecord
 
   def to_s
     a = []
-    a << "#{dirt? ? 'D' : nil}#{distance} #{limitation_to_s}"
+    a << "#{distance_to_s} #{limitation_to_s}"
     a << name
     a << grade.name if grade.high_stake?
     a << weight_to_s
     a.compact.join(' ')
+  end
+
+  def distance_to_s
+    "#{dirt? ? 'D' : nil}#{distance}"
   end
 
   def limitation_to_s
