@@ -142,6 +142,13 @@ class Racer < ApplicationRecord
       }.to_h.fetch_values(1, 2, 3) { 0 }
   end
 
+  def major_wins
+    results_won_by_grade = results.where(place: 1).group_by { |result| result.race.grade }
+    max_grade = results_won_by_grade.keys.sort_by(&:ordering).last
+    return [] if max_grade.nil? || max_grade.ordering < Grade.find_by(abbr: '16').ordering
+    results_won_by_grade[max_grade]
+  end
+
   def create_mare
     return nil unless female?
     Mare.create!(name: name, father: father, lineage: father.trait.lineage).tap { |mare|
