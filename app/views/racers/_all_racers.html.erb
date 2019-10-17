@@ -11,10 +11,11 @@
         <th>インブリード</th>
         <th>引退時クラス</th>
         <% racer_attr_names(is_active: false).each do |name| -%>
-          <th><%= Racer.human_attribute_name(name) %></th>
+          <th class="default"><%= Racer.human_attribute_name(name) %></th>
         <% end -%>
         <th>戦績</th>
         <th>本賞金</th>
+        <th class="optional1" hidden>主な勝鞍</th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +25,7 @@
       <% racers.each.with_index(1) do |racer, index| -%>
         <tr>
           <% unless racer -%>
-            <td colspan="14">&nbsp;</td>
+            <td colspan="18">&nbsp;</td>
             <% next -%>
           <% end -%>
           <td class="numeric"><%= link_to index - (racer.is_active ? 1 : 0), racer %></td>
@@ -59,6 +60,9 @@
           </td>
           <td class="numeric">
             <%= monetary_display(racer.net_prize) %>
+          </td>
+          <td class="optional1" hidden>
+            <%= major_wins_display(racer) %>
           </td>
         </tr>
       <% end -%>

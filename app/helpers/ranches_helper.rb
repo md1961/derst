@@ -10,7 +10,7 @@ module RanchesHelper
   end
 
   def racer_attr_display_in_td(racer, name, f)
-    classes = []
+    classes = %w[default]
     classes << 'numeric'     if name.to_s.starts_with?('weight_')
     classes << 'centered'    if name == :stable
     classes << 'emphasized'  if name == :weight_best
@@ -41,5 +41,14 @@ module RanchesHelper
     else
       f.text_field name
     end
+  end
+
+  def major_wins_display(racer)
+    results = racer.major_wins
+    return nil if results.empty?
+    results.map { |result|
+      race = result.race
+      "#{race.name}(#{race.distance_to_s}, #{result.age}歳)"
+    }.join(', ')
   end
 end

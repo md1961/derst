@@ -4,8 +4,12 @@ $ ->
       return
     key = String.fromCharCode(e.which)
 
-    if $('#show_all_racers').length > 0 && key == 'z'
-      $('#show_all_racers')[0].click()
+    if $('#show_all_racers').length > 0 && (key == 'z' || key == 'y')
+      if key == 'z'
+        $('#show_all_racers')[0].click()
+      else if key == 'y'
+        $('.default')  .toggle()
+        $('.optional1').toggle()
       return
 
     if $('#racer_menu').length > 0 && key == 'z'
@@ -29,10 +33,10 @@ $ ->
     if $('#results').hasClass('ready_for_race') && (key == 'a' || key == 'y')
       value = if key == 'a' then '－' else '◎'
       $('#result_mark_development').val(value)
-      $('#result_mark_stamina').val(value)
-      $('#result_mark_contend').val(value)
-      $('#result_mark_temper').val(value)
-      $('#result_mark_odds').val(value)
+      $('#result_mark_stamina')    .val(value)
+      $('#result_mark_contend')    .val(value)
+      $('#result_mark_temper')     .val(value)
+      $('#result_mark_odds')       .val(value)
       return
 
     key = '=' if key == '"'
