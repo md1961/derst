@@ -209,9 +209,9 @@ class Race < ApplicationRecord
       base, addition = H_LOADS_SEPARATE[id]
 
       h_base = base.split.map { |e| e.split('-') }.map { |age, ld|
-        [age.ends_with?('u') ? 'other' : age, ld.to_i]
+        [age.ends_with?('u') ? 'other' : age.to_i, ld.to_i]
       }.to_h
-      load_base = (h_base[age] || h_base['other']) - (racer.female? ? 2 : 0)
+      load_base = (h_base[racer.age] || h_base['other']) - (racer.female? ? 2 : 0)
 
       load_base + load_addition(addition, racer)
     end
@@ -241,7 +241,7 @@ class Race < ApplicationRecord
           return (racer.net_prize - prize_thres) / prize_each * add
         else
           prize_each = h_net_prize[racer.age] || h_net_prize['other']
-          return (racer.net_prize - prize_each) / prize_each * add
+          return racer.net_prize / prize_each * add
         end
       else
         raise "Illegal argument '#{addition}'"
