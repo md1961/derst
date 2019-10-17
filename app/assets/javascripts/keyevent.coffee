@@ -41,7 +41,8 @@ $ ->
 
     key = '=' if key == '"'
     links = $('a[data-shortcut="' + key + '"]:visible')
-    links[0].click()
+    if links.length > 0
+      links[0].click()
 
   $(window).on 'keydown', (e) ->
     focused = $(':focus')
