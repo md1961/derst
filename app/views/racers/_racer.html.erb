@@ -64,11 +64,8 @@
                                                      : results.last.race.month_week)}w" %>
     </td>
     <% unless racer.stable -%>
-      <td colspan="2">
-    <% else -%>
       <td>
-        <%= form_for_weekly(racer) %>
-      </td>
+    <% else -%>
       <td>
         <%= button_to_graze(racer) %>
       </td>

@@ -33,7 +33,11 @@
                result_to_s = result.nil? ? ""
                            : "#{result.race.name} #{result.race.distance_to_s} #{result.place}着" -%>
             <td class="centered <%= result ? 'race' : '' %>" title="<%= result_to_s %>">
-              <%= racer.weeklies.find_by(age: age, month: month, week: week)&.condition %>
+              <% if @ranch.in_week_of?(month, week) -%>
+                <%= form_for_weekly(racer) %>
+              <% else -%>
+                <%= racer.weeklies.find_by(age: age, month: month, week: week)&.condition %>
+              <% end -%>
             </td>
           <% end -%>
         <% end -%>
