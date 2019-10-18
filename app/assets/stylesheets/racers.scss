@@ -213,8 +213,9 @@ input.in_ranch {
 #conditions {
   margin-top: 10px;
 
-  td:not(.racer_name) {
+  td.condition {
     width: 12px;
+    text-align: center;
     padding: 0 2px;
   }
 
