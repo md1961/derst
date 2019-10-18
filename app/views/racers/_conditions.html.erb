@@ -1,7 +1,7 @@
 <table id="conditions" class="table_base">
   <thead>
     <tr>
-      <th>
+      <th rowspan="2" class="border_bottom_thick border_right_thick">
       <% (1 .. 12).each do |month| -%>
         <th colspan="4" class="centered <%= month == @racer.ranch.month ? 'current' : '' %>">
           <%= "#{month}月" %>
@@ -9,7 +9,6 @@
       <% end -%>
     </tr>
     <tr>
-      <th>
       <% (1 .. 12).each do |month| -%>
         <% (1 .. 4).each do |week| -%>
           <th class="<%= @racer.ranch.in_week_of?(month, week) ? 'current' : '' %>">
@@ -22,7 +21,7 @@
   <tbody>
     <% (3 .. @racer.age).each do |age| -%>
       <tr>
-        <th><%= "#{age}歳" %></th>
+        <th class="border_right_thick"><%= "#{age}歳" %></th>
         <% (1 .. 12).each do |month| -%>
           <% (1 .. 4).each do |week| -%>
             <td class="centered

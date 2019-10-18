@@ -148,29 +148,6 @@ input.in_ranch {
     }
   }
 
-  #conditions {
-    margin-top: 10px;
-
-    td {
-      width: 12px;
-      padding: 0 2px;
-    }
-
-    th.current {
-      color: white;
-      background-color: red;
-      font-weight: bold;
-    }
-
-    td.current {
-      border: solid 2px red;
-    }
-
-    td.race {
-      background-color: cyan;
-    }
-  }
-
   #racer_menu {
     position: relative;
     bottom: 100px;
@@ -230,5 +207,28 @@ input.in_ranch {
     a {
       margin-right: 20px;
     }
+  }
+}
+
+#conditions {
+  margin-top: 10px;
+
+  td:not(.racer_name) {
+    width: 12px;
+    padding: 0 2px;
+  }
+
+  th.current {
+    color: white;
+    background-color: red;
+    font-weight: bold;
+  }
+
+  td.current {
+    border: solid 2px red;
+  }
+
+  td.race {
+    background-color: cyan;
   }
 }

@@ -1,0 +1,43 @@
+<% num_months = 6
+   month_end = @ranch.month
+   months = (month_end - num_months + 1 .. month_end).to_a.map { |m| (m + 12 - 1) % 12 + 1 } -%>
+
+<table id="conditions" class="table_base">
+  <thead>
+    <tr>
+      <th rowspan="2" class="border_bottom_thick border_right_thick">
+      <% months.each do |month| -%>
+        <th colspan="4" class="centered <%= month == @ranch.month ? 'current' : '' %>">
+          <%= "#{month}月" %>
+        </th>
+      <% end -%>
+    </tr>
+    <tr>
+      <% months.each do |month| -%>
+        <% (1 .. 4).each do |week| -%>
+          <th class="<%= @ranch.in_week_of?(month, week) ? 'current' : '' %>">
+            <%= week %>
+          </th>
+        <% end -%>
+      <% end -%>
+    </tr>
+  </thead>
+  <tbody>
+    <% @racers.in_stable.each do |racer| -%>
+      <tr>
+        <td class="racer_name border_right_thick"><%= racer %></td>
+        <% months.each do |month| -%>
+          <% age = racer.age - (month > month_end ? 1 : 0) -%>
+          <% (1 .. 4).each do |week| -%>
+            <% result = racer.result_in(age, month, week)
+               result_to_s = result.nil? ? ""
+                           : "#{result.race.name} #{result.race.distance_to_s} #{result.place}着" -%>
+            <td class="centered <%= result ? 'race' : '' %>" title="<%= result_to_s %>">
+              <%= racer.weeklies.find_by(age: age, month: month, week: week)&.condition %>
+            </td>
+          <% end -%>
+        <% end -%>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>

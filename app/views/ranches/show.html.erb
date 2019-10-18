@@ -13,6 +13,7 @@
   <% if !@shows_all_racers -%>
     <div class="racers">
       <%= render 'racers/racers' %>
+      <%= render 'racers/all_conditions' %>
 
       <% if @racer_id_to_edit.zero? -%>
         <div class="links">
