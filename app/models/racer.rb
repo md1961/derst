@@ -77,8 +77,12 @@ class Racer < ApplicationRecord
     target_races.map(&:race).include?(race)
   end
 
+  def result_in(age, month, week)
+    results.joins(:race).find_by(age: age, 'races.month': month, 'races.week': week)
+  end
+
   def race_in?(age, month, week)
-    results.joins(:race).where(age: age, 'races.month': month, 'races.week': week).count > 0
+    result_in(age, month, week).present?
   end
 
   def coming_races
