@@ -5,7 +5,7 @@
 <table id="conditions" class="table_base">
   <thead>
     <tr>
-      <th rowspan="2" class="border_bottom_thick border_right_thick">
+      <th rowspan="2" colspan="2" class="border_bottom_thick border_right_thick">
       <% months.each do |month| -%>
         <th colspan="4" class="centered <%= month == @ranch.month ? 'current' : '' %>">
           <%= "#{month}月" %>
@@ -23,9 +23,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @racers.in_stable.each do |racer| -%>
+    <% @racers.each.with_index(1) do |racer, index| -%>
+      <% next unless racer.in_stable? -%>
       <tr>
-        <td class="racer_name border_right_thick"><%= racer %></td>
+        <td class="<%= racer.expecting_race? ? 'expecting_race' : '' %>">
+          <%= index %>
+        </td>
+        <td class="racer_name border_right_thick">
+          <%= racer %>
+        </td>
         <% months.each do |month| -%>
           <% age = racer.age - (month > month_end ? 1 : 0) -%>
           <% (1 .. 4).each do |week| -%>

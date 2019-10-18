@@ -3,6 +3,11 @@ input.in_ranch {
   font-weight: bold;
 }
 
+.expecting_race {
+  color: white;
+  background-color: red;
+}
+
 .racers_racers {
 
   td a {
@@ -81,11 +86,6 @@ input.in_ranch {
 
       form {
         margin-right: 20px;
-      }
-
-      .expecting_race {
-        color: white;
-        background-color: red;
       }
     }
   }
