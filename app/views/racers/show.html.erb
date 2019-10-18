@@ -22,7 +22,7 @@
 
       <div id="racer_menu" class="racers_racers" hidden>
         <table class="table_base">
-          <% Racer.active.where.not(stable: nil).each.with_index(1) do |racer, index| -%>
+          <% Racer.active.where.not(stable: nil).older_first.each.with_index(1) do |racer, index| -%>
             <tr>
               <%= render partial: 'racer', locals: {racer: racer, index: index, f: @racer} %>
             </tr>
