@@ -11,6 +11,7 @@
           <%= "#{month}月" %>
         </th>
       <% end -%>
+      <th rowspan="2">体重</th>
     </tr>
     <tr>
       <% months.each do |month| -%>
@@ -47,6 +48,7 @@
             </td>
           <% end -%>
         <% end -%>
+        <td class="weight_best"><%= racer.weight_best %></td>
         <% racer.coming_races.map(&:race).sort_by { |race|
              race.month_week.ordering_from(@ranch.month_week)
            }.each do |race| -%>
