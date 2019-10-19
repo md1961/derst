@@ -136,6 +136,7 @@ module ApplicationHelper
     a << race.age
     a << race_distance_display(race)
     a << race_name_display(race)
+    a << "#{race.load_for(racer)}kg#{%w[3 4].include?(race.age) ? '+' : ''}" if race.separate?
 
     button_to_target = nil
     if displays_target_button
