@@ -12,6 +12,7 @@
 
     <div class="links">
       <%= form_for_weekly(@racer) %>
+      <span class="weight_best"><%= "ベスト #{@racer.weight_best}kg" %></span>
       <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'}, tabindex: -1 %>
       <% if @prev_racer && @next_racer -%>
         <%= link_to "<(#{@prev_racer})", @prev_racer, id: 'to_prev_racer',

@@ -84,8 +84,9 @@ input.in_ranch {
     .links {
       display: flex;
 
-      form {
-        margin-right: 20px;
+      span.weight_best {
+        margin-left: 10px;
+        margin-right: 30px;
       }
     }
   }
