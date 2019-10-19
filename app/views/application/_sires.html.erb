@@ -3,6 +3,7 @@
     <table class="mare_name_and_traits table_base">
       <tr>
         <td><%= @mare.name %></td>
+        <td><%= @mare.lineage %></td>
         <% if @mare.price.blank? -%>
           <td>自家製</td>
         <% else -%>
