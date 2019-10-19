@@ -55,13 +55,6 @@ tr:hover {
     }
   }
 
-  .notice {
-    color: yellow;
-    background-color: red;
-    font-size: 1.2rem;
-    margin-left: 20px;
-  }
-
   .links {
     margin-left: 20px;
 
@@ -90,4 +83,11 @@ tr:hover {
 
 .no_condition {
   background-color: pink;
+}
+
+.notice {
+  color: yellow;
+  background-color: red;
+  font-size: 1.4rem;
+  margin-top: 10px;
 }

@@ -13,6 +13,9 @@
   <% if !@shows_all_racers -%>
     <div class="racers">
       <%= render 'racers/racers' %>
+      <div class="notice">
+        <%= notice(@ranch) %>
+      </div>
       <%= render 'racers/all_conditions' %>
 
       <% if @racer_id_to_edit.zero? -%>
