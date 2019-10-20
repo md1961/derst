@@ -26,3 +26,15 @@ $ ->
       id = $(this).data('racer_id')
       $('tr[data-racer_id="' + id + '"]').removeClass('hover')
   )
+
+  $('select.condition')
+    .focusin(
+      ->
+        id = $(this).closest('tr').data('racer_id')
+        $('tr[data-racer_id="' + id + '"]').addClass('hover')
+    )
+    .focusout(
+      ->
+        id = $(this).closest('tr').data('racer_id')
+        $('tr[data-racer_id="' + id + '"]').removeClass('hover')
+    )
