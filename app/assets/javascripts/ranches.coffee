@@ -17,3 +17,12 @@ $ ->
   $('span.lean_to_best').on 'click', ->
     weight_lean = $(this).next('input').val()
     $(this).parents('td').prev('td').children('input').val(weight_lean - 0 + 2)
+
+  $('tr.racer').hover(
+    ->
+      id = $(this).data('racer_id')
+      $('tr[data-racer_id="' + id + '"]').addClass('hover')
+    ->
+      id = $(this).data('racer_id')
+      $('tr[data-racer_id="' + id + '"]').removeClass('hover')
+  )

@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <% @racers.each.with_index(1) do |racer, index| -%>
-        <tr>
+        <tr class="racer" data-racer_id="<%= racer.id %>">
           <% if racer.id == @racer_id_to_edit -%>
             <%= form_with model: racer, local: true do |f| %>
               <%= racer.errors.messages unless racer.errors.empty? %>
