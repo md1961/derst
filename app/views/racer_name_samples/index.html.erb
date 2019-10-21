@@ -1,10 +1,12 @@
 <div class="racer_name_samples_index">
   <table>
     <tbody>
-      <% @samples.each do |sample| -%>
+      <% @samples.each_slice(5) do |samples| -%>
         <tr>
-          <td><%= sample %></td>
-          <td><%= link_to '削除', sample, method: :delete %></td>
+          <% samples.each do |sample| -%>
+            <td><%= sample %></td>
+            <td><%= link_to '削除', sample, method: :delete %></td>
+          <% end -%>
         </tr>
       <% end -%>
     </tbody>
