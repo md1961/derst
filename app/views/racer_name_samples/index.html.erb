@@ -1,0 +1,19 @@
+<div class="racer_name_samples_index">
+  <table>
+    <tbody>
+      <% @samples.each do |sample| -%>
+        <tr>
+          <td><%= sample %></td>
+          <td><%= link_to '削除', sample, method: :delete %></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <%= form_with model: RacerNameSample.new, local: true do |f| %>
+    <%= f.text_field :name, autofocus: true %>
+    <%= f.submit %>
+  <% end -%>
+</div>

@@ -42,4 +42,6 @@ Rails.application.routes.draw do
   get 'bloodline/destroy'
 
   resources :sire_filters, only: %i[index create]
+
+  resources :racer_name_samples, except: %i[show new edit]
 end
