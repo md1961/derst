@@ -63,7 +63,7 @@
       <% if mare = @racer.mare -%>
         <%= link_to '繁殖牝馬', matings_path(mare_id: mare), target: '_blank', tabindex: -1 %>
       <% elsif @racer.female? -%>
-        <%= button_to '繁殖入り', create_mare_racer_path(@racer), tabindex: -1 %>
+        <%= button_to '繁殖候補に', create_mare_racer_path(@racer), tabindex: -1 %>
       <% end -%>
     </div>
   </div>
