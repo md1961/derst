@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_01_012742) do
+ActiveRecord::Schema.define(version: 2019_10_20_232316) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -138,6 +138,13 @@ ActiveRecord::Schema.define(version: 2019_10_01_012742) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prize_pattern_id"], name: "index_prizes_on_prize_pattern_id"
+  end
+
+  create_table "racer_name_samples", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "is_crown", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "racers", force: :cascade do |t|

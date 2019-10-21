@@ -1,0 +1,2 @@
+class RacerNameSample < ApplicationRecord
+end
