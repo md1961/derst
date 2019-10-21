@@ -1,5 +1,3 @@
-require 'nkf'
-
 class RacerNameSample < ApplicationRecord
 
   validates :name, presence: true, length: {in: 2 .. 9}
@@ -12,7 +10,9 @@ class RacerNameSample < ApplicationRecord
 
   private
 
+    using StringJapanese
+
     def name_to_katakana
-      self.name = NKF.nkf('-w --katakana', name) if name
+      self.name = name&.to_katakana
     end
 end
