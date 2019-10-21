@@ -7,5 +7,11 @@
   span#name_length {
     margin-left: 5px;
     margin-right: 10px;
+
+    &.illegal {
+      color: red;
+      background-color: yellow;
+      font-weight: bold;
+    }
   }
 }
