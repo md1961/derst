@@ -4,7 +4,9 @@
       <% @samples.each_slice(5) do |samples| -%>
         <tr>
           <% samples.each do |sample| -%>
-            <td><%= sample %></td>
+            <td class="<%= sample.id == flash[:sample_id] ? 'created' : '' %>">
+              <%= sample %>
+            </td>
             <td><%= link_to '削除', sample, method: :delete %></td>
           <% end -%>
         </tr>

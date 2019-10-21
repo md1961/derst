@@ -8,6 +8,7 @@ class RacerNameSamplesController < ApplicationController
   def create
     sample = RacerNameSample.new(sample_params)
     saved = sample.save
+    flash[:sample_id] = sample.id if saved
     redirect_to racer_name_samples_path(saved ? {} : {name_input: sample.name})
   end
 
