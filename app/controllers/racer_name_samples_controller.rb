@@ -1,13 +1,14 @@
 class RacerNameSamplesController < ApplicationController
 
   def index
-    @samples = RacerNameSample.all
+    @samples = RacerNameSample.order(:name)
+    @new_sample = RacerNameSample.new(name: params[:name_input])
   end
 
   def create
     sample = RacerNameSample.new(sample_params)
-    sample.save
-    redirect_to racer_name_samples_path
+    saved = sample.save
+    redirect_to racer_name_samples_path(saved ? {} : {name_input: sample.name})
   end
 
   def destroy
