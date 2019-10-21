@@ -14,6 +14,8 @@
 
   <%= form_with model: @new_sample, local: true do |f| %>
     <%= f.text_field :name, autofocus: true %>
+    <% length = @new_sample.name.to_s.length -%>
+    <span id="name_length"><%= length.zero? ? '' : length %></span>
     <%= f.submit %>
   <% end -%>
 </div>
