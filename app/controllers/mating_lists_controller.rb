@@ -5,25 +5,29 @@ class MatingListsController < ApplicationController
   KEY_MATING_LIST_IN_JSON = :mating_list_in_json
 
   def show
+    @mare = params[:mare]
+    @sire = params[:sire]
   end
 
   def update
-    @mating_list << @mating
-
-    save_mating_list
-    redirect_to mating_list_path
+    _params = {}
+    if @mating
+      @mating_list << @mating
+      save_mating_list
+    else
+      _params = params.permit(:mare, :sire)
+    end
+    redirect_to mating_list_path(_params)
   end
 
   def delete
     @mating_list.delete(@mating)
-
     save_mating_list
     redirect_to mating_list_path
   end
 
   def destroy
     @mating_list.clear
-
     save_mating_list
     redirect_to mating_list_path
   end
@@ -41,9 +45,9 @@ class MatingListsController < ApplicationController
   private
 
     def set_mating
-      sire = Sire.find_by_name( params[:sire]) || Sire.find(params[:sire_id])
-      mare = Mare.find_by(name: params[:mare]) || Mare.find(params[:mare_id])
-      @mating = Mating.new(mare, sire)
+      mare = Mare.find_by(name: params[:mare]) || Mare.find_by(id: params[:mare_id])
+      sire = Sire.find_by_name( params[:sire]) || Sire.find_by(id: params[:sire_id])
+      @mating = mare && sire ? Mating.new(mare, sire) : nil
     end
 
     def set_mating_list

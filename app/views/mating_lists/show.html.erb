@@ -23,11 +23,13 @@
     <%= form_with url: mating_list_path, method: :patch, local: true do |f| %>
       <div class="field">
         <%= f.label :mare %>
-        <input type="search" name="mare" autocomplete="on" list="mother_candidates">
+        <input type="search" name="mare" value="<%= @mare %>" autocomplete="on" list="mother_candidates" autofocus>
       </div>
       <div class="field">
         <%= f.label :sire %>
-        <input type="search" name="sire" autocomplete="on" list="sire_candidates">
+        <input type="search" name="sire" value="<%= @sire %>" autocomplete="on" list="sire_candidates">
+          <%= @sire %>
+        </input>
       </div>
 
       <%= f.submit %>
