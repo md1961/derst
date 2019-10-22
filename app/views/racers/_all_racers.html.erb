@@ -3,8 +3,8 @@
     <thead>
       <tr>
         <th colspan="4">
-        <th>父</th>
-        <th>母</th>
+        <th colspan="2">父</th>
+        <th colspan="2">母</th>
         <th>点</th>
         <th>ニ</th>
         <th>面</th>
@@ -21,20 +21,27 @@
     <tbody>
       <% racers = Racer.retired.order(:year_birth) \
                 + [nil] \
-                + Racer.active .order(:year_birth) -%>
+                + Racer.active .order(:year_birth)
+         prev_racer = nil -%>
       <% racers.each.with_index(1) do |racer, index| -%>
-        <tr>
+        <tr class="<%= prev_racer&.stable && racer && !racer.stable ? 'border_top_thick' : '' %>">
+          <% prev_racer = racer -%>
           <% unless racer -%>
             <td colspan="18">&nbsp;</td>
             <% next -%>
           <% end -%>
-          <td class="numeric"><%= link_to index - (racer.is_active ? 1 : 0), racer %></td>
+          <td class="numeric <%= racer.stable ? '' : 'not_stabled' %>">
+            <%= link_to index - (racer.is_active ? 1 : 0), racer %>
+          </td>
           <td><%= racer_name_display(racer, nil) %></td>
           <td><%= racer_sex_display(racer) %></td>
           <td class="numeric"><%= "#{racer.age}歳" %></td>
-          <td><%= racer.father %></td>
-          <td><%= racer.mother %></td>
-          <% mating = Mating.new(racer.mother, racer.father)
+          <% father, mother = racer.father, racer.mother -%>
+          <td><%= father %></td>
+          <td class="centered"><%= father.trait.stability %></td>
+          <td><%= mother %></td>
+          <td class="centered"><%= "#{mother.speed} #{mother.stamina}" %></td>
+          <% mating = Mating.new(mother, father)
              inbreed = mating.inbreed_display
              inbreed = '（アウトブリード）' if inbreed.blank? -%>
           <td class="numeric">

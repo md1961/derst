@@ -8,6 +8,14 @@ input.in_ranch {
   background-color: red;
 }
 
+td.not_stabled {
+  background-color: forestgreen;
+
+  a {
+    color: white;
+  }
+}
+
 .racers_racers {
 
   td a {
@@ -24,14 +32,6 @@ input.in_ranch {
 
   td.in_ranch {
     background-color: palegreen;
-  }
-
-  td.not_stabled {
-    background-color: forestgreen;
-
-    a {
-      color: white;
-    }
   }
 
   td.current_racer {
