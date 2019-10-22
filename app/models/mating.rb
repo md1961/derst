@@ -75,6 +75,12 @@ class Mating
     end
   end
 
+  def clear_cache
+    return unless @mare
+    File.delete(filename_for_cache) if File.exists?(filename_for_cache)
+    @@h_inbreeds_cache[@mare.id] = {}
+  end
+
   def to_h
     {
       score: score,
