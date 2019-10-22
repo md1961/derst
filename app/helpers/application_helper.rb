@@ -145,7 +145,7 @@ module ApplicationHelper
     button_to_target = nil
     if displays_target_button
       is_target = racer.target?(race)
-      label, path, method, clazz = race.month_week == racer.ranch.month_week \
+      label, path, method, clazz = race.month_week == racer.ranch.month_week && racer.condition \
           ? ['E', create_result_racer_path(racer, race_id: race.id)       , :post  , is_target ? 'target' : ''] \
         : is_target \
           ? [' ' ,target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
