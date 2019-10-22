@@ -76,6 +76,7 @@ module RacersHelper
   def result_attr_display(result, name, f)
     in_paddock = result.comment_paddock.blank?
     if !f || name == :age
+      return '－' if name == :place and result.place > 20
       result.send(name)
     elsif name == :jockey
       f.select :jockey_id, options_for_select_for_jockey(result.jockey),

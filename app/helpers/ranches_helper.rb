@@ -5,10 +5,6 @@ module RanchesHelper
       - (is_active ? [] : %i[weight_fat weight_lean])
   end
 
-  def racer_sex_display(racer)
-    {male: '牡', female: '牝', gelding: '騸'}.fetch(racer.sex&.to_sym, '-')
-  end
-
   def racer_attr_display_in_td(racer, name, f)
     classes = %w[default]
     classes << 'numeric'     if name.to_s.starts_with?('weight_')

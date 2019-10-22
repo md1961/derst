@@ -14,6 +14,10 @@ module ApplicationHelper
     end
   end
 
+  def racer_sex_display(racer)
+    {male: '牡', female: '牝', gelding: '騸'}.fetch(racer.sex&.to_sym, '-')
+  end
+
   def monetary_display(prize)
     upper = prize >= 10000 ? "#{prize / 10000}億" : ""
     prize %= 10000

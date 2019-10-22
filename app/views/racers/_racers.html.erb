@@ -13,8 +13,11 @@
       </tr>
     </thead>
     <tbody>
+      <% prev_racer = nil -%>
       <% @racers.each.with_index(1) do |racer, index| -%>
-        <tr class="racer" data-racer_id="<%= racer.id %>">
+        <tr class="racer <%= prev_racer&.stable && racer && !racer.stable ? 'border_top_thick' : '' %>"
+            data-racer_id="<%= racer.id %>">
+          <% prev_racer = racer -%>
           <% if racer.id == @racer_id_to_edit -%>
             <%= form_with model: racer, local: true do |f| %>
               <%= racer.errors.messages unless racer.errors.empty? %>
