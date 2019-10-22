@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :sires, except: %i[destroy]
   resources :mares, only: %i[index show]
 
-  resources :matings, only: %i[index show new create]
+  resources :matings, only: %i[index show new create] do
+    collection do
+      get :recache
+    end
+  end
 
   resource :mating_list, only: %i[show update destroy] do
     get :delete

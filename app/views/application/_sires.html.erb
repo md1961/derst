@@ -38,6 +38,12 @@
   <div class="count">
     <%= "#{@sires.count} / #{Sire.breedable.count}" %>
   </div>
+
+  <div class="links">
+    <% if @mare && @displays_inbreeds -%>
+      <%= link_to '再計算', recache_matings_path(mare_id: @mare.id) %>
+    <% end -%>
+  </div>
 </div>
 
 <table class="sires table_base">

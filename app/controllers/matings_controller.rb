@@ -34,4 +34,10 @@ class MatingsController < ApplicationController
       redirect_to mating_path(id: mare, sire_id: sire.id)
     end
   end
+
+  def recache
+    mare = Mare.find(params[:mare_id])
+    Mating.new(mare).clear_cache
+    redirect_to matings_path(mare_id: mare.id, displays_inbreeds: true)
+  end
 end
