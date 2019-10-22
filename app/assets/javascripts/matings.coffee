@@ -8,7 +8,8 @@ $ ->
     shows_nicks_only = $('#header_nicks').hasClass('nicks_only')
     if shows_interesting_only && shows_nicks_only
       $('.sires tbody tr').hide()
-      $('td.nicks').parent('tr').has('td.interesting').show()
+      $('td.nicks')      .parent('tr').show()
+      $('td.interesting').parent('tr').show()
     else if shows_nicks_only
       $('.sires tbody tr').hide()
       $('td.nicks').parent('tr').show()
