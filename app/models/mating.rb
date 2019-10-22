@@ -22,12 +22,11 @@ class Mating
 
   def h_inbreeds
     @h_inbreeds ||= \
-      @mare_inbreeds.each_with_object(@sire.h_inbreeds) { |(father, generations), h|
-        h[father].concat(generations) if h[father].size > 0
-      }.reject { |father, generations|
-        generations.size <= 1 || !@mare_inbreeds.has_key?(father)
-      }.map { |father, generations|
-        [father, generations.sort]
+      (@mare_inbreeds.keys & @sire.h_inbreeds.keys).yield_self { |fathers|
+        fathers_father_ids = fathers.map(&:father).compact.map(&:id)
+        fathers.reject { |father| fathers_father_ids.include?(father.id) }
+      }.map { |father|
+        [father, (@mare_inbreeds[father] + @sire.h_inbreeds[father]).sort]
       }.to_h
   end
 
