@@ -5,13 +5,19 @@ class RanchMaresController < ApplicationController
   end
 
   def create
-    mare = Mare.find_by(name: params[:ranch_mare][:mare])
+    mare_name = params[:ranch_mare][:mare]
+    mare = Mare.find_by(name: mare_name)
     redirect_to new_ranch_mare_path and return unless mare
     params[:ranch_mare][:mare_id] = mare.id
+    racer = Racer.find_by(name: mare_name)
+    params[:ranch_mare][:age] = racer.age if racer
     ranch_mare = RanchMare.new(
       params.require(:ranch_mare).permit(:ranch_id, :mare_id, :age)
     )
-    ranch_mare.save!
+    ApplicationRecord.transaction do
+      ranch_mare.save!
+      racer&.retire!
+    end
     redirect_to ranch_mare.ranch
   end
 
