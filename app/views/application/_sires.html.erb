@@ -22,13 +22,13 @@
       <%= f.label '成長' %>
       <%= f.select :growth, options_for_growth %>
       <%= f.label '気性' %>
-      <%= f.select :temper, options_for_abc %>
+      <%= f.select :temper   , options_for_abc, {}, class: 'select_abc' %>
       <%= f.label '根性' %>
-      <%= f.select :contend, options_for_abc %>
+      <%= f.select :contend  , options_for_abc, {}, class: 'select_abc' %>
       <%= f.label '健康' %>
-      <%= f.select :health, options_for_abc %>
+      <%= f.select :health   , options_for_abc, {}, class: 'select_abc' %>
       <%= f.label '安定' %>
-      <%= f.select :stability, options_for_abc %>
+      <%= f.select :stability, options_for_abc, {}, class: 'select_abc' %>
       <%= hidden_field_tag :mare_id, @mare&.id %>
       <%= hidden_field_tag :ranch_id, @ranch&.id %>
       <%= f.submit %>
@@ -85,8 +85,9 @@
         <td><%= sire.domestic? ? '内' : '' %></td>
         <% trait = sire.trait -%>
         <% sire_trait_names.each do |name| -%>
-          <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
-            <%= trait.send(name) %>
+          <% value = trait.send(name) -%>
+          <td class="<%= "#{name}-#{value}" %> <%= name == :fee ? 'numeric' : 'centered' %>">
+            <%= value %>
           </td>
         <% end -%>
 
