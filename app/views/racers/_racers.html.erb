@@ -24,8 +24,10 @@
               <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: f} %>
             <% end -%>
             <td>
-              <%= button_to '引退', retire_racer_path(racer), method: :patch, tabindex: -1,
-                                      data: {confirm: "「#{racer.name}」を引退させますか？"} %>
+              <%= button_to '引退', retire_racer_path(racer), method: :patch,
+                                      class: 'critical',
+                                      data: {confirm: "「#{racer.name}」を引退させますか？"},
+                                      tabindex: -1 %>
             </td>
           <% else -%>
             <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: nil} %>

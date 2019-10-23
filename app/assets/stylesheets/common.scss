@@ -3,6 +3,12 @@ html, input, select {
   font-size: 8px;
 }
 
+.critical {
+  color: yellow;
+  background-color: red;
+  font-weight: bold;
+}
+
 span.button {
   cursor: pointer;
 }
