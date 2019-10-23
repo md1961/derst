@@ -31,7 +31,6 @@
       <%= f.select :stability, options_for_abc, {}, class: 'select_abc' %>
       <%= hidden_field_tag :mare_id, @mare&.id %>
       <%= hidden_field_tag :ranch_id, @ranch&.id %>
-      <%= f.submit %>
     <% end -%>
   </div>
 
