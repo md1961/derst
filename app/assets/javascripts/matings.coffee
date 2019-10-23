@@ -17,6 +17,14 @@ $ ->
       else
         $('.sires tbody tr').show()
 
+     $select_growth = $('#sire_filter_growth')
+     selection = $select_growth.val()
+     values = if selection == '-' then ['早熟', '普通', '晩成'] else selection.split(',')
+     values_to_hide = ['早熟', '普通', '晩成'].filter((e) => !values.includes(e))
+     $.each(values_to_hide, (_, value) ->
+       $('td.growth-' + value).parent('tr').hide()
+     )
+
     $('.select_abc').each ->
       selection = $(@).val()
       values = if selection == '-' then ['A', 'B', 'C'] else selection.split('-')
@@ -38,6 +46,9 @@ $ ->
 
   $('#header_interesting').on 'click', ->
     $(this).toggleClass('interesting_only')
+    filter()
+
+  $('#sire_filter_growth').on 'change', ->
     filter()
 
   $('.select_abc').on 'change', ->
