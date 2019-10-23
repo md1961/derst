@@ -39,7 +39,7 @@
   </div>
 
   <div class="links">
-    <% if @mare && @displays_inbreeds -%>
+    <% if @mare -%>
       <%= link_to '再計算', recache_matings_path(mare_id: @mare.id) %>
     <% end -%>
   </div>
@@ -54,16 +54,11 @@
       <% sire_trait_names.each do |name| -%>
         <th><%= SireTrait.human_attribute_name(name) %></th>
       <% end -%>
-      <% if @displays_inbreeds -%>
+      <% if @mare -%>
         <th id="header_score">点</th>
         <th id="header_nicks">ニ</th>
         <th id="header_interesting">面</th>
         <th>インブリード</th>
-      <% elsif @mare -%>
-        <td><%= link_to '配合', matings_path(mare_id: @mare.id,
-                                             displays_inbreeds: true,
-                                             sire_filter: @sire_filter.to_params,
-                                             ranch_id: @ranch&.id) %></td>
       <% end -%>
     </tr>
   </thead>
@@ -90,7 +85,7 @@
           </td>
         <% end -%>
 
-        <% if @displays_inbreeds -%>
+        <% if @mare -%>
           <% mating = Mating.new(@mare, sire, mare_inbreeds)
              is_nicks       = mating.nicks?
              is_interesting = mating.interesting?

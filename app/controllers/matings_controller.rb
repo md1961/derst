@@ -6,8 +6,7 @@ class MatingsController < ApplicationController
     @sires = Sire.includes(:trait)
               .breedable.where(@sire_filter.conditions)
               .order(fee: :asc, name_jp: :desc)
-    @displays_inbreeds = params[:displays_inbreeds] == 'true'
-    Mating.new(@mare).write_cache if @displays_inbreeds
+    Mating.new(@mare).write_cache
 
     @ranch = Ranch.find_by(id: params[:ranch_id])
   end
@@ -38,6 +37,6 @@ class MatingsController < ApplicationController
   def recache
     mare = Mare.find(params[:mare_id])
     Mating.new(mare).clear_cache
-    redirect_to matings_path(mare_id: mare.id, displays_inbreeds: true)
+    redirect_to matings_path(mare_id: mare.id)
   end
 end
