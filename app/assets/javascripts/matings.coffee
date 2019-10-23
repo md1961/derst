@@ -35,6 +35,8 @@ $ ->
         $('td.' + class_name).parent('tr').hide()
       )
 
+    $('#count_sires').text($('.sires tbody tr:visible').length)
+
 
   $('#header_score').on 'click', ->
     $(this).toggleClass('excellent_score_only')
