@@ -49,3 +49,7 @@ $ ->
     if focused.attr('name') == 'condition' && e.keyCode == 13
       focused.parent('form').submit()
       return false
+
+  $(window).on 'keyup', (e) ->
+    if e.keyCode == 27 && $('.esc_hideable:visible').length > 0
+      $('.esc_hideable:visible').hide()

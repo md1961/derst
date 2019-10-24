@@ -21,7 +21,7 @@
                       class: @next_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
       <% end -%>
 
-      <div id="racer_menu" class="racers_racers" hidden>
+      <div id="racer_menu" class="racers_racers esc_hideable" hidden>
         <table class="table_base">
           <% Racer.active.where.not(stable: nil).older_first.each.with_index(1) do |racer, index| -%>
             <% next unless racer.in_stable? -%>
