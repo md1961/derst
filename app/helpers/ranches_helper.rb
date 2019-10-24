@@ -33,7 +33,7 @@ module RanchesHelper
           stables.map { |stable| [stable.name, stable.id] }
         ]
       }
-      f.select :stable_id, grouped_options_for_select([['', ['-']]] + options, racer.stable&.id)
+      f.select :stable_id, grouped_options_for_select(options, racer.stable&.id, prompt: '-')
     elsif name.to_s.starts_with?('weight_')
       safe_join([
         name == :weight_lean ? content_tag(:span, '<', class: 'lean_to_best button') : nil,
