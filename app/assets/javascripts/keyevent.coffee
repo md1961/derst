@@ -51,5 +51,8 @@ $ ->
       return false
 
   $(window).on 'keyup', (e) ->
-    if e.keyCode == 27 && $('.esc_hideable:visible').length > 0
-      $('.esc_hideable:visible').hide()
+    if e.keyCode == 27
+      if $('.esc_hideable:visible').length > 0
+        $('.esc_hideable:visible').hide()
+      else if $('.escapeable').length > 0
+        $('.escapeable')[0].click()
