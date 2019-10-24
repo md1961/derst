@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   resource :mare_list, only: %i[show update destroy] do
     get :delete
-    get :prev, :next
   end
 
   resources :matings, only: %i[index show new create] do

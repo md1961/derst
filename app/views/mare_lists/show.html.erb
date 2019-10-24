@@ -5,9 +5,10 @@
         <% (@mares + [nil] * 10)[0 .. 9].each do |mare| -%>
           <tr>
             <% if mare -%>
-              <td><%= mare %></td>
+              <td><%= link_to mare, matings_path(mare_id: mare), target: '_blank' %></td>
+              <td><%= link_to '削除', delete_mare_list_path(mare_id: mare) %>
             <% else -%>
-              <td>
+              <td colspan="2">
                 <input type="search" name="mares[]" value="<%= @mare %>" autocomplete="on" list="mother_candidates" autofocus>
               </td>
             <% end -%>
@@ -17,6 +18,8 @@
     </table>
     <%= f.submit %>
   <% end -%>
+
+  <%= button_to '全削除', mare_list_path, method: :delete, data: {confirm: "全削除？"}, tabindex: -1 %>
 
   <%= render 'mother_candidates' %>
 </div>
