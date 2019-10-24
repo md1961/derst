@@ -27,7 +27,13 @@ module RanchesHelper
       f.select :grade_given_id, [['-', nil]] + Grade.where("name NOT LIKE 'G%'").pluck(:name, :id),
                   {}, autofocus: true
     elsif name == :stable
-      f.select :stable_id, [['-', nil]] + Stable.pluck(:name, :id)
+      options = Stable.all.group_by(&:center).map { |center, stables|
+        [
+          center.name,
+          stables.map { |stable| [stable.name, stable.id] }
+        ]
+      }
+      f.select :stable_id, grouped_options_for_select([['', ['-']]] + options, racer.stable&.id)
     elsif name.to_s.starts_with?('weight_')
       safe_join([
         name == :weight_lean ? content_tag(:span, '<', class: 'lean_to_best button') : nil,
