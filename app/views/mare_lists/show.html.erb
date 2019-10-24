@@ -1,0 +1,22 @@
+<div class="mare_lists_show">
+  <%= form_with url: mare_list_path, method: :patch, local: true do |f| %>
+    <table>
+      <tbody>
+        <% (@mares + [nil] * 10)[0 .. 9].each do |mare| -%>
+          <tr>
+            <% if mare -%>
+              <td><%= mare %></td>
+            <% else -%>
+              <td>
+                <input type="search" name="mares[]" value="<%= @mare %>" autocomplete="on" list="mother_candidates" autofocus>
+              </td>
+            <% end -%>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+    <%= f.submit %>
+  <% end -%>
+
+  <%= render 'mother_candidates' %>
+</div>
