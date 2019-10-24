@@ -14,7 +14,6 @@ module RacersHelper
 
   def race_options_for_select_for(racer)
     grouped_options_for_select(
-      [['', ['-']]] + \
       racer.race_candidates(includes_overgrade: true).find_all { |race|
         race.month_week == racer.ranch.month_week
       }.group_by(&:grade).map { |grade, races|
@@ -24,7 +23,9 @@ module RacersHelper
             [race_display(race, racer).gsub(/<[^>]?*>/, ''), race.id]
           }
         ]
-      }
+      },
+      nil,
+      prompt: '-'
     )
   end
 
@@ -70,7 +71,7 @@ module RacersHelper
     jockey_short = Jockey.find_by(name: short_term_jockey_name_in(@racer.ranch.month))
     h_options['短期'] = [[jockey_short.name, jockey_short.id]]
     options = keys.map { |key| [key, h_options[key]] }
-    grouped_options_for_select([['', ['-']]] + options, jockey&.id)
+    grouped_options_for_select(options, jockey&.id, prompt: '-')
   end
 
   def result_attr_display(result, name, f)
