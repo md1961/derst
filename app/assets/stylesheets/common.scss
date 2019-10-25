@@ -43,6 +43,12 @@ tbody tr:hover {
     background-color: red;
   }
 
+  #button_to_next_week:focus {
+    color: red;
+    background-color: yellow;
+    font-weight: bold;
+  }
+
   .date {
     display: flex;
 
