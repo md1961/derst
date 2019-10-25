@@ -1,14 +1,20 @@
 <div class="mare_lists_show">
   <%= form_with url: mare_list_path, method: :patch, local: true do |f| %>
-    <table>
+    <table class="table_base">
       <tbody>
         <% (@mares + [nil] * 10)[0 .. 9].each do |mare| -%>
           <tr>
             <% if mare -%>
               <td><%= link_to mare, matings_path(mare_id: mare), target: '_blank' %></td>
+              <td><%= mare.lineage %></td>
+              <td class="numeric"><%= "#{mare.price}万円" %></td>
+              <td><%= mare.speed %></td>
+              <td><%= mare.stamina %></td>
+              <td><%= mare.rating %></td>
+              <td><%= mare.type %></td>
               <td><%= link_to '削除', delete_mare_list_path(mare_id: mare) %>
             <% else -%>
-              <td colspan="2">
+              <td colspan="8">
                 <input type="search" name="mares[]" value="<%= @mare %>" autocomplete="on" list="mother_candidates" autofocus>
               </td>
             <% end -%>
