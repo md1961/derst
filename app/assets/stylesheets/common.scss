@@ -38,6 +38,11 @@ tbody tr:hover {
   background-color: white;
   display: flex;
 
+  &.ready_for_next_week {
+    color: white;
+    background-color: red;
+  }
+
   .date {
     display: flex;
 
