@@ -38,9 +38,11 @@
           <% (1 .. 4).each do |week| -%>
             <% result = racer.result_in(age, month, week)
                result_to_s = result.nil? ? ""
-                           : "#{result.race.name} #{result.race.distance_to_s} #{result.place}着" -%>
-            <td class="centered <%= result ? 'race' : '' %>" title="<%= result_to_s %>">
-              <% if @ranch.in_week_of?(month, week) -%>
+                           : "#{result.race.name} #{result.race.distance_to_s} #{result.place}着"
+               is_current_week = @ranch.in_week_of?(month, week) -%>
+            <td class="centered <%= result ? (is_current_week ? 'race_coming' : 'race') : '' %>"
+                title="<%= result_to_s %>">
+              <% if is_current_week -%>
                 <%= form_for_weekly(racer) %>
               <% else -%>
                 <%= racer.weeklies.find_by(age: age, month: month, week: week)&.condition %>
