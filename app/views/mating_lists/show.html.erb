@@ -1,9 +1,32 @@
 <div class="mating_lists_show">
-  <table>
+  <table class="table_base">
+    <thead>
+      <tr>
+        <th>
+        <th>点</th>
+        <th>ニ</th>
+        <th>面</th>
+        <th>インブリード</th>
+        <th colspan="2">
+      </tr>
+    </thead>
     <tbody>
       <% @mating_list.each do |mating| -%>
+        <% is_nicks       = mating.nicks?
+           is_interesting = mating.interesting?
+           score          = mating.score -%>
         <tr>
           <td><%= mating %></td>
+          <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>">
+            <%= score %>
+          </td>
+          <td class="centered <%= is_nicks ? 'nicks' : '' %>">
+            <%= is_nicks ? '〇' : '' %>
+          </td>
+          <td class="centered <%= is_interesting ? 'interesting' : '' %>">
+            <%= is_interesting ? '〇' : '' %>
+          </td>
+          <td class="allows_wrap"><%= mating.inbreed_display %></td>
           <td><%= link_to '配合', mating_path(mating.mare, sire_id: mating.sire.id, in_list: true),
                                   target: '_blank' %></td>
           <td><%= link_to '削除', delete_mating_list_path(mare_id: mating.mare.id, sire_id: mating.sire.id),
