@@ -114,6 +114,7 @@ class Racer < ApplicationRecord
   end
 
   def last_condition
+    return '重' if weeklies.empty?
     month_week = ranch.month_week.prev
     _age = age - (month_week.last_of_year? ? 1 : 0)
     month, week = month_week.to_a
