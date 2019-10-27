@@ -7,6 +7,9 @@
   <div id="results_and_conditions">
     <% if @racer.stable -%>
       <%= render 'results' %>
+      <div class="notice">
+        <%= notice(@racer.ranch) %>
+      </div>
       <%= render 'conditions' %>
     <% end -%>
 
