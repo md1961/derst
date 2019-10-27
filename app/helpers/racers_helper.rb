@@ -84,11 +84,13 @@ module RacersHelper
                             {}, tabindex: in_paddock ? -1 : 0
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name),
-                            {}, tabindex: in_paddock ? -1 : 0
+                            {}, tabindex: in_paddock || name == :condition ? -1 : 0
     elsif name == :weight
       f.number_field name, step: 2
     elsif name == :load
-      f.number_field name, class: result.race.separate? ? 'separate' : '',
+      race = result.race
+      is_uncertain = race.separate? && %w[3 4].include?(race.age)
+      f.number_field name, class: is_uncertain ? 'separate' : '',
                            tabindex: in_paddock ? -1 : 0
     else
       size = {

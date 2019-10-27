@@ -41,7 +41,7 @@ module RanchesHelper
         name == :weight_fat  ? content_tag(:span, '>', class: 'fat_to_best  button') : nil
       ].compact, "\n")
     else
-      f.text_field name
+      f.text_field name, autofocus: name.to_s.starts_with?('comment_age')
     end
   end
 
