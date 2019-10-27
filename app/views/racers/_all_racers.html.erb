@@ -24,7 +24,8 @@
                 + Racer.active .order(:year_birth)
          prev_racer = nil -%>
       <% racers.each.with_index(1) do |racer, index| -%>
-        <tr class="<%= prev_racer&.stable && racer && !racer.stable ? 'border_top_thick' : '' %>">
+        <tr class="<%= "age-#{racer&.age}" %>
+                   <%= prev_racer&.stable && racer && !racer.stable ? 'border_top_thick' : '' %>">
           <% prev_racer = racer -%>
           <% unless racer -%>
             <td colspan="18">&nbsp;</td>

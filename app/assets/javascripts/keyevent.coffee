@@ -46,6 +46,14 @@ $ ->
       $('span.lean_to_best')[0].click()
       return false
 
+    if $('.all_racers').length > 0 && key != 'z'
+      if '1' <= key && key <= '9'
+        $('tbody tr').hide()
+        $('tbody tr.age-' + key).show()
+      else
+        $('tbody tr').show()
+      return
+
     key = '=' if key == '"'
     links = $('a[data-shortcut="' + key + '"]:visible')
     if links.length > 0
