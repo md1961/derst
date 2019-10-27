@@ -28,7 +28,7 @@
       <% next unless racer.in_stable? -%>
       <tr class="racer" data-racer_id="<%= racer.id %>">
         <td class="<%= racer.expecting_race? ? 'expecting_race' : '' %>">
-          <%= index %>
+          <%= index < 10 ? index : ('a'.ord + index - 10).chr.upcase %>
         </td>
         <td class="racer_name border_right_thick">
           <%= racer %>

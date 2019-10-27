@@ -30,7 +30,7 @@ module RanchesHelper
       options = Stable.all.group_by(&:center).map { |center, stables|
         [
           center.name,
-          stables.map { |stable| [stable.name, stable.id] }
+          stables.map { |stable| [stable.name_with_num_racers, stable.id] }
         ]
       }
       f.select :stable_id, grouped_options_for_select(options, racer.stable&.id, prompt: '-')
