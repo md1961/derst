@@ -4,6 +4,15 @@ $ ->
       return
     key = String.fromCharCode(e.which)
 
+    if $('#results').hasClass('ready_for_race') && $('#result_mark_development').is(':focus')&& (key == 'a' || key == 'z')
+      value = if key == 'a' then '－' else '◎'
+      $('#result_mark_development').val(value)
+      $('#result_mark_stamina')    .val(value)
+      $('#result_mark_contend')    .val(value)
+      $('#result_mark_temper')     .val(value)
+      $('#result_mark_odds')       .val(value)
+      return
+
     if $('#show_all_racers').length > 0 && (key == 'z' || key == 'y')
       if key == 'z'
         $('#show_all_racers')[0].click()
@@ -30,14 +39,12 @@ $ ->
         $('#to_next_racer')[0].click()
       return
 
-    if $('#results').hasClass('ready_for_race') && (key == 'a' || key == 'y')
-      value = if key == 'a' then '－' else '◎'
-      $('#result_mark_development').val(value)
-      $('#result_mark_stamina')    .val(value)
-      $('#result_mark_contend')    .val(value)
-      $('#result_mark_temper')     .val(value)
-      $('#result_mark_odds')       .val(value)
-      return
+    if $('#racer_weight_fat').is(':focus') && key == '>'
+      $('span.fat_to_best')[0].click()
+      return false
+    if $('#racer_weight_lean').is(':focus') && key == '<'
+      $('span.lean_to_best')[0].click()
+      return false
 
     key = '=' if key == '"'
     links = $('a[data-shortcut="' + key + '"]:visible')
