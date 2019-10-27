@@ -89,8 +89,8 @@ module RacersHelper
       f.number_field name, step: 2
     elsif name == :load
       race = result.race
-      is_uncertain = race.separate? && %w[3 4].include?(race.age)
-      f.number_field name, class: is_uncertain ? 'separate' : '',
+      is_uncertain = race.handicap? || race.separate? && %w[3 4].include?(race.age)
+      f.number_field name, class: is_uncertain ? 'uncertain' : '',
                            tabindex: in_paddock ? -1 : 0
     else
       size = {
