@@ -2,8 +2,16 @@
   <table class="table_base">
     <thead>
       <tr>
-        <th>
-        <th>点</th>
+        <th class="border_right_thick">
+        <% sire_trait_names.each do |name| -%>
+          <th><%= SireTrait.human_attribute_name(name) %></th>
+        <% end -%>
+        <% mare_trait_names.reject { |n| n == :lineage }.each_with_index do |name, index| -%>
+          <th class="<%= index.zero? ? 'border_left_thick' : '' %>">
+            <%= Mare.human_attribute_name(name) %>
+          </th>
+        <% end -%>
+        <th class="border_left_thick">点</th>
         <th>ニ</th>
         <th>面</th>
         <th>インブリード</th>
@@ -16,8 +24,22 @@
            is_interesting = mating.interesting?
            score          = mating.score -%>
         <tr>
-          <td><%= mating %></td>
-          <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>">
+          <td class="border_right_thick"><%= mating %></td>
+          <% trait = mating.sire.trait -%>
+          <% sire_trait_names.each do |name| -%>
+            <% value = trait.send(name) -%>
+            <td class="<%= "#{name}-#{value}" %> <%= name == :fee ? 'numeric' : 'centered' %>">
+              <%= value %>
+            </td>
+          <% end -%>
+          <% mare_trait_names.reject { |n| n == :lineage }.each_with_index do |name, index| -%>
+            <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>
+                       <%= index.zero? ? 'border_left_thick' : '' %>">
+              <%= mating.mare.send(name) %>
+            </td>
+          <% end -%>
+          <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>
+                     border_left_thick">
             <%= score %>
           </td>
           <td class="centered <%= is_nicks ? 'nicks' : '' %>">
