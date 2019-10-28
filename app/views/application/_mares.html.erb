@@ -5,6 +5,7 @@
       <% mare_trait_names.each do |name| -%>
         <th><%= Mare.human_attribute_name(name) %></th>
       <% end -%>
+      <th colspan="2">受胎</th>
       <th colspan="2">
     </tr>
   </thead>
@@ -29,7 +30,18 @@
             <%= mare.send(name) %>
           </td>
         <% end -%>
-        <td><%= link_to '配合', matings_path(mare_id: mare, ranch_id: @ranch), target: '_blank', tabindex: -1 %></td>
+        <% if @ranch -%>
+          <% if sire = @ranch.ranch_mares.find_by(mare: mare)&.sire -%>
+            <td><%= sire %></td>
+            <td><%= link_to '配合', mating_path(mare, sire_id: sire), target: '_blank', tabindex: -1 %></td>
+          <% else -%>
+            <td colspan="2" class="centered">（空胎）</td>
+          <% end -%>
+        <% end -%>
+        <td>
+          <%= link_to (@ranch ? '種付' : '配合'), matings_path(mare_id: mare, ranch_id: @ranch),
+                                                    target: '_blank', tabindex: -1 %>
+        </td>
         <% if @ranch -%>
           <td>
             <%= button_to '売却', ranch_mare, method: :delete, tabindex: -1,
