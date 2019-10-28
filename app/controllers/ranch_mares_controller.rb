@@ -21,6 +21,12 @@ class RanchMaresController < ApplicationController
     redirect_to ranch_mare.ranch
   end
 
+  def update
+    ranch_mare = RanchMare.find(params[:id])
+    ranch_mare.update!(sire_id: params[:sire_id])
+    redirect_to matings_path(mare_id: ranch_mare.mare.id, ranch_id: ranch_mare.ranch.id)
+  end
+
   def destroy
     ranch_mare = RanchMare.find(params[:id])
     ranch = ranch_mare.ranch

@@ -101,6 +101,15 @@
             <%= is_interesting ? '〇' : '' %>
           </td>
           <td class="allows_wrap"><%= mating.inbreed_display %></td>
+          <% ranch_mare = @ranch&.ranch_mares&.find_by(mare: @mare) -%>
+          <% if ranch_mare -%>
+            <td>
+            <% if sire == ranch_mare.sire -%>
+              受胎
+            <% else -%>
+              <%= link_to '種付', ranch_mare_path(ranch_mare, sire_id: sire.id), method: :patch %>
+            <% end -%>
+          <% end -%>
         <% end -%>
       </tr>
     <% end -%>
