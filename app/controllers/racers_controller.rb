@@ -62,6 +62,7 @@ class RacersController < ApplicationController
     condition = nil if condition == '-'
     racer.condition = condition
     ranch = Ranch.find_by(id: params[:ranch_id])
+    flash[:racer_id_weekly_entered] = racer.id
     redirect_to ranch || racer
   end
 
