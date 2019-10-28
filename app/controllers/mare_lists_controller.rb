@@ -10,7 +10,8 @@ class MareListsController < ApplicationController
     params[:items].each do |item|
       next if item[:mare].blank?
       mare = Mare.find_by(name: item[:mare])
-      @mare_list.add(mare, item[:age], nil) if mare
+      sire = Sire.find_by_name( item[:sire])
+      @mare_list.add(mare, item[:age], sire) if mare
     end
     save_mare_list
     redirect_to mare_list_path

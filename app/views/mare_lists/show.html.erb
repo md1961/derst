@@ -3,7 +3,8 @@
     <table class="table_base">
       <tbody>
         <% @mare_list.each_item do |item| -%>
-          <% mare = item&.mare -%>
+          <% mare = item&.mare
+             sire = item&.sire -%>
           <tr>
             <% if mare -%>
               <td><%= link_to mare, matings_path(mare_id: mare), target: '_blank' %></td>
@@ -15,10 +16,36 @@
               <td><%= mare.rating %></td>
               <td><%= mare.type %></td>
               <td><%= link_to '削除', delete_mare_list_path(mare_id: mare) %>
+              <% if sire.present? -%>
+                <% mating = Mating.new(mare, sire)
+                   is_nicks       = mating.nicks?
+                   is_interesting = mating.interesting?
+                   score          = mating.score -%>
+                <td><%= sire %></td>
+                <% trait = sire.trait -%>
+                <% sire_trait_names.each do |name| -%>
+                  <% value = trait.send(name) -%>
+                  <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
+                    <%= value %>
+                  </td>
+                <% end -%>
+                <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>
+                           border_left_thick">
+                  <%= score %>
+                </td>
+                <td class="centered <%= is_nicks ? 'nicks' : '' %>">
+                  <%= is_nicks ? '〇' : '×' %>
+                </td>
+                <td class="centered <%= is_interesting ? 'interesting' : '' %>">
+                  <%= is_interesting ? '〇' : '×' %>
+                </td>
+                <td class="allows_wrap"><%= mating.inbreed_display %></td>
+              <% end -%>
             <% else -%>
               <td colspan="9">
-                <input type="search" name="items[][mare]" value="<%= @mare %>" autocomplete="on" list="mother_candidates" autofocus>
+                <input type="search" name="items[][mare]" value="" autocomplete="on" list="mother_candidates" autofocus>
                 <%= f.number_field "items[][age]" %>
+                <input type="search" name="items[][sire]" value="" autocomplete="on" list="sire_candidates">
               </td>
             <% end -%>
           </tr>
@@ -31,4 +58,5 @@
   <%= button_to '全削除', mare_list_path, method: :delete, data: {confirm: "全削除？"}, tabindex: -1 %>
 
   <%= render 'mother_candidates' %>
+  <%= render 'sire_candidates' %>
 </div>
