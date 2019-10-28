@@ -7,6 +7,8 @@ class MatingListsController < ApplicationController
   def show
     @mare = params[:mare]
     @sire = params[:sire]
+    session[:ranch_id] = params[:ranch_id] if params[:ranch_id]
+    @ranch = Ranch.find(session[:ranch_id])
   end
 
   def update

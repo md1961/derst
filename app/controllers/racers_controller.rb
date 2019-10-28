@@ -14,7 +14,8 @@ class RacersController < ApplicationController
 
   def new
     @racer = Racer.new(params.permit(:ranch_id, :father_id, :mother_id))
-    @racer.age = 1 if params[:father_id]
+    ranch_mare = @racer.ranch.ranch_mares.find_by(mare: @racer.mother, sire: @racer.father)
+    @racer.age = ranch_mare ? 1 : 2
   end
 
   def create
