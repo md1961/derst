@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_232316) do
+ActiveRecord::Schema.define(version: 2019_10_28_011818) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -197,8 +197,10 @@ ActiveRecord::Schema.define(version: 2019_10_20_232316) do
     t.integer "year_birth"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sire_id"
     t.index ["mare_id"], name: "index_ranch_mares_on_mare_id"
     t.index ["ranch_id"], name: "index_ranch_mares_on_ranch_id"
+    t.index ["sire_id"], name: "index_ranch_mares_on_sire_id"
   end
 
   create_table "ranches", force: :cascade do |t|
