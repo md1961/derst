@@ -13,15 +13,17 @@ class RacersController < ApplicationController
   end
 
   def new
-    @racer = Racer.new(ranch_id: params[:ranch_id])
+    @racer = Racer.new(params.permit(:ranch_id, :father_id, :mother_id))
+    @racer.age = 1 if params[:father_id]
   end
 
   def create
     @racer = Racer.new(racer_params)
-    if @racer.save
+    ranch_mare = @racer.ranch.ranch_mares.find_by(mare: @racer.mother, sire: @racer.father)
+    ApplicationRecord.transaction do
+      @racer.save!
+      ranch_mare&.update!(sire: nil)
       redirect_to @racer.ranch
-    else
-      render :new
     end
   end
 
