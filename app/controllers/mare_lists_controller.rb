@@ -10,7 +10,7 @@ class MareListsController < ApplicationController
     params[:mares].each do |name|
       next if name.blank?
       mare = Mare.find_by(name: name)
-      @mares << mare if mare
+      @mare_list.add(mare, nil, nil) if mare
     end
     save_mare_list
     redirect_to mare_list_path
@@ -18,13 +18,13 @@ class MareListsController < ApplicationController
 
   def delete
     mare = Mare.find(params[:mare_id])
-    @mares.delete(mare)
+    @mare_list.delete(mare)
     save_mare_list
     redirect_to mare_list_path
   end
 
   def destroy
-    @mares.clear
+    @mare_list.clear
     save_mare_list
     redirect_to mare_list_path
   end
@@ -32,10 +32,10 @@ class MareListsController < ApplicationController
   private
 
     def set_mare_list
-      @mares = JSON.parse(session[KEY_MARE_LIST_IN_JSON] || "[]")&.map { |id| Mare.find(id) }
+      @mare_list = MareList.build_from_json(session[KEY_MARE_LIST_IN_JSON])
     end
 
     def save_mare_list
-      session[KEY_MARE_LIST_IN_JSON] = @mares.map(&:id).to_json
+      session[KEY_MARE_LIST_IN_JSON] = @mare_list.to_json
     end
 end

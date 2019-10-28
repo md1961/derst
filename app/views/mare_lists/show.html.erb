@@ -2,7 +2,8 @@
   <%= form_with url: mare_list_path, method: :patch, local: true do |f| %>
     <table class="table_base">
       <tbody>
-        <% (@mares + [nil] * 10)[0 .. 9].each do |mare| -%>
+        <% @mare_list.each_item do |item| -%>
+          <% mare = item&.mare -%>
           <tr>
             <% if mare -%>
               <td><%= link_to mare, matings_path(mare_id: mare), target: '_blank' %></td>
