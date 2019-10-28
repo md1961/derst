@@ -3,5 +3,5 @@ class RanchMare < ApplicationRecord
 
   belongs_to :ranch
   belongs_to :mare
-  belongs_to :sire
+  belongs_to :sire, optional: true
 end
