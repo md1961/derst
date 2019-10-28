@@ -7,6 +7,7 @@
           <tr>
             <% if mare -%>
               <td><%= link_to mare, matings_path(mare_id: mare), target: '_blank' %></td>
+              <td class="numeric"><%= "#{item.age}歳" %></td>
               <td><%= mare.lineage %></td>
               <td class="numeric"><%= "#{mare.price}万円" %></td>
               <td><%= mare.speed %></td>
@@ -15,8 +16,9 @@
               <td><%= mare.type %></td>
               <td><%= link_to '削除', delete_mare_list_path(mare_id: mare) %>
             <% else -%>
-              <td colspan="8">
-                <input type="search" name="mares[]" value="<%= @mare %>" autocomplete="on" list="mother_candidates" autofocus>
+              <td colspan="9">
+                <input type="search" name="items[][mare]" value="<%= @mare %>" autocomplete="on" list="mother_candidates" autofocus>
+                <%= f.number_field "items[][age]" %>
               </td>
             <% end -%>
           </tr>

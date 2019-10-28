@@ -7,10 +7,10 @@ class MareListsController < ApplicationController
   end
 
   def update
-    params[:mares].each do |name|
-      next if name.blank?
-      mare = Mare.find_by(name: name)
-      @mare_list.add(mare, nil, nil) if mare
+    params[:items].each do |item|
+      next if item[:mare].blank?
+      mare = Mare.find_by(name: item[:mare])
+      @mare_list.add(mare, item[:age], nil) if mare
     end
     save_mare_list
     redirect_to mare_list_path
