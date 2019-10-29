@@ -156,11 +156,13 @@ class Racer < ApplicationRecord
 
   def create_mare
     return nil unless female?
-    Mare.create!(name: name, father: father, lineage: father.trait.lineage).tap { |mare|
-      mare.maternal_lines.create!(generation: 2, father: mother.father)
-      mare.maternal_lines.create!(generation: 3, father: mother.bloodline_father(2, 2))
-      mare.maternal_lines.create!(generation: 4, father: mother.bloodline_father(3, 4))
-    }
+    Mare.transaction do
+      Mare.create!(name: name, father: father, lineage: father.trait.lineage).tap { |mare|
+        mare.maternal_lines.create!(generation: 2, father: mother.father)
+        mare.maternal_lines.create!(generation: 3, father: mother.bloodline_father(2, 2))
+        mare.maternal_lines.create!(generation: 4, father: mother.bloodline_father(3, 4))
+      }
+    end
   end
 
   def graze!
