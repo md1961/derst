@@ -10,6 +10,7 @@ class RanchesController < ApplicationController
                         && Racer.in_stable.count > 0 \
                         && Racer.all_training_done? \
                         && Racer.includes(:results).none?(&:expecting_race?)
+    flash[:racer_id_weekly_entered] = nil if @ready_for_next_week
   end
 
   def next_week
