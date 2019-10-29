@@ -1,5 +1,9 @@
 .mating_lists_show {
 
+  td:not(.allows_wrap) {
+    white-space: nowrap;
+  }
+
   .actions {
     margin-top: 20px;
   }
