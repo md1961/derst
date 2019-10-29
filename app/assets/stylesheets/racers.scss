@@ -247,3 +247,10 @@ td.not_stabled {
     text-align: right;
   }
 }
+
+.all_racers {
+
+  td:not(.allows_wrap) {
+    white-space: nowrap;
+  }
+}
