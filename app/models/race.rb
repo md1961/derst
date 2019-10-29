@@ -38,10 +38,14 @@ class Race < ApplicationRecord
     grades = [grade]
     grades.concat(Grade.where(abbr: %w[Ⅲ Ⅱ Ⅰ])) if grade.abbr == 'OP'
     if includes_overgrade
-      if (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '5'
+      if age == 3 && %w[新 未].include?(grade.abbr)
+        grades = Grade.where(abbr: [grade.abbr] + %w[5 OP])
+      elsif (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '5'
         grades = Grade.where(abbr: %w[5 9 16 OP Ⅲ Ⅱ])
       elsif (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '9'
         grades = Grade.where(abbr: %w[9 16 OP Ⅲ Ⅱ])
+      elsif grade.abbr == '未'
+        grades = Grade.where(abbr: %w[未 5])
       elsif grade.abbr == '5'
         grades = Grade.where(abbr: %w[5 9])
       elsif grade.abbr == '9'
@@ -53,8 +57,8 @@ class Race < ApplicationRecord
 
     if is_new_racer
       month_week = racer.ranch.month_week
-      for_age(age).where(grade: grade).unlimited_for(racer).in_or_after(month_week)
-        .or(for_age(age).where(grade: Grade.find_by(abbr: '未')).unlimited_for(racer)
+      for_age(age).where(grade: grades).unlimited_for(racer).in_or_after(month_week)
+        .or(for_age(age).where(grade: [Grade.find_by(abbr: '未')] + grades).unlimited_for(racer)
               .in_or_after(month_week.first_of_next_month)
            )
     elsif racer.downgrade_in_summer?
