@@ -29,7 +29,7 @@
                        <%= age == @racer.age && @racer.ranch.in_week_of?(month, week) ? 'current' : '' %>
                        <%= @racer.race_in?(age, month, week) ? 'race' : '' %>"
                 title="<%= weekly ? "id=#{weekly.id}" : "" %>">
-              <%= weekly&.condition %>
+              <%= @racer.condition_in(age, month, week) %>
             </td>
           <% end -%>
         <% end -%>

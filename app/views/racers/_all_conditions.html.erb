@@ -45,7 +45,7 @@
               <% if is_current_week -%>
                 <%= form_for_weekly(racer) %>
               <% else -%>
-                <%= racer.weeklies.find_by(age: age, month: month, week: week)&.condition %>
+                <%= racer.condition_in(age, month, week) %>
               <% end -%>
             </td>
           <% end -%>
