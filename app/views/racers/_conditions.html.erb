@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    <% (3 .. @racer.age).each do |age| -%>
+    <% (3 .. @racer.active_age).each do |age| -%>
       <tr>
         <th class="border_right_thick"><%= "#{age}歳" %></th>
         <% (1 .. 12).each do |month| -%>

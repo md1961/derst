@@ -92,6 +92,10 @@ class Racer < ApplicationRecord
     ([last_result] + target_races).compact
   end
 
+  def active_age
+    is_active ? age : weeklies.pluck(:age).max || 3
+  end
+
   def downgrade_in_summer?
     age == 5 && ranch.month <= 7 \
       && (
