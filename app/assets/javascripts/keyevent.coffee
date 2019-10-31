@@ -39,10 +39,10 @@ $ ->
         $('#to_next_racer')[0].click()
       return
 
-    if $('#racer_weight_fat').is(':focus') && key == '>'
+    if $('#racer_weight_fat').is(':focus') && key == '.'
       $('span.fat_to_best')[0].click()
       return false
-    if $('#racer_weight_lean').is(':focus') && key == '<'
+    if $('#racer_weight_lean').is(':focus') && key == ','
       $('span.lean_to_best')[0].click()
       return false
 
