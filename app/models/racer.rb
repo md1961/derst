@@ -134,7 +134,8 @@ class Racer < ApplicationRecord
     return nil if age > self.age ||
                  (age == self.age && month > ranch.month) ||
                  (age == self.age && month == ranch.month && week > ranch.week)
-    weeklies.find_by(age: age, month: month, week: week)&.condition || '…'
+    weeklies.find_by(age: age, month: month, week: week)&.condition ||
+        (age == self.age && month == ranch.month && week == ranch.week ? nil : '…')
   end
 
   def race_candidates(includes_overgrade: false)
