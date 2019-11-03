@@ -1,5 +1,4 @@
 <div class="racers_form">
-  <%# name: string, ranch_id: integer, father_id: integer, mother_id: integer, year_birth: integer, remark: string, sex: integer %>
   <%= form_with model: @racer, local: true do |f| %>
     <%= @racer.errors unless @racer.errors.empty? %>
 

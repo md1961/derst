@@ -57,7 +57,21 @@ td.not_stabled {
 }
 
 .racers_new {
+  display: flex;
   margin-top: 40px;
+
+  table.racers {
+    margin-top: 20px;
+  }
+
+  .mating {
+    display: flex;
+    margin-left: 20px;
+
+    .sire, .mare {
+      margin-left: 20px;
+    }
+  }
 }
 
 .racers_show {

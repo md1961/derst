@@ -115,7 +115,7 @@ module RacersHelper
     when :condition
       %w[－ ◎ ↑ ◉  ○ △ ▽]
     else
-      %w[－ 任せ 逃げ 先行 中団 追込]
+      %w[－ 任せ 逃げ 先行 中団 追込 マク]
     end
   end
 end
