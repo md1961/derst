@@ -70,10 +70,10 @@ module ApplicationHelper
     %w[- A B C A-B B-C]
   end
 
-  def father_in_bloodline(horse, generation, number)
+  def father_in_bloodline(horse, generation, number, readonly = true)
     father = horse.bloodline_father(generation, number)
     if father
-      items = if @mare || @mating
+      items = if readonly
                 [father.name_jp]
               else
                 [safe_join(
