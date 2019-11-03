@@ -4,7 +4,12 @@ $ ->
       return
     key = String.fromCharCode(e.which)
 
-    if $('#results').hasClass('ready_for_race') && $('#result_mark_development').is(':focus')&& (key == 'a' || key == 'z')
+    is_mark_focused = $('#result_mark_development').is(':focus') \
+                   || $('#result_mark_stamina').is(':focus') \
+                   || $('#result_mark_contend').is(':focus') \
+                   || $('#result_mark_temper').is(':focus') \
+                   || $('#result_mark_odds').is(':focus')
+    if $('#results').hasClass('ready_for_race') && is_mark_focused && (key == 'a' || key == 'z')
       value = if key == 'a' then '－' else '◎'
       $('#result_mark_development').val(value)
       $('#result_mark_stamina')    .val(value)
