@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     get :prev, :next
   end
 
-  resources :ranch_mares, only: %i[new create update destroy]
+  resources :ranch_mares, only: %i[new create update destroy] do
+    member do
+      patch :delete_sire
+    end
+  end
 
   resources :racers, only: %i[show new create update] do
     member do
