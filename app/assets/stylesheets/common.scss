@@ -52,8 +52,12 @@ tbody tr:hover {
   .date {
     display: flex;
 
+    span#date {
+      font-size: 1.6rem;
+    }
+
     form {
-      margin-left: 10px;
+      margin-left: 15px;
     }
 
     #vacancy_in_ranch {
@@ -105,6 +109,6 @@ tbody tr:hover {
 .notice {
   color: yellow;
   background-color: red;
-  font-size: 1.4rem;
+  font-size: 2.0rem;
   margin-top: 10px;
 }

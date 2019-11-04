@@ -2,7 +2,9 @@
 
 <div id="top_bar">
   <div class="date">
-    <%= date_display(ranch) %>
+    <span id="date">
+      <%= date_display(ranch) %>
+    </span>
     <%= button_to_next_week(@ranch || @racer) %>
 
     <% max_racers = ranch.max_racers
