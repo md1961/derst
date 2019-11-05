@@ -6,10 +6,6 @@ $ ->
     $('#top_bar').addClass('ready_for_next_week')
     $('#button_to_next_week').focus()
 
-  $('#show_all_racers').on 'click', ->
-    $(this).next('table').toggle()
-    $('.racers').toggle()
-
   $('span.fat_to_best').on 'click', ->
     weight_fat = $(this).prev('input').val()
     $(this).parents('td').next('td').children('input').val(weight_fat - 10)

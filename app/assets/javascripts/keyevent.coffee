@@ -21,7 +21,7 @@ $ ->
     if $('#show_all_racers').length > 0 && (key == 'z' || key == 'y')
       if key == 'z'
         $('#show_all_racers')[0].click()
-      else if key == 'y'
+      else if key == 'y' && $('table.all_racers').is(':visible')
         $('.default')  .toggle()
         $('.optional1').toggle()
       return
