@@ -18,10 +18,16 @@ $ ->
       $('#result_mark_odds')       .val(value)
       return
 
-    if $('#show_all_racers').length > 0 && (key == 'z' || key == 'y')
+    if $('#show_mares').length > 0 && key == 'y'
+      if $('table.all_racers').is(':visible')
+        $('div.mares').toggle()
+      else
+        $('#show_mares')[0].click()
+      return
+    else if $('#show_all_racers').length > 0 && (key == 'z' || key == 'x')
       if key == 'z'
         $('#show_all_racers')[0].click()
-      else if key == 'y' && $('table.all_racers').is(':visible')
+      else if key == 'x' && $('table.all_racers').is(':visible')
         $('.default')  .toggle()
         $('.optional1').toggle()
       return
