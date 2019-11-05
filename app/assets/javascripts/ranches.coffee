@@ -34,3 +34,6 @@ $ ->
         id = $(this).closest('tr').data('racer_id')
         $('tr[data-racer_id="' + id + '"]').removeClass('hover')
     )
+
+  if $('.ranches_show').length > 0
+    $(window).scrollTop(9999)
