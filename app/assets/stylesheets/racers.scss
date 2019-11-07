@@ -170,6 +170,10 @@ td.not_stabled {
     position: relative;
     font-size: 1.4rem;
 
+    td.no_condition {
+      background-color: pink;
+    }
+
     a {
       margin: 0;
     }
