@@ -161,12 +161,12 @@ class Race < ApplicationRecord
       age = racer.age
       value = if age <= 4
                 53
-              elsif (age == 5 && month >= 6) || (age == 6 && month <= 8)
+              elsif (age == 5 && month >= 7) || (age == 6 && month <= 8)
                 55
               else
                 54
               end
-      if racer.male?
+      unless racer.female?
         value += if age == 3
                    month <= 10 ? 0 : 1
                  else
