@@ -22,4 +22,16 @@
     <span id="name_length"><%= length.zero? ? '' : length %></span>
     <%= f.submit %>
   <% end -%>
+
+  <table class="combinations">
+    <tbody>
+      <% RacerNameSample.combinations(10).each do |names| -%>
+        <tr>
+          <% names.each do |name| -%>
+            <td><%= name %></td>
+          <% end -%>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
 </div>
