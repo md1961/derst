@@ -109,6 +109,32 @@ class Racer < ApplicationRecord
     Mare.find_by(name: name)
   end
 
+    class AgeInWeek
+      include Comparable
+
+      attr_reader :age, :month, :week
+
+      def initialize(age, month, week)
+        @age   = age
+        @month = month
+        @week  = week
+      end
+
+      def to_h
+        {age: age, month: month, week: week}
+      end
+
+      def <=>(other)
+        [age <=> other.age, month <=> other.month, week <=> other.week].find { |cmp|
+          !cmp.zero?
+        } || 0
+      end
+    end
+
+  def age_in_week
+    AgeInWeek.new(age, ranch.month, ranch.week)
+  end
+
   def condition
     weeklies.find_by(age: age, month: ranch.month, week: ranch.week)&.condition
   end
