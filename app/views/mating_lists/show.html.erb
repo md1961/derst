@@ -50,7 +50,9 @@
           <td class="centered <%= is_interesting ? 'interesting' : '' %>">
             <%= is_interesting ? '〇' : '' %>
           </td>
-          <td class="allows_wrap"><%= mating.inbreed_display %></td>
+          <td class="allows_wrap">
+            <%= mating.inbreed_display.yield_self { |x| x.blank? ? '（アウトブリード）' : x } %>
+          </td>
           <td><%= link_to '配合', mating_path(mare, sire_id: sire.id, in_list: true),
                                   target: '_blank' %></td>
           <td><%= link_to '落札', new_racer_path(ranch_id: @ranch, father_id: sire, mother_id: mare), tabindex: -1 %></td>
