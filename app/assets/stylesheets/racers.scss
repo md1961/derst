@@ -241,10 +241,14 @@ td.not_stabled {
     padding: 0 2px;
   }
 
-  th.current, td.current {
+  th.current, td.entered {
     color: white;
     background-color: red;
     font-weight: bold;
+  }
+
+  td.current {
+    border: solid 2px red;
   }
 
   td.race {
