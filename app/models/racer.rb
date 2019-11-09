@@ -109,59 +109,29 @@ class Racer < ApplicationRecord
     Mare.find_by(name: name)
   end
 
-    class AgeInWeek
-      include Comparable
-
-      attr_reader :age, :month, :week
-
-      def initialize(age, month, week)
-        @age   = age
-        @month = month
-        @week  = week
-      end
-
-      def to_h
-        {age: age, month: month, week: week}
-      end
-
-      def <=>(other)
-        [age <=> other.age, month <=> other.month, week <=> other.week].find { |cmp|
-          !cmp.zero?
-        } || 0
-      end
-    end
-
   def age_in_week
     AgeInWeek.new(age, ranch.month, ranch.week)
   end
 
   def condition
-    weeklies.find_by(age: age, month: ranch.month, week: ranch.week)&.condition
+    weeklies.find_by(age_in_week.to_h)&.condition
   end
 
   def condition=(value)
-    weeklies.find_or_create_by!(age: age, month: ranch.month, week: ranch.week).update!(condition: value)
+    weeklies.find_or_create_by!(age_in_week.to_h).update!(condition: value)
   end
 
   def last_condition
     return '重' if weeklies.empty?
-    month_week = ranch.month_week.prev
-    _age = age - (month_week.last_of_year? ? 1 : 0)
-    month, week = month_week.to_a
-    return '休' if race_in?(_age, month, week)
-    weeklies.find_by(
-      age: _age,
-      month: month,
-      week: week
-    )&.condition || '×'
+    age_prev = age_in_week.prev
+    return '休' if race_in?(*age_prev.to_a)
+    weeklies.find_by(age_prev.to_h)&.condition || '×'
   end
 
   def condition_in(age, month, week)
-    return nil if age > self.age ||
-                 (age == self.age && month > ranch.month) ||
-                 (age == self.age && month == ranch.month && week > ranch.week)
-    weeklies.find_by(age: age, month: month, week: week)&.condition ||
-        (age == self.age && month == ranch.month && week == ranch.week ? nil : '…')
+    current_week = AgeInWeek.new(age, month, week)
+    return nil if current_week > age_in_week
+    weeklies.find_by(current_week.to_h)&.condition || (current_week == age_in_week ? nil : '…')
   end
 
   def race_candidates(includes_overgrade: false)
@@ -224,5 +194,40 @@ class Racer < ApplicationRecord
 
   def to_s
     name
+  end
+
+  class AgeInWeek
+    include Comparable
+
+    attr_reader :age, :month, :week
+
+    def initialize(age, month, week)
+      @age   = age
+      @month = month
+      @week  = week
+    end
+
+    def prev
+      month_week = MonthWeek.new(month, week).prev
+      self.class.new(
+        age - (month_week.last_of_year? ? 1 : 0),
+        month_week.month,
+        month_week.week
+      )
+    end
+
+    def to_a
+      [age, month, week]
+    end
+
+    def to_h
+      {age: age, month: month, week: week}
+    end
+
+    def <=>(other)
+      [age <=> other.age, month <=> other.month, week <=> other.week].find { |cmp|
+        !cmp.zero?
+      } || 0
+    end
   end
 end
