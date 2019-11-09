@@ -15,14 +15,14 @@ module RanchesHelper
   end
 
   def racer_attr_display(racer, name, f)
-    if !f || (!racer.stable && name == :grade) \
+    if !f || name == :grade \
           || (racer.stable && name.to_s.starts_with?('comment_')) \
           || (racer.age != 2 && name == :comment_age2) \
           || (racer.age != 3 && name == :comment_age3) \
           || ((!racer.results.empty? || racer.age < 3) && name == :stable) \
-          || (!racer.stable && name.to_s.starts_with?('weight_')) \
-          || (name == :grade && true)
+          || (!racer.stable && name.to_s.starts_with?('weight_'))
       racer.send(name)
+    # TODO: Remove 'elsif name == :grade' from racer_attr_display().
     elsif name == :grade
       f.select :grade_given_id, [['-', nil]] + Grade.where("name NOT LIKE 'G%'").pluck(:name, :id),
                   {}, autofocus: true

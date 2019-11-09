@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def racer_name_display(racer, f = nil)
-    if f && racer.stable.nil?
+    if f && racer.results.empty?
       f.text_field :name
     else
       mark = ''
