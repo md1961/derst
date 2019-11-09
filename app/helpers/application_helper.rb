@@ -42,7 +42,14 @@ module ApplicationHelper
 
   def notice(ranch)
     key = H_NOTICE[[ranch.month, ranch.week]]
-    key && t("notice.#{key}")
+    return nil unless key
+    warning = ""
+    if key.to_s =~ /(?:sale|birth)\z/
+      ranch = @ranch || @racer.ranch
+      vacancy = ranch.max_racers - Racer.num_in_ranch
+      warning = "牧場の空き" + (vacancy.zero? ? "がありません。" : "は #{vacancy}頭分です。")
+    end
+    t("notice.#{key}") + warning
   end
 
   def button_to_next_week(ranch)
