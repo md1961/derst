@@ -47,7 +47,7 @@ module ApplicationHelper
     if key.to_s =~ /(?:sale|birth)\z/
       ranch = @ranch || @racer.ranch
       vacancy = ranch.max_racers - Racer.num_in_ranch
-      warning = "牧場の空き" + (vacancy.zero? ? "がありません。" : "は #{vacancy}頭分です。")
+      warning = t("notice.vacancy", count: vacancy)
     end
     t("notice.#{key}") + warning
   end

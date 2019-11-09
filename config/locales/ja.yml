@@ -6,6 +6,10 @@ ja:
     new_birth: そろそろ産駒が生まれる可能性があります。
     ranch_expansion: 来週は牧場拡張の打診がある可能性があります。
     sell_age2: ２歳馬を売る期限です。
+    vacancy:
+      zero:  "牧場の空きがありません。"
+      one:   "牧場の空きが１頭分しかありません。"
+      other: "牧場の空きは %{count}頭分あります。"
   activerecord:
     models:
     attributes:
