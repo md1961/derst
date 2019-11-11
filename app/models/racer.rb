@@ -89,7 +89,10 @@ class Racer < ApplicationRecord
     last_result = results.last
     last_result = nil if last_result&.place.present?
     last_result = nil if last_result&.race == target_races.first&.race
-    ([last_result] + target_races).compact
+    (
+      [last_result] +
+      target_races.reject { |r| r.race.month_week == last_result&.race&.month_week }
+    ).compact
   end
 
   def active_age
