@@ -66,7 +66,7 @@ class MonthWeek
   end
 
   def ==(other)
-    raise "Argument must be a MonthWeek (#{other.class} given)" unless other.is_a?(self.class)
+    return false unless other.is_a?(self.class)
     month == other.month && week == other.week
   end
 
