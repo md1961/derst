@@ -13,15 +13,17 @@ class Mating
   end
 
   def nicks?
-    Nick.good?(@sire, @mare)
+    @nicks ||= fetch_from_cache(:nicks) || Nick.good?(@sire, @mare)
   end
 
   def interesting?
-    [@sire, @mare].flat_map { |h| h.root_lineage_numbers }.uniq.size >= 6
+    @interesting ||= fetch_from_cache(:interesting) \
+      || [@sire, @mare].flat_map { |h| h.root_lineage_numbers }.uniq.size >= 6
   end
 
   def root_lineage_numbers
-    [@sire, @mare].flat_map { |h| h.root_lineage_numbers }.values_at(0, 2, 4, 6)
+    @root_lineage_numbers ||= fetch_from_cache(:root_lineage_numbers) \
+      || [@sire, @mare].flat_map { |h| h.root_lineage_numbers }.values_at(0, 2, 4, 6)
   end
 
   def h_inbreeds
@@ -90,7 +92,8 @@ class Mating
       score: score,
       nicks: nicks?,
       interesting: interesting?,
-      inbreed: inbreed_display
+      inbreed: inbreed_display,
+      root_lineage_numbers: root_lineage_numbers
     }
   end
 
