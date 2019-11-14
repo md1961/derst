@@ -8,7 +8,7 @@ class Racer < ApplicationRecord
   belongs_to :stable, optional: true
   has_many :results
   has_many :target_races
-  has_many :weeklies
+  has_many :weeklies, -> { order(:age, :month, :week) }
   has_one :in_ranch
 
   enum sex: {male: 1, female: 2, gelding: 3}
@@ -137,6 +137,15 @@ class Racer < ApplicationRecord
     weeklies.find_by(current_week.to_h)&.condition || (current_week == age_in_week ? nil : '…')
   end
 
+  def weeks_in_stable
+    return 0 if in_ranch || stable.nil?
+    week = age_in_week.prev
+    while weeklies.find_by(week.to_h)
+      week = week.prev
+    end
+    age_in_week - week
+  end
+
   def race_candidates(includes_overgrade: false)
     includes_overgrade = true if age == 4 && %w[5 9 16].include?(grade.abbr) && ranch.month <= 7
     return [] unless ranch && age && grade
@@ -211,6 +220,12 @@ class Racer < ApplicationRecord
         month_week.month,
         month_week.week
       )
+    end
+
+    def -(other)
+      month_week       = MonthWeek.new(month, week)
+      other_month_week = MonthWeek.new(other.month, other.week)
+      month_week - other_month_week
     end
 
     def to_a
