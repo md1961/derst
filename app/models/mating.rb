@@ -20,6 +20,10 @@ class Mating
     [@sire, @mare].flat_map { |h| h.root_lineage_numbers }.uniq.size >= 6
   end
 
+  def root_lineage_numbers
+    [@sire, @mare].flat_map { |h| h.root_lineage_numbers }.values_at(0, 2, 4, 6)
+  end
+
   def h_inbreeds
     @h_inbreeds ||= \
       (@mare_inbreeds.keys & @sire.h_inbreeds.keys).yield_self { |fathers|
