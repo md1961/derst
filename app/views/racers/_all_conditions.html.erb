@@ -11,6 +11,7 @@
           <%= "#{month}月" %>
         </th>
       <% end -%>
+      <th rowspan="2" class="border_bottom_thick border_left_thick border_right_thick">入厩</th>
       <th rowspan="2" class="border_bottom_thick border_left_thick border_right_thick">体重</th>
     </tr>
     <tr>
@@ -50,7 +51,12 @@
             </td>
           <% end -%>
         <% end -%>
-        <td class="weight_best border_left_thick border_right_thick"><%= racer.weight_best %></td>
+        <td class="numeric border_left_thick border_right_thick">
+          <%= "#{racer.weeks_in_stable}w" %>
+        </td>
+        <td class="weight_best border_left_thick border_right_thick">
+          <%= racer.weight_best %>
+        </td>
         <% racer.coming_races.map(&:race).sort_by { |race|
              race.month_week.ordering_from(@ranch.month_week)
            }.each do |race| -%>
