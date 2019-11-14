@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   end
 
   resources :matings, only: %i[index show new create] do
+    member do
+      post :create_mare
+    end
+
     collection do
       get :recache
     end

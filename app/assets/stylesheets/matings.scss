@@ -83,6 +83,15 @@
     }
   }
 
+  .links {
+    display: flex;
+    margin-top: 20px;
+
+    * {
+      margin-right: 20px;
+    }
+  }
+
   .in_list {
     margin-top: 10px;
 

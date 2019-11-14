@@ -34,6 +34,13 @@ class MatingsController < ApplicationController
     end
   end
 
+  def create_mare
+    mother = Mare.find(params[:id])
+    father = Sire.find(params[:sire_id])
+    Mare.create_from_mating_of(mother, father)
+    redirect_to mating_path(mother, sire_id: father)
+  end
+
   def recache
     mare = Mare.find(params[:mare_id])
     Mating.new(mare).clear_cache
