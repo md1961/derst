@@ -36,7 +36,6 @@ $ ->
 
     min_score = $('#sire_filter_score').val()
     $('.sires tbody td[data-score]').filter(->
-      console.log($(this).data('score'))
       $(this).data('score') < min_score
     ).parent('tr').hide()
 

@@ -61,6 +61,7 @@
         <th id="header_score">点</th>
         <th id="header_nicks">ニ</th>
         <th id="header_interesting">面</th>
+        <th colspan="4">面白系統</th>
         <th>インブリード</th>
       <% end -%>
     </tr>
@@ -103,6 +104,9 @@
           <td class="centered <%= is_interesting ? 'interesting' : '' %>">
             <%= is_interesting ? '〇' : '' %>
           </td>
+          <% mating.root_lineage_numbers.each do |number| -%>
+            <td class="root_lineage_number"><%= number %></td>
+          <% end -%>
           <td class="allows_wrap"><%= mating.inbreed_display %></td>
           <% ranch_mare = @ranch&.ranch_mares&.find_by(mare: @mare) -%>
           <% if ranch_mare -%>
