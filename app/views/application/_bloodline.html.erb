@@ -34,15 +34,7 @@
       </tr>
     </table>
 
-    <div class="root_lineages">
-      <table class="table_base">
-        <tr>
-          <% horse.root_lineage_numbers.each do |number| -%>
-            <td class="centered"><%= number %></td>
-          <% end -%>
-        </tr>
-      </table>
-    </div>
+    <%= render partial: 'root_lineage_numbers', locals: {horse: horse} %>
 
     <%= hidden_field_tag :type, horse.class.name %>
     <%= hidden_field_tag :id  , horse.id %>
