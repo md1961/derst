@@ -29,6 +29,8 @@
       <%= f.select :health   , options_for_abc, {}, class: 'select_abc' %>
       <%= f.label '安定' %>
       <%= f.select :stability, options_for_abc, {}, class: 'select_abc' %>
+      <%= f.label 'スコア' %>
+      <%= f.number_field :score, value: 0 %>
       <%= hidden_field_tag :mare_id, @mare&.id %>
       <%= hidden_field_tag :ranch_id, @ranch&.id %>
     <% end -%>
@@ -91,7 +93,8 @@
              is_nicks       = mating.nicks?
              is_interesting = mating.interesting?
              score          = mating.score -%>
-          <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>">
+          <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>"
+              data-score="<%= score %>">
             <%= score %>
           </td>
           <td class="centered <%= is_nicks ? 'nicks' : '' %>">

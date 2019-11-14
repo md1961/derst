@@ -17,8 +17,7 @@ $ ->
       else
         $('.sires tbody tr').show()
 
-     $select_growth = $('#sire_filter_growth')
-     selection = $select_growth.val()
+     selection = $('#sire_filter_growth').val()
      values = if selection == '-' then ['早熟', '普通', '晩成'] else selection.split(',')
      values_to_hide = ['早熟', '普通', '晩成'].filter((e) => !values.includes(e))
      $.each(values_to_hide, (_, value) ->
@@ -35,11 +34,19 @@ $ ->
         $('td.' + class_name).parent('tr').hide()
       )
 
+    min_score = $('#sire_filter_score').val()
+    $('.sires tbody td[data-score]').filter(->
+      console.log($(this).data('score'))
+      $(this).data('score') < min_score
+    ).parent('tr').hide()
+
     $('#count_sires').text($('.sires tbody tr:visible').length)
 
 
   $('#header_score').on 'click', ->
     $(this).toggleClass('excellent_score_only')
+    if $(this).hasClass('excellent_score_only')
+      $('#sire_filter_score').val(20)
     filter()
 
   $('#header_nicks').on 'click', ->
@@ -54,4 +61,8 @@ $ ->
     filter()
 
   $('.select_abc').on 'change', ->
+    filter()
+
+  $('#sire_filter_score').on 'change', ->
+    $('#header_score').removeClass('excellent_score_only')
     filter()
