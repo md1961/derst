@@ -12,7 +12,7 @@ class RanchMaresController < ApplicationController
     racer = Racer.find_by(name: mare_name)
     params[:ranch_mare][:age] = racer.age if racer
     ranch_mare = RanchMare.new(
-      params.require(:ranch_mare).permit(:ranch_id, :mare_id, :age)
+      params.require(:ranch_mare).permit(:ranch_id, :mare_id, :age, :sire_id)
     )
     ApplicationRecord.transaction do
       ranch_mare.save!

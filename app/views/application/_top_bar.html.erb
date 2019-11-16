@@ -17,7 +17,7 @@
 
   <div class="links">
     <%= link_to '繁殖牝馬'      , mares_path                       , target: '_blank', tabindex: -1 %>
-    <%= link_to '繁殖牝馬セール', mare_list_path                   , target: '_blank', tabindex: -1 %>
+    <%= link_to '繁殖牝馬セール', mare_list_path(ranch_id: ranch)  , target: '_blank', tabindex: -1 %>
     <%= link_to '２歳馬セール'  , mating_list_path(ranch_id: ranch), target: '_blank', tabindex: -1 %>
     <%= link_to '馬名候補'      , racer_name_samples_path          , target: '_blank', tabindex: -1 %>
   </div>

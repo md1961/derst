@@ -15,6 +15,9 @@
               <td><%= mare.stamina %></td>
               <td><%= mare.rating %></td>
               <td><%= mare.type %></td>
+              <td><%= link_to '落札', ranch_mares_path(ranch_mare:
+                                                        {mare: mare.name, age: item.age, ranch_id: @ranch.id, sire_id: sire&.id}),
+                                      method: :post %>
               <td><%= link_to '削除', delete_mare_list_path(mare_id: mare) %>
               <% if sire.present? -%>
                 <% mating = Mating.new(mare, sire)

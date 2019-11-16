@@ -4,6 +4,8 @@ class MareListsController < ApplicationController
   KEY_MARE_LIST_IN_JSON = :mare_list_in_json
 
   def show
+    session[:ranch_id] = params[:ranch_id] if params[:ranch_id]
+    @ranch = Ranch.find(session[:ranch_id])
   end
 
   def update
