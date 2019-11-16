@@ -46,7 +46,11 @@ module ApplicationHelper
     warning = ""
     if key.to_s =~ /(?:sale|birth)\z/
       ranch = @ranch || @racer.ranch
-      vacancy = ranch.max_racers - Racer.num_in_ranch
+      vacancy = if key == :mare_sale
+                  ranch.max_mares - ranch.ranch_mares.count
+                else
+                  ranch.max_racers - Racer.num_in_ranch
+                end
       warning = t("notice.vacancy", count: vacancy)
     end
     t("notice.#{key}") + warning
