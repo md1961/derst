@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_28_011818) do
+ActiveRecord::Schema.define(version: 2019_11_16_000851) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 2019_10_28_011818) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "max_racers", default: 6, null: false
+    t.integer "max_mares", default: 2, null: false
   end
 
   create_table "results", force: :cascade do |t|
