@@ -10,7 +10,7 @@ class MareList
   end
 
   def initialize(items)
-    @items = items
+    @items = items.sort_by { |item| -item.mare.price }
   end
 
   def empty?
