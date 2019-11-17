@@ -15,7 +15,6 @@ class RanchesController < ApplicationController
     session[KEY_SHOWS_MARES] = @shows_mares
 
     @ready_for_next_week = params[:next_done] != 'true' \
-                        && Racer.in_stable.count > 0 \
                         && Racer.all_training_done? \
                         && Racer.includes(:results).none?(&:expecting_race?)
     flash[:racer_id_weekly_entered] = nil if @ready_for_next_week
