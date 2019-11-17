@@ -47,6 +47,7 @@ $ ->
     if $(this).hasClass('excellent_score_only')
       $('#sire_filter_score').val(20)
     filter()
+    $('#sire_filter_score')[0].focus()
 
   $('#header_nicks').on 'click', ->
     $(this).toggleClass('nicks_only')
