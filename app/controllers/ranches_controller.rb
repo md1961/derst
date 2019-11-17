@@ -16,7 +16,7 @@ class RanchesController < ApplicationController
 
     @ready_for_next_week = params[:next_done] != 'true' \
                         && Racer.all_training_done? \
-                        && Racer.includes(:results).none?(&:expecting_race?)
+                        && Racer.none_expecting_race?
     flash[:racer_id_weekly_entered] = nil if @ready_for_next_week
   end
 

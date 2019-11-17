@@ -36,6 +36,10 @@ class Racer < ApplicationRecord
     in_stable.includes(:weeklies).map(&:condition).all?
   end
 
+  def self.none_expecting_race?
+    includes(:results).none?(&:expecting_race?)
+  end
+
   def grade
     @grade ||= grade_given || grade_from_net_prize
   end
