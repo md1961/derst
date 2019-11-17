@@ -8,7 +8,7 @@ module RacersHelper
   end
 
   def mare_trait_display(mare)
-    return "" unless mare
+    return "" if mare.nil? || mare.speed.nil?
     "スピード #{mare.speed}、スタミナ #{mare.stamina}"
   end
 
