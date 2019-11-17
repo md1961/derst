@@ -38,6 +38,11 @@ tbody tr:hover {
   background-color: white;
   display: flex;
 
+  &.all_training_done {
+    color: white;
+    background-color: magenta;
+  }
+
   &.ready_for_next_week {
     color: white;
     background-color: red;

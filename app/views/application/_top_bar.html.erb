@@ -1,6 +1,6 @@
 <% ranch = @ranch || @racer.ranch -%>
 
-<div id="top_bar">
+<div id="top_bar" class="<%= Racer.all_training_done? ? 'all_training_done' : '' %>">
   <div class="date">
     <span id="date">
       <%= date_display(ranch) %>
