@@ -39,8 +39,12 @@ tbody tr:hover {
   display: flex;
 
   &.all_training_done {
-    color: white;
-    background-color: magenta;
+    background-color: lightpink;
+
+    &.expecting_race {
+      color: white;
+      background-color: magenta;
+    }
   }
 
   &.ready_for_next_week {

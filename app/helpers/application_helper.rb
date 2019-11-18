@@ -1,5 +1,14 @@
 module ApplicationHelper
 
+  def top_bar_class
+    classes = []
+    if Racer.all_training_done?
+      classes << 'all_training_done'
+      classes << 'expecting_race' unless Racer.none_expecting_race?
+    end
+    classes.join(' ')
+  end
+
   def date_display(ranch)
     "#{ranch.year} 年 #{ranch.month} 月 #{ranch.week} 週"
   end
