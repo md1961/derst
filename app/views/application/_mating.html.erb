@@ -1,0 +1,30 @@
+<% @mating = Mating.new(mare, sire) -%>
+
+<div class="matings">
+  <div class="sire">
+    <%= render partial: 'sire', locals: {sire: sire} %>
+  </div>
+
+  <div class="mare">
+    <%= render partial: 'mare', locals: {mare: mare} %>
+  </div>
+
+  <div class="traits">
+    <table class="table_base">
+      <tr>
+        <th>ニックス</th>
+        <td class="value"><%= @mating.nicks? ? '〇': '×' %></td>
+        <th>面白い</th>
+        <td class="value"><%= @mating.interesting? ? '〇': '×' %></td>
+      </tr>
+      <tr>
+        <td colspan="4" class="inbreed_display">
+          <% inbreed = @mating.inbreed_display.gsub(', ', '<br>').html_safe -%>
+          <%= inbreed.blank? ? '（アウトブリード）' : inbreed %>
+        </td>
+      </tr>
+    </table>
+
+    <%= render partial: 'root_lineage_numbers', locals: {horse: @mating} %>
+  </div>
+</div>

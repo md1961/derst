@@ -1,3 +1,33 @@
+.matings {
+  display: flex;
+
+  .mare {
+    margin-left: 20px;
+  }
+
+  .inbreed {
+    color: red;
+  }
+
+  .traits {
+    margin-top: 70px;
+    margin-left: 20px;
+
+    th {
+      width: 50px;
+    }
+
+    td.value {
+      width: 20px;
+      text-align: center;
+    }
+
+    td.inbreed {
+      width: 140px;
+    }
+  }
+}
+
 #sire_filter_score {
   width: 35px;
   text-align: right;
@@ -63,32 +93,6 @@
 }
 
 .matings_show {
-
-  .inbreed {
-    color: red;
-  }
-
-  .mare {
-    margin-left: 20px;
-  }
-
-  .mating {
-    margin-top: 70px;
-    margin-left: 20px;
-
-    th {
-      width: 50px;
-    }
-
-    td.value {
-      width: 20px;
-      text-align: center;
-    }
-
-    td.inbreed {
-      width: 140px;
-    }
-  }
 
   .links {
     display: flex;
