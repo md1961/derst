@@ -42,9 +42,11 @@
                            : "#{result.race.name} #{result.race.distance_to_s} #{result.place}着"
                is_current_week = @ranch.in_week_of?(month, week) -%>
             <td class="centered <%= result ? (is_current_week ? 'race_coming' : 'race') : '' %>"
-                title="<%= result_to_s %>">
+                title="<%= result&.race %>">
               <% if is_current_week -%>
                 <%= form_for_weekly(racer) %>
+              <% elsif result -%>
+                <%= result.place %>
               <% else -%>
                 <%= racer.condition_in(age, month, week) %>
               <% end -%>
