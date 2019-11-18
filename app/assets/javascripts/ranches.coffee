@@ -1,8 +1,5 @@
 $ ->
   if $('.ranches_show.ready_for_next_week').length > 0
-    next_month_week = $('.ranches_show.ready_for_next_week').eq(0).data('next_month_week')
-    month = next_month_week[0]
-    week  = next_month_week[1]
     $('#top_bar').addClass('ready_for_next_week').removeClass('all_training_done')
     $('#button_to_next_week').focus()
 
