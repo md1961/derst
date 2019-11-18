@@ -179,12 +179,13 @@ module ApplicationHelper
       race.handicap? ? nil : "#{race.load_for(racer)}kg",
       race.separate? && %w[3 4].include?(race.age) ? "+ 獲得賞金 #{race.age == '3' ? 800 : 1200}万円毎 1kg" : nil
     ].compact.join(' ')
+    clazz = race.grade.high_stake? ? 'high_stake' : race.grade == racer.grade ? '' : 'overgrade'
+    clazz = 'target_by_others' if @target_races_by_others&.include?(race)
+    clazz = 'entry_by_others' if @entered_races_by_others&.include?(race)
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target,
-      content_tag(:td, safe_join(a, ' '), class: race.grade.high_stake? ? 'high_stake' \
-                                               : race.grade == racer.grade ? '' : 'overgrade',
-                                          title: load_to_s),
+      content_tag(:td, safe_join(a, ' '), class: clazz, title: load_to_s),
     ].compact)
   end
 

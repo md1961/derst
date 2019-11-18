@@ -4,8 +4,11 @@ class RacersController < ApplicationController
     @racer = Racer.includes(:weeklies, results: :race).find(params[:id])
     @result_id_to_edit = params[:result_id_to_edit].to_i
     @post_race = PostRace.find_by(id: params[:post_race_id_to_edit])
+
     @includes_overgrade = params[:includes_overgrade] == 'true'
     @weeks_for_race_candidates = @racer.grade&.abbr == 'OP' ? 16 : 12
+    @target_races_by_others = TargetRace.includes(:race, :racer).where.not(racer: @racer).map(&:race)
+    @entered_races_by_others = Result.where(place: nil).includes(:race, :racer).where.not(racer: @racer).map(&:race)
 
     racers = (@racer.in_stable? ? Racer.in_stable : Racer.in_ranch).older_first
     index = racers.find_index(@racer)

@@ -212,6 +212,15 @@ td.not_stabled {
       background-color: lightgray;
     }
 
+    td.target_by_others {
+      background-color: pink;
+    }
+
+    td.entry_by_others {
+      color: white;
+      background-color: red;
+    }
+
     input[type="submit"] {
       height: 16px;
       font-weight: bold;
