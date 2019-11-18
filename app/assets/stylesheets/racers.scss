@@ -58,19 +58,19 @@ td.not_stabled {
 
 .racers_new {
   display: flex;
+  flex-direction: column;
   margin-top: 40px;
 
-  table.racers {
-    margin-top: 20px;
+  .form {
+    display: flex;
+
+    table.racers {
+      margin-left: 40px;
+    }
   }
 
   .mating {
-    display: flex;
-    margin-left: 20px;
-
-    .sire, .mare {
-      margin-left: 20px;
-    }
+    margin-top: 20px;
   }
 }
 

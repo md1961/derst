@@ -1,5 +1,5 @@
 <div class="racers_new">
-  <div>
+  <div class="form">
     <%= render 'form' %>
 
     <table class="racers table_base">
@@ -16,11 +16,6 @@
   </div>
 
   <div class="mating">
-    <div class="sire">
-      <%= render partial: 'sire', locals: {sire: @racer.father} %>
-    </div>
-    <div class="mare">
-      <%= render partial: 'mare', locals: {mare: @racer.mother} %>
-    </div>
+    <%= render partial: 'mating', locals: {mare: @racer.mother, sire: @racer.father} %>
   </div>
 </div>
