@@ -1,0 +1,14 @@
+<div class="birth_pieces">
+  <table class="racers table_base">
+    <tbody>
+      <% mare.racers.older_first.each do |racer| -%>
+        <tr>
+          <td><%= racer_name_display(racer) %></td>
+          <%= racer_sex_display_in_td(racer) %>
+          <td class="numeric"><%= "#{racer.age}歳" %></td>
+          <td><%= "x #{racer.father}" %></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>
