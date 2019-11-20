@@ -4,7 +4,7 @@ module ApplicationHelper
     classes = []
     if Racer.all_training_done?
       classes << 'all_training_done'
-      classes << 'expecting_race' unless Racer.none_expecting_race?
+      classes << 'expecting_race' if Racer.any_expecting_race?
     end
     classes.join(' ')
   end
