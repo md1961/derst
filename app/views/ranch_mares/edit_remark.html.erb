@@ -1,0 +1,28 @@
+<% mare = @ranch_mare.mare -%>
+
+<div class="ranch_mares_edit_remark">
+  <div class="form">
+    <div>
+      <table class="table_base">
+        <tr>
+          <td><%= mare %></td>
+          <td><%= "#{@ranch_mare.age}歳" %></td>
+        </tr>
+      </table>
+
+      <%= form_with url: update_remark_ranch_mare_path(@ranch_mare), local: true, method: :patch do |f| %>
+        <%= f.label '産駒名候補など' %>
+        <%= f.text_field :remark, value: @ranch_mare.remark, autofocus: true %>
+        <%= f.submit %>
+      <% end -%>
+    </div>
+
+    <div class="racers">
+      <%= render partial: 'birth_pieces', locals: {mare: mare} %>
+    </div>
+  </div>
+
+  <div class="mating">
+    <%= render partial: 'mating', locals: {mare: mare, sire: @ranch_mare.sire} %>
+  </div>
+</div>

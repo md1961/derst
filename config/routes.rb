@@ -31,7 +31,8 @@ Rails.application.routes.draw do
 
   resources :ranch_mares, only: %i[new create update destroy] do
     member do
-      patch :delete_sire
+      get :edit_remark
+      patch :delete_sire, :update_remark
     end
   end
 

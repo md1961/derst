@@ -39,4 +39,14 @@ class RanchMaresController < ApplicationController
     ranch_mare.destroy
     redirect_to ranch
   end
+
+  def edit_remark
+    @ranch_mare = RanchMare.find(params[:id])
+  end
+
+  def update_remark
+    @ranch_mare = RanchMare.find(params[:id])
+    @ranch_mare.update!(remark: params[:remark])
+    render :edit_remark
+  end
 end
