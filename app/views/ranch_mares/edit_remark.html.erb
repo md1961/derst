@@ -12,7 +12,7 @@
 
       <%= form_with url: update_remark_ranch_mare_path(@ranch_mare), local: true, method: :patch do |f| %>
         <%= f.label '産駒名候補など' %>
-        <%= f.text_field :remark, value: @ranch_mare.remark, autofocus: true %>
+        <%= f.text_field :remark, value: @ranch_mare.remark, size: 40, autofocus: true %>
         <%= f.submit %>
       <% end -%>
     </div>
