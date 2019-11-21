@@ -11,6 +11,13 @@ class RacersController < ApplicationController
     @entered_races_by_others = Result.where(place: nil).includes(:race, :racer).where.not(racer: @racer).map(&:race)
 
     racers = (@racer.in_stable? ? Racer.in_stable : Racer.in_ranch).older_first
+    if @racer.expecting_race? && Racer.all_training_done?
+      racers = racers.find_all(&:expecting_race?)
+      race = @racer.results.last.race
+      if races_of_multiple_entries(racers).include?(race)
+        racers = racers.find_all { |racer| racer.results.last.race == race }
+      end
+    end
     index = racers.find_index(@racer)
     @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index
   end
@@ -106,5 +113,13 @@ class RacersController < ApplicationController
         p[:father] = father if father
         p[:mother] = mother if mother
       }
+    end
+
+    def races_of_multiple_entries(racers)
+      racers.map { |racer|
+        racer.results.last.race
+      }.group_by(&:itself).find_all { |race, races|
+        races.size >= 2
+      }.map(&:first)
     end
 end
