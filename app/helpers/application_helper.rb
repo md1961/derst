@@ -136,7 +136,7 @@ module ApplicationHelper
   end
 
   def race_distance_display(race)
-    "#{race.dirt? ? 'D' : ''}#{race.distance}"
+    content_tag :span, "#{race.dirt? ? 'D' : ''}#{race.distance}", class: race.surface
   end
 
   def race_limitation_display(race)
