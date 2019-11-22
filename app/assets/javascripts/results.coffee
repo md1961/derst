@@ -25,7 +25,8 @@ $ ->
 
   if $('#results').length > 0
     $(window).on 'keypress', (e) ->
-      if $('input[type="text"]').is(':focus') || $('input[type="number"]').is(':focus') || e.ctrlKey
+      if $('input[type="text"]').is(':focus') || $('input[type="number"]').is(':focus') \
+          || e.ctrlKey || $('#racer_menu').is(':visible')
         return true
       key = String.fromCharCode(e.which)
       if '1' <= key && key <= '5'
