@@ -10,7 +10,7 @@
         <%= render 'results_header' %>
       <% end -%>
       <% race = result.race -%>
-      <tr class="place-<%= result.place %>">
+      <tr class="place-<%= result.place %> <%= race.surface %>">
         <td class="numeric"><%= result.age %></td>
         <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
         <td><%= race.course %></td>

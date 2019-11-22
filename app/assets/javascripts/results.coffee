@@ -11,14 +11,28 @@ $ ->
     else
       $('#result_place').focus()
 
+  place = 16
+  surface_to_hide = 'none'
+
+  filter = ->
+    if place <= 5
+      $('#results tbody tr').addClass('dimmed')
+      for n in [1 .. place]
+        $('#results tbody tr.place-' + n).removeClass('dimmed')
+    else
+      $('#results tbody tr').removeClass('dimmed')
+    $('#results tbody tr.' + surface_to_hide).addClass('dimmed')
+
   if $('#results').length > 0
     $(window).on 'keypress', (e) ->
       if $('input[type="text"]').is(':focus') || $('input[type="number"]').is(':focus') || e.ctrlKey
         return true
       key = String.fromCharCode(e.which)
       if '1' <= key && key <= '5'
-        $('#results tbody tr').addClass('dimmed')
-        for n in [1 .. parseInt(key)]
-          $('#results tbody tr.place-' + n).removeClass('dimmed')
+        place = parseInt(key)
+      else if key == 't' || key == 'd'
+        surface_to_hide = if key == 't' then 'dirt' else 'turf'
       else
-        $('#results tbody tr').removeClass('dimmed')
+        place = 16
+        surface_to_hide = 'none'
+      filter()
