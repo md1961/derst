@@ -17,8 +17,8 @@ $ ->
         return true
       key = String.fromCharCode(e.which)
       if '1' <= key && key <= '5'
-        $('#results tbody tr').hide()
+        $('#results tbody tr').addClass('dimmed')
         for n in [1 .. parseInt(key)]
-          $('#results tbody tr.place-' + n).show()
+          $('#results tbody tr.place-' + n).removeClass('dimmed')
       else
-        $('#results tbody tr').show()
+        $('#results tbody tr').removeClass('dimmed')
