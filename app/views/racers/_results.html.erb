@@ -11,6 +11,7 @@
       <% end -%>
       <% race = result.race -%>
       <tr class="place-<%= result.place %>">
+        <td class="numeric"><%= result.age %></td>
         <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
         <td><%= race.course %></td>
         <td><%= race_name_display(race) %></td>
@@ -56,6 +57,7 @@
           <td colspan="16">
         <% else -%>
           <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
+            <td class="numeric"><%= @racer.age %></td>
             <td class="numeric"><%= @racer.ranch.month_week %></td>
             <td colspan="15">
               <%= select_tag :race_id, race_options_for_select_for(@racer) %>
@@ -64,7 +66,7 @@
           <% end -%>
         <% end -%>
 
-        <td colspan="10">
+        <td colspan="9">
           <%= render partial: 'post_race_form', locals: {post_race: PostRace.new} %>
         </td>
       </tr>
