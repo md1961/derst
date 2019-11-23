@@ -11,8 +11,8 @@ class RacersController < ApplicationController
     @entered_races_by_others = Result.where(place: nil).includes(:race, :racer).where.not(racer: @racer).map(&:race)
 
     racers = (@racer.in_stable? ? Racer.in_stable : Racer.in_ranch).older_first
-    if @racer.expecting_race? && Racer.all_training_done?
-      racers = racers.find_all(&:expecting_race?)
+    if Racer.any_expecting_race? && Racer.all_training_done?
+      racers = racers.find_all { |racer| racer.expecting_race? || racer == @racer }
       race = @racer.results.last.race
       if races_of_multiple_entries(racers).include?(race)
         racers = racers.find_all { |racer| racer.results.last.race == race }
