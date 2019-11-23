@@ -96,7 +96,7 @@ module RacersHelper
       size = {
         odds:   4,
         comment_paddock: 20,
-        comment_race:    20,
+        comment_race:    40,
       }[name] || 2
       f.text_field name, size: size
     end
