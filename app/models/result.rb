@@ -15,6 +15,10 @@ class Result < ApplicationRecord
     race.net_prize_for(place)
   end
 
+  def age_in_week
+    Racer::AgeInWeek.new(age, race.month, race.week)
+  end
+
   def set_load_from_racer_and_race!
     value = race.load_for(racer)
     return unless value
