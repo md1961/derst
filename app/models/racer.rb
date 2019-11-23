@@ -93,6 +93,11 @@ class Racer < ApplicationRecord
     result_in(age, month, week).present?
   end
 
+  def earns_net_prize_last_week?
+    last_result = results.last
+    last_result && last_result.age_in_week == age_in_week.prev && last_result.net_prize > 0
+  end
+
   def coming_races
     last_result = results.last
     last_result = nil if last_result&.place.present?
