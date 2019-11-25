@@ -1,23 +1,23 @@
 $ ->
+  $mark_selects = [
+    $('#result_mark_development'),
+    $('#result_mark_stamina'),
+    $('#result_mark_contend'),
+    $('#result_mark_temper'),
+    $('#result_mark_odds')
+  ]
+
   $(window).on 'keypress', (e) ->
     if $('input[type="text"]').is(':focus') || e.ctrlKey
       return
     key = String.fromCharCode(e.which)
 
-    is_mark_focused = $('#result_mark_development').is(':focus') \
-                   || $('#result_mark_stamina')    .is(':focus') \
-                   || $('#result_mark_contend')    .is(':focus') \
-                   || $('#result_mark_temper')     .is(':focus') \
-                   || $('#result_mark_odds')       .is(':focus')
+    is_mark_focused = $mark_selects.some((e) -> e.is(':focus'))
     if $('#results').hasClass('ready_for_race') && is_mark_focused \
         && ['a', 'b', 'c', 'y', 'z'].includes(key)
       value = if key == 'a' then '－' else if key == 'b' then '△' else
               if key == 'c' then '▲' else if key == 'y' then '〇' else '◎'
-      $('#result_mark_development').val(value)
-      $('#result_mark_stamina')    .val(value)
-      $('#result_mark_contend')    .val(value)
-      $('#result_mark_temper')     .val(value)
-      $('#result_mark_odds')       .val(value)
+      $.each($mark_selects, -> this.val(value))
       return
 
     if $('#show_mares').length > 0 && key == 'y'
