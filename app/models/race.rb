@@ -57,8 +57,10 @@ class Race < ApplicationRecord
 
     if is_new_racer
       month_week = racer.ranch.month_week
+      grades_from_next_month = grades + [Grade.find_by(abbr: '未')]
+      grades_from_next_month.delete(Grade.find_by(abbr: '新')) unless racer.results.empty?
       for_age(age).where(grade: grades).unlimited_for(racer).in_or_after(month_week)
-        .or(for_age(age).where(grade: [Grade.find_by(abbr: '未')] + grades).unlimited_for(racer)
+        .or(for_age(age).where(grade: grades_from_next_month).unlimited_for(racer)
               .in_or_after(month_week.first_of_next_month)
            )
     elsif racer.downgrade_in_summer?
