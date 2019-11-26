@@ -80,11 +80,12 @@ module RacersHelper
       return '－' if name == :place and result.place > 20
       result.send(name)
     elsif name == :jockey
-      f.select :jockey_id, options_for_select_for_jockey(result.jockey),
-                            {}, tabindex: in_paddock ? -1 : 0
+      f.select :jockey_id, options_for_select_for_jockey(result.jockey), {},
+                            tabindex: in_paddock ? -1 : 0
     elsif result_attr_names_using_select.include?(name)
-      f.select name, result_options_for_select_for(name),
-                            {}, tabindex: in_paddock || name == :condition ? -1 : 0
+      f.select name, result_options_for_select_for(name), {},
+                            data: {orig_value: f.object.send(name)},
+                            tabindex: in_paddock || name == :condition ? -1 : 0
     elsif name == :weight
       f.number_field name, step: 2
     elsif name == :load
