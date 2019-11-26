@@ -7,17 +7,28 @@ $ ->
     $('#result_mark_odds')
   ]
 
+  select_next_option = (elem) ->
+    elem.children('option:selected').next().prop('selected', true)
+
+  select_prev_option = (elem) ->
+    elem.children('option:selected').prev().prop('selected', true)
+
   $(window).on 'keypress', (e) ->
     if $('input[type="text"]').is(':focus') || e.ctrlKey
       return
     key = String.fromCharCode(e.which)
 
-    is_mark_focused = $mark_selects.some((e) -> e.is(':focus'))
+    is_mark_focused = $mark_selects.some((elem) -> elem.is(':focus'))
     if $('#results').hasClass('ready_for_race') && is_mark_focused \
-        && ['a', 'b', 'c', 'y', 'z'].includes(key)
-      value = if key == 'a' then '－' else if key == 'b' then '△' else
-              if key == 'c' then '▲' else if key == 'y' then '〇' else '◎'
-      $.each($mark_selects, -> this.val(value))
+        && ['a', 'b', 'c', 'y', 'z', 'j', 'k'].includes(key)
+      if key == 'j'
+        $.each($mark_selects, -> select_next_option(this))
+      else if key == 'k'
+        $.each($mark_selects, -> select_prev_option(this))
+      else
+        value = if key == 'a' then '－' else if key == 'b' then '△' else
+                if key == 'c' then '▲' else if key == 'y' then '〇' else '◎'
+        $.each($mark_selects, -> this.val(value))
       return
 
     if $('#show_mares').length > 0 && key == 'y'
