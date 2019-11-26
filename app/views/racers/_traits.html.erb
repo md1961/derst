@@ -57,7 +57,7 @@
       </tr>
       <tr>
         <th>特記事項</th>
-        <td class="remark"><%= @racer.remark %></td>
+        <td class="<%= @racer.stable ? 'larger' : '' %>"><%= @racer.remark %></td>
       </tr>
     </table>
 
