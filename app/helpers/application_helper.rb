@@ -36,6 +36,48 @@ module ApplicationHelper
     upper + lower
   end
 
+  def racer_attr_display_in_td(racer, name, f, html_attrs = {})
+    classes = html_attrs[:class]&.split || []
+    classes << 'default'
+    classes << 'numeric'     if name.to_s.starts_with?('weight_')
+    classes << 'centered'    if name == :stable
+    classes << 'emphasized'  if name == :weight_best
+    classes << 'grade_given' if name == :grade && racer.grade_given
+    html_attrs.merge!(class: classes.join(' '))
+    content_tag :td, racer_attr_display(racer, name, f), html_attrs
+  end
+
+  def racer_attr_display(racer, name, f)
+    if !f || name == :grade \
+          || (racer.stable && name.to_s.starts_with?('comment_')) \
+          || (racer.age != 2 && name == :comment_age2) \
+          || (racer.age != 3 && name == :comment_age3) \
+          || ((!racer.results.empty? || racer.age < 3) && name == :stable) \
+          || (!racer.stable && name.to_s.starts_with?('weight_'))
+      racer.send(name)
+    # TODO: Remove 'elsif name == :grade' from racer_attr_display().
+    elsif name == :grade
+      f.select :grade_given_id, [['-', nil]] + Grade.where("name NOT LIKE 'G%'").pluck(:name, :id),
+                  {}, autofocus: true
+    elsif name == :stable
+      options = Stable.all.group_by(&:center).map { |center, stables|
+        [
+          center.name,
+          stables.map { |stable| [stable.name_with_num_racers, stable.id] }
+        ]
+      }
+      f.select :stable_id, grouped_options_for_select(options, racer.stable&.id, prompt: '-')
+    elsif name.to_s.starts_with?('weight_')
+      safe_join([
+        name == :weight_lean ? content_tag(:span, '<', class: 'lean_to_best button') : nil,
+        f.number_field(name, step: 2, autofocus: name == :weight_fat),
+        name == :weight_fat  ? content_tag(:span, '>', class: 'fat_to_best  button') : nil
+      ].compact, "\n")
+    else
+      f.text_field name, autofocus: name.to_s.starts_with?('comment_age')
+    end
+  end
+
   H_NOTICE = {
     [ 1, 2] => :mare_sale,
     [ 2, 2] => :mare_sale,

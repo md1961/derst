@@ -31,33 +31,34 @@
 
   <div>
     <table class="table_base">
+      <% f = nil -%>
       <tr>
         <th>２歳時</th>
-        <td><%= @racer.comment_age2 %></td>
+        <%= racer_attr_display_in_td(@racer, :comment_age2, f, colspan: 3) %>
       </tr>
       <tr>
         <th>３歳時</th>
-        <td><%= @racer.comment_age3 %></td>
+        <%= racer_attr_display_in_td(@racer, :comment_age3, f, colspan: 3) %>
       </tr>
       <tr>
         <th>厩舎</th>
-        <td class="centered" title="<%= @racer.stable&.jockeys&.join('　') %>">
-          <%= @racer.stable %>
-        </td>
+        <%= racer_attr_display_in_td(@racer, :stable, f, colspan: 3) %>
       </tr>
       <tr>
         <th>主戦騎手</th>
-        <td class="centered">
+        <td colspan="3" class="centered">
           <%= @racer.stable&.jockeys&.join('、') %>
         </td>
       </tr>
       <tr>
         <th>体重</th>
-        <td class="numeric"><%= "#{@racer.weight_best}kg" %></td>
+        <%= racer_attr_display_in_td(@racer, :weight_fat , f) %>
+        <%= racer_attr_display_in_td(@racer, :weight_best, f) %>
+        <%= racer_attr_display_in_td(@racer, :weight_lean, f) %>
       </tr>
       <tr>
         <th>特記事項</th>
-        <td class="<%= @racer.stable ? 'larger' : '' %>"><%= @racer.remark %></td>
+        <%= racer_attr_display_in_td(@racer, :remark, f, colspan: 3, class: @racer.stable ? 'larger' : '') %>
       </tr>
     </table>
 
