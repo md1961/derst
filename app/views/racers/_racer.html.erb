@@ -59,13 +59,16 @@
       <%= link_to 'Cancel', @ranch, class: 'escapeable', data: {shortcut: 'b'} %>
     </td>
   <% else -%>
-    <% results = racer.results.find_all(&:place)
-       weeks = @ranch.month_week - (racer.in_ranch ? racer.in_ranch.month_week
-                                                   : results.last.race.month_week)
-       clazz = weeks > 4 ? 'overstay_in_ranch' : weeks == 4 ? 'ready_to_be_stabled' : 'in_ranch' -%>
-    <td class="numeric <%= racer.in_ranch ? clazz : '' %>">
-      <%= results.empty? && !racer.in_ranch ? "" : "#{weeks}w" %>
-    </td>
+    <% unless racer.in_ranch -%>
+      <td>
+    <% else -%>
+      <% weeks = @ranch.month_week - racer.in_ranch.month_week
+         clazz = weeks > 4 ? 'overstay_in_ranch' : weeks == 4 ? 'ready_to_be_stabled' : 'in_ranch' -%>
+      <td class="numeric <%= clazz %>">
+        <%= "#{weeks}w" %>
+      </td>
+    <% end -%>
+
     <% unless racer.stable -%>
       <td>
     <% else -%>
