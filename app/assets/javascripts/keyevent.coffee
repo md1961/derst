@@ -39,10 +39,13 @@ $ ->
       else
         $('#show_mares')[0].click()
       return
-    else if $('#show_all_racers').length > 0 && (key == 'z' || key == 'x')
+    else if $('#show_no_stable').length > 0 && key == 'x'
+      $('#show_no_stable')[0].click()
+      return
+    else if $('#show_all_racers').length > 0 && (key == 'z' || key == 'r')
       if key == 'z'
         $('#show_all_racers')[0].click()
-      else if key == 'x' && $('table.all_racers').is(':visible')
+      else if $('table.all_racers').is(':visible')
         $('.default')  .toggle()
         $('.optional1').toggle()
       return

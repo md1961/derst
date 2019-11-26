@@ -31,6 +31,8 @@
   <div class="links" hidden>
     <%= link_to '[繁殖牝馬]', ranch_path(@ranch, shows_mares: !@shows_mares, shows_all_racers: @shows_all_racers),
                               id: 'show_mares', tabindex: -1 %>
+    <%= link_to '[全現役馬]', ranch_path(@ranch, shows_no_stable: !@shows_no_stable),
+                              id: 'show_no_stable', tabindex: -1 %>
     <%= link_to '[全競争馬]', ranch_path(@ranch, shows_all_racers: !@shows_all_racers),
                               id: 'show_all_racers', tabindex: -1 %>
   </div>
