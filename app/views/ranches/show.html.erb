@@ -15,9 +15,10 @@
       <div class="notice">
         <%= notice(@ranch) %>
       </div>
-      <%= render 'racers/all_conditions' %>
 
       <% if @racer_id_to_edit.zero? -%>
+        <%= render 'racers/all_conditions' %>
+
         <div class="links">
           <%= link_to '新規競走馬', new_racer_path(ranch_id: @ranch.id), tabindex: -1 %>
         </div>
