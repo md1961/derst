@@ -78,6 +78,14 @@ module ApplicationHelper
     end
   end
 
+  def button_to_retire(racer)
+    label, verb = racer.age <= 2 ? ['売却', '売却し'] : ['引退', '引退させ']
+    button_to label, retire_racer_path(racer), method: :patch,
+                        class: 'critical',
+                        data: {confirm: "「#{racer.name}」を#{verb}ますか？"},
+                        tabindex: -1
+  end
+
   H_NOTICE = {
     [ 1, 2] => :mare_sale,
     [ 2, 2] => :mare_sale,

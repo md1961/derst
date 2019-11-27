@@ -24,11 +24,7 @@
               <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: f} %>
             <% end -%>
             <td>
-              <% label, verb = racer.age <= 2 ? ['売却', '売却し'] : ['引退', '引退させ'] -%>
-              <%= button_to label, retire_racer_path(racer), method: :patch,
-                                      class: 'critical',
-                                      data: {confirm: "「#{racer.name}」を#{verb}ますか？"},
-                                      tabindex: -1 %>
+              <%= button_to_retire(racer) %>
             </td>
           <% else -%>
             <%= render partial: 'racers/racer', locals: {racer: racer, index: index, f: nil} %>
