@@ -24,7 +24,9 @@
                    is_nicks       = mating.nicks?
                    is_interesting = mating.interesting?
                    score          = mating.score -%>
-                <td><%= sire %></td>
+                <td>
+                  <%= link_to sire, mating_path(mare, sire_id: sire.id), target: '_blank', tabindex: -1 %>
+                </td>
                 <% trait = sire.trait -%>
                 <% sire_trait_names.each do |name| -%>
                   <% value = trait.send(name) -%>
