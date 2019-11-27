@@ -75,8 +75,10 @@
     <% end -%>
 
     <div class="links">
-      <%= link_to '配合', mating_path(@racer.mother, sire_id: @racer.father.id),
-                          target: '_blank', tabindex: -1 %>
+      <% if @racer.stable -%>
+        <%= link_to '配合', mating_path(@racer.mother, sire_id: @racer.father.id),
+                            target: '_blank', tabindex: -1 %>
+      <% end -%>
       <% if mare = @racer.mare -%>
         <%= link_to '繁殖牝馬', matings_path(mare_id: mare), target: '_blank', tabindex: -1 %>
         <%= button_to '繁殖入り', ranch_mares_path(ranch_mare: {mare: mare.name, ranch_id: @racer.ranch}),

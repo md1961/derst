@@ -22,6 +22,8 @@
         <%= notice(@racer.ranch) %>
       </div>
       <%= render 'conditions' %>
+    <% else -%>
+      <%= render partial: 'mating', locals: {mare: @racer.mother, sire: @racer.father} %>
     <% end -%>
 
     <div class="links">
