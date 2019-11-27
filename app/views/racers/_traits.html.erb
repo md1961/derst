@@ -33,6 +33,12 @@
     <%= form_with model: @racer, local: true do |f| %>
       <% f = nil unless @editing -%>
       <table class="table_base">
+        <% if f -%>
+          <tr>
+            <th>馬名</th>
+            <td colspan="3"><%= racer_name_display(@racer, f) %></td>
+          </tr>
+        <% end -%>
         <% racer_attr_names.each do |name| -%>
           <% html_attrs = {}
              html_attrs[:colspan] = 3 unless name == :weights
