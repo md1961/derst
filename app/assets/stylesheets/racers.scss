@@ -70,7 +70,7 @@ td.earns_net_prize_last_week {
   }
 
   input[type="number"] {
-    width: 50px;
+    width: 40px;
     text-align: right;
   }
 }
@@ -138,8 +138,18 @@ td.earns_net_prize_last_week {
       font-weight: bold;
     }
 
+    td.with_unit:after {
+      content: 'kg';
+      font-weight: normal;
+    }
+
     td.larger {
       font-size: 1.6rem;
+    }
+
+    input[type="number"] {
+      width: 40px;
+      text-align: right;
     }
 
     .links {

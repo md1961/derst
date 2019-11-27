@@ -38,13 +38,22 @@ class RacersController < ApplicationController
     end
   end
 
+  def edit
+    @racer = Racer.find(params[:id])
+    @editing = true
+    render :show
+  end
+
   def update
-    racer = Racer.find(params[:id])
-    ranch = Ranch.find(params[:ranch_id])
-    if racer.update(racer_params)
-      redirect_to ranch
+    @racer = Racer.find(params[:id])
+    ranch = Ranch.find_by(id: params[:ranch_id])
+    if @racer.update(racer_params)
+      redirect_to ranch || @racer
+    elsif ranch
+      redirect_to ranch_path(ranch, racer_id_to_edit: @racer)
     else
-      redirect_to ranch_path(ranch, racer_id_to_edit: racer)
+      @editing = true
+      render :show
     end
   end
 

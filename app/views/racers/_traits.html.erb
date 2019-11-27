@@ -30,37 +30,49 @@
   </table>
 
   <div>
-    <table class="table_base">
-      <% f = nil -%>
-      <tr>
-        <th>２歳時</th>
-        <%= racer_attr_display_in_td(@racer, :comment_age2, f, colspan: 3) %>
-      </tr>
-      <tr>
-        <th>３歳時</th>
-        <%= racer_attr_display_in_td(@racer, :comment_age3, f, colspan: 3) %>
-      </tr>
-      <tr>
-        <th>厩舎</th>
-        <%= racer_attr_display_in_td(@racer, :stable, f, colspan: 3) %>
-      </tr>
-      <tr>
-        <th>主戦騎手</th>
-        <td colspan="3" class="centered">
-          <%= @racer.stable&.jockeys&.join('、') %>
-        </td>
-      </tr>
-      <tr>
-        <th>体重</th>
-        <%= racer_attr_display_in_td(@racer, :weight_fat , f) %>
-        <%= racer_attr_display_in_td(@racer, :weight_best, f) %>
-        <%= racer_attr_display_in_td(@racer, :weight_lean, f) %>
-      </tr>
-      <tr>
-        <th>特記事項</th>
-        <%= racer_attr_display_in_td(@racer, :remark, f, colspan: 3, class: @racer.stable ? 'larger' : '') %>
-      </tr>
-    </table>
+    <%= form_with model: @racer, local: true do |f| %>
+      <% f = nil unless @editing -%>
+      <table class="table_base">
+        <tr>
+          <th>２歳時</th>
+          <%= racer_attr_display_in_td(@racer, :comment_age2, f, colspan: 3) %>
+        </tr>
+        <tr>
+          <th>３歳時</th>
+          <%= racer_attr_display_in_td(@racer, :comment_age3, f, colspan: 3) %>
+        </tr>
+        <tr>
+          <th>厩舎</th>
+          <%= racer_attr_display_in_td(@racer, :stable, f, colspan: 3) %>
+        </tr>
+        <tr>
+          <th>主戦騎手</th>
+          <td colspan="3" class="centered">
+            <%= @racer.stable&.jockeys&.join('、') %>
+          </td>
+        </tr>
+        <tr>
+          <th>体重</th>
+          <%= racer_attr_display_in_td(@racer, :weight_fat , f) %>
+          <%= racer_attr_display_in_td(@racer, :weight_best, f, class: 'with_unit') %>
+          <%= racer_attr_display_in_td(@racer, :weight_lean, f) %>
+        </tr>
+        <tr>
+          <th>特記事項</th>
+          <%= racer_attr_display_in_td(@racer, :remark, f, colspan: 3, class: @racer.stable ? 'larger' : '') %>
+        </tr>
+        <% if f -%>
+          <tr>
+            <td colspan="2" class="centered border_right_none">
+              <%= f.submit %>
+            </td>
+            <td colspan="2" class="centered border_left_none">
+              <%= link_to 'Cancel', @racer, class: 'escapeable', data: {shortcut: 'b'} %>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+    <% end -%>
 
     <div class="links">
       <%= link_to '配合', mating_path(@racer.mother, sire_id: @racer.father.id),
@@ -101,7 +113,7 @@
 
     <div class="links">
       <%= button_to_graze(@racer) %>
-      <%= link_to 'Edit', ranch_path(@racer.ranch, racer_id_to_edit: @racer.id), data: {shortcut: 'e'} %>
+      <%= link_to 'Edit', edit_racer_path(@racer), data: {shortcut: 'e'} %>
     </div>
   </div>
 </div>
