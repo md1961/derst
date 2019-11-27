@@ -33,34 +33,15 @@
     <%= form_with model: @racer, local: true do |f| %>
       <% f = nil unless @editing -%>
       <table class="table_base">
-        <tr>
-          <th>２歳時</th>
-          <%= racer_attr_display_in_td(@racer, :comment_age2, f, colspan: 3) %>
-        </tr>
-        <tr>
-          <th>３歳時</th>
-          <%= racer_attr_display_in_td(@racer, :comment_age3, f, colspan: 3) %>
-        </tr>
-        <tr>
-          <th>厩舎</th>
-          <%= racer_attr_display_in_td(@racer, :stable, f, colspan: 3) %>
-        </tr>
-        <tr>
-          <th>主戦騎手</th>
-          <td colspan="3" class="centered">
-            <%= @racer.stable&.jockeys&.join('、') %>
-          </td>
-        </tr>
-        <tr>
-          <th>体重</th>
-          <%= racer_attr_display_in_td(@racer, :weight_fat , f) %>
-          <%= racer_attr_display_in_td(@racer, :weight_best, f, class: 'with_unit') %>
-          <%= racer_attr_display_in_td(@racer, :weight_lean, f) %>
-        </tr>
-        <tr>
-          <th>特記事項</th>
-          <%= racer_attr_display_in_td(@racer, :remark, f, colspan: 3, class: @racer.stable ? 'larger' : '') %>
-        </tr>
+        <% racer_attr_names.each do |name| -%>
+          <% html_attrs = {}
+             html_attrs[:colspan] = 3 unless name == :weights
+             html_attrs[:class] = 'larger' if name == :remark && @racer.stable -%>
+          <tr>
+            <th><%= Racer.human_attribute_name(name) %></th>
+            <%= racer_attr_display_in_td(@racer, name, f, html_attrs) %>
+          </tr>
+        <% end -%>
         <% if f -%>
           <tr>
             <td colspan="2" class="centered border_right_none">

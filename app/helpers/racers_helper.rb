@@ -1,5 +1,9 @@
 module RacersHelper
 
+  def racer_attr_names
+    %i[comment_age2 comment_age3 stable main_jockeys weights remark]
+  end
+
   def sire_trait_display(sire)
     return "" unless sire
     trait = sire.trait

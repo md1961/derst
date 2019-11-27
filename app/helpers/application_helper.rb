@@ -37,18 +37,28 @@ module ApplicationHelper
   end
 
   def racer_attr_display_in_td(racer, name, f, html_attrs = {})
-    classes = html_attrs[:class]&.split || []
-    classes << 'default'
-    classes << 'numeric'     if name.to_s.starts_with?('weight_')
-    classes << 'centered'    if name == :stable
-    classes << 'emphasized'  if name == :weight_best
-    classes << 'grade_given' if name == :grade && racer.grade_given
-    html_attrs.merge!(class: classes.join(' '))
-    content_tag :td, racer_attr_display(racer, name, f), html_attrs
+    if name == :weights
+      safe_join([
+        racer_attr_display_in_td(racer, :weight_fat , f),
+        racer_attr_display_in_td(racer, :weight_best, f, class: 'with_unit'),
+        racer_attr_display_in_td(racer, :weight_lean, f)
+      ], "\n")
+    else
+      classes = html_attrs[:class]&.split || []
+      classes << 'default'
+      classes << 'numeric'     if name.to_s.starts_with?('weight_')
+      classes << 'centered'    if name == :stable || name == :main_jockeys
+      classes << 'emphasized'  if name == :weight_best
+      classes << 'grade_given' if name == :grade && racer.grade_given
+      html_attrs.merge!(class: classes.join(' '))
+      content_tag :td, racer_attr_display(racer, name, f), html_attrs
+    end
   end
 
   def racer_attr_display(racer, name, f)
-    if !f || name == :grade \
+    if name == :main_jockeys
+      racer.stable&.jockeys&.join('、')
+    elsif !f || name == :grade \
           || (racer.stable && name.to_s.starts_with?('comment_')) \
           || (racer.age != 2 && name == :comment_age2) \
           || (racer.age != 3 && name == :comment_age3) \
