@@ -9,10 +9,10 @@ module RanchesHelper
     results = racer.major_wins
     return nil if results.empty?
     [
-      results[0].map { |result|
+      results[0]&.map { |result|
         race = result.race
         "#{race.name}(#{race.distance_to_s}, #{result.age}歳)"
-      }.join(', '),
+      }&.join(', '),
       results[1]&.map { |result|
         race = result.race
         "#{race.name}(#{race.distance_to_s}, #{result.age}歳) 2着"
