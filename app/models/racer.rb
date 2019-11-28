@@ -81,6 +81,11 @@ class Racer < ApplicationRecord
     !results.empty? && results.last.place.blank?
   end
 
+  def expecting_race
+    return nil unless expecting_race?
+    results.last.race
+  end
+
   def target?(race)
     target_races.map(&:race).include?(race)
   end
