@@ -26,6 +26,7 @@ class RacersController < ApplicationController
     @racer = Racer.new(params.permit(:ranch_id, :father_id, :mother_id))
     ranch_mare = @racer.ranch.ranch_mares.find_by(mare: @racer.mother, sire: @racer.father)
     @racer.age = ranch_mare ? 1 : 2
+    @remark = ranch_mare&.remark
   end
 
   def create
