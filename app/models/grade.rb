@@ -1,4 +1,5 @@
 class Grade < ApplicationRecord
+  include Comparable
 
   scope :open_or_higher, -> { where("ordering >= 6") }
 
@@ -16,6 +17,11 @@ class Grade < ApplicationRecord
 
   def one_down
     self.class.where("ordering < ?", ordering).order(ordering: :desc).first
+  end
+
+  def <=>(other)
+    return nil unless other.is_a?(self.class)
+    ordering <=> other.ordering
   end
 
   def to_s
