@@ -21,7 +21,8 @@
 <td class="<%= racer.expecting_race? ? 'expecting_race' \
              : racer.in_ranch ? 'in_ranch' \
              : !racer.stable  ? 'not_stabled' : '' %>
-           <%= is_menu && !racer.condition ? 'no_condition' : '' %>">
+           <%= is_menu && !racer.condition ? 'no_condition' : '' %>
+           centered">
   <%= link_to_if @racer_id_to_edit.zero?, shortcut_show.upcase, racer,
                                           data: {shortcut: shortcut_show}, tabindex: -1 %></td>
 <% unless is_menu -%>
