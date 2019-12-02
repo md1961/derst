@@ -4,6 +4,8 @@ class Result < ApplicationRecord
   belongs_to :jockey, optional: true
   has_one :post_race
 
+  before_save :decrease_load, if: -> { jockey && race.name.nil? }
+
   scope :high_stake, ->(n_grade) {
     abbr = {1 => 'Ⅰ', 2 => 'Ⅱ', 3 => 'Ⅲ'}[n_grade]
     raise "Illegal n_grade (#{n_grade.inspect})" unless abbr
@@ -24,4 +26,10 @@ class Result < ApplicationRecord
     return unless value
     update!(load: value)
   end
+
+  private
+
+    def decrease_load
+      self.load = race.load_for(racer) - jockey.load_decrement
+    end
 end
