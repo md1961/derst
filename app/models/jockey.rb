@@ -6,6 +6,10 @@ class Jockey < ApplicationRecord
     "#{center}#{center.short_stay? ? '' : stable ? ' 専属' : ''}"
   end
 
+  def load_decrement
+    {'△': 1, '▲': 3}.fetch(name[0].to_sym, 0)
+  end
+
   def to_s
     name
   end
