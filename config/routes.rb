@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :results, only: %i[edit update destroy]
+  resources :results, only: %i[index edit update destroy]
 
   resources :target_races, only: %i[create destroy]
 

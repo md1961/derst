@@ -1,5 +1,9 @@
 class ResultsController < ApplicationController
 
+  def index
+    @results = Result.high_stake.sort_by(&:ordering)
+  end
+
   def edit
     result = Result.find(params[:id])
     redirect_to racer_path(result.racer, result_id_to_edit: result.id)

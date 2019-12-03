@@ -171,46 +171,6 @@ td.earns_net_prize_last_week {
     }
   }
 
-  #results {
-    margin-top: 10px;
-
-    th {
-      background-color: lightgray;
-    }
-
-    td.num_racers, td.num_frame, td.rank_odds, td.odds, td.weight {
-      text-align: right;
-    }
-
-    td.place {
-      font-weight: bold;
-    }
-
-    td.comment_paddock, td.comment_race {
-      text-align: left;
-    }
-
-    input[type="text"] {
-      text-align: right;
-    }
-
-    input[type="number"] {
-      width: 34px;
-    }
-
-    #result_comment_paddock, #result_comment_race {
-      text-align: left;
-    }
-
-    #post_race_comment {
-      text-align: left;
-    }
-
-    #result_load.uncertain {
-      background-color: lightpink;
-    }
-  }
-
   #racer_menu {
     position: relative;
     font-size: 1.4rem;
@@ -283,6 +243,46 @@ td.earns_net_prize_last_week {
     a {
       margin-right: 20px;
     }
+  }
+}
+
+#results {
+  margin-top: 10px;
+
+  th {
+    background-color: lightgray;
+  }
+
+  td.num_racers, td.num_frame, td.rank_odds, td.odds, td.weight {
+    text-align: right;
+  }
+
+  td.place {
+    font-weight: bold;
+  }
+
+  td.comment_paddock, td.comment_race {
+    text-align: left;
+  }
+
+  input[type="text"] {
+    text-align: right;
+  }
+
+  input[type="number"] {
+    width: 34px;
+  }
+
+  #result_comment_paddock, #result_comment_race {
+    text-align: left;
+  }
+
+  #post_race_comment {
+    text-align: left;
+  }
+
+  #result_load.uncertain {
+    background-color: lightpink;
   }
 }
 
