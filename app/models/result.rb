@@ -25,6 +25,14 @@ class Result < ApplicationRecord
     Racer::AgeInWeek.new(age, race.month, race.week)
   end
 
+  def year
+    racer.year_birth + age - 1
+  end
+
+  def ordering
+    [year, race.month, race.week, race.grade.ordering]
+  end
+
   def set_load_from_racer_and_race!
     value = race.load_for(racer)
     return unless value
