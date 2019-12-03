@@ -13,6 +13,7 @@ $ ->
 
   place = 16
   surface_to_hide = 'none'
+  grades_to_hide = []
 
   filter = ->
     $('#results tbody tr').show()
@@ -22,6 +23,8 @@ $ ->
         $('#results tbody tr.place-' + n).removeClass('dimmed')
     else
       $('#results tbody tr').removeClass('dimmed')
+    for grade in grades_to_hide
+      $('#results tbody tr.g-' + grade).addClass('dimmed')
     $('#results tbody tr.' + surface_to_hide).addClass('dimmed')
 
   if $('#results').length > 0
@@ -35,9 +38,12 @@ $ ->
         return false
       else if '1' <= key && key <= '5'
         place = parseInt(key)
+      else if key == 'g' || key == 'i'
+        grades_to_hide = if key == 'g' then [3] else [2, 3]
       else if key == 't' || key == 'd'
         surface_to_hide = if key == 't' then 'dirt' else 'turf'
       else
         place = 16
         surface_to_hide = 'none'
+        grades_to_hide = []
       filter()

@@ -11,7 +11,7 @@
           <%= render 'results_header' %>
         <% end -%>
         <% race = result.race -%>
-        <tr class="place-<%= result.place %> <%= race.surface %>">
+        <tr class="place-<%= result.place %> <%= race.surface %> <%= grade_class(race.grade) %>">
           <td class="numeric"><%= result.year %></td>
           <td><%= result.racer %></td>
           <td class="numeric"><%= result.age %></td>
