@@ -15,6 +15,7 @@ $ ->
   surface_to_hide = 'none'
 
   filter = ->
+    $('#results tbody tr').show()
     if place <= 5
       $('#results tbody tr').addClass('dimmed')
       for n in [1 .. place]
@@ -29,7 +30,10 @@ $ ->
           || e.ctrlKey || $('#racer_menu').is(':visible')
         return true
       key = String.fromCharCode(e.which)
-      if '1' <= key && key <= '5'
+      if key == 'h'
+        $('#results tbody tr.dimmed').toggle()
+        return false
+      else if '1' <= key && key <= '5'
         place = parseInt(key)
       else if key == 't' || key == 'd'
         surface_to_hide = if key == 't' then 'dirt' else 'turf'
