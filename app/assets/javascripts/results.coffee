@@ -18,11 +18,11 @@ $ ->
   filter = ->
     $('#results tbody tr').show()
     if place <= 5
-      $('#results tbody tr').addClass('dimmed')
+      $('#results tbody tr:not(.header)').addClass('dimmed')
       for n in [1 .. place]
         $('#results tbody tr.place-' + n).removeClass('dimmed')
     else
-      $('#results tbody tr').removeClass('dimmed')
+      $('#results tbody tr:not(.header)').removeClass('dimmed')
     for grade in grades_to_hide
       $('#results tbody tr.g-' + grade).addClass('dimmed')
     $('#results tbody tr.' + surface_to_hide).addClass('dimmed')
@@ -35,6 +35,7 @@ $ ->
       key = String.fromCharCode(e.which)
       if key == 'h'
         $('#results tbody tr.dimmed').toggle()
+        $('#results tbody tr.header').toggle()
         return false
       else if '1' <= key && key <= '5'
         place = parseInt(key)
