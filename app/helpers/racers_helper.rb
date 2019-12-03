@@ -4,11 +4,14 @@ module RacersHelper
     %i[comment_age2 comment_age3 stable main_jockeys weights remark]
   end
 
-  def sire_trait_display(sire)
+  def sire_display(sire)
     return "" unless sire
     trait = sire.trait
-    return "" unless trait
-    "#{trait.distances}、#{trait.dirt}、#{trait.growth}"
+    return sire.name unless trait
+    safe_join([
+      sire.name,
+      "#{trait.fee}万円、#{trait.distances}、#{trait.dirt}、#{trait.growth}、#{trait.stability}"
+    ], '<br>'.html_safe)
   end
 
   def mare_trait_display(mare)

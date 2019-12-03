@@ -3,7 +3,7 @@
     <tr>
       <th>父</th>
       <% father = @racer.father -%>
-      <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
+      <td><%= sire_display(father) %></td>
     </tr>
     <tr>
       <% mother = @racer.mother
@@ -24,8 +24,7 @@
     </tr>
     <tr>
       <th>母父</th>
-      <% father = @racer.mother&.father -%>
-      <td><%= safe_join([father&.name, sire_trait_display(father)], '<br>'.html_safe) %></td>
+      <td><%= sire_display(@racer.mother&.father) %></td>
     </tr>
   </table>
 
