@@ -179,6 +179,44 @@ module ApplicationHelper
     end
   end
 
+  def result_attr_names
+    %i[
+      surface_condition num_racers num_frame rank_odds odds place weight
+      mark_development mark_stamina mark_contend mark_temper mark_odds
+      load jockey for_bad_surface position direction condition
+      comment_paddock comment_race
+    ]
+  end
+
+  def result_attr_display(result, name, f)
+    in_paddock = result.comment_paddock.blank?
+    if !f || name == :age
+      return '－' if name == :place and result.place > 20
+      result.send(name)
+    elsif name == :jockey
+      f.select :jockey_id, options_for_select_for_jockey(result.jockey), {},
+                            tabindex: in_paddock ? -1 : 0
+    elsif result_attr_names_using_select.include?(name)
+      f.select name, result_options_for_select_for(name), {},
+                            data: {orig_value: f.object.send(name)},
+                            tabindex: in_paddock || name == :condition ? -1 : 0
+    elsif name == :weight
+      f.number_field name, step: 2
+    elsif name == :load
+      race = result.race
+      is_uncertain = race.handicap? || race.separate? && %w[3 4].include?(race.age)
+      f.number_field name, class: is_uncertain ? 'uncertain' : '',
+                           tabindex: in_paddock ? -1 : 0
+    else
+      size = {
+        odds:   4,
+        comment_paddock: 20,
+        comment_race:    40,
+      }[name] || 2
+      f.text_field name, size: size
+    end
+  end
+
   def race_age_display(age)
     age.sub(/\A(\d)/, '\1歳').sub('U', '上')
   end
