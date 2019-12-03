@@ -6,10 +6,14 @@ class Result < ApplicationRecord
 
   before_save :decrease_load, if: -> { jockey && race.name.nil? }
 
-  scope :high_stake, ->(n_grade) {
-    abbr = {1 => 'Ⅰ', 2 => 'Ⅱ', 3 => 'Ⅲ'}[n_grade]
-    raise "Illegal n_grade (#{n_grade.inspect})" unless abbr
-    joins(race: :grade).where("grades.abbr = '#{abbr}'")
+  scope :high_stake, ->(n_grade = nil) {
+    if n_grade.nil?
+      joins(race: :grade).where("grades.abbr IN (#{%w['Ⅰ' 'Ⅱ' 'Ⅲ'].join(',')})")
+    else
+      abbr = {1 => 'Ⅰ', 2 => 'Ⅱ', 3 => 'Ⅲ'}[n_grade]
+      raise "Illegal n_grade (#{n_grade.inspect})" unless abbr
+      joins(race: :grade).where("grades.abbr = '#{abbr}'")
+    end
   }
 
   def net_prize
