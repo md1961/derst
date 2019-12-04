@@ -60,5 +60,9 @@ Rails.application.routes.draw do
 
   resources :sire_filters, only: %i[index create]
 
-  resources :racer_name_samples, except: %i[show new edit]
+  resources :racer_name_samples, except: %i[show new edit] do
+    member do
+      get :update_type
+    end
+  end
 end

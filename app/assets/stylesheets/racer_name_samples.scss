@@ -3,6 +3,10 @@
   .racer_name_samples_table_by_type {
     margin-bottom: 10px;
 
+    &.over {
+      border: solid 2px red;
+    }
+
     table {
       caption {
         color: white;
@@ -22,6 +26,11 @@
       td.created {
         font-weight: bold;
         background-color: cyan;
+      }
+
+      td.dragging {
+        color: red;
+        font-weight: bold;
       }
     }
   }

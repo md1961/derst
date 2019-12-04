@@ -18,6 +18,13 @@ class RacerNameSamplesController < ApplicationController
     redirect_to racer_name_samples_path
   end
 
+  def update_type
+    sample = RacerNameSample.find(params[:id])
+    sample.send("#{params[:type]}!")
+    flash[:sample_id] = sample.id
+    redirect_to racer_name_samples_path
+  end
+
   private
 
     def sample_params
