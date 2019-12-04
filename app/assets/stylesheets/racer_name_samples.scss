@@ -1,12 +1,29 @@
 .racer_name_samples_index {
 
-  td a {
-    margin-right: 20px;
-  }
+  .racer_name_samples_table_by_type {
+    margin-bottom: 10px;
 
-  td.created {
-    font-weight: bold;
-    background-color: cyan;
+    table {
+      caption {
+        color: white;
+        background-color: gray;
+        text-align: left;
+      }
+
+      td {
+        padding: 0;
+        padding-right: 5px;
+      }
+
+      td a {
+        margin-right: 5px;
+      }
+
+      td.created {
+        font-weight: bold;
+        background-color: cyan;
+      }
+    }
   }
 
   span#name_length {

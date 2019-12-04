@@ -1,5 +1,7 @@
 <div class="racer_name_samples_index">
-  <%= render partial: 'table_by_type', locals: {samples: @samples} %>
+  <% RacerNameSample.types.keys.each do |type| -%>
+    <%= render partial: 'table_by_type', locals: {type: type, samples: @samples_by_type[type]} %>
+  <% end -%>
 
   <hr>
 

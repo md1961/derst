@@ -1,15 +1,21 @@
 <div class="racer_name_samples_table_by_type">
   <table>
+    <caption><%= t(".#{type}") %></caption>
     <tbody>
-      <% samples.each_slice(5) do |samples_in_row| -%>
-        <tr>
-          <% samples_in_row.each do |sample| -%>
-            <td class="<%= sample.id == flash[:sample_id] ? 'created' : '' %>">
-              <%= sample %>
-            </td>
-            <td><%= link_to '削除', sample, method: :delete %></td>
-          <% end -%>
-        </tr>
+      <% if samples.nil? -%>
+        <tr><td>データがありません</td></tr>
+      <% else -%>
+        <% samples.each_slice(5) do |samples_in_row| -%>
+          <tr>
+            <% samples_in_row.each do |sample| -%>
+              <td class="<%= sample.id == flash[:sample_id] ? 'created' : '' %>"
+                  title="<%= "ID=#{sample.id}" %>">
+                <%= sample %>
+              </td>
+              <td><%= link_to '削除', sample, method: :delete %></td>
+            <% end -%>
+          </tr>
+        <% end -%>
       <% end -%>
     </tbody>
   </table>

@@ -1,7 +1,7 @@
 class RacerNameSamplesController < ApplicationController
 
   def index
-    @samples = RacerNameSample.order(:name)
+    @samples_by_type = RacerNameSample.group_by_type
     @new_sample = RacerNameSample.new(name: params[:name_input])
   end
 
