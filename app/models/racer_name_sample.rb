@@ -1,6 +1,7 @@
 require 'set'
 
 class RacerNameSample < ApplicationRecord
+  self.inheritance_column = :_type_disabled
 
   validates :name, presence: true, length: {in: 2 .. 9}
 

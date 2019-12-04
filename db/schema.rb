@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_20_024835) do
+ActiveRecord::Schema.define(version: 2019_12_04_010813) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2019_11_20_024835) do
     t.boolean "is_crown", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "type", default: 0, null: false
   end
 
   create_table "racers", force: :cascade do |t|
