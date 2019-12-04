@@ -10,7 +10,7 @@ class RacerNameSample < ApplicationRecord
   after_initialize :name_to_katakana
 
   def self.group_by_type
-    all.group_by(&:type).map { |type, samples| [type, samples] }.to_h
+    order(:name).group_by(&:type).map { |type, samples| [type, samples] }.to_h
   end
 
   def self.combinations(num = 1)
