@@ -1,18 +1,5 @@
 <div class="racer_name_samples_index">
-  <table>
-    <tbody>
-      <% @samples.each_slice(5) do |samples| -%>
-        <tr>
-          <% samples.each do |sample| -%>
-            <td class="<%= sample.id == flash[:sample_id] ? 'created' : '' %>">
-              <%= sample %>
-            </td>
-            <td><%= link_to '削除', sample, method: :delete %></td>
-          <% end -%>
-        </tr>
-      <% end -%>
-    </tbody>
-  </table>
+  <%= render partial: 'table_by_type', locals: {samples: @samples} %>
 
   <hr>
 

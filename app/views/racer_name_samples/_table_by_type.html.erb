@@ -1,0 +1,16 @@
+<div class="racer_name_samples_table_by_type">
+  <table>
+    <tbody>
+      <% samples.each_slice(5) do |samples_in_row| -%>
+        <tr>
+          <% samples_in_row.each do |sample| -%>
+            <td class="<%= sample.id == flash[:sample_id] ? 'created' : '' %>">
+              <%= sample %>
+            </td>
+            <td><%= link_to '削除', sample, method: :delete %></td>
+          <% end -%>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>
