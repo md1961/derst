@@ -1,5 +1,9 @@
 class Area < ApplicationRecord
 
+  def hokkaido?
+    name == 'Hokkaido'
+  end
+
   def same_from?(center)
     self == center.area
   end

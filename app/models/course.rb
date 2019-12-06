@@ -1,6 +1,10 @@
 class Course < ApplicationRecord
   belongs_to :area
 
+  def hokkaido?
+    area.hokkaido?
+  end
+
   def stayable?
     !%w[Kanto Kansai].include?(area.name)
   end
