@@ -39,12 +39,14 @@
       <% end -%>
 
       <% course_last = @racer.results.last&.race&.course -%>
-      <% if course_last&.stayable? -%>
+      <% if @racer.in_stable? && course_last&.stayable? -%>
         <div class="button_to_trip">
           <% course = @racer.course_staying -%>
           <%= button_to course ? '帰厩' : "[#{course_last}] へ遠征", trip_racer_path(@racer), method: :patch %>
           <% clazz = @racer.ranch.courses_with_races.include?(course) ? '' : 'no_race' -%>
-          <span class="course_staying <%= clazz %>"><%= course %></span>
+          <% if course -%>
+            <span class="course_staying <%= clazz %>"><%= "[#{course}] に滞在中" %></span>
+          <% end -%>
         </div>
       <% end -%>
     </div>
