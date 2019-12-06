@@ -221,6 +221,7 @@ class Racer < ApplicationRecord
   end
 
   def trip_to(course)
+    return unless course.stayable?
     racer_trip&.destroy
     create_racer_trip(course: course)
   end
