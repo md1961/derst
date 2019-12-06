@@ -70,9 +70,15 @@ class RacersController < ApplicationController
         attrs[name] = last_result.send(name)
       end
     end
-    racer.results.create(attrs).tap { |result|
-      result.set_load_from_racer_and_race!
-    }
+    Result.transaction do
+      racer.results.create(attrs).tap { |result|
+        result.set_load_from_racer_and_race!
+        course = result.race.course
+        if course.needs_trip_from?(racer.stable)
+          racer.trip_to(course)
+        end
+      }
+    end
     redirect_to racer
   end
 
