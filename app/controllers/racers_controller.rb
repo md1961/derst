@@ -78,7 +78,7 @@ class RacersController < ApplicationController
           racer.trip_to(course_race)
         end
         course_staying = racer.course_staying
-        if course_staying != course_race
+        if course_staying && course_staying != course_race
           if course_staying.hokkaido? && course_race.hokkaido?
             racer.trip_to(course_race)
           else
