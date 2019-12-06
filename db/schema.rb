@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_010813) do
+ActiveRecord::Schema.define(version: 2019_12_06_024556) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -146,6 +146,15 @@ ActiveRecord::Schema.define(version: 2019_12_04_010813) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "type", default: 0, null: false
+  end
+
+  create_table "racer_trips", force: :cascade do |t|
+    t.integer "racer_id"
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_racer_trips_on_course_id"
+    t.index ["racer_id"], name: "index_racer_trips_on_racer_id"
   end
 
   create_table "racers", force: :cascade do |t|
