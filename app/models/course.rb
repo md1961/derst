@@ -9,6 +9,10 @@ class Course < ApplicationRecord
     area.on_the_day_from?(stable.center)
   end
 
+  def needs_trip_from?(stable)
+    !on_the_day_from?(stable)
+  end
+
   def to_s
     name
   end
