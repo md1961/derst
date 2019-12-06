@@ -1,6 +1,10 @@
 class Course < ApplicationRecord
   belongs_to :area
 
+  def stayable?
+    !%w[Kanto Kansai].include?(area.name)
+  end
+
   def same_from?(stable)
     area.same_from?(stable.center)
   end
