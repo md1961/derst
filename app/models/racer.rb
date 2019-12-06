@@ -220,6 +220,15 @@ class Racer < ApplicationRecord
     in_ranch.destroy
   end
 
+  def trip_to(course)
+    racer_trip&.destroy
+    create_racer_trip(course: course)
+  end
+
+  def trip_back
+    racer_trip.destroy
+  end
+
   def retire!
     update!(is_active: false)
   end
