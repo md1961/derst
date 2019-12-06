@@ -73,9 +73,17 @@ class RacersController < ApplicationController
     Result.transaction do
       racer.results.create(attrs).tap { |result|
         result.set_load_from_racer_and_race!
-        course = result.race.course
-        if course.needs_trip_from?(racer.stable)
-          racer.trip_to(course)
+        course_race = result.race.course
+        if course_race.needs_trip_from?(racer.stable)
+          racer.trip_to(course_race)
+        end
+        course_staying = racer.course_staying
+        if course_staying != course_race
+          if course_staying.hokkaido? && course_race.hokkaido?
+            racer.trip_to(course_race)
+          else
+            racer.trip_back
+          end
         end
       }
     end
