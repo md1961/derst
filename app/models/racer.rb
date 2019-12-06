@@ -10,6 +10,8 @@ class Racer < ApplicationRecord
   has_many :target_races
   has_many :weeklies, -> { order(:age, :month, :week) }
   has_one :in_ranch
+  has_one :racer_trip
+  has_one :course_staying, through: :racer_trip, source: :course
 
   enum sex: {male: 1, female: 2, gelding: 3}
 
