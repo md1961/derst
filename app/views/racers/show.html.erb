@@ -38,10 +38,11 @@
                       class: @next_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
       <% end -%>
 
-      <% unless @racer.results.empty? -%>
+      <% course_last = @racer.results.last&.race&.course -%>
+      <% if course_last&.stayable? -%>
         <div class="button_to_trip">
           <% course = @racer.course_staying -%>
-          <%= button_to course ? '帰厩' : '遠征', trip_racer_path(@racer), method: :patch %>
+          <%= button_to course ? '帰厩' : "[#{course_last}] へ遠征", trip_racer_path(@racer), method: :patch %>
           <% clazz = @racer.ranch.courses_with_races.include?(course) ? '' : 'no_race' -%>
           <span class="course_staying <%= clazz %>"><%= course %></span>
         </div>
