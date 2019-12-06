@@ -222,6 +222,10 @@ class Racer < ApplicationRecord
 
   def trip_to(course)
     return unless course.stayable?
+
+    course_race_hokkaido = ranch.courses_with_races.detect(&:hokkaido?)
+    course = course_race_hokkaido if course.hokkaido? && course_race_hokkaido
+
     racer_trip&.destroy
     create_racer_trip(course: course)
   end
