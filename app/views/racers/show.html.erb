@@ -29,12 +29,22 @@
     <div class="links">
       <%= form_for_weekly(@racer) %>
       <span class="weight_best"><%= "ベスト #{@racer.weight_best}kg" %></span>
+
       <%= link_to 'Back', @racer.ranch, data: {shortcut: 'b'}, tabindex: -1 %>
       <% if @prev_racer && @next_racer -%>
         <%= link_to "<(#{@prev_racer})", @prev_racer, id: 'to_prev_racer',
                       class: @prev_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
         <%= link_to "(#{@next_racer})>", @next_racer, id: 'to_next_racer',
                       class: @next_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
+      <% end -%>
+
+      <% unless @racer.results.empty? -%>
+        <div class="button_to_trip">
+          <% course = @racer.course_staying -%>
+          <%= button_to course ? '帰厩' : '遠征', trip_racer_path(@racer), method: :patch %>
+          <% clazz = @racer.ranch.courses_with_races.include?(course) ? '' : 'no_race' -%>
+          <span class="course_staying <%= clazz %>"><%= course %></span>
+        </div>
       <% end -%>
     </div>
   </div>

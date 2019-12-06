@@ -98,6 +98,16 @@ class RacersController < ApplicationController
     redirect_to racer.ranch
   end
 
+  def trip
+    racer = Racer.find(params[:id])
+    if racer.course_staying
+      racer.trip_back
+    elsif racer.results.last
+      racer.trip_to(racer.results.last.race.course)
+    end
+    redirect_to racer
+  end
+
   def create_mare
     racer = Racer.find(params[:id])
     racer.create_mare
