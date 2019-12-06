@@ -11,6 +11,10 @@ class Ranch < ApplicationRecord
     MonthWeek.new(month, week)
   end
 
+  def courses_with_races
+    Course.where(id: Race.where(month: month).pluck(:course_id).uniq)
+  end
+
   def go_to_next_week
     next_week = month_week.next
     attrs = next_week.to_params
