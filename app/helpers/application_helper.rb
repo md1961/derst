@@ -253,8 +253,12 @@ module ApplicationHelper
   def race_display(race, racer, displays_target_button: false)
     course = race.course
     stable = racer.stable
-    transport = course.same_from?(stable) ? 'same_area' \
-              : course.on_the_day_from?(stable) ? 'on_day' : 'remote'
+    transport = if racer.course_staying
+                  course == racer.course_staying ? 'same_area' : 'remote'
+                else
+                  course.same_from?(stable) ? 'same_area' \
+                    : course.on_the_day_from?(stable) ? 'on_day' : 'remote'
+                end
 
     a = []
     a << race.age
