@@ -52,6 +52,7 @@ $ ->
 
     if $('#racer_menu').length > 0 && key == 'z'
       $('#racer_menu').toggle()
+      $('#race_candidates').toggle()
       return
 
     if $('.matings_show').length > 0 && (key == 'j' || key == 'k')
