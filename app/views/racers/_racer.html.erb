@@ -37,13 +37,13 @@
 </td>
 <%= racer_sex_display_in_td(racer) %>
 <td class="numeric"><%= "#{racer.age}歳" %></td>
+<%= racer_attr_display_in_td(racer, :grade, f) %>
 
 <% if is_menu -%>
   <td class="<%= racer.in_ranch || racer.condition ? '' : 'no_condition' %> centered">
     <%= racer.in_ranch ? '' : (racer.condition || racer.last_condition) %>
   </td>
 <% else -%>
-  <%= racer_attr_display_in_td(racer, :grade, f) %>
   <td class="numeric <%= racer.earns_net_prize_last_week? ? 'earns_net_prize_last_week' : '' %>">
     <%= racer.stable ? racer.net_prize : nil %>
   </td>
