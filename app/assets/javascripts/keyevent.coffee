@@ -76,7 +76,7 @@ $ ->
       $('span.lean_to_best')[0].click()
       return false
 
-    if $('.all_racers').length > 0 && key != 'z'
+    if $('div.all_racers').length > 0 && key != 'z'
       if '1' <= key && key <= '9'
         $('tbody tr').hide()
         $('tbody tr.age-' + key).show()
