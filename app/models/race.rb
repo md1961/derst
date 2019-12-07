@@ -125,8 +125,8 @@ class Race < ApplicationRecord
   end
 
   def net_prize_for(place)
-    return 0 if  grade.high_stake? && place >= 3
-    return 0 if !grade.high_stake? && place >= 2
+    return 0 if  grade.high_stake? && place != 1 && place != 2
+    return 0 if !grade.high_stake? && place != 1
     prize = prize_for(place)
     prize < 1200 ? 400 : (prize / 2).floor(-1)
   end
