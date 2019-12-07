@@ -62,7 +62,8 @@
 
       <table class="table_base">
         <tbody>
-          <% week_raced_last = @racer.results.last&.race&.month_week || @racer.ranch.month_week
+          <% week_since = @racer.results.last&.race&.month_week
+             week_since = @racer.ranch.month_week if week_since.nil? || @racer.in_ranch
              current_week = @racer.ranch.month_week -%>
           <% @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
                race.month_week
@@ -73,7 +74,7 @@
                 <%= month_week %>
               </td>
               <td rowspan="<%= races.size %>" class="numeric">
-                <% weeks_later = month_week - week_raced_last -%>
+                <% weeks_later = month_week - week_since -%>
                 <%= weeks_later.zero? ? '-' : "#{weeks_later}w" %>
               </td>
               <%= race_display(races.first, @racer, displays_target_button: true) %>
