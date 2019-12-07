@@ -264,7 +264,7 @@ module ApplicationHelper
     a << race.age
     a << race_distance_display(race)
     a << race_name_display(race)
-    a << "#{race.load_for(racer)}kg#{%w[3 4].include?(race.age) ? '+' : ''}" unless race.handicap?
+    a << "#{race.load_for(racer)}kg#{race.load_plus_from_total_prize? ? '+' : ''}" unless race.handicap?
 
     button_to_target = nil
     if displays_target_button
@@ -279,7 +279,7 @@ module ApplicationHelper
     load_to_s = [
       race.weight_to_s || '馬齢',
       race.handicap? ? nil : "#{race.load_for(racer)}kg",
-      race.separate? && %w[3 4].include?(race.age) ? "+ 獲得賞金 #{race.age == '3' ? 800 : 1200}万円毎 1kg" : nil
+      race.separate? && race.load_plus_from_total_prize? ? "+ 獲得賞金 #{race.age == '3' ? 800 : 1200}万円毎 1kg" : nil
     ].compact.join(' ')
     clazz = race.grade.high_stake? ? 'high_stake' : race.grade <= racer.grade ? '' : 'overgrade'
     clazz = 'target_by_others' if @target_races_by_others&.include?(race)

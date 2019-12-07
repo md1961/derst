@@ -135,6 +135,10 @@ class Race < ApplicationRecord
     send("load_of_#{weight}", racer)
   end
 
+  def load_plus_from_total_prize?
+    %w[3 4].include?(age) && grade.abbr == 'OP'
+  end
+
   def month_week
     MonthWeek.new(month, week)
   end
