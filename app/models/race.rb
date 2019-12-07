@@ -37,6 +37,9 @@ class Race < ApplicationRecord
 
     grades = [grade]
     grades.concat(Grade.where(abbr: %w[Ⅲ Ⅱ Ⅰ])) if grade.abbr == 'OP'
+    if age == 3 && grade.abbr == 'OP' && month <= 9
+      grades = Grade.where(abbr: %w[5 OP])
+    end
     if includes_overgrade
       if age == 3 && %w[新 未].include?(grade.abbr)
         grades = Grade.where(abbr: [grade.abbr] + %w[5 OP])
