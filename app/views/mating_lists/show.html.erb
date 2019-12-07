@@ -85,6 +85,11 @@
     <% end -%>
   </div>
 
+  <div class="age_2_list">
+    <% racers = Racer.all.find_all { |racer| racer.age == 2 } -%>
+    <%= render partial: 'racers/blood_and_result_list', locals: {racers: racers} %>
+  </div>
+
   <%= render 'mother_candidates' %>
   <%= render 'sire_candidates' %>
 </div>

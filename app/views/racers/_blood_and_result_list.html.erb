@@ -1,3 +1,5 @@
+<% shows_results = racers.any? { |racer| racer.results.size > 0 } -%>
+
 <table class="all_racers table_base">
   <thead>
     <tr>
@@ -8,13 +10,15 @@
       <th>ニ</th>
       <th>面</th>
       <th>インブリード</th>
-      <th>引退時クラス</th>
-      <% racer_attr_names(is_active: false).each do |name| -%>
-        <th class="default"><%= Racer.human_attribute_name(name) %></th>
+      <% if shows_results -%>
+        <th>引退時クラス</th>
+        <% racer_attr_names(is_active: false).each do |name| -%>
+          <th class="default"><%= Racer.human_attribute_name(name) %></th>
+        <% end -%>
+        <th>戦績</th>
+        <th>本賞金</th>
+        <th class="optional1" hidden>主な勝鞍</th>
       <% end -%>
-      <th>戦績</th>
-      <th>本賞金</th>
-      <th class="optional1" hidden>主な勝鞍</th>
     </tr>
   </thead>
   <tbody>
@@ -53,21 +57,23 @@
         <td title="<%= inbreed %>">
           <%= inbreed.sub(/, [^.].*/, ', ...') %>
         </td>
-        <td>
-          <%= "#{racer.results.last.age}歳 #{racer.grade}" if racer.results.last %>
-        </td>
-        <% racer_attr_names(is_active: false).each do |name| -%>
-          <%= racer_attr_display_in_td(racer, name, nil) %>
+        <% if shows_results -%>
+          <td>
+            <%= "#{racer.results.last.age}歳 #{racer.grade}" if racer.results.last %>
+          </td>
+          <% racer_attr_names(is_active: false).each do |name| -%>
+            <%= racer_attr_display_in_td(racer, name, nil) %>
+          <% end -%>
+          <td class="centered">
+            <%= racer.place_records.join('-') %>
+          </td>
+          <td class="numeric">
+            <%= monetary_display(racer.net_prize) %>
+          </td>
+          <td class="optional1 allows_wrap" hidden>
+            <%= major_wins_display(racer) %>
+          </td>
         <% end -%>
-        <td class="centered">
-          <%= racer.place_records.join('-') %>
-        </td>
-        <td class="numeric">
-          <%= monetary_display(racer.net_prize) %>
-        </td>
-        <td class="optional1 allows_wrap" hidden>
-          <%= major_wins_display(racer) %>
-        </td>
       </tr>
     <% end -%>
   </tbody>
