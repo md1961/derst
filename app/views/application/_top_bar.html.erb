@@ -1,6 +1,6 @@
 <% ranch = @ranch || @racer.ranch -%>
 
-<div id="top_bar" class="<%= top_bar_class %>">
+<div id="top_bar" class="<%= top_bar_class %> <%= ranch.week == 4 ? 'month_changing' : '' %>">
   <div class="date">
     <span id="date">
       <%= date_display(ranch) %>

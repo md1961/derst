@@ -50,6 +50,10 @@ tbody tr:hover {
   &.ready_for_next_week {
     color: white;
     background-color: red;
+
+    &.month_changing {
+      background-color: firebrick;
+    }
   }
 
   #button_to_next_week:focus {
