@@ -20,5 +20,18 @@ class Ranch < ApplicationRecord
     attrs = next_week.to_params
     attrs.merge!(year: year + 1) if next_week.first_of_year?
     update!(attrs)
+    return if week > 1
+
+    courses_current = courses_with_races
+    course_current_hokkaido = courses_current.detect(&:hokkaido?)
+    RacerTrip.find_each do |trip|
+      course = trip.course
+      next if courses_current.include?(course)
+      if course.hokkaido? && course_current_hokkaido
+        trip.update!(course: course_current_hokkaido)
+      else
+        trip.destroy
+      end
+    end
   end
 end
