@@ -63,9 +63,9 @@
 
       <table class="table_base">
         <tbody>
-          <% week_since = @racer.results.last&.race&.month_week
-             week_since = @racer.ranch.month_week if week_since.nil? || @racer.in_ranch
-             current_week = @racer.ranch.month_week -%>
+          <% current_week = @racer.ranch.month_week
+             week_since = @racer.results.last&.race&.month_week
+             week_since = current_week if week_since.nil? || @racer.in_ranch || current_week - week_since >= 5 -%>
           <% @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
                race.month_week
              }.each do |month_week, races| -%>
