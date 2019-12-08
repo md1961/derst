@@ -4,7 +4,7 @@
       <% mare.racers.older_first.each do |racer| -%>
         <tr>
           <td><%= racer_name_display(racer) %></td>
-          <%= racer_sex_display_in_td(racer) %>
+          <td><%= racer_sex_display(racer) %></td>
           <td class="numeric"><%= "#{racer.age}歳" %></td>
           <td><%= "x #{racer.father}" %></td>
         </tr>

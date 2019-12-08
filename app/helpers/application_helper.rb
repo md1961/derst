@@ -23,8 +23,8 @@ module ApplicationHelper
     end
   end
 
-  def racer_sex_display_in_td(racer)
-    content_tag :td, class: racer.sex do
+  def racer_sex_display(racer)
+    content_tag :span, class: racer.sex do
       {male: '牡', female: '牝', gelding: '騸'}.fetch(racer.sex&.to_sym, '-')
     end
   end
