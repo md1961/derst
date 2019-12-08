@@ -286,7 +286,7 @@ module ApplicationHelper
     clazz = 'target_by_others' if target_racers.size > 0
     entered_racers = (@entered_races_by_others || []).find_all { |r| r.race == race }.map(&:racer)
     clazz = 'entry_by_others' if entered_racers.size > 0
-    other_racers = target_racers + entered_racers
+    other_racers = (target_racers + entered_racers).uniq
     load_to_s = other_racers.join(', ') if other_racers.size > 0
     safe_join([
       content_tag(:td, course, class: transport),
