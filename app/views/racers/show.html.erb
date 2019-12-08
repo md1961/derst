@@ -72,7 +72,7 @@
              }.each do |month_week, races| -%>
             <% races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
             <tr>
-              <td rowspan="<%= races.size %>" class="numeric">
+              <td rowspan="<%= races.size %>" class="numeric <%= month_week == current_week ? 'current' : '' %>">
                 <%= month_week %>
               </td>
               <td rowspan="<%= races.size %>" class="numeric">

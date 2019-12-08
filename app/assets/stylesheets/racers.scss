@@ -221,6 +221,11 @@ td.earns_net_prize_last_week {
       white-space: nowrap;
     }
 
+    td.current {
+      color: white;
+      background-color: red;
+    }
+
     td.same_area {
       font-weight: bold;
       background-color: cyan;
