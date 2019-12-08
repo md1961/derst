@@ -282,8 +282,12 @@ module ApplicationHelper
       race.separate? && race.load_plus_from_total_prize? ? "+ 獲得賞金 #{race.age == '3' ? 800 : 1200}万円毎 1kg" : nil
     ].compact.join(' ')
     clazz = race.grade.high_stake? ? 'high_stake' : race.grade <= racer.grade ? '' : 'overgrade'
-    clazz = 'target_by_others' if @target_races_by_others&.include?(race)
-    clazz = 'entry_by_others' if @entered_races_by_others&.include?(race)
+    target_racers = (@target_races_by_others || []).find_all { |tr| tr.race == race }.map(&:racer)
+    clazz = 'target_by_others' if target_racers.size > 0
+    entered_racers = (@entered_races_by_others || []).find_all { |r| r.race == race }.map(&:racer)
+    clazz = 'entry_by_others' if entered_racers.size > 0
+    other_racers = target_racers + entered_racers
+    load_to_s = other_racers.join(', ') if other_racers.size > 0
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target,

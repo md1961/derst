@@ -7,8 +7,8 @@ class RacersController < ApplicationController
 
     @includes_overgrade = params[:includes_overgrade] == 'true'
     @weeks_for_race_candidates = @racer.grade&.abbr == 'OP' ? 16 : 12
-    @target_races_by_others = TargetRace.includes(:race, :racer).where.not(racer: @racer).map(&:race)
-    @entered_races_by_others = Result.where(place: nil).includes(:race, :racer).where.not(racer: @racer).map(&:race)
+    @target_races_by_others = TargetRace.includes(:race, :racer).where.not(racer: @racer)
+    @entered_races_by_others = Result.where(place: nil).includes(:race, :racer).where.not(racer: @racer)
 
     racers = (@racer.in_stable? ? Racer.in_stable : Racer.in_ranch).older_first
     if Racer.any_expecting_race? && Racer.all_training_done?
