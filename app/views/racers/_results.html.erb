@@ -26,7 +26,8 @@
               <%= link_to 'Cancel', @racer %>
             </td>
             <td class="numeric">
-              <%= button_to '削除', result, method: :delete, class: 'destroy', tabindex: -1 %>
+              <%= button_to '削除', result, method: :delete, class: 'destroy', tabindex: -1,
+                                            data: {confirm: "削除してよろしいですか？"} %>
             </td>
           </tr>
         <% else -%>
