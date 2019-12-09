@@ -6,6 +6,8 @@ class Result < ApplicationRecord
 
   before_save :decrease_load, if: -> { jockey && race.name.nil? }
 
+  validates :place, inclusion: {in: (1 .. 16).to_a + [99]}, allow_nil: true
+
   scope :high_stake, ->(n_grade = nil) {
     if n_grade.nil?
       joins(race: :grade).where("grades.abbr IN (#{%w['Ⅰ' 'Ⅱ' 'Ⅲ'].join(',')})")

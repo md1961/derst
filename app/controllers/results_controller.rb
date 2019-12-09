@@ -11,7 +11,7 @@ class ResultsController < ApplicationController
 
   def update
     result = Result.find(params[:id])
-    result.update!(result_params)
+    result.update(result_params)
     redirect_to result.racer
   end
 
