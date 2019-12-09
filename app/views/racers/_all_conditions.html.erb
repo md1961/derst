@@ -63,19 +63,7 @@
         <td class="weight_best border_left_thick border_right_thick">
           <%= racer.weight_best %>
         </td>
-        <% racer.coming_races.map(&:race).sort_by { |race|
-             race.month_week.ordering_from(@ranch.month_week)
-           }.each do |race| -%>
-          <% n_weeks_between = racer.results.empty? ? nil \
-                                  : "#{race.month_week - racer.results.last.race.month_week}w" -%>
-          <td class="<%= race == racer.expecting_race ? 'entered' : '' %>
-                     <%= race.month_week == @ranch.month_week ? 'current' : '' %>
-                     numeric border_left_thick">
-            <%= race.month_week %>
-          </td>
-          <td class="numeric"><%= n_weeks_between %></td>
-          <%= race_display(race, racer) %>
-        <% end -%>
+        <%= render partial: 'racers/coming_races', locals: {racer: racer} %>
       </tr>
     <% end -%>
   </tbody>
