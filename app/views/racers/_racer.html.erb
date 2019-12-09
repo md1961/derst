@@ -71,11 +71,15 @@
     <% end -%>
 
     <% unless racer.stable -%>
-      <td>
+      <td class="border_right_thick">
     <% else -%>
-      <td>
+      <td class="border_right_thick">
         <%= button_to_graze(racer) %>
       </td>
     <% end -%>
+  <% end -%>
+
+  <% if racer.stable && racer.in_ranch -%>
+    <%= render partial: 'racers/coming_races', locals: {racer: racer} %>
   <% end -%>
 <% end -%>
