@@ -122,6 +122,12 @@ class RacersController < ApplicationController
     redirect_to racer
   end
 
+  def injure
+    racer = Racer.find(params[:id])
+    racer.injure(params[:description])
+    redirect_to racer
+  end
+
   def create_mare
     racer = Racer.find(params[:id])
     racer.create_mare
