@@ -100,10 +100,10 @@
     </table>
 
     <div class="links">
-      <%= button_to_graze(@racer) %>
       <% if @editing -%>
         <%= button_to_retire(@racer) %>
       <% else -%>
+        <%= button_to_graze(@racer) %>
         <%= link_to 'Edit', edit_racer_path(@racer), data: {shortcut: 'y'} %>
       <% end -%>
     </div>
