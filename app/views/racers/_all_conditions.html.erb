@@ -57,8 +57,8 @@
         <td class="numeric border_left_thick border_right_thick">
           <%= "#{racer.weeks_in_stable}w" %>
         </td>
-        <td class="border_left_thick border_right_thick">
-          <%= racer.course_staying %>
+        <td class="border_left_thick border_right_thick <%= racer.injury ? 'injured' : '' %>">
+          <%= racer.injury&.description || racer.course_staying %>
         </td>
         <td class="weight_best border_left_thick border_right_thick">
           <%= racer.weight_best %>

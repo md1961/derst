@@ -49,7 +49,8 @@ module ApplicationHelper
       classes << 'numeric'     if name.to_s.starts_with?('weight_')
       classes << 'centered'    if name == :stable || name == :main_jockeys
       classes << 'emphasized'  if name == :weight_best
-      classes << 'grade_given' if name == :grade && racer.grade_given
+      classes << 'grade_given' if name == :grade  && racer.grade_given
+      classes << 'injured'     if name == :remark && racer.injury
       html_attrs.merge!(class: classes.join(' '))
       content_tag :td, racer_attr_display(racer, name, f), html_attrs
     end
@@ -58,6 +59,8 @@ module ApplicationHelper
   def racer_attr_display(racer, name, f)
     if name == :main_jockeys
       racer.stable&.jockeys&.join('、')
+    elsif name == :remark && racer.injury
+      racer.injury.description
     elsif !f || name == :grade \
           || (racer.stable && name.to_s.starts_with?('comment_')) \
           || (racer.age != 2 && name == :comment_age2) \
