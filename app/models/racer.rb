@@ -145,7 +145,7 @@ class Racer < ApplicationRecord
     weeklies.find_or_create_by!(age_in_week.to_h).update!(condition: value)
   end
 
-  def last_condition
+  def default_condition
     return '重' if weeklies.empty?
     age_prev = age_in_week.prev
     return '休' if race_in?(*age_prev.to_a) || injury

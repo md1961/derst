@@ -41,7 +41,7 @@
 
 <% if is_menu -%>
   <td class="<%= racer.in_ranch || racer.condition ? '' : 'no_condition' %> centered">
-    <%= racer.in_ranch ? '' : (racer.condition || racer.last_condition) %>
+    <%= racer.in_ranch ? '' : (racer.condition || racer.default_condition) %>
   </td>
 <% else -%>
   <td class="numeric <%= racer.earns_net_prize_last_week? ? 'earns_net_prize_last_week' : '' %>">

@@ -311,7 +311,7 @@ module ApplicationHelper
     form_with url: weekly_racer_path(racer), local: true do
       concat select_tag :condition, options_for_select(
                                       %w[◎ ↑ ◉  ○ △ ▽ × ↓ 休 崩 太 重 怪 -],
-                                      racer.condition || racer.last_condition
+                                      racer.condition || racer.default_condition
                                     ),
                                     disabled: @racer_id_to_edit.to_i > 0,
                                     class: ['condition', racer.condition.nil? ? 'no_condition': ''],
