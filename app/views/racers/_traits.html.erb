@@ -104,7 +104,15 @@
         <%= button_to_retire(@racer) %>
       <% else -%>
         <%= button_to_graze(@racer) %>
+        <span id="show_form_to_injure" class="button">[負傷]</span>
         <%= link_to 'Edit', edit_racer_path(@racer), data: {shortcut: 'y'} %>
+
+        <div id="form_to_injure" hidden>
+          <%= form_with url: injure_racer_path(@racer), local: true, method: :patch do |f| %>
+            <%= f.text_field :description, value: @racer.injury&.description, autofocus: true %>
+            <%= f.submit '負傷' %>
+          <% end -%>
+        </div>
       <% end -%>
     </div>
   </div>

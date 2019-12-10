@@ -186,8 +186,14 @@ td.earns_net_prize_last_week {
       margin-top: 5px;
       margin-left: 20px;
 
-      input[type="submit"] {
+      input[type="submit"], span.button {
         margin-right: 20px;
+      }
+
+      #form_to_injure {
+        position: relative;
+        top: 25px;
+        left: -85px;
       }
     }
   }
