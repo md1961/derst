@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  racer: one
+  description: MyString
+
+two:
+  racer: two
+  description: MyString
