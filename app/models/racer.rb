@@ -12,6 +12,7 @@ class Racer < ApplicationRecord
   has_one :in_ranch
   has_one :racer_trip
   has_one :course_staying, through: :racer_trip, source: :course
+  has_one :injury
 
   enum sex: {male: 1, female: 2, gelding: 3}
 
@@ -232,6 +233,14 @@ class Racer < ApplicationRecord
 
   def trip_back
     racer_trip.destroy
+  end
+
+  def injure(description)
+    if description.blank?
+      injury&.destroy
+    else
+      create_injury!(description: description)
+    end
   end
 
   def retire!
