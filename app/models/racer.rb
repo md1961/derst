@@ -219,6 +219,7 @@ class Racer < ApplicationRecord
 
   def ungraze!
     in_ranch.destroy
+    injury&.destroy
   end
 
   def trip_to(course)
