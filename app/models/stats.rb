@@ -1,11 +1,16 @@
 module Stats
   module_function
 
+  MIN_IN_ROW_OF_PLACE = {
+    1 => 3,
+    2 => 4,
+  }
+
   def each_result_in_row_of_equal_or_better_place_of(place, &block)
     Racer.all.flat_map { |racer|
       racer.results.in_row_of_equal_or_better_place_of(place)
     }.find_all { |results|
-      results.size >= 3
+      results.size >= MIN_IN_ROW_OF_PLACE[place]
     }.sort_by { |results|
       -results.size
     }.each(&block)

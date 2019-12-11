@@ -15,9 +15,9 @@ module StatsHelper
     }.join('&nbsp;～').html_safe
   end
 
-  def races_display(races)
-    races.map { |race|
-      race_name_display(race)
+  def races_display(results)
+    results.map { |result|
+      race_name_display(result.race) + result.place.yield_self { |p| p > 1 ? " #{p}着" : "" }
     }.join(' -> ').html_safe
   end
 
