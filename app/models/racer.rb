@@ -199,13 +199,21 @@ class Racer < ApplicationRecord
     max_grade = results_won_by_grade.keys.find_all { |g|
       g.ordering >= Grade.find_by(abbr: '16').ordering
     }.sort_by(&:ordering).last
+    results_won = results_won_by_grade[max_grade] || []
 
     results_runner_up_by_grade = results.where(place: 2).group_by { |result| result.race.grade }
     max_grade_runner_up = results_runner_up_by_grade.keys.find_all(&:high_stake?)
       .sort_by(&:ordering).last
+    max_grade_runner_up = nil if max_grade && max_grade_runner_up \
+                                 && max_grade_runner_up.ordering <= max_grade.ordering
+    results_runner_up = results_runner_up_by_grade[max_grade_runner_up] || []
 
-    return [] if max_grade.nil? && max_grade_runner_up.nil?
-    [results_won_by_grade[max_grade], results_runner_up_by_grade[max_grade_runner_up]]
+    unless max_grade&.g1? || max_grade_runner_up&.g1?
+      results_runner_up += results.joins(race: :grade).where("grades.abbr = 'Ⅰ'")
+                                  .group_by(&:place).sort_by { |place, _| place }.first&.last || []
+    end
+
+    [results_won, results_runner_up]
   end
 
   def create_mare

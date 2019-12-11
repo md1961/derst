@@ -6,17 +6,12 @@ module RanchesHelper
   end
 
   def major_wins_display(racer)
-    results = racer.major_wins
-    return nil if results.empty?
-    [
-      results[0]&.map { |result|
+    racer.major_wins.map { |results|
+      results.map { |result|
         race = result.race
-        "#{race.name}(#{race.distance_to_s}, #{result.age}歳)"
-      }&.join(', '),
-      results[1]&.map { |result|
-        race = result.race
-        "#{race.name}(#{race.distance_to_s}, #{result.age}歳) 2着"
-      }&.join(', ')
-    ].compact.join(', ')
+        place_display = result.place == 1 ? "" : " #{result.place}着"
+        "#{race.name}(#{race.distance_to_s}, #{result.age}歳)#{place_display}"
+      }.join(', ').yield_self { |x| x.blank? ? nil : x }
+    }.compact.join('<br>').html_safe
   end
 end
