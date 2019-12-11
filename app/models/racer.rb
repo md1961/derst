@@ -6,7 +6,7 @@ class Racer < ApplicationRecord
   belongs_to :ranch
   belongs_to :grade_given, class_name: 'Grade', optional: true
   belongs_to :stable, optional: true
-  has_many :results
+  has_many :results, -> { joins(:race).order(:age, 'races.month', 'races.week') }
   has_many :target_races
   has_many :weeklies, -> { order(:age, :month, :week) }
   has_one :in_ranch
