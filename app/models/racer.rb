@@ -6,13 +6,27 @@ class Racer < ApplicationRecord
   belongs_to :ranch
   belongs_to :grade_given, class_name: 'Grade', optional: true
   belongs_to :stable, optional: true
-  has_many :results, -> { joins(:race).order(:age, 'races.month', 'races.week') }
   has_many :target_races
   has_many :weeklies, -> { order(:age, :month, :week) }
   has_one :in_ranch
   has_one :racer_trip
   has_one :course_staying, through: :racer_trip, source: :course
   has_one :injury
+
+  has_many :results, -> { joins(:race).order(:age, 'races.month', 'races.week') } do
+
+    def wins_in_row
+      chunk { |result|
+        result.place == 1
+      }.find_all { |won, _|
+        won
+      }.map { |_, results|
+        results
+      }.sort_by { |results|
+        -results.size
+      }
+    end
+  end
 
   enum sex: {male: 1, female: 2, gelding: 3}
 
