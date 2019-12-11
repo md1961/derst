@@ -10,4 +10,16 @@ module Stats
       -results.size
     }.each(&block)
   end
+
+  def each_oldest_high_stake_win(&block)
+    Racer.all.map { |racer|
+      racer.results.high_stake.wins&.last
+    }.compact.sort_by(&:age_in_week).reverse.each(&block)
+  end
+
+  def each_youngest_high_stake_win(&block)
+    Racer.all.map { |racer|
+      racer.results.high_stake.wins&.first
+    }.compact.sort_by(&:age_in_week).each(&block)
+  end
 end
