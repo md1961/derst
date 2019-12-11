@@ -65,4 +65,6 @@ Rails.application.routes.draw do
       get :update_type
     end
   end
+
+  get 'stats', to: 'stats#show'
 end

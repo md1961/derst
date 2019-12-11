@@ -1,0 +1,15 @@
+<div class="stats_show">
+  <table>
+    <tbody>
+      <% Stats.each_wins_in_row do |results| -%>
+        <tr>
+          <td><%= results.size %></td>
+          <td><%= results.first.racer %></td>
+          <td class="centered"><%= age_range_display(results) %></td>
+          <td class="centered"><%= week_range_display(results) %></td>
+          <td><%= races_display(results.map(&:race)) %></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>
