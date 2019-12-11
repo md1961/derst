@@ -15,11 +15,11 @@ class Racer < ApplicationRecord
 
   has_many :results, -> { joins(:race).order(:age, 'races.month', 'races.week') } do
 
-    def wins_in_row
+    def in_row_of_equal_or_better_place_of(place)
       chunk { |result|
-        result.place == 1
-      }.find_all { |won, _|
-        won
+        result.place <= place
+      }.find_all { |is_equal_or_better, _|
+        is_equal_or_better
       }.map { |_, results|
         results
       }.sort_by { |results|

@@ -3,7 +3,7 @@
     <table>
       <caption>連勝</caption>
       <tbody>
-        <% Stats.each_wins_in_row do |results| -%>
+        <% Stats.each_result_in_row_of_equal_or_better_place_of(1) do |results| -%>
           <tr>
             <td><%= results.size %></td>
             <td><%= results.first.racer %></td>

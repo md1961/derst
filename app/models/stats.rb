@@ -1,9 +1,9 @@
 module Stats
   module_function
 
-  def each_wins_in_row(&block)
+  def each_result_in_row_of_equal_or_better_place_of(place, &block)
     Racer.all.flat_map { |racer|
-      racer.results.wins_in_row
+      racer.results.in_row_of_equal_or_better_place_of(place)
     }.find_all { |results|
       results.size >= 3
     }.sort_by { |results|
