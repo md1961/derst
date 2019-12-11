@@ -4,6 +4,7 @@ module Stats
   MIN_IN_ROW_OF_PLACE = {
     1 => 3,
     2 => 4,
+    3 => 5
   }
 
   def each_result_in_row_of_equal_or_better_place_of(place, &block)

@@ -16,6 +16,10 @@ div.stats_show {
       padding: 0;
       padding-right: 10px;
     }
+
+    td:not(.results) {
+      white-space: nowrap;
+    }
   }
 
   span.handicap {
