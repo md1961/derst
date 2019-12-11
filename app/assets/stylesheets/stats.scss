@@ -1,7 +1,21 @@
-.stats_show {
+div.stats_show {
 
-  td {
-    padding: 0 4px;
+  div.row {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  table {
+    margin-right: 10px;
+
+    caption {
+      text-align: left;
+    }
+
+    td {
+      padding: 0;
+      padding-right: 10px;
+    }
   }
 
   span.handicap {

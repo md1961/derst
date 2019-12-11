@@ -1,15 +1,46 @@
 <div class="stats_show">
-  <table>
-    <tbody>
-      <% Stats.each_wins_in_row do |results| -%>
-        <tr>
-          <td><%= results.size %></td>
-          <td><%= results.first.racer %></td>
-          <td class="centered"><%= age_range_display(results) %></td>
-          <td class="centered"><%= week_range_display(results) %></td>
-          <td><%= races_display(results.map(&:race)) %></td>
-        </tr>
-      <% end -%>
-    </tbody>
-  </table>
+  <div class="row">
+    <table>
+      <caption>連勝</caption>
+      <tbody>
+        <% Stats.each_wins_in_row do |results| -%>
+          <tr>
+            <td><%= results.size %></td>
+            <td><%= results.first.racer %></td>
+            <td class="centered"><%= age_range_display(results) %></td>
+            <td class="centered"><%= week_range_display(results) %></td>
+            <td><%= races_display(results.map(&:race)) %></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <table>
+      <caption>最年長重賞勝利</caption>
+      <tbody>
+        <% Stats.each_oldest_high_stake_win do |result| -%>
+          <tr>
+            <td><%= result.racer %></td>
+            <td><%= age_in_week_display(result.age_in_week) %></td>
+            <td><%= race_name_display(result.race) %></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>最年少重賞勝利</caption>
+      <tbody>
+        <% Stats.each_youngest_high_stake_win do |result| -%>
+          <tr>
+            <td><%= result.racer %></td>
+            <td><%= age_in_week_display(result.age_in_week) %></td>
+            <td><%= race_name_display(result.race) %></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
 </div>
