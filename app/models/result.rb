@@ -18,6 +18,8 @@ class Result < ApplicationRecord
     end
   }
 
+  scope :wins, -> { where(place: 1) }
+
   def net_prize
     return 0 unless place
     race.net_prize_for(place)
