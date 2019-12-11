@@ -11,6 +11,10 @@ class Grade < ApplicationRecord
     name.starts_with?('G')
   end
 
+  def g1?
+    abbr == 'Ⅰ'
+  end
+
   def new_racer?
     abbr == '新'
   end
