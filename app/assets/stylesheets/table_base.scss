@@ -5,9 +5,12 @@
   border-spacing: 0;
 
   th, td {
-    font-weight: normal;
     padding: 0px 4px 0px;
     border: solid 1px black;
+  }
+
+  th {
+    font-weight: normal;
   }
 
   thead tr:last-child {
