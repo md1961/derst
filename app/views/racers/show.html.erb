@@ -69,8 +69,14 @@
              week_since = current_week if week_since.nil? || @racer.in_ranch || current_week - week_since >= 5 -%>
           <% @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
                race.month_week
-             }.each do |month_week, races| -%>
+             }.each_with_index do |(month_week, races), index| -%>
             <% races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
+            <% if index.zero? && month_week != current_week -%>
+              <tr>
+                <td class="current"><%= current_week %></td>
+                <td colspan="4">
+              </tr>
+            <% end -%>
             <tr>
               <td rowspan="<%= races.size %>" class="numeric <%= month_week == current_week ? 'current' : '' %>">
                 <%= month_week %>
