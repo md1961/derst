@@ -66,33 +66,39 @@
         <tbody>
           <% current_week = @racer.ranch.month_week
              week_since = @racer.results.last&.race&.month_week
-             week_since = current_week if week_since.nil? || @racer.in_ranch || current_week - week_since >= 5 -%>
-          <% @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
+             week_since = current_week if week_since.nil? || @racer.in_ranch || current_week - week_since >= 5
+             races_by_week = @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
                race.month_week
-             }.each_with_index do |(month_week, races), index| -%>
-            <% races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
-            <% if index.zero? && month_week != current_week -%>
+             }
+             month_week = current_week -%>
+          <% @weeks_for_race_candidates.times do -%>
+            <% races = races_by_week[month_week] || []
+               races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
+            <% if races.empty? -%>
               <tr>
-                <td class="current"><%= current_week %></td>
-                <td colspan="4">
+                <td class="numeric <%= month_week == current_week ? 'current' : '' %>">
+                  <%= month_week %>
+                </td>
+                <td colspan="4" class="centered">---</td>
               </tr>
-            <% end -%>
-            <tr>
-              <td rowspan="<%= races.size %>" class="numeric <%= month_week == current_week ? 'current' : '' %>">
-                <%= month_week %>
-              </td>
-              <td rowspan="<%= races.size %>" class="numeric">
-                <% weeks_later = month_week - week_since -%>
-                <%= weeks_later.zero? ? '-' : "#{weeks_later}w" %>
-              </td>
-              <%= race_display(races.first, @racer, displays_target_button: true) %>
-            </tr>
-            <% races[1 .. -1].each do |race| -%>
+            <% else -%>
               <tr>
-                <%= race_display(race, @racer, displays_target_button: true) %>
+                <td rowspan="<%= races.size %>" class="numeric <%= month_week == current_week ? 'current' : '' %>">
+                  <%= month_week %>
+                </td>
+                <td rowspan="<%= races.size %>" class="numeric">
+                  <% weeks_later = month_week - week_since -%>
+                  <%= weeks_later.zero? ? '-' : "#{weeks_later}w" %>
+                </td>
+                <%= race_display(races.first, @racer, displays_target_button: true) %>
               </tr>
+              <% races[1 .. -1].each do |race| -%>
+                <tr>
+                  <%= race_display(race, @racer, displays_target_button: true) %>
+                </tr>
+              <% end -%>
             <% end -%>
-            <% break if month_week - current_week >= @weeks_for_race_candidates -%>
+            <% month_week = month_week.next -%>
           <% end -%>
         </tbody>
       </table>
