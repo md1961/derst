@@ -39,6 +39,8 @@ class Race < ApplicationRecord
     grades.concat(Grade.where(abbr: %w[Ⅲ Ⅱ Ⅰ])) if grade.abbr == 'OP'
     if age == 3 && grade.abbr == 'OP' && month <= 9
       grades = Grade.where(abbr: %w[5 OP])
+    elsif age == 4 && racer.net_prize == 800
+      grades += Grade.where(abbr: '9')
     end
     if includes_overgrade
       if age == 3 && %w[新 未].include?(grade.abbr)
