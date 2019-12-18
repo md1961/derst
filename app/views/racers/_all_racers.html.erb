@@ -1,6 +1,5 @@
 <div class="all_racers">
-  <% racers = Racer.retired.order(:year_birth) \
-            + [nil] \
-            + Racer.active .order(:year_birth) -%>
+  <% racers = Racer.active .order(:year_birth)
+     racers = Racer.retired.order(:year_birth) + [nil] + racers if @shows_all_racers -%>
   <%= render partial: 'racers/blood_and_result_list', locals: {racers: racers} %>
 </div>

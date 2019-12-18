@@ -16,6 +16,7 @@ class RanchesController < ApplicationController
 
     @racer_id_to_edit = params[:racer_id_to_edit].to_i
     @shows_all_racers = params[:shows_all_racers] == 'true'
+    @shows_inbreeds   = params[:shows_inbreeds  ] == 'true'
 
     @shows_mares = params[:shows_mares] ? params[:shows_mares] == 'true' \
                                         : session[KEY_SHOWS_MARES]
