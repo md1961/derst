@@ -187,6 +187,11 @@ class Racer < ApplicationRecord
     age_in_week - week
   end
 
+  def weeks_in_ranch
+    return 0 unless in_ranch
+    ranch.month_week - in_ranch.month_week
+  end
+
   def race_candidates(includes_overgrade: false)
     includes_overgrade = true if age == 4 && %w[5 9 16].include?(grade.abbr) && ranch.month <= 7
     return [] unless ranch && age && grade

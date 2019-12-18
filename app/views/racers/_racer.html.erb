@@ -63,10 +63,10 @@
     <% unless racer.in_ranch -%>
       <td>
     <% else -%>
-      <% weeks = @ranch.month_week - racer.in_ranch.month_week
-         clazz = weeks > 4 ? 'overstay_in_ranch' : weeks == 4 ? 'ready_to_be_stabled' : 'in_ranch' -%>
+      <% weeks_in_ranch = racer.weeks_in_ranch
+         clazz = weeks_in_ranch > 4 ? 'overstay_in_ranch' : weeks_in_ranch == 4 ? 'ready_to_be_stabled' : 'in_ranch' -%>
       <td class="numeric <%= clazz %>">
-        <%= "#{weeks}w" %>
+        <%= "#{weeks_in_ranch}w" %>
       </td>
     <% end -%>
 
