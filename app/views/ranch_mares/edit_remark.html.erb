@@ -23,6 +23,10 @@
   </div>
 
   <div class="mating">
-    <%= render partial: 'mating', locals: {mare: mare, sire: @ranch_mare.sire} %>
+    <% if @ranch_mare.sire -%>
+      <%= render partial: 'mating', locals: {mare: mare, sire: @ranch_mare.sire} %>
+    <% else -%>
+      <%= render partial: 'mare', locals: {mare: mare} %>
+    <% end -%>
   </div>
 </div>

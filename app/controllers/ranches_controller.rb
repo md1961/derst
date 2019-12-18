@@ -5,7 +5,7 @@ class RanchesController < ApplicationController
 
   def show
     @ranch = Ranch.last
-    @mares  = @ranch.mares
+    @mares = @ranch.mares
 
     @shows_no_stable = params[:shows_no_stable] ? params[:shows_no_stable] == 'true' \
                                                 : session[KEY_SHOWS_NO_STABLE]
