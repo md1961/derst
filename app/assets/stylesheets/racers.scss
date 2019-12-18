@@ -35,6 +35,15 @@ td.injured {
   background-color: yellow;
 }
 
+td.same_area {
+  font-weight: bold;
+  background-color: cyan;
+}
+
+td.remote {
+  color: red;
+}
+
 .racers_racers {
 
   td a {
@@ -236,15 +245,6 @@ td.injured {
     td.current {
       color: white;
       background-color: red;
-    }
-
-    td.same_area {
-      font-weight: bold;
-      background-color: cyan;
-    }
-
-    td.remote {
-      color: red;
     }
 
     td.high_stake {
