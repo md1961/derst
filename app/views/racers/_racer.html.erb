@@ -19,7 +19,7 @@
 -%>
 
 <td class="<%= racer.expecting_race? ? 'expecting_race' \
-             : racer.in_ranch ? 'in_ranch' \
+             : racer.in_ranch ? weeks_in_ranch_class(racer) \
              : !racer.stable  ? 'not_stabled' : '' %>
            <%= is_menu && !racer.condition ? 'no_condition' : '' %>
            centered">
@@ -63,10 +63,8 @@
     <% unless racer.in_ranch -%>
       <td>
     <% else -%>
-      <% weeks_in_ranch = racer.weeks_in_ranch
-         clazz = weeks_in_ranch > 4 ? 'overstay_in_ranch' : weeks_in_ranch == 4 ? 'ready_to_be_stabled' : 'in_ranch' -%>
-      <td class="numeric <%= clazz %>">
-        <%= "#{weeks_in_ranch}w" %>
+      <td class="numeric <%= weeks_in_ranch_class(racer) %>">
+        <%= "#{racer.weeks_in_ranch}w" %>
       </td>
     <% end -%>
 

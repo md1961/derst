@@ -65,6 +65,10 @@ td.remote {
   td.ready_to_be_stabled {
     color: white;
     background-color: green;
+
+    a {
+      color: white;
+    }
   }
 
   td.overstay_in_ranch {
