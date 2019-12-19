@@ -4,7 +4,7 @@ $ ->
     height = $('#name_and_traits').height()
     $('#results_and_conditions').css('margin-top', top + height + 15)
 
-    $('select#condition').focus()
+    $('select.condition').focus()
 
     $('#show_form_to_injure').on 'click', ->
       $('#form_to_injure').toggle()
