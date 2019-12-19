@@ -32,7 +32,7 @@
           <% next -%>
         <% end -%>
         <td class="numeric <%= !racer.is_active || racer.stable ? '' : 'not_stabled' %>">
-          <%= link_to index - (racer.is_active ? 1 : 0), racer %>
+          <%= link_to index - (racer.is_active ? 1 : 0), racer_path(racer, main_display: @main_display) %>
         </td>
         <td><%= racer_name_display(racer, nil) %></td>
         <td><%= racer_sex_display(racer) %></td>

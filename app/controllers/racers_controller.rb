@@ -20,6 +20,8 @@ class RacersController < ApplicationController
     end
     index = racers.find_index(@racer)
     @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index
+
+    @main_display = params[:main_display].yield_self { |x| x.blank? ? nil : x }
   end
 
   def new
