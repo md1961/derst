@@ -11,12 +11,16 @@ class RanchesController < ApplicationController
                                                 : session[KEY_SHOWS_NO_STABLE]
     session[KEY_SHOWS_NO_STABLE] = @shows_no_stable
 
+    @main_display = params[:main_display].yield_self { |x| x.blank? ? nil : x }
+
     @racers = @ranch.racers.active.includes(:weeklies).older_first
-    @racers = @racers.where.not(stable: nil) unless @shows_no_stable
+    if @main_display == 'all_racers'
+      @racers = Racer.retired.older_first + [nil] + @racers
+    elsif !@shows_no_stable
+      @racers = @racers.where.not(stable: nil)
+    end
 
     @racer_id_to_edit = params[:racer_id_to_edit].to_i
-    @shows_all_racers = params[:shows_all_racers] == 'true'
-    @shows_inbreeds   = params[:shows_inbreeds  ] == 'true'
 
     @shows_mares = params[:shows_mares] ? params[:shows_mares] == 'true' \
                                         : session[KEY_SHOWS_MARES]
