@@ -29,7 +29,7 @@
     <% @racers.each.with_index(1) do |racer, index| -%>
       <% next unless racer.in_stable? -%>
       <tr class="racer" data-racer_id="<%= racer.id %>">
-        <td class="<%= racer.expecting_race? ? 'expecting_race' : '' %>">
+        <td class="<%= racer.expecting_race? ? 'expecting_race' : racer.condition.nil? ? 'no_condition' : '' %>">
           <%= index < 10 ? index : ('a'.ord + index - 10).chr.upcase %>
         </td>
         <td class="racer_name border_right_thick">
