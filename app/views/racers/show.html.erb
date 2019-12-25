@@ -39,15 +39,15 @@
                       class: @next_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
       <% end -%>
 
-      <% course_last = @racer.results.last&.race&.course -%>
-      <% if @racer.in_stable? && course_last&.stayable? -%>
+      <% course_staying = @racer.course_staying
+         course_last = @racer.results.last&.race&.course -%>
+      <% if course_staying || (@racer.in_stable? && course_last&.stayable?) -%>
         <div class="button_to_trip">
-          <% course = @racer.course_staying
-             label = course ? '帰厩' : "[#{course_last}] へ遠征" -%>
+          <% label = course_staying ? '帰厩' : "[#{course_last}] へ遠征" -%>
           <%= button_to label, trip_racer_path(@racer), method: :patch, tabindex: -1 %>
-          <% if course -%>
-            <% clazz = @racer.ranch.courses_with_races.include?(course) ? '' : 'no_race' -%>
-            <span class="course_staying <%= clazz %>"><%= "[#{course}] に滞在中" %></span>
+          <% if course_staying -%>
+            <% clazz = @racer.ranch.courses_with_races.include?(course_staying) ? '' : 'no_race' -%>
+            <span class="course_staying <%= clazz %>"><%= "[#{course_staying}] に滞在中" %></span>
           <% end -%>
         </div>
       <% end -%>
