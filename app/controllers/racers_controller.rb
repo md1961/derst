@@ -72,6 +72,7 @@ class RacersController < ApplicationController
         attrs[name] = last_result.send(name)
       end
     end
+    attrs[:weight] = racer.weight_best if attrs[:weight].blank?
     Result.transaction do
       racer.results.create(attrs).tap { |result|
         result.set_load_from_racer_and_race!
