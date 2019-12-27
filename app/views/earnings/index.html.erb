@@ -4,10 +4,10 @@
       <% earnings.sort_by(&:month).reverse.each_with_index do |earning, index| -%>
         <tr>
           <% if index.zero? -%>
-            <td rowspan="<%= earnings.size %>" class="numeric">
+            <td rowspan="<%= earnings.size %>" class="clickable numeric">
               <%= year %>
             </td>
-            <td rowspan="<%= earnings.size %>" class="numeric">
+            <td rowspan="<%= earnings.size %>" class="clickable numeric">
               <%= earnings.map(&:total).sum %>
             </td>
           <% end -%>
