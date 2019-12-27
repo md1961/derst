@@ -67,4 +67,6 @@ Rails.application.routes.draw do
   end
 
   get 'stats', to: 'stats#show'
+
+  get 'earnings', to: 'earnings#index'
 end

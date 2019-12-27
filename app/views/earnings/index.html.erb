@@ -1,0 +1,12 @@
+<div class="earnings_index">
+  <table class="table_base">
+    <% @earnings.reverse.each do |earning| -%>
+      <tr>
+        <td class="numeric"><%= earning.year %></td>
+        <td class="numeric"><%= earning.month %></td>
+        <td class="numeric"><%= earning.total %></td>
+        <td><%= results_display(earning.results) %></td>
+      </tr>
+    <% end -%>
+  </table>
+</div>
