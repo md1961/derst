@@ -14,6 +14,11 @@
           <td class="hideable numeric"><%= earning.month %></td>
           <td class="hideable numeric"><%= earning.total %></td>
           <td class="hideable"><%= results_display(earning.results) %></td>
+          <% if index.zero? -%>
+            <td rowspan="<%= earnings.size %>" class="hideable">
+              <%= total_by_racer_display(earnings) %>
+            </td>
+          <% end -%>
         </tr>
       <% end -%>
     <% end -%>

@@ -18,6 +18,14 @@ class Earning
   end
 
   def total
-    results.reduce(0) { |sum, result| sum + result.prize }
+    results.map(&:prize).sum
+  end
+
+  def total_by_racer
+    results.group_by(&:racer).map { |racer, results|
+      [racer, results.map(&:prize).sum]
+    }.reject { |_, total|
+      total.nil?
+    }
   end
 end
