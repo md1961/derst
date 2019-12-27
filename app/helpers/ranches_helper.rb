@@ -16,6 +16,7 @@ module RanchesHelper
   end
 
   def weeks_in_ranch_class(racer)
+    return 'injured' if racer.injury
     racer.weeks_in_ranch.yield_self { |w|
       w > 4 ? 'overstay_in_ranch' : w == 4 ? 'ready_to_be_stabled' : 'in_ranch'
     }

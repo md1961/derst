@@ -26,13 +26,17 @@ span.dirt {
 }
 
 td.earns_net_prize_last_week {
-  color: red;
-  background-color: yellow;
+  background-color: cyan;
+  font-weight: bold;
 }
 
 td.injured {
   color: red;
   background-color: yellow;
+
+  a {
+    color: red;
+  }
 }
 
 td.same_area {
