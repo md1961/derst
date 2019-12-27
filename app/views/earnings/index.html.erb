@@ -11,9 +11,9 @@
               <%= earnings.map(&:total).sum %>
             </td>
           <% end -%>
-          <td class="numeric"><%= earning.month %></td>
-          <td class="numeric"><%= earning.total %></td>
-          <td><%= results_display(earning.results) %></td>
+          <td class="hideable numeric"><%= earning.month %></td>
+          <td class="hideable numeric"><%= earning.total %></td>
+          <td class="hideable"><%= results_display(earning.results) %></td>
         </tr>
       <% end -%>
     <% end -%>
