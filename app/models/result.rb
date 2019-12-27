@@ -25,6 +25,11 @@ class Result < ApplicationRecord
     race.net_prize_for(place)
   end
 
+  def prize
+    return 0 unless place
+    race.prize_for(place)
+  end
+
   def age_in_week
     Racer::AgeInWeek.new(age, race.month, race.week)
   end
