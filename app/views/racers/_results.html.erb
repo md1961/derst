@@ -13,7 +13,7 @@
       <tr class="place-<%= result.place %> <%= race.surface %>">
         <td class="numeric"><%= result.age %></td>
         <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
-        <td><%= race.course %></td>
+        <td nowrap><%= race.course %></td>
         <td><%= race_name_display(race) %></td>
         <td><%= race_distance_display(race) %></td>
         <% if result.place.nil? || result.id == @result_id_to_edit -%>
