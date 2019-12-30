@@ -1,0 +1,19 @@
+[aria-label] {
+  position: relative;
+}
+
+[aria-label]:hover:after {
+  display: block;
+}
+
+[aria-label]:after {
+  content: attr(aria-label);
+  display: none;
+  position: absolute;
+  top: 70%;
+  left: 40px;
+  color: white;
+  background-color: gray;
+  white-space: nowrap;
+  padding: 0 4px;
+}
