@@ -72,7 +72,7 @@
     <% unless racer.stable -%>
       <td class="border_right_thick">
     <% else -%>
-      <td class="border_right_thick">
+      <td class="border_right_thick" aria-label="<%= racer.name %>">
         <%= button_to_graze(racer) %>
       </td>
     <% end -%>

@@ -303,8 +303,7 @@ module ApplicationHelper
                                         : ['放牧',   graze_racer_path(racer), ''        ]
     disabled = @racer_id_to_edit.to_i > 0 \
             || label == '放牧' && Racer.num_in_ranch == (@ranch || racer.ranch).max_racers
-    button_to label, path, method: :patch, disabled: disabled, class: clazz,
-      title: racer, tabindex: -1
+    button_to label, path, method: :patch, disabled: disabled, class: clazz, tabindex: -1
   end
 
   def form_for_weekly(racer)
