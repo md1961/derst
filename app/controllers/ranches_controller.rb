@@ -16,7 +16,7 @@ class RanchesController < ApplicationController
     @racers = @ranch.racers.active.includes(:weeklies).older_first
     if @main_display == 'all_racers'
       @racers = Racer.retired.older_first + [nil] + @racers
-    elsif !@shows_no_stable
+    elsif !@shows_no_stable && @main_display != 'active_inbreeds'
       @racers = @racers.where.not(stable: nil)
     end
 
