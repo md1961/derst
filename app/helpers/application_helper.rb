@@ -294,7 +294,7 @@ module ApplicationHelper
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target,
-      content_tag(:td, safe_join(a, ' '), class: clazz, title: load_to_s),
+      content_tag(:td, safe_join(a, ' '), class: clazz, aria: {label: load_to_s}),
     ].compact)
   end
 
