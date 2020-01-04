@@ -257,7 +257,7 @@ module ApplicationHelper
     course = race.course
     stable = racer.stable
     transport = if racer.course_staying
-                  course == racer.course_staying ? 'same_area' : 'remote'
+                  course.same_area_with?(racer.course_staying) ? 'same_area' : 'remote'
                 else
                   course.same_from?(stable) ? 'same_area' \
                     : course.on_the_day_from?(stable) ? 'on_day' : 'remote'

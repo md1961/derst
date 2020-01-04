@@ -9,6 +9,10 @@ class Course < ApplicationRecord
     !%w[Kanto Kansai].include?(area.name)
   end
 
+  def same_area_with?(other)
+    self == other || (hokkaido? && other.hokkaido?)
+  end
+
   def same_from?(stable)
     area.same_from?(stable.center)
   end
