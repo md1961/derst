@@ -242,6 +242,7 @@ class Racer < ApplicationRecord
 
   def graze!
     create_in_ranch!(month: ranch.month, week: ranch.week)
+    racer_trip&.destroy
   end
 
   def ungraze!
