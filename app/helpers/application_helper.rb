@@ -306,9 +306,10 @@ module ApplicationHelper
     button_to label, path, method: :patch, disabled: disabled, class: clazz, tabindex: -1
   end
 
-  def button_to_spa(racer)
-    label, path, clazz = racer.in_spa? ? ['温', ungraze_racer_path(racer), 'in_spa'] \
-                                       : ['　',     spa_racer_path(racer), ''      ]
+  def button_to_spa(racer, label_to_spa = nil)
+    label_to_spa = '　' unless label_to_spa
+    label, path, clazz = racer.in_spa? ? ['温'        , ungraze_racer_path(racer), 'in_spa'] \
+                                       : [label_to_spa,     spa_racer_path(racer), ''      ]
     disabled = @racer_id_to_edit.to_i > 0 \
             || (!racer.in_spa? && (racer.in_ranch || Racer.num_in_spa == (@ranch || racer.ranch).max_spa))
     button_to label, path, method: :patch, disabled: disabled, class: clazz + ' button_to_spa', tabindex: -1

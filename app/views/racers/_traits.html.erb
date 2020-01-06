@@ -104,6 +104,10 @@
         <%= button_to_retire(@racer) %>
       <% else -%>
         <%= button_to_graze(@racer) %>
+        <span style="margin-left: -10px;">
+          <%= button_to_spa(@racer, '温泉へ') %>
+        </span>
+
         <span id="show_form_to_injure" class="button">[負傷]</span>
         <%= link_to 'Edit', edit_racer_path(@racer), data: {shortcut: 'y'} %>
 
