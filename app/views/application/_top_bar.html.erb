@@ -10,8 +10,15 @@
     <% max_racers = ranch.max_racers
        vacancy = max_racers - Racer.num_in_ranch
        n_few = (max_racers.to_f / 6).ceil -%>
-    <span id="vacancy_in_ranch" class="<%= vacancy.zero? ? 'none' : vacancy <= n_few ? 'few' : '' %>">
+    <span class="vacancy_in_ranch <%= vacancy.zero? ? 'none' : vacancy <= n_few ? 'few' : '' %>">
       <%= "空き #{vacancy} / #{max_racers}" %>
+    </span>
+
+    <% max_spa = ranch.max_spa
+       vacancy = max_spa - Racer.num_in_spa
+       n_few = 1 -%>
+    <span class="vacancy_in_ranch <%= vacancy.zero? ? 'none' : vacancy <= n_few ? 'few' : '' %>">
+      <%= "温泉 #{vacancy} / #{max_spa}" %>
     </span>
   </div>
 

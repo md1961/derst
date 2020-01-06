@@ -6,6 +6,15 @@ input.in_ranch {
   color: green;
 }
 
+input.button_to_spa {
+  padding: 1px 4px;
+
+  &.in_spa {
+    color: white;
+    background-color: magenta;
+  }
+}
+
 .expecting_race {
   color: white;
   background-color: red;
