@@ -115,6 +115,12 @@ class RacersController < ApplicationController
     redirect_to racer.ranch
   end
 
+  def spa
+    racer = Racer.find(params[:id])
+    racer.spa!
+    redirect_to racer.ranch
+  end
+
   def trip
     racer = Racer.find(params[:id])
     if racer.course_staying
