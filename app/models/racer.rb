@@ -94,6 +94,10 @@ class Racer < ApplicationRecord
     is_active && stable && !in_ranch
   end
 
+  def in_spa?
+    in_ranch&.is_in_spa
+  end
+
   def expecting_race?
     !results.empty? && results.last.place.blank?
   end
