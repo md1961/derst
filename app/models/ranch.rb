@@ -3,6 +3,10 @@ class Ranch < ApplicationRecord
   has_many :mares, through: :ranch_mares
   has_many :racers
 
+  def max_spa
+    4
+  end
+
   def in_week_of?(month, week)
     self.month == month && self.week == week
   end
