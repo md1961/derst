@@ -17,6 +17,8 @@ class RacersController < ApplicationController
       if races_of_multiple_entries(racers).include?(race)
         racers = racers.find_all { |racer| racer.results.last.race == race }
       end
+    else
+      racers = racers.reject { |racer| racer.condition && racer != @racer }
     end
     index = racers.find_index(@racer)
     @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index
