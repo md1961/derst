@@ -258,6 +258,11 @@ class Racer < ApplicationRecord
     injury&.destroy
   end
 
+  def spa!
+    graze! unless in_ranch
+    in_ranch.update!(is_in_spa: true)
+  end
+
   def trip_to(course)
     return unless course.stayable?
 
