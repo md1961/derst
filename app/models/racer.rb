@@ -46,7 +46,11 @@ class Racer < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def self.num_in_ranch
-    active.count - in_stable.count
+    active.count - in_stable.count - num_in_spa
+  end
+
+  def self.num_in_spa
+    active.includes(:in_ranch).count { |racer| racer.in_spa? }
   end
 
   def self.all_training_done?
