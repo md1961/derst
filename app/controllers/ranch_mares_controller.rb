@@ -23,13 +23,19 @@ class RanchMaresController < ApplicationController
 
   def update
     ranch_mare = RanchMare.find(params[:id])
-    ranch_mare.update!(sire_id: params[:sire_id])
+    RanchMare.transaction do
+      ranch_mare.update!(sire_id: params[:sire_id])
+      ranch_mare.checking!
+    end
     redirect_to matings_path(mare_id: ranch_mare.mare.id, ranch_id: ranch_mare.ranch.id)
   end
 
   def delete_sire
     ranch_mare = RanchMare.find(params[:id])
-    ranch_mare.update!(sire_id: nil)
+    RanchMare.transaction do
+      ranch_mare.update!(sire_id: nil)
+      ranch_mare.default_child_status!
+    end
     redirect_to ranch_mare.ranch
   end
 
