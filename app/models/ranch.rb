@@ -26,6 +26,13 @@ class Ranch < ApplicationRecord
     update!(attrs)
     return if week > 1
 
+    if [3, 5, 6].include?(month)
+      method_name = month == 3 ? :expecting! : :default_child_status!
+      ranch_mares.each do |ranch_mare|
+        ranch_mare.send(method_name) if ranch_mare.sire
+      end
+    end
+
     courses_current = courses_with_races
     course_current_hokkaido = courses_current.detect(&:hokkaido?)
     RacerTrip.find_each do |trip|
