@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_06_000211) do
+ActiveRecord::Schema.define(version: 2020_01_07_041232) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 2020_01_06_000211) do
     t.datetime "updated_at", null: false
     t.integer "sire_id"
     t.string "remark"
+    t.integer "child_status", default: 0, null: false
     t.index ["mare_id"], name: "index_ranch_mares_on_mare_id"
     t.index ["ranch_id"], name: "index_ranch_mares_on_ranch_id"
     t.index ["sire_id"], name: "index_ranch_mares_on_sire_id"
