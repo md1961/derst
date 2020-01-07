@@ -307,7 +307,7 @@ module ApplicationHelper
   end
 
   def button_to_spa(racer, label_to_spa = nil)
-    label_to_spa = '　' unless label_to_spa
+    label_to_spa = ' ' unless label_to_spa
     label, path, clazz = racer.in_spa? ? ['温'        , ungraze_racer_path(racer), 'in_spa'] \
                                        : [label_to_spa,     spa_racer_path(racer), ''      ]
     disabled = @racer_id_to_edit.to_i > 0 \
