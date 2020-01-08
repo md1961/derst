@@ -10,8 +10,8 @@ input.button_to_spa {
   padding: 1px 4px;
 
   &.in_spa {
-    color: white;
-    background-color: magenta;
+    color: red;
+    font-weight: bold;
   }
 }
 
