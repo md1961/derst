@@ -1,5 +1,13 @@
 .mating_lists_show {
 
+  tr.female {
+    background-color: #FFCFCF;
+
+    td.sex {
+      color: red;
+    }
+  }
+
   td:not(.allows_wrap) {
     white-space: nowrap;
   }

@@ -13,10 +13,10 @@
 
   <% if @in_list && @mating_list.size > 1 -%>
     <div class="in_list">
-      <%= link_to "< #{@mating_list.prev_of(@mating)}",
+      <%= link_to "< #{@mating_list.prev_of(@mating).mating}",
                     prev_mating_list_path(mare_id: @mating.mare.id, sire_id: @mating.sire.id),
                     id: 'to_prev_mating' %>
-      <%= link_to "#{@mating_list.next_of(@mating)} >",
+      <%= link_to "#{@mating_list.next_of(@mating).mating} >",
                     next_mating_list_path(mare_id: @mating.mare.id, sire_id: @mating.sire.id),
                     id: 'to_next_mating' %>
     </div>

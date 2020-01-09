@@ -2,6 +2,7 @@
   <table class="table_base">
     <thead>
       <tr>
+        <th>
         <th class="border_right_thick">
         <% sire_trait_names.each do |name| -%>
           <th><%= SireTrait.human_attribute_name(name) %></th>
@@ -19,14 +20,17 @@
       </tr>
     </thead>
     <tbody>
-      <% @mating_list.each do |mating| -%>
-        <% mare           = mating.mare
+      <% @mating_list.each do |mating_list_item| -%>
+        <% mating = mating_list_item.mating
+           sex    = mating_list_item.sex
+           mare           = mating.mare
            sire           = mating.sire
            is_nicks       = mating.nicks?
            is_interesting = mating.interesting?
            score          = mating.score -%>
-        <tr>
-          <td class="border_right_thick"><%= mating %></td>
+        <tr class="<%= sex == 1 ? '' : 'female' %>">
+          <td><%= mating %></td>
+          <td class="sex border_right_thick"><%= sex == 1 ? '牡' : '牝' %></td>
           <% trait = sire.trait -%>
           <% sire_trait_names.each do |name| -%>
             <% value = trait.send(name) -%>
@@ -56,7 +60,7 @@
           <td><%= link_to '配合', mating_path(mare, sire_id: sire.id, in_list: true),
                                   target: '_blank' %></td>
           <td><%= link_to '落札', new_racer_path(ranch_id: @ranch, father_id: sire, mother_id: mare), tabindex: -1 %></td>
-          <td><%= link_to '削除', delete_mating_list_path(mare_id: mare.id, sire_id: sire.id), tabindex: -1 %></td>
+          <td><%= link_to '削除', delete_mating_list_path(mare_id: mare.id, sire_id: sire.id, sex: sex), tabindex: -1 %></td>
         </tr>
       <% end -%>
     </tbody>
@@ -79,6 +83,9 @@
         <input type="search" name="sire" value="<%= @sire %>" autocomplete="on" list="sire_candidates">
           <%= @sire %>
         </input>
+      </div>
+      <div class="field">
+        <%= select_tag :sex, options_for_select([['-', nil], %w[牡 1], %w[牝 2]]) %>
       </div>
 
       <%= f.submit %>
