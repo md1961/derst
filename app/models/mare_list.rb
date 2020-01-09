@@ -1,6 +1,10 @@
 class MareList
 
-  Item = Struct.new(:mare, :age, :sire)
+  Item = Struct.new(:mare, :age, :sire) do
+    def valid?
+      mare.is_a?(Mare) && age > 3
+    end
+  end
 
   def self.build_from_json(json)
     json = "[]" if json.blank?
@@ -22,12 +26,13 @@ class MareList
   end
 
   def each_item(&block)
-    (@items + [nil] * 10).take(10).each(&block)
+    @items.each(&block)
   end
 
   def add(mare, age, sire)
-    @items << Item.new(mare, age, sire)
-    self
+    item = Item.new(mare, age, sire)
+    is_valid = item.valid?
+    @items << item if is_valid
   end
 
   def delete(mare)

@@ -6,55 +6,54 @@
           <% mare = item&.mare
              sire = item&.sire -%>
           <tr>
-            <% if mare -%>
-              <td><%= link_to mare, matings_path(mare_id: mare), target: '_blank' %></td>
-              <td><%= mare.lineage %></td>
-              <td class="numeric"><%= "#{item.age}歳" %></td>
-              <td class="numeric"><%= "#{mare.price}万円" %></td>
-              <td><%= mare.speed %></td>
-              <td><%= mare.stamina %></td>
-              <td><%= mare.rating %></td>
-              <td><%= mare.type %></td>
-              <td><%= link_to '落札', ranch_mares_path(ranch_mare:
-                                                        {mare: mare.name, age: item.age, ranch_id: @ranch.id, sire_id: sire&.id}),
-                                      method: :post %>
-              <td><%= link_to '削除', delete_mare_list_path(mare_id: mare) %>
-              <% if sire.present? -%>
-                <% mating = Mating.new(mare, sire)
-                   is_nicks       = mating.nicks?
-                   is_interesting = mating.interesting?
-                   score          = mating.score -%>
-                <td>
-                  <%= link_to sire, mating_path(mare, sire_id: sire.id), target: '_blank', tabindex: -1 %>
-                </td>
-                <% trait = sire.trait -%>
-                <% sire_trait_names.each do |name| -%>
-                  <% value = trait.send(name) -%>
-                  <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
-                    <%= value %>
-                  </td>
-                <% end -%>
-                <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>
-                           border_left_thick">
-                  <%= score %>
-                </td>
-                <td class="centered <%= is_nicks ? 'nicks' : '' %>">
-                  <%= is_nicks ? '〇' : '×' %>
-                </td>
-                <td class="centered <%= is_interesting ? 'interesting' : '' %>">
-                  <%= is_interesting ? '〇' : '×' %>
-                </td>
-                <td class="allows_wrap"><%= mating.inbreed_display %></td>
-              <% end -%>
-            <% else -%>
-              <td colspan="9">
-                <input type="search" name="items[][mare]" value="" autocomplete="on" list="mother_candidates" autofocus>
-                <%= f.number_field "items[][age]" %>
-                <input type="search" name="items[][sire]" value="" autocomplete="on" list="sire_candidates">
+            <td><%= link_to mare, matings_path(mare_id: mare), target: '_blank' %></td>
+            <td><%= mare.lineage %></td>
+            <td class="numeric"><%= "#{item.age}歳" %></td>
+            <td class="numeric"><%= "#{mare.price}万円" %></td>
+            <td><%= mare.speed %></td>
+            <td><%= mare.stamina %></td>
+            <td><%= mare.rating %></td>
+            <td><%= mare.type %></td>
+            <td><%= link_to '落札', ranch_mares_path(ranch_mare:
+                                                      {mare: mare.name, age: item.age, ranch_id: @ranch.id, sire_id: sire&.id}),
+                                    method: :post %>
+            <td><%= link_to '削除', delete_mare_list_path(mare_id: mare) %>
+            <% if sire.present? -%>
+              <% mating = Mating.new(mare, sire)
+                 is_nicks       = mating.nicks?
+                 is_interesting = mating.interesting?
+                 score          = mating.score -%>
+              <td>
+                <%= link_to sire, mating_path(mare, sire_id: sire.id), target: '_blank', tabindex: -1 %>
               </td>
+              <% trait = sire.trait -%>
+              <% sire_trait_names.each do |name| -%>
+                <% value = trait.send(name) -%>
+                <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
+                  <%= value %>
+                </td>
+              <% end -%>
+              <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>
+                         border_left_thick">
+                <%= score %>
+              </td>
+              <td class="centered <%= is_nicks ? 'nicks' : '' %>">
+                <%= is_nicks ? '〇' : '×' %>
+              </td>
+              <td class="centered <%= is_interesting ? 'interesting' : '' %>">
+                <%= is_interesting ? '〇' : '×' %>
+              </td>
+              <td class="allows_wrap"><%= mating.inbreed_display %></td>
             <% end -%>
           </tr>
         <% end -%>
+        <tr>
+          <td colspan="9">
+            <input type="search" name="mare" value="<%= @mare %>" autocomplete="on" list="mother_candidates" autofocus>
+            <%= f.number_field "age" %>
+            <input type="search" name="sire" value="<%= @sire %>" autocomplete="on" list="sire_candidates">
+          </td>
+        </tr>
       </tbody>
     </table>
     <%= f.submit %>
