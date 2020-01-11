@@ -45,7 +45,7 @@
           </td>
         <% else -%>
           <td colspan="25" class="centered">
-            <%= post_race.comment %>
+            <span class="post_race_comment"><%= post_race.comment %></span>
           </td>
           <td><%= link_to 'e', edit_post_race_path(post_race), tabindex: -1 %></td>
         <% end -%>
