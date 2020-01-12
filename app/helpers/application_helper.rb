@@ -279,22 +279,18 @@ module ApplicationHelper
           : [' ' ,target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
       button_to_target = content_tag(:td, button_to(label, path, method: method, class: clazz, tabindex: -1), class: 'centered')
     end
-    load_to_s = [
-      race.weight_to_s || '馬齢',
-      race.handicap? ? nil : "#{race.load_for(racer)}kg",
-      race.separate? && race.load_plus_from_total_prize? ? "+ 獲得賞金 #{race.age == '3' ? 800 : 1200}万円毎 1kg" : nil
-    ].compact.join(' ')
     clazz = race.grade.high_stake? ? 'high_stake' : race.grade <= racer.grade ? '' : 'overgrade'
+
     target_racers = (@target_races_by_others || []).find_all { |tr| tr.race == race }.map(&:racer)
     clazz = 'target_by_others' if target_racers.size > 0
     entered_racers = (@entered_races_by_others || []).find_all { |r| r.race == race }.map(&:racer)
     clazz = 'entry_by_others' if entered_racers.size > 0
     other_racers = (target_racers + entered_racers).uniq
-    load_to_s = other_racers.join(', ') if other_racers.size > 0
+
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target,
-      content_tag(:td, safe_join(a, ' '), class: clazz, aria: {label: load_to_s}),
+      content_tag(:td, safe_join(a, ' '), class: clazz, aria: {label: other_racers.join(', ')}),
     ].compact)
   end
 
