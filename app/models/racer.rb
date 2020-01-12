@@ -169,8 +169,9 @@ class Racer < ApplicationRecord
 
   def default_condition
     return '重' if weeklies.empty?
+    return '怪' if injury
     age_prev = age_in_week.prev
-    return '休' if race_in?(*age_prev.to_a) || injury
+    return '休' if race_in?(*age_prev.to_a)
     (weeklies.find_by(age_prev.to_h)&.condition || '×').yield_self { |c|
       if c == '休'
         c = weeklies.find_by(age_prev.prev.to_h)&.condition

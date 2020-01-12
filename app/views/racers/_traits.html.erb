@@ -113,7 +113,7 @@
 
         <div id="form_to_injure" hidden>
           <%= form_with url: injure_racer_path(@racer), local: true, method: :patch do |f| %>
-            <%= f.text_field :description, value: @racer.injury&.description, autofocus: true %>
+            <%= f.text_field :description, value: @racer.injury&.description %>
             <%= f.submit '負傷' %>
           <% end -%>
         </div>

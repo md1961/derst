@@ -8,3 +8,6 @@ $ ->
 
     $('#show_form_to_injure').on 'click', ->
       $('#form_to_injure').toggle()
+      $('input#description').focus()
+
+    $(window).scrollTop(9999)
