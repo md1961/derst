@@ -12,4 +12,16 @@
       color: red;
     }
   }
+
+  .mares {
+    margin-top: 40px;
+
+    a, input {
+      display: none;
+    }
+
+    form.button_to {
+      margin-top: 0;
+    }
+  }
 }

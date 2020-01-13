@@ -8,6 +8,7 @@ class MareListsController < ApplicationController
     @sire = params[:sire]
     session[:ranch_id] = params[:ranch_id] if params[:ranch_id]
     @ranch = Ranch.find(session[:ranch_id])
+    @mares = @ranch.mares
   end
 
   def update

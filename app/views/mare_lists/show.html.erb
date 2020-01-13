@@ -61,6 +61,10 @@
 
   <%= button_to '全削除', mare_list_path, method: :delete, data: {confirm: "全削除？"}, tabindex: -1 %>
 
+  <div class="mares">
+    <%= render 'mares' %>
+  </div>
+
   <%= render 'mother_candidates' %>
   <%= render 'sire_candidates' %>
 </div>
