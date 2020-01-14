@@ -224,8 +224,8 @@ module ApplicationHelper
     age.sub(/\A(\d)/, '\1歳').sub('U', '上')
   end
 
-  def race_name_display(race)
-    addition = ' ' + race_addition_display(race)
+  def race_name_display(race, uses_styles: true)
+    addition = ' ' + race_addition_display(race, uses_styles: uses_styles)
     name = race.abbr || race.name
     content_tag :span, class: 'race_name' do
       (name ?
@@ -240,16 +240,16 @@ module ApplicationHelper
     content_tag :span, "#{race.dirt? ? 'D' : ''}#{race.distance}", class: race.surface
   end
 
-  def race_limitation_display(race)
-      race.female_only?   ? content_tag(:span, '牝', class: 'female_only') \
-    : race.domestic_only? ? content_tag(:span, '父', class: 'domestic_only') : nil
+  def race_limitation_display(race, uses_styles: true)
+      race.female_only?   ? content_tag(:span, '牝', class: uses_styles ? 'female_only' : '') \
+    : race.domestic_only? ? content_tag(:span, '父', class: uses_styles ? 'domestic_only' : '') : nil
   end
 
-  def race_addition_display(race)
+  def race_addition_display(race, uses_styles: true)
     [
       "",
-      race_limitation_display(race),
-      race.handicap? ? content_tag(:span, '[H]', class: 'handicap') : nil
+      race_limitation_display(race, uses_styles: uses_styles),
+      race.handicap? ? content_tag(:span, '[H]', class: uses_styles ? 'handicap' : '') : nil
     ].compact.join(' ')
   end
 
