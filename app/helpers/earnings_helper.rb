@@ -5,7 +5,7 @@ module EarningsHelper
       results.sort_by { |result|
         -result.prize
       }.map { |result|
-        race_name_display(result.race).yield_self { |x|
+        race_name_display(result.race, uses_styles: false).yield_self { |x|
           result.place == 1 ? x : x + " #{result.place}着"
         }
       },
