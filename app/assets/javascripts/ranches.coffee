@@ -42,6 +42,7 @@ $ ->
       value2 = parseInt($(tr2).children('td.' + key).eq(0).text())
       value2 - value1
     ))
+    $.get('mare_sort_key', {key: key})
 
   if $('.ranches_show').length > 0
     $(window).scrollTop(9999)

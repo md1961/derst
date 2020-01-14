@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     member do
       patch :next_week
     end
+
+    collection do
+      get :mare_sort_key
+    end
   end
 
   resources :sires, except: %i[destroy]

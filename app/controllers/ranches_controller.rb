@@ -2,10 +2,13 @@ class RanchesController < ApplicationController
 
   KEY_SHOWS_MARES = :shows_mares_in_ranches_show
   KEY_SHOWS_NO_STABLE = :shows_no_stable_in_ranches_show
+  KEY_MARE_SORT_KEY = :mare_sort_key_in_ranches_show
 
   def show
     @ranch = Ranch.last
-    @mares = @ranch.mares
+
+    mare_sort_key = session[KEY_MARE_SORT_KEY] == 'price' ? {price: :desc} : :year_birth
+    @mares = @ranch.mares.order(mare_sort_key)
 
     @shows_no_stable = params[:shows_no_stable] ? params[:shows_no_stable] == 'true' \
                                                 : session[KEY_SHOWS_NO_STABLE]
@@ -39,5 +42,9 @@ class RanchesController < ApplicationController
       ranch.go_to_next_week
     end
     redirect_to ranch_path(ranch, next_done: true)
+  end
+
+  def mare_sort_key
+    session[KEY_MARE_SORT_KEY] = params[:key]
   end
 end
