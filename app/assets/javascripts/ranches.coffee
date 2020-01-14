@@ -34,5 +34,13 @@ $ ->
         $('tr[data-racer_id="' + id + '"]').removeClass('hover')
     )
 
+  $('.ranches_show .mares th.age').on 'click', ->
+    $tbody = $('.ranches_show .mares tbody').eq(0)
+    $tbody.html($tbody.children('tr').sort((tr1, tr2) ->
+      age1 = parseInt($(tr1).children('td.age').eq(0).text())
+      age2 = parseInt($(tr2).children('td.age').eq(0).text())
+      age2 - age1
+    ))
+
   if $('.ranches_show').length > 0
     $(window).scrollTop(9999)

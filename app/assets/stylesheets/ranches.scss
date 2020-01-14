@@ -7,6 +7,10 @@
     input[type="submit"] {
       height: 18px;
     }
+
+    th.age {
+      cursor: pointer;
+    }
   }
 
   .racers, .all_racers {

@@ -1,7 +1,8 @@
 <table class="table_base">
   <thead>
     <tr>
-      <th colspan="<%= @ranch ? 3 : 2 %>">
+      <th colspan="<%= @ranch ? 2 : 1 %>">
+      <th class="age">馬齢</th>
       <% mare_trait_names.each do |name| -%>
         <th><%= Mare.human_attribute_name(name) %></th>
       <% end -%>
@@ -27,7 +28,7 @@
         </td>
         <% ranch_mare = @ranch&.ranch_mares&.find_by(mare: mare) -%>
         <% if @ranch -%>
-          <td class="numeric">
+          <td class="age numeric">
             <%= "#{ranch_mare.age}歳" %>
           </td>
         <% end -%>
