@@ -34,12 +34,13 @@ $ ->
         $('tr[data-racer_id="' + id + '"]').removeClass('hover')
     )
 
-  $('.ranches_show .mares th.age').on 'click', ->
+  $('.ranches_show .mares th.sortable').on 'click', ->
     $tbody = $('.ranches_show .mares tbody').eq(0)
+    key = if $(this).hasClass('age') then 'age' else 'price'
     $tbody.html($tbody.children('tr').sort((tr1, tr2) ->
-      age1 = parseInt($(tr1).children('td.age').eq(0).text())
-      age2 = parseInt($(tr2).children('td.age').eq(0).text())
-      age2 - age1
+      value1 = parseInt($(tr1).children('td.' + key).eq(0).text())
+      value2 = parseInt($(tr2).children('td.' + key).eq(0).text())
+      value2 - value1
     ))
 
   if $('.ranches_show').length > 0

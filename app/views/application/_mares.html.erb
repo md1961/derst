@@ -1,10 +1,12 @@
-<table class="table_base">
+<table class="mares table_base">
   <thead>
     <tr>
       <th colspan="<%= @ranch ? 2 : 1 %>">
-      <th class="age">馬齢</th>
+      <th class="age sortable">馬齢</th>
       <% mare_trait_names.each do |name| -%>
-        <th><%= Mare.human_attribute_name(name) %></th>
+        <th class="<%= name == :price ? 'sortable' : '' %>">
+          <%= Mare.human_attribute_name(name) %>
+        </th>
       <% end -%>
       <th colspan="4">受胎</th>
       <th>備考</th>
@@ -33,7 +35,8 @@
           </td>
         <% end -%>
         <% mare_trait_names.each do |name| -%>
-          <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>">
+          <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>
+                     <%= name == :price ? 'price' : '' %>">
             <%= mare.send(name) %>
           </td>
         <% end -%>
