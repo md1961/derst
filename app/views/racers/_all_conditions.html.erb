@@ -67,7 +67,7 @@
         <td class="weight_best border_left_thick border_right_thick">
           <%= racer.weight_best %>
         </td>
-        <%= render partial: 'racers/coming_races', locals: {racer: racer} %>
+        <%= render partial: 'racers/coming_races', locals: {racer: racer, num_races: 2} %>
       </tr>
     <% end -%>
   </tbody>
