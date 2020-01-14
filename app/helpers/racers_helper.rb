@@ -19,6 +19,12 @@ module RacersHelper
     "スピード #{mare.speed}、スタミナ #{mare.stamina}"
   end
 
+  def racer_with_race_display(racer)
+    return racer.to_s unless racer.expecting_race?
+    race = racer.expecting_race
+    "#{racer} - #{race.course} #{race_name_display(race, uses_styles: false)}"
+  end
+
   def race_options_for_select_for(racer)
     grouped_options_for_select(
       racer.race_candidates(includes_overgrade: true).find_all { |race|

@@ -33,9 +33,9 @@
 
       <%= link_to 'Back', ranch_path(@racer.ranch, main_display: @main_display), data: {shortcut: 'b'}, tabindex: -1 %>
       <% if @prev_racer && @next_racer -%>
-        <%= link_to "<(#{@prev_racer})", @prev_racer, id: 'to_prev_racer',
+        <%= link_to "<[#{racer_with_race_display(@prev_racer)}]".html_safe, @prev_racer, id: 'to_prev_racer',
                       class: @prev_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
-        <%= link_to "(#{@next_racer})>", @next_racer, id: 'to_next_racer',
+        <%= link_to "[#{racer_with_race_display(@next_racer)}]>".html_safe, @next_racer, id: 'to_next_racer',
                       class: @next_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
       <% end -%>
 
