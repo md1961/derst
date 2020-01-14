@@ -2,6 +2,9 @@ $ ->
   filter = ->
     $('.sires tbody tr').hide()
 
+    if $('#sire_filter_is_outbreed').prop('checked')
+      $('#header_score').removeClass('excellent_score_only')
+
     if $('#header_score').hasClass('excellent_score_only')
       $('td.excellent_score').parent('tr').show()
     else
@@ -34,10 +37,13 @@ $ ->
         $('td.' + class_name).parent('tr').hide()
       )
 
-    min_score = $('#sire_filter_score').val()
-    $('.sires tbody td[data-score]').filter(->
-      $(this).data('score') < min_score
-    ).parent('tr').hide()
+    if $('#sire_filter_is_outbreed').prop('checked')
+      $('.sires tbody td.inbreed').parent('tr').hide()
+    else
+      min_score = $('#sire_filter_score').val()
+      $('.sires tbody td[data-score]').filter(->
+        $(this).data('score') < min_score
+      ).parent('tr').hide()
 
     $('#count_sires').text($('.sires tbody tr:visible').length)
 
@@ -65,4 +71,7 @@ $ ->
 
   $('#sire_filter_score').on 'change', ->
     $('#header_score').removeClass('excellent_score_only')
+    filter()
+
+  $('#sire_filter_is_outbreed').on 'change', ->
     filter()

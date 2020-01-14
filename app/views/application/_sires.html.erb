@@ -31,6 +31,8 @@
       <%= f.select :stability, options_for_abc, {}, class: 'select_abc' %>
       <%= f.label 'スコア' %>
       <%= f.number_field :score, value: 0 %>
+      <%= f.check_box :is_outbreed %>
+      <%= f.label :is_outbreed, 'アウトブリード' %>
       <%= hidden_field_tag :mare_id, @mare&.id %>
       <%= hidden_field_tag :ranch_id, @ranch&.id %>
     <% end -%>
@@ -107,7 +109,10 @@
           <% mating.root_lineage_numbers.each do |number| -%>
             <td class="root_lineage_number"><%= number %></td>
           <% end -%>
-          <td class="allows_wrap"><%= mating.inbreed_display %></td>
+          <% inbreed_display = mating.inbreed_display -%>
+          <td class="allows_wrap <%= inbreed_display.present? ? 'inbreed' : 'outbreed' %>">
+            <%= inbreed_display %>
+          </td>
           <% ranch_mare = @ranch&.ranch_mares&.find_by(mare: @mare) -%>
           <% if ranch_mare -%>
             <td>
