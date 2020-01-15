@@ -236,8 +236,8 @@ class Racer < ApplicationRecord
                                  && max_grade_runner_up.ordering <= max_grade.ordering
     results_runner_up = results_runner_up_by_grade[max_grade_runner_up] || []
 
-    unless max_grade&.g1? || max_grade_runner_up&.g1?
-      results_runner_up += results.joins(race: :grade).where("grades.abbr = 'Ⅰ'")
+    if max_grade_runner_up.nil? || max_grade_runner_up.g1?
+      results_runner_up += results.joins(race: :grade).where("grades.abbr = 'Ⅰ' AND place >= 3")
                                   .group_by(&:place).sort_by { |place, _| place }.first&.last || []
     end
 
