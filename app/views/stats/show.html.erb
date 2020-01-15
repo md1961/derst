@@ -1,4 +1,24 @@
 <div class="stats_show">
+  <div class="row">
+    <% [false, true].each do |high_stakes| -%>
+      <% [1, 2, 3].each do |place| -%>
+        <table>
+          <caption>
+            <%= "#{high_stakes ? "重賞 " : ""}#{{1 => "勝利数", 2 => "連対数", 3 => "複勝数"}[place]}" %>
+          </caption>
+          <tbody>
+            <% Stats.each_most_number_of_equal_or_better_places_of(place, high_stakes: high_stakes) do |racer, number| -%>
+              <tr>
+                <td><%= racer %></td>
+                <td class="numeric"><%= number %></td>
+              </tr>
+            <% end -%>
+          </tbody>
+        </table>
+      <% end -%>
+    <% end -%>
+  </div>
+
   <% [false, true].each do |high_stakes| -%>
     <% [1, 2, 3].each do |place| -%>
       <div class="row">
