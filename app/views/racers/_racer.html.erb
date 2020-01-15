@@ -9,9 +9,12 @@
     @racer_id_to_edit = is_current_racer ? -1 : 0
   end
 
-  if index < 10
+  if racer.age == 1
     shortcut_show = index.to_s
-    shortcut_edit = %w[nil ! = # $ % & ' ( )][index]
+    shortcut_edit = nil
+  elsif index < 10
+    shortcut_show = index.to_s
+    shortcut_edit = %w[:not_used ! = # $ % & ' ( )][index]
   else
     shortcut_show = ('a'.ord + index - 10).chr
     shortcut_edit = shortcut_show.upcase
