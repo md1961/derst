@@ -87,7 +87,7 @@ module RacersHelper
     when :for_bad_surface
       %w[－ △ 〇 ◎]
     when :position
-      %w[－ 自在 逃げ 先行 中団 追込]
+      %w[－ 逃げ 先行 中団 追込]
     when :condition
       %w[－ ◎ ↑ ◉  ○ △ ▽]
     else
