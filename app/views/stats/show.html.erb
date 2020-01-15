@@ -1,21 +1,25 @@
 <div class="stats_show">
-  <% [1, 2, 3].each do |place| -%>
-    <div class="row">
-      <table>
-        <caption><%= {1 => "連勝", 2 => "連続連対", 3 => "連続複勝"}[place] %></caption>
-        <tbody>
-          <% Stats.each_result_in_row_of_equal_or_better_place_of(place) do |results| -%>
-            <tr>
-              <td class="numeric"><%= results.size %></td>
-              <td><%= results.first.racer %></td>
-              <td class="centered"><%= age_range_display(results) %></td>
-              <td class="centered"><%= week_range_display(results) %></td>
-              <td class="results"><%= races_display(results) %></td>
-            </tr>
-          <% end -%>
-        </tbody>
-      </table>
-    </div>
+  <% [false, true].each do |high_stakes| -%>
+    <% [1, 2, 3].each do |place| -%>
+      <div class="row">
+        <table>
+          <caption>
+            <%= "#{high_stakes ? "重賞 " : ""}#{{1 => "連勝", 2 => "連続連対", 3 => "連続複勝"}[place]}" %>
+          </caption>
+          <tbody>
+            <% Stats.each_result_in_row_of_equal_or_better_place_of(place, high_stakes: high_stakes) do |results| -%>
+              <tr>
+                <td class="numeric"><%= results.size %></td>
+                <td><%= results.first.racer %></td>
+                <td class="centered"><%= age_range_display(results) %></td>
+                <td class="centered"><%= week_range_display(results) %></td>
+                <td class="results"><%= races_display(results) %></td>
+              </tr>
+            <% end -%>
+          </tbody>
+        </table>
+      </div>
+    <% end -%>
   <% end -%>
 
   <div class="row">
