@@ -44,4 +44,28 @@ module Stats
       -number
     }.each(&block)
   end
+
+  MIN_RACES_FOR_BEST_PCT = [10, 5]
+
+  MIN_PCT_OF_PLACES = {
+    1 => [0.25, 0.00],
+    2 => [0.35, 0.00],
+    3 => [0.45, 0.00]
+  }
+
+  def each_best_pct_of_equal_or_better_places_of(place, high_stakes: false, &block)
+    Racer.all.includes(results: {race: :grade}).map { |racer|
+      place_records = racer.place_records(high_stakes: high_stakes)
+      num_races = place_records[0]
+      if num_races < MIN_RACES_FOR_BEST_PCT[high_stakes ? 1 : 0]
+        nil
+      else
+        [racer, place_records[1 .. place].sum, num_races]
+      end
+    }.compact.find_all { |_, num_places, num_races|
+      num_places.to_f / num_races >= MIN_PCT_OF_PLACES[place][high_stakes ? 1 : 0]
+    }.sort_by { |_, num_places, num_races|
+      -num_places.to_f / num_races
+    }.each(&block)
+  end
 end
