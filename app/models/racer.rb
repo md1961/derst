@@ -213,9 +213,11 @@ class Racer < ApplicationRecord
         .order(:month, :week) \
   end
 
-  def place_records
-    [results.size] \
-    + results.pluck(:place).group_by(&:to_i).find_all { |place, _|
+  def place_records(high_stakes: false)
+    _results = results
+    _results = _results.high_stake if high_stakes
+    [_results.size] \
+    + _results.pluck(:place).group_by(&:to_i).find_all { |place, _|
         place <= 3
       }.map { |place, places|
         [place, places.size]
