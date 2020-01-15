@@ -35,4 +35,12 @@
   tr.hover {
     background-color: #CCFFFF; // cyan;
   }
+
+  span.g1 {
+    font-weight: bold;
+
+    &.win {
+      background-color: palegreen;
+    }
+  }
 }
