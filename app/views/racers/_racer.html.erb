@@ -63,7 +63,7 @@
       <%= link_to 'Cancel', @ranch, class: 'escapeable', data: {shortcut: 'b'} %>
     </td>
   <% else -%>
-    <% unless racer.in_ranch -%>
+    <% if !racer.in_ranch -%>
       <td>
     <% else -%>
       <td class="numeric <%= weeks_in_ranch_class(racer) %>">
@@ -71,7 +71,7 @@
       </td>
     <% end -%>
 
-    <% unless racer.stable -%>
+    <% if !racer.stable || @racer_id_to_edit > 0 -%>
       <td>
       <td class="border_right_thick">
     <% else -%>
