@@ -39,6 +39,7 @@ class Mating
   def score
     @score ||= fetch_from_cache(:score) \
       || h_inbreeds.reduce(0) { |value, (father, generations)|
+           return -20 if @mare.lineage == @sire.trait.lineage
            return -20 if (generations <=> [3, 3]) <= 0
            divisor = 1
            divisor = 2.0 if generations == [5, 5]
