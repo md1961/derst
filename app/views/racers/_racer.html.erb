@@ -85,6 +85,6 @@
   <% end -%>
 <% end -%>
 
-<% if (racer.stable && racer.in_ranch) || is_menu -%>
+<% if (@racer_id_to_edit < 1 && racer.stable && racer.in_ranch) || is_menu -%>
   <%= render partial: 'racers/coming_races', locals: {racer: racer, num_races: racer.in_ranch || is_menu ? 1 : 2} %>
 <% end -%>
