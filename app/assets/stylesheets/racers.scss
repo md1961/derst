@@ -294,7 +294,7 @@ td.remote {
 
     input.target {
       color: white;
-      background-color: red;
+      background-color: magenta;
     }
   }
 
@@ -370,6 +370,10 @@ td.remote {
     color: black;
     background-color: cyan;
     padding: 0;
+  }
+
+  td.target {
+    background-color: magenta;
   }
 
   td.race_coming {
