@@ -6,7 +6,25 @@
           <td><%= racer_name_display(racer) %></td>
           <td><%= racer_sex_display(racer) %></td>
           <td class="numeric"><%= "#{racer.age}歳" %></td>
-          <td><%= "x #{racer.father}" %></td>
+          <% father = racer.father
+          mating = Mating.new(mare, father)
+          is_nicks       = mating.nicks?
+          is_interesting = mating.interesting?
+          score          = mating.score -%>
+          <td><%= "x #{father}" %></td>
+          <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>
+                     border_left_thick">
+            <%= score %>
+          </td>
+          <td class="centered <%= is_nicks ? 'nicks' : '' %>">
+            <%= is_nicks ? '〇' : '×' %>
+          </td>
+          <td class="centered <%= is_interesting ? 'interesting' : '' %>">
+            <%= is_interesting ? '〇' : '×' %>
+          </td>
+          <td class="allows_wrap">
+            <%= mating.inbreed_display.yield_self { |x| x.blank? ? '（アウトブリード）' : x } %>
+          </td>
         </tr>
       <% end -%>
     </tbody>
