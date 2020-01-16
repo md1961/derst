@@ -14,7 +14,6 @@ class Racer < ApplicationRecord
   has_one :injury
 
   has_many :results, -> { joins(:race).order(:age, 'races.month', 'races.week') } do
-
     def in_row_of_equal_or_better_place_of(place, high_stakes: false)
       chunk { |result|
         result.place <= place && (!high_stakes || result.race.grade.high_stake?)
