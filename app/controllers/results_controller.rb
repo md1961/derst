@@ -11,8 +11,18 @@ class ResultsController < ApplicationController
 
   def update
     result = Result.find(params[:id])
-    result.update(result_params)
-    redirect_to result.racer
+    racer = result.racer
+    ApplicationRecord.transaction do
+      result.update(result_params)
+      if result.place.present?
+        current_week = racer.ranch.month_week
+        next_week = current_week.next
+        weeks = [current_week, next_week, next_week.next]
+        racer.target_races.in_weeks_of(weeks).destroy_all
+        racer.target_races.undergrade(racer.grade).destroy_all
+      end
+    end
+    redirect_to racer
   end
 
   def destroy
