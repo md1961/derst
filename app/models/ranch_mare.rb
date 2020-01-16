@@ -6,4 +6,8 @@ class RanchMare < ApplicationRecord
   belongs_to :sire, optional: true
 
   enum child_status: {default_child_status: 0, checking: 1, expecting: 2}
+
+  def to_s
+    mare.name
+  end
 end
