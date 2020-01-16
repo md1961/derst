@@ -1,6 +1,6 @@
 <% mare = @ranch_mare.mare -%>
 
-<div class="ranch_mares_edit_remark">
+<div class="ranch_mares_show">
   <div class="form">
     <div>
       <table class="table_base">
@@ -12,7 +12,7 @@
 
       <%= form_with url: update_remark_ranch_mare_path(@ranch_mare), local: true, method: :patch do |f| %>
         <%= f.label '産駒名候補など' %>
-        <%= f.text_field :remark, value: @ranch_mare.remark, size: 40, autofocus: true %>
+        <%= f.text_field :remark, value: @ranch_mare.remark, size: 40, autofocus: true, class: 'allows_shortcut' %>
         <%= f.submit %>
       <% end -%>
     </div>
@@ -28,5 +28,18 @@
     <% else -%>
       <%= render partial: 'mare', locals: {mare: mare} %>
     <% end -%>
+  </div>
+
+  <div class="links">
+    <%= link_to 'Back', ranch_path(@ranch_mare.ranch), data: {shortcut: 'b'}, tabindex: -1 %>
+    <div class="links_to_mares">
+      <% @ranch_mares.each.with_index(1) do |ranch_mare, index| -%>
+        <%= ranch_mare_link(ranch_mare, index) %>
+        <% if index == 4 -%>
+          <br>
+          <div class="spacer">
+        <% end -%>
+      <% end -%>
+    </div>
   </div>
 </div>

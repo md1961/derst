@@ -7,7 +7,7 @@ td.expecting {
   font-weight: bold;
 }
 
-.ranch_mares_edit_remark {
+.ranch_mares_show {
   display: flex;
   flex-direction: column;
   margin-top: 40px;
@@ -26,5 +26,21 @@ td.expecting {
 
   .mating {
     margin-top: 30px;
+  }
+
+  .links {
+    margin-top: 20px;
+
+    .links_to_mares {
+      margin-top: 20px;
+    }
+
+    .spacer {
+      margin-top: 10px;
+    }
+
+    .label {
+      margin-right: 30px;
+    }
   }
 }

@@ -2,6 +2,12 @@ class RanchMaresController < ApplicationController
 
   def show
     @ranch_mare = RanchMare.find(params[:id])
+    ranch = @ranch_mare.ranch
+    @ranch_mares = ranch.mares.order(ranch_mare_sort_key).map { |mare|
+      ranch.ranch_mares.find_by(mare: mare)
+    }
+    index = @ranch_mares.index(@ranch_mare)
+    @prev_mare, @next_mare = (@ranch_mares.to_a * 2).values_at(index - 1, index + 1)
   end
 
   def new
