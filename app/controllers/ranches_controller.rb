@@ -18,7 +18,7 @@ class RanchesController < ApplicationController
     if @main_display == 'all_racers'
       @racers = Racer.retired.older_first + [nil] + @racers
     elsif !@shows_no_stable && @main_display != 'active_inbreeds'
-      @racers = @racers.where.not(stable: nil)
+      @racers = @racers.where("year_birth <= ?", @ranch.year - 2)
     end
 
     @racer_id_to_edit = params[:racer_id_to_edit].to_i
