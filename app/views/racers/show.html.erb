@@ -28,7 +28,9 @@
     <% end -%>
 
     <div class="links">
-      <%= form_for_weekly(@racer) %>
+      <% unless @editing -%>
+        <%= form_for_weekly(@racer) %>
+      <% end -%>
       <span class="weight_best"><%= "ベスト #{@racer.weight_best}kg" %></span>
 
       <%= link_to 'Back', ranch_path(@racer.ranch, main_display: @main_display), data: {shortcut: 'b'}, tabindex: -1 %>
