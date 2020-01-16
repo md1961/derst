@@ -216,7 +216,7 @@ module ApplicationHelper
         comment_paddock: 20,
         comment_race:    40,
       }[name] || 2
-      f.text_field name, size: size
+      f.text_field name, size: size, class: name == :comment_paddock ? 'allows_shortcut' : ''
     end
   end
 
