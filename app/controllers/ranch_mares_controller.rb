@@ -1,5 +1,9 @@
 class RanchMaresController < ApplicationController
 
+  def show
+    @ranch_mare = RanchMare.find(params[:id])
+  end
+
   def new
     @ranch_mare = RanchMare.new(ranch_id: params[:ranch_id])
   end
@@ -46,13 +50,9 @@ class RanchMaresController < ApplicationController
     redirect_to ranch
   end
 
-  def edit_remark
-    @ranch_mare = RanchMare.find(params[:id])
-  end
-
   def update_remark
     @ranch_mare = RanchMare.find(params[:id])
     @ranch_mare.update!(remark: params[:remark])
-    render :edit_remark
+    render :show
   end
 end

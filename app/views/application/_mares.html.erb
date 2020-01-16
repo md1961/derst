@@ -20,7 +20,7 @@
         <td class="numeric">
           <% if @ranch -%>
             <% ranch_mare = RanchMare.find_by(ranch: @ranch, mare: mare) -%>
-            <%= link_to seq_num, edit_remark_ranch_mare_path(ranch_mare), target: '_blank', tabindex: -1 %>
+            <%= link_to seq_num, ranch_mare, target: '_blank', tabindex: -1 %>
           <% else -%>
             <%= link_to seq_num, mare_path(mare), tabindex: has_all_fathers ? -1 : 0 %>
           <% end -%>
@@ -44,7 +44,7 @@
           <% ranch_mare = @ranch.ranch_mares.find_by(mare: mare) -%>
           <% if sire = ranch_mare&.sire -%>
             <td class="<%= ranch_mare.child_status %>"><%= sire %></td>
-            <td><%= link_to '配合', edit_remark_ranch_mare_path(ranch_mare), target: '_blank', tabindex: -1 %></td>
+            <td><%= link_to '配合', ranch_mare, target: '_blank', tabindex: -1 %></td>
             <td><%= link_to '誕生', new_racer_path(ranch_id: @ranch, father_id: sire, mother_id: mare), tabindex: -1 %></td>
             <td><%= link_to '削除', delete_sire_ranch_mare_path(ranch_mare), method: :patch, tabindex: -1 %></td>
           <% else -%>
