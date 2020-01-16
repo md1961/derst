@@ -61,7 +61,7 @@ module ApplicationHelper
       racer.stable&.jockeys&.join('、')
     elsif name == :remark && racer.injury
       racer.injury.description
-    elsif !f || name == :grade \
+    elsif !f || name == :grade || name == :weight_best \
           || (racer.stable && name.to_s.starts_with?('comment_')) \
           || (racer.age != 2 && name == :comment_age2) \
           || (racer.age != 3 && name == :comment_age3) \
@@ -85,8 +85,6 @@ module ApplicationHelper
         f.number_field(:weight_fat, step: 2, autofocus: true),
         content_tag(:span, '>', class: 'fat_to_best button')
       ].compact, "\n")
-    elsif name == :weight_best
-      f.number_field(:weight_best, step: 2)
     elsif name == :weight_lean
       safe_join([
         content_tag(:span, '<', class: 'lean_to_best button'),
