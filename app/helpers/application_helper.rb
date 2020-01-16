@@ -80,12 +80,18 @@ module ApplicationHelper
         ]
       }
       f.select :stable_id, grouped_options_for_select(options, racer.stable&.id, prompt: '-')
-    elsif name.to_s.starts_with?('weight_')
+    elsif name == :weight_fat
       safe_join([
-        name == :weight_lean ? content_tag(:span, '<', class: 'lean_to_best button') : nil,
-        f.number_field(name, step: 2, autofocus: name == :weight_fat),
-        name == :weight_fat  ? content_tag(:span, '>', class: 'fat_to_best  button') : nil
+        f.number_field(:weight_fat, step: 2, autofocus: true),
+        content_tag(:span, '>', class: 'fat_to_best button')
       ].compact, "\n")
+    elsif name == :weight_best
+      f.number_field(:weight_best, step: 2)
+    elsif name == :weight_lean
+      safe_join([
+        content_tag(:span, '<', class: 'lean_to_best button'),
+        f.number_field(:weight_lean, step: 2)
+      ], "\n")
     else
       f.text_field name, autofocus: name.to_s.starts_with?('comment_age')
     end
