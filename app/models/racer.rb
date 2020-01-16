@@ -6,7 +6,6 @@ class Racer < ApplicationRecord
   belongs_to :ranch
   belongs_to :grade_given, class_name: 'Grade', optional: true
   belongs_to :stable, optional: true
-  has_many :target_races
   has_many :weeklies, -> { order(:age, :month, :week) }
   has_one :in_ranch
   has_one :racer_trip
@@ -24,6 +23,12 @@ class Racer < ApplicationRecord
       }.sort_by { |results|
         -results.size
       }
+    end
+  end
+
+  has_many :target_races do
+    def in_week_of?(month, week)
+      joins(:race).exists?('races.month': month, 'races.week': week)
     end
   end
 
