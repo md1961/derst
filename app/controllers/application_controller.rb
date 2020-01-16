@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate
 
+  KEY_RANCH_MARE_SORT_KEY = :ranch_mare_sort_key
+
   private
 
     HOSTNAMES_TO_REJECT = %w[namaka mimas sinope rael ariel]
@@ -23,5 +25,9 @@ class ApplicationController < ActionController::Base
       params.require(:sire_filter).permit(
         :growth, :temper, :contend, :health, :stability
       )
+    end
+
+    def ranch_mare_sort_key
+      session[KEY_RANCH_MARE_SORT_KEY] == 'price' ? {price: :desc} : :year_birth
     end
 end
