@@ -133,11 +133,6 @@ module ApplicationHelper
   end
 
   def button_to_next_week(ranch)
-    racer = nil
-    if ranch.is_a?(Racer)
-      racer = ranch
-      ranch = racer.ranch
-    end
     button_to '翌週', next_week_ranch_path(ranch), method: :patch, id: 'button_to_next_week', tabindex: -1
   end
 
