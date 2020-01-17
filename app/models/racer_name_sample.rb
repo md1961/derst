@@ -5,7 +5,7 @@ class RacerNameSample < ApplicationRecord
 
   enum type: {no_type: 0, full_name: 1, dual_use: 2, prefix: 3, postfix: 4}
 
-  validates :name, presence: true, length: {in: 2 .. 9}
+  validates :name, presence: true, uniqueness: true, length: {in: 2 .. 9}
 
   after_initialize :name_to_katakana
 
