@@ -1,7 +1,11 @@
 class RacerNameSamplesController < ApplicationController
 
   def index
-    @samples_by_type = RacerNameSample.group_by_type
+    if params[:type]
+      @samples_by_type = RacerNameSample.group_by_type
+    else
+      @samples = RacerNameSample.order(:name)
+    end
     @new_sample = RacerNameSample.new(name: params[:name_input])
   end
 
