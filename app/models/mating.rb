@@ -98,6 +98,19 @@ class Mating
     }
   end
 
+  def racer_name_candidates(num = 10)
+    return [] if @mare.nil? || @sire.nil?
+    [@mare, @sire].flat_map { |horse|
+      horse.bloodline_fathers.map(&:name)
+    }.uniq.flat_map { |name|
+      RacerNameSample.most_similars(name, num)
+    }.sort_by { |_, distance, _|
+      distance
+    }.uniq { |candidate_name, distance, father_name|
+      candidate_name
+    }.take(num)
+  end
+
   def ==(other)
     return false unless other.is_a?(self.class)
     mare.id == other.mare.id && sire.id == other.sire.id
