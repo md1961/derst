@@ -32,6 +32,12 @@
 
   <div class="links">
     <%= link_to 'Back', ranch_path(@ranch_mare.ranch), data: {shortcut: 'b'}, tabindex: -1 %>
+
+    <div>
+      <%= link_to ' ', @prev_mare, data: {shortcut: 'k'}, tabindex: -1 %>
+      <%= link_to ' ', @next_mare, data: {shortcut: 'j'}, tabindex: -1 %>
+    </div>
+
     <div class="links_to_mares">
       <% @ranch_mares.each.with_index(1) do |ranch_mare, index| -%>
         <%= ranch_mare_link(ranch_mare, index) %>
