@@ -26,5 +26,11 @@
     </table>
 
     <%= render partial: 'root_lineage_numbers', locals: {horse: @mating} %>
+
+    <ul class="racer_name_candidates">
+      <% @mating.racer_name_candidates(25).each do |name, distance, father_name| -%>
+        <li><%= sprintf("%s (%5.3f <= %s)", name, distance, father_name) %></li>
+      <% end -%>
+    </ul>
   </div>
 </div>
