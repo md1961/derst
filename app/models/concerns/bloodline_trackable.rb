@@ -21,6 +21,12 @@ module BloodlineTrackable
     child_of_bloodline_father(generation, number)&.father
   end
 
+  def bloodline_fathers
+    each_generation_and_number.to_a.map { |generation, number|
+      bloodline_father(generation, number)
+    }
+  end
+
   def root_lineage_numbers
     (1 .. 4).map { |number| bloodline_father(3, number)&.root_lineage_number }
   end
