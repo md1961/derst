@@ -9,6 +9,14 @@ class RacerNameSample < ApplicationRecord
 
   after_initialize :name_to_katakana
 
+  def self.most_similars(name, num = 10)
+    all.map { |sample|
+      [sample.name, normalized_distance(name, sample.name), name]
+    }.sort_by { |_, distance, _|
+      distance
+    }.take(num)
+  end
+
   def self.group_by_type
     order(:name).group_by(&:type).map { |type, samples| [type, samples] }.to_h
   end
@@ -29,6 +37,10 @@ class RacerNameSample < ApplicationRecord
   end
 
   private
+
+    def self.normalized_distance(str1, str2)
+      DamerauLevenshtein.distance(str1, str2).to_f / [str1, str2].map(&:length).max
+    end
 
     using StringJapanese
 
