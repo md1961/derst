@@ -13,7 +13,7 @@ class RacersController < ApplicationController
     racers = (@racer.in_stable? ? Racer.in_stable : Racer.in_ranch).older_first
     if Racer.any_expecting_race? && Racer.all_training_done?
       racers = racers.find_all { |racer| racer.expecting_race? || racer == @racer }
-      race = @racer.results.last.race
+      race = @racer.results.last&.race
       if races_of_multiple_entries(racers).include?(race)
         racers = racers.find_all { |racer| racer.results.last.race == race }
       end
@@ -169,8 +169,8 @@ class RacersController < ApplicationController
 
     def races_of_multiple_entries(racers)
       racers.map { |racer|
-        racer.results.last.race
-      }.group_by(&:itself).find_all { |race, races|
+        racer.results.last&.race
+      }.compact.group_by(&:itself).find_all { |race, races|
         races.size >= 2
       }.map(&:first)
     end
