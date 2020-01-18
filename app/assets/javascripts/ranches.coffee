@@ -5,12 +5,12 @@ $ ->
 
   $('span.fat_to_best').on 'click', ->
     weight_fat = $(this).prev('input').val()
-    $(this).parents('td').next('td').text(weight_fat - 10)
+    $(this).parents('td').next('td').children('input').val(weight_fat - 10)
     $(this).parents('td').next('td').next('td').children('input').val('')
 
   $('span.lean_to_best').on 'click', ->
     weight_lean = $(this).next('input').val()
-    $(this).parents('td').prev('td').text(weight_lean - 0 + 2)
+    $(this).parents('td').prev('td').children('input').val(weight_lean - 0 + 2)
     $(this).parents('td').prev('td').prev('td').children('input').val('')
 
   $('tr.racer').hover(
