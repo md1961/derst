@@ -5,7 +5,7 @@
       <% if samples.nil? -%>
         <tr><td>データがありません</td></tr>
       <% else -%>
-        <% samples.each_slice(5) do |samples_in_row| -%>
+        <% samples.each_slice(10) do |samples_in_row| -%>
           <tr>
             <% samples_in_row.each do |sample| -%>
               <td id="name_sample-<%= sample.id %>"
@@ -14,7 +14,7 @@
                   draggable="true">
                 <%= sample %>
               </td>
-              <td><%= link_to '削除', sample, method: :delete %></td>
+              <td><%= link_to 'X', sample, method: :delete %></td>
             <% end -%>
           </tr>
         <% end -%>
