@@ -57,6 +57,11 @@ td.remote {
   color: red;
 }
 
+td.computed {
+  color: gray;
+  font-style: italic;
+}
+
 .racers_racers {
 
   td a {
@@ -142,7 +147,7 @@ td.remote {
 
   #name_and_traits {
     position: fixed;
-    top: 30px;
+    top: 32px;
     left: 0;
     right: 0;
     padding: 4px 8px;

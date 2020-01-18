@@ -37,7 +37,10 @@ module ApplicationHelper
   end
 
   def racer_attr_display_in_td(racer, name, f, html_attrs = {})
-    if name == :weights
+    if f.nil? && name == :weight_fat && racer.weight_fat.blank?
+      weight_fat = racer.weight_best.blank? ? nil : racer.weight_best + 10
+      content_tag :td, weight_fat, class: 'computed numeric'
+    elsif name == :weights
       safe_join([
         racer_attr_display_in_td(racer, :weight_fat , f),
         racer_attr_display_in_td(racer, :weight_best, f, class: 'with_unit'),
