@@ -27,7 +27,8 @@
            <%= is_menu && !racer.condition ? 'no_condition' : '' %>
            centered">
   <%= link_to_if @racer_id_to_edit.zero?, shortcut_show.upcase, racer,
-                                          data: {shortcut: shortcut_show}, tabindex: -1 %></td>
+                                          data: {shortcut: shortcut_show}, tabindex: -1 %>
+</td>
 <% unless is_menu -%>
   <td>
     <%= link_to_if @racer_id_to_edit.zero?, 'e', ranch_path(@ranch, racer_id_to_edit: racer),
