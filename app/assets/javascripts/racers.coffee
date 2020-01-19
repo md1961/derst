@@ -10,4 +10,7 @@ $ ->
       $('#form_to_injure').toggle()
       $('input#description').focus()
 
+    $('input[type="checkbox"][name="trip"]').on 'change', ->
+      $('input[type="hidden"][name="trip"]').val($(this).prop('checked'))
+
     $(window).scrollTop(9999)

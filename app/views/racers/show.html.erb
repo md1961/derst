@@ -67,6 +67,9 @@
         <% label, path = @includes_overgrade ? ['格上挑戦せず', @racer] \
                                              : ['格上挑戦', racer_path(@racer, includes_overgrade: true)] -%>
         <%= link_to label, path, tabindex: -1 %>
+
+        <%= check_box_tag :trip, :trip, false, tabindex: -1 %>
+        <%= label_tag :trip, '遠征する' %>
       </div>
 
       <table class="table_base">

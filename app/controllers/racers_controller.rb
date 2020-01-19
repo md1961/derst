@@ -80,7 +80,7 @@ class RacersController < ApplicationController
       racer.results.create(attrs).tap { |result|
         result.set_load_from_racer_and_race!
         course_race = result.race.course
-        if course_race.needs_trip_from?(racer.stable)
+        if course_race.needs_trip_from?(racer.stable) || params[:trip] == 'true'
           racer.trip_to(course_race)
         end
         course_staying = racer.course_staying

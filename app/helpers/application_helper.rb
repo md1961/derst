@@ -281,7 +281,11 @@ module ApplicationHelper
         : is_target \
           ? [' ' ,target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
           : [' ' ,target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
-      button_to_target = content_tag(:td, button_to(label, path, method: method, class: clazz, tabindex: -1), class: 'centered')
+      button_to_target = content_tag(
+        :td,
+        button_to(label, path, method: method, params: {trip: false}, class: clazz, tabindex: -1),
+        class: 'centered'
+      )
     end
     clazz = race.grade.high_stake? ? 'high_stake' : race.grade <= racer.grade ? '' : 'overgrade'
 
