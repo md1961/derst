@@ -1,16 +1,19 @@
-<% shows_results = racers.any? { |racer| racer.results.size > 0 } -%>
+<% shows_results = racers.any? { |racer| racer.results.size > 0 }
+   is_all_under_age_2 = racers.all? { |racer| racer.age <= 2 } -%>
 
 <table class="all_racers table_base">
   <thead>
     <tr>
       <th colspan="4">
-      <th colspan="2">父</th>
+      <th colspan="<%= is_all_under_age_2 ? 5 : 2 %>">父</th>
       <th colspan="2">母</th>
       <th>点</th>
       <th>ニ</th>
       <th>面</th>
       <th>インブリード</th>
-      <% if shows_results -%>
+      <% if is_all_under_age_2 -%>
+        <th>２歳時</th>
+      <% elsif shows_results -%>
         <th>引退時クラス</th>
         <% racer_attr_names(is_active: false).each do |name| -%>
           <th class="default"><%= Racer.human_attribute_name(name) %></th>
@@ -39,6 +42,11 @@
         <td class="numeric"><%= "#{racer.age}歳" %></td>
         <% father, mother = racer.father, racer.mother -%>
         <td><%= father %></td>
+        <% if is_all_under_age_2 -%>
+          <td class="numeric"><%= "#{father.trait.fee}万" %></td>
+          <td><%= father.trait.distances %></td>
+          <td><%= father.trait.growth %></td>
+        <% end -%>
         <td class="centered"><%= father.trait.stability %></td>
         <td><%= mother %></td>
         <td class="centered"><%= "#{mother.speed} #{mother.stamina}" %></td>
@@ -57,7 +65,11 @@
         <td title="<%= inbreed %>">
           <%= inbreed.sub(/, [^.].*/, ', ...') %>
         </td>
-        <% if shows_results -%>
+        <% if is_all_under_age_2 -%>
+          <td>
+            <%= racer.comment_age2 %>
+          </td>
+        <% elsif shows_results -%>
           <td>
             <%= "#{racer.results.last.age}歳 #{racer.grade}" if racer.results.last %>
           </td>
