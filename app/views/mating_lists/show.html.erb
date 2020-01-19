@@ -35,7 +35,7 @@
           <% sire_trait_names.each do |name| -%>
             <% value = trait.send(name) -%>
             <td class="<%= "#{name}-#{value}" %> <%= name == :fee ? 'numeric' : 'centered' %>">
-              <%= value %>
+              <%= name == :fee ? "#{value}万" : value %>
             </td>
           <% end -%>
           <% mare_trait_names.reject { |n| n == :lineage }.each_with_index do |name, index| -%>
@@ -93,7 +93,7 @@
   </div>
 
   <div class="age_2_list">
-    <% racers = Racer.all.find_all { |racer| racer.age == 2 } -%>
+    <% racers = Racer.active.find_all { |racer| racer.age == 2 } -%>
     <%= render partial: 'racers/blood_and_result_list', locals: {racers: racers} %>
   </div>
 

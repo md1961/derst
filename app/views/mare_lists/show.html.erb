@@ -30,7 +30,7 @@
               <% sire_trait_names.each do |name| -%>
                 <% value = trait.send(name) -%>
                 <td class="<%= name == :fee ? 'numeric' : 'centered' %>">
-                  <%= value %>
+                  <%= name == :fee ? "#{value}万" : value %>
                 </td>
               <% end -%>
               <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>
