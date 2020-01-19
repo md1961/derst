@@ -25,7 +25,7 @@
     <% prev_racer = nil -%>
     <% racers.each.with_index(1) do |racer, index| -%>
       <tr class="<%= "age-#{racer&.age}" %>
-                 <%= prev_racer&.stable && racer&.is_active && !racer.stable ? 'border_top_thick' : '' %>">
+                 <%= prev_racer&.age.to_i != racer&.age.to_i ? 'border_top_thick' : '' %>">
         <% prev_racer = racer -%>
         <% unless racer -%>
           <td colspan="18">&nbsp;</td>
