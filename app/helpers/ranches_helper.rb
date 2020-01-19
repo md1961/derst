@@ -11,10 +11,10 @@ module RanchesHelper
         race  = result.race
         place = result.place
         place_display = place == 1 ? "" : " #{place}着"
-        classes = []
+        classes = %w[race_result]
         classes << 'g1'  if race.grade.g1?
         classes << 'win' if place == 1
-        content_tag(:span, class: classes.join(' ')) {
+        content_tag(:span, class: classes) {
           "#{race.name}(#{race.distance_to_s}, #{result.age}歳)#{place_display}"
         }
       }.join(', ').yield_self { |x| x.blank? ? nil : x }
