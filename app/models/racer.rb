@@ -231,7 +231,7 @@ class Racer < ApplicationRecord
   def major_wins
     results_won_by_grade = results.where(place: 1).group_by { |result| result.race.grade }
     max_grade = results_won_by_grade.keys.find_all { |g|
-      g.ordering >= Grade.find_by(abbr: '16').ordering
+      g.ordering >= Grade.find_by(abbr: 'OP').ordering
     }.sort_by(&:ordering).last
     results_won = results_won_by_grade[max_grade] || []
 
