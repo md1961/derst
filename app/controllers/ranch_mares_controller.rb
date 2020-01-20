@@ -57,8 +57,8 @@ class RanchMaresController < ApplicationController
   end
 
   def update_remark
-    @ranch_mare = RanchMare.find(params[:id])
-    @ranch_mare.update!(remark: params[:remark])
-    render :show
+    ranch_mare = RanchMare.find(params[:id])
+    ranch_mare.update!(remark: params[:remark])
+    redirect_to ranch_mare
   end
 end
