@@ -91,6 +91,7 @@ $ ->
     links = $('a[data-shortcut="' + key + '"]:visible')
     if links.length > 0
       links[0].click()
+      return false
 
   $(window).on 'keydown', (e) ->
     focused = $(':focus')
