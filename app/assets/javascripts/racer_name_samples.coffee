@@ -1,4 +1,7 @@
 $ ->
+  $('#racer_name_sample_name').on 'focus', ->
+    $(this).select()
+
   $('#racer_name_sample_name').on 'input', ->
     len = $(this).val().length
     $name_length = $('#name_length')
