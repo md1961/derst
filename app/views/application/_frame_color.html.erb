@@ -1,0 +1,13 @@
+<% (8 .. 16).each do |nr| -%>
+  <table class="table_base" style="margin-top: 5px;">
+    <tr>
+      <% (1 .. nr).each do |nf| -%>
+        <% color = frame_color(nf, nr) -%>
+        <td class="<%= "frame_color#{color}" %>"
+            style="text-align: center; width: 13px;">
+          <%= nf %>
+        </td>
+      <% end -%>
+    </tr>
+  </table>
+<% end -%>

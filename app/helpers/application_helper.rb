@@ -336,4 +336,11 @@ module ApplicationHelper
       concat hidden_field_tag :ranch_id, @ranch&.id, id: "ranch_id-#{racer.id}"
     end
   end
+
+  def frame_color(num_frame, num_racers)
+    return '' if num_frame.blank? || num_racers.blank?
+    excess = num_racers - 8
+    num_frame_1 = num_racers - (excess * 2)
+    num_frame <= num_frame_1 ? num_frame : num_frame_1 + ((num_frame - num_frame_1) / 2.0).ceil
+  end
 end
