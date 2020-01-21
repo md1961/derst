@@ -34,19 +34,23 @@ $ ->
       return
 
     if $('#show_mares').length > 0 && key == 'y'
+      $('#progress_dialog').show()
       if $('table.all_racers').is(':visible')
         $('div.mares').toggle()
       else
         $('#show_mares')[0].click()
       return
     else if $('#show_no_stable').length > 0 && key == 'x'
+      $('#progress_dialog').show()
       $('#show_no_stable')[0].click()
       return
     else if $('#show_inbreeds').length > 0 && key == 'w'
+      $('#progress_dialog').show()
       $('#show_inbreeds')[0].click()
       return
     else if $('#show_all_racers').length > 0 && (key == 'z' || key == 'r')
       if key == 'z'
+        $('#progress_dialog').show()
         $('#show_all_racers')[0].click()
       else if $('table.all_racers').is(':visible')
         $('.default')  .toggle()
@@ -66,6 +70,7 @@ $ ->
       return
 
     if $('.racers_show').length > 0 && (key == 'j' || key == 'k')
+      $('#progress_dialog').show()
       if key == 'k'
         $('#to_prev_racer')[0].click()
       else
@@ -90,6 +95,7 @@ $ ->
     key = '=' if key == '"'
     links = $('a[data-shortcut="' + key + '"]:visible')
     if links.length > 0
+      $('#progress_dialog').show()
       links[0].click()
       return false
 
