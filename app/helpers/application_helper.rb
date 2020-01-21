@@ -220,7 +220,9 @@ module ApplicationHelper
         comment_paddock: 20,
         comment_race:    40,
       }[name] || 2
-      f.text_field name, size: size, class: name == :comment_paddock ? 'allows_shortcut' : ''
+      clazz = name == :comment_paddock ? 'allows_shortcut' \
+            : name == :num_frame ? "frame_color#{frame_color(result.num_frame, result.num_racers)}" : ''
+      f.text_field name, size: size, class: clazz
     end
   end
 
