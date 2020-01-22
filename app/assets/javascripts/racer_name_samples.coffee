@@ -1,8 +1,8 @@
 $ ->
-  $('#racer_name_sample_name').on 'focus', ->
+  $('#names').on 'focus', ->
     $(this).select()
 
-  $('#racer_name_sample_name').on 'input', ->
+  $('#names').on 'input', ->
     len = $(this).val().length
     $name_length = $('#name_length')
     $name_length.text(if len == 0 then '' else len)
@@ -10,6 +10,7 @@ $ ->
       $name_length.addClass('illegal')
     else
       $name_length.removeClass('illegal')
+
 
   dragStartHandler = (e) ->
     e.dataTransfer.setData('text/plain', e.target.id)

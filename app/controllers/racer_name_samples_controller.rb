@@ -6,14 +6,21 @@ class RacerNameSamplesController < ApplicationController
     else
       @samples = RacerNameSample.order(:name)
     end
-    @new_sample = RacerNameSample.new(name: params[:name_input])
+    @names = params[:names_rejected].to_s.split.join('、')
   end
 
   def create
-    sample = RacerNameSample.new(sample_params)
-    saved = sample.save
-    flash[:sample_id] = sample.id if saved
-    redirect_to racer_name_samples_path(saved ? {} : {name_input: sample.name})
+    ids_created, names_rejected = [], []
+    StringUtil.extract_horse_names(params[:names]).each do |name|
+      sample = RacerNameSample.create!(name: name) rescue nil
+      if sample
+        ids_created << sample.id
+      else
+        names_rejected << name
+      end
+    end
+    flash[:ids_created] = ids_created
+    redirect_to racer_name_samples_path(names_rejected: names_rejected.join(' '))
   end
 
   def destroy
@@ -28,10 +35,4 @@ class RacerNameSamplesController < ApplicationController
     flash[:sample_id] = sample.id
     redirect_to racer_name_samples_path
   end
-
-  private
-
-    def sample_params
-      params.require(:racer_name_sample).permit(:name)
-    end
 end

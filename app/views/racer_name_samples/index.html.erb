@@ -9,12 +9,12 @@
 
   <hr>
 
-  <%= form_with model: @new_sample, local: true do |f| %>
-    <% if RacerNameSample.exists?(name: @new_sample.name) -%>
+  <%= form_with url: racer_name_samples_path, local: true do |f| %>
+    <% if @names.size > 0 -%>
       <div class="error">既に存在します</div>
     <% end -%>
-    <%= f.text_field :name, autofocus: true %>
-    <% length = @new_sample.name.to_s.length -%>
+    <%= text_field_tag :names, @names, autofocus: true %>
+    <% length = @names.length -%>
     <span id="name_length"><%= length.zero? ? '' : length %></span>
     <%= f.submit %>
   <% end -%>

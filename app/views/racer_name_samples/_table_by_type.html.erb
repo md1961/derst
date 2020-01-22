@@ -9,7 +9,7 @@
           <tr>
             <% samples_in_row.each do |sample| -%>
               <td id="name_sample-<%= sample.id %>"
-                  class="name_sample <%= sample.id == flash[:sample_id] ? 'created' : '' %>"
+                  class="name_sample <%= flash[:ids_created]&.include?(sample.id) ? 'created' : '' %>"
                   title="<%= "ID=#{sample.id}" %>"
                   draggable="true">
                 <%= sample %>
