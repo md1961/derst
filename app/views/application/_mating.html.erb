@@ -33,18 +33,19 @@
     <%= render partial: 'root_lineage_numbers', locals: {horse: @mating} %>
 
     <table class="racer_name_candidates">
-      <% @mating.racer_name_candidates(num: 25, names_from: names_for_candidates)
-            .each do |name, distance, father_name| -%>
-        <tr>
+      <% @mating.racer_name_candidates(num: 100, names_from: names_for_candidates)
+            .each_with_index do |(name, distance, father_name), index| -%>
+        <tr <%= index >= 25 ? 'hidden' : '' %>>
+          <td class="link"><span class="dismiss button">X<span></td>
           <td><%= name %></td>
-          <td><%= sprintf("%5.3f", distance) %></td>
-          <td><%= "<= #{father_name}" %></td>
           <td class="link">
             <%= link_to '削除',
                   racer_name_sample_path(RacerNameSample.find_by(name: name), ranch_mare_id: @ranch_mare),
                   method: :delete,
                   data: {confirm: "競走馬名候補「#{name}」を削除してよろしいですか？"} %>
           </td>
+          <td><%= sprintf("%5.3f", distance) %></td>
+          <td><%= "<= #{father_name}" %></td>
         </tr>
       <% end -%>
     </table>

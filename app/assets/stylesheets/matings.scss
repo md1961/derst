@@ -35,12 +35,8 @@
         padding: 0 2px;
       }
 
-      td:first-child {
+      td:first-child, td.link {
         padding-right: 10px;
-      }
-
-      td.link {
-        padding-left: 10px;
       }
     }
   }

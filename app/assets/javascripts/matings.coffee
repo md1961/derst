@@ -74,3 +74,8 @@ $ ->
 
   $('#sire_filter_is_outbreed').on 'change', ->
     filter()
+
+
+  $('table.racer_name_candidates span.dismiss').on 'click', ->
+    $(this).parents('tr').hide()
+                         .nextAll('tr:hidden:first').show()
