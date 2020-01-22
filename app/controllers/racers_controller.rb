@@ -5,7 +5,8 @@ class RacersController < ApplicationController
     @result_id_to_edit = params[:result_id_to_edit].to_i
     @post_race = PostRace.find_by(id: params[:post_race_id_to_edit])
 
-    @includes_overgrade = params[:includes_overgrade] == 'true'
+    @includes_overgrade = params[:includes_overgrade] == 'true' \
+      || @racer.target_races.includes(race: :grade).any? { |target_race| target_race.race.grade > @racer.grade }
     @weeks_for_race_candidates = @racer.grade&.abbr == 'OP' ? 16 : 12
     @target_races_by_others = TargetRace.includes(:race, :racer).where.not(racer: @racer)
     @entered_races_by_others = Result.where(place: nil).includes(:race, :racer).where.not(racer: @racer)
