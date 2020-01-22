@@ -26,7 +26,9 @@
       </div>
       <%= render 'conditions' %>
     <% else -%>
-      <%= render partial: 'mating', locals: {mare: @racer.mother, sire: @racer.father} %>
+      <% names_for_candidates = [@racer.name] + StringUtil.extract_horse_names(@racer.remark) -%>
+      <%= render partial: 'mating', locals: {mare: @racer.mother, sire: @racer.father,
+                                             names_for_candidates: names_for_candidates} %>
     <% end -%>
 
     <div class="links">
