@@ -39,6 +39,12 @@
           <td><%= name %></td>
           <td><%= sprintf("%5.3f", distance) %></td>
           <td><%= "<= #{father_name}" %></td>
+          <td class="link">
+            <%= link_to '削除',
+                  racer_name_sample_path(RacerNameSample.find_by(name: name), ranch_mare_id: @ranch_mare),
+                  method: :delete,
+                  data: {confirm: "競走馬名候補「#{name}」を削除してよろしいですか？"} %>
+          </td>
         </tr>
       <% end -%>
     </table>

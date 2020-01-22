@@ -35,8 +35,12 @@
         padding: 0 2px;
       }
 
-      tr td:first-child {
+      td:first-child {
         padding-right: 10px;
+      }
+
+      td.link {
+        padding-left: 10px;
       }
     }
   }
