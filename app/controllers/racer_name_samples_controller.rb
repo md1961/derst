@@ -19,8 +19,7 @@ class RacerNameSamplesController < ApplicationController
   def destroy
     sample = RacerNameSample.find(params[:id])
     sample.destroy
-    ranch_mare = RanchMare.find_by(id: params[:ranch_mare_id])
-    redirect_to ranch_mare || racer_name_samples_path
+    redirect_to params[:url_back] || racer_name_samples_path
   end
 
   def update_type

@@ -40,7 +40,7 @@
           <td><%= name %></td>
           <td class="link">
             <%= link_to '削除',
-                  racer_name_sample_path(RacerNameSample.find_by(name: name), ranch_mare_id: @ranch_mare),
+                  racer_name_sample_path(RacerNameSample.find_by(name: name), url_back: request.fullpath),
                   method: :delete,
                   data: {confirm: "競走馬名候補「#{name}」を削除してよろしいですか？"} %>
           </td>
