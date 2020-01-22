@@ -24,7 +24,9 @@
 
   <div class="mating">
     <% if @ranch_mare.sire -%>
-      <%= render partial: 'mating', locals: {mare: mare, sire: @ranch_mare.sire} %>
+      <% names_for_candidates = StringUtil.extract_horse_names(@ranch_mare.remark) -%>
+      <%= render partial: 'mating', locals: {mare: mare, sire: @ranch_mare.sire,
+                                             names_for_candidates: names_for_candidates} %>
     <% else -%>
       <%= render partial: 'mare', locals: {mare: mare} %>
     <% end -%>
