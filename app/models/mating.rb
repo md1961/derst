@@ -98,11 +98,13 @@ class Mating
     }
   end
 
-  def racer_name_candidates(num = 10)
+  def racer_name_candidates(num: 10, names_from: [])
     return [] if @mare.nil? || @sire.nil?
-    [@mare, @sire].flat_map { |horse|
-      [@mare.name, @sire.name] + horse.bloodline_fathers.map(&:name)
-    }.uniq.flat_map { |name|
+    names_from += [@mare.name, @sire.name]
+    names_from += [@mare, @sire].flat_map { |horse|
+      horse.bloodline_fathers.map(&:name)
+    }.uniq
+    names_from.flat_map { |name|
       RacerNameSample.most_similars(name, num)
     }.sort_by { |_, distance, _|
       distance
