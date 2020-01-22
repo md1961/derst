@@ -26,8 +26,18 @@
       width: 140px;
     }
 
-    ul.racer_name_candidates {
-      margin-top: 20px;
+    table.racer_name_candidates {
+      border-spacing: 0;
+      margin-top: 30px;
+      margin-left: 10px;
+
+      td {
+        padding: 0 2px;
+      }
+
+      tr td:first-child {
+        padding-right: 10px;
+      }
     }
   }
 }
