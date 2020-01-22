@@ -8,6 +8,8 @@
   </div>
 
   <div class="mating">
-    <%= render partial: 'mating', locals: {mare: @racer.mother, sire: @racer.father} %>
+    <% names_for_candidates = StringUtil.extract_horse_names(@remark) -%>
+    <%= render partial: 'mating', locals: {mare: @racer.mother, sire: @racer.father,
+                                           names_for_candidates: names_for_candidates} %>
   </div>
 </div>
