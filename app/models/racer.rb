@@ -217,6 +217,15 @@ class Racer < ApplicationRecord
         .order(:month, :week) \
   end
 
+  def most_favorable_jockey
+    return nil if results.empty?
+    results.includes(:jockey).group_by(&:jockey).reject { |jockey, _|
+      jockey.nil? || jockey.short_term?
+    }.sort_by { |jockey, results|
+      [-results.size, jockey.main_for?(self) ? 0 : 1, jockey.id]
+    }.first.first
+  end
+
   def place_records(high_stakes: false)
     _results = results
     _results = _results.high_stake if high_stakes
