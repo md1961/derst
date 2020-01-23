@@ -2,6 +2,8 @@
   <div id="name_and_traits">
     <%= racer_name_display(@racer) %>
     <span class="sex"><%= racer_sex_display(@racer) %></span>
+    <span class="age"><%= "#{@racer.age}歳" %></span>
+
     <%= render 'traits' %>
 
     <div id="racer_menu" class="racers_racers esc_hideable" hidden>
