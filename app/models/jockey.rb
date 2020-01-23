@@ -16,6 +16,18 @@ class Jockey < ApplicationRecord
     find_by(name: name)
   end
 
+  def short_term?
+    center.short_stay?
+  end
+
+  def main_for?(racer)
+    stable == racer.stable
+  end
+
+  def same_center_with?(racer)
+    center == racer.stable&.center
+  end
+
   def center_and_stable
     "#{center}#{center.short_stay? ? '' : stable ? ' 専属' : ''}"
   end
