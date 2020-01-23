@@ -50,19 +50,6 @@ module RacersHelper
     ]
   end
 
-  def short_term_jockey_name_in(month)
-    case month
-    when 3 .. 5
-      'ロバーツ'
-    when 6 .. 8
-      'リサ'
-    when 9 .. 11
-      'ムンロ'
-    else
-      'ペリエ'
-    end
-  end
-
   def options_for_select_for_jockey(jockey)
     h_options = Jockey.all.group_by(&:center_and_stable).map { |cs, jockeys|
       [
@@ -72,7 +59,7 @@ module RacersHelper
     }.to_h
     keys = @racer.stable.center.name == '美浦' ? ['美浦 専属', '美浦', '短期', '栗東 専属', '栗東'] \
                                                : ['栗東 専属', '栗東', '短期', '美浦 専属', '美浦']
-    jockey_short = Jockey.find_by(name: short_term_jockey_name_in(@racer.ranch.month))
+    jockey_short = Jockey.short_term_jockey_in(@racer.ranch.month)
     h_options['短期'] = [[jockey_short.name, jockey_short.id]]
     options = keys.map { |key| [key, h_options[key]] }
     grouped_options_for_select(options, jockey&.id, prompt: '-')
