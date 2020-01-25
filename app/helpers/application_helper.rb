@@ -321,7 +321,7 @@ module ApplicationHelper
 
   def form_for_weekly(racer)
     return nil unless racer.in_stable?
-    form_with url: weekly_racer_path(racer), local: true do
+    form_with url: weekly_racer_path(racer), local: true, class: 'condition' do
       concat select_tag :condition, options_for_select(
                                       %w[◎ ↑ ◉  ○ △ ▽ × ↓ 休 崩 太 重 怪 -],
                                       racer.condition || racer.default_condition

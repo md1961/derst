@@ -14,3 +14,6 @@ $ ->
       $('input[type="hidden"][name="trip"]').val($(this).prop('checked'))
 
     $(window).scrollTop(9999)
+
+  $('form.condition').on 'submit', ->
+    $('#progress_dialog').show()
