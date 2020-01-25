@@ -30,10 +30,7 @@ module ApplicationHelper
   end
 
   def monetary_display(prize)
-    upper = prize >= 10000 ? "#{prize / 10000}億" : ""
-    prize %= 10000
-    lower = "#{upper.empty? ? prize : prize.to_s.rjust(4, '0')}万円"
-    upper + lower
+    StringUtil.monetary_display(prize)
   end
 
   def racer_attr_display_in_td(racer, name, f, html_attrs = {})
