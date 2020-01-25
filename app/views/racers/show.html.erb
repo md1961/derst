@@ -39,7 +39,8 @@
       <% end -%>
       <span class="weight_best"><%= "ベスト #{@racer.weight_best}kg" %></span>
 
-      <%= link_to 'Back', ranch_path(@racer.ranch, main_display: @main_display), data: {shortcut: 'b'}, tabindex: -1 %>
+      <%= link_to 'Back', ranch_path(@racer.ranch, main_display: @main_display, racer_id: @racer),
+                          data: {shortcut: 'b'}, tabindex: -1 %>
       <% if @prev_racer && @next_racer -%>
         <%= link_to "<[#{racer_with_race_display(@prev_racer)}]".html_safe, @prev_racer, id: 'to_prev_racer',
                       class: @prev_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>

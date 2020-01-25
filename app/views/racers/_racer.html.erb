@@ -61,7 +61,7 @@
     <td>
     <td>
       <%= f.submit %>
-      <%= link_to 'Cancel', @ranch, class: 'escapeable', data: {shortcut: 'b'} %>
+      <%= link_to 'Cancel', ranch_path(@ranch, racer_id: racer), class: 'escapeable', data: {shortcut: 'b'} %>
     </td>
   <% else -%>
     <% if !racer.in_ranch -%>

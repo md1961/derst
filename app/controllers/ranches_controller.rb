@@ -32,6 +32,7 @@ class RanchesController < ApplicationController
     @ready_for_next_week = params[:next_done] != 'true' \
                         && Racer.all_training_done? \
                         && Racer.none_expecting_race?
+    flash[:racer_id_weekly_entered] = params[:racer_id].to_i if params[:racer_id].to_i > 0
     flash[:racer_id_weekly_entered] = nil if @ready_for_next_week
   end
 
