@@ -71,6 +71,10 @@ class Racer < ApplicationRecord
     !any_expecting_race?
   end
 
+  def open?
+    grade.abbr == 'OP'
+  end
+
   def grade
     @grade ||= grade_given || grade_from_net_prize
   end
