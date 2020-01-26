@@ -125,6 +125,14 @@ class Racer < ApplicationRecord
     target_races.map(&:race).include?(race)
   end
 
+  def needs_transport?
+    return false if target_races.empty?
+    next_race = target_races.map(&:race).sort_by { |race|
+      race.month_week.ordering_from(ranch.month_week)
+    }.first
+    !next_race.course.same_from?(stable)
+  end
+
   def result_in(age, month, week)
     results.joins(:race).find_by(age: age, 'races.month': month, 'races.week': week)
   end
