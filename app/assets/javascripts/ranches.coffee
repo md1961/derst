@@ -3,6 +3,10 @@ $ ->
     $('#top_bar').addClass('ready_for_next_week').removeClass('all_training_done')
     $('#button_to_next_week').focus()
 
+  if $('.ranches_show').length > 0
+    $('form.button_to').on 'submit', ->
+      $('#progress_dialog').show()
+
   $('span.fat_to_best').on 'click', ->
     weight_fat = $(this).prev('input').val()
     $(this).parents('td').next('td').children('input').val(weight_fat - 10)

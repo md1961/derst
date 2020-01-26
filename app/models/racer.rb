@@ -187,7 +187,7 @@ class Racer < ApplicationRecord
         c = weeklies.find_by(age_prev.prev.to_h)&.condition
         c = '◉' if c == '◎'
       end
-      c
+      c == '崩' ? '↓' : c
     }
   end
 

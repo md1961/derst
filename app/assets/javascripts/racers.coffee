@@ -15,5 +15,8 @@ $ ->
 
     $(window).scrollTop(9999)
 
+    $('form.button_to').on 'submit', ->
+      $('#progress_dialog').show()
+
   $('form.condition').on 'submit', ->
     $('#progress_dialog').show()
