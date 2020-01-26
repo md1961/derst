@@ -360,6 +360,6 @@ class Racer < ApplicationRecord
   private
 
     def convert_remark_to_total_prize
-      self.remark = StringUtil.monetary_display(remark) if remark.to_i > 1000
+      self.remark = "総賞金 #{StringUtil.monetary_display(remark)}" if remark.to_i > 1000
     end
 end
