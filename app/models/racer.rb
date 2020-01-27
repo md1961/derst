@@ -280,6 +280,7 @@ class Racer < ApplicationRecord
 
   def graze!
     create_in_ranch!(month: ranch.month, week: ranch.week)
+    # FIXME: destroy target_races in 4 weeks only.
     target_races.destroy_all
     racer_trip&.destroy
   end
