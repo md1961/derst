@@ -37,7 +37,11 @@
       <% unless @editing -%>
         <%= form_for_weekly(@racer) %>
       <% end -%>
-      <span class="weight_best"><%= "ベスト #{@racer.weight_best}kg" %></span>
+      <% weight_best = @racer.weight_best -%>
+      <span class="weight_best"><%= "ベスト #{weight_best}kg" %></span>
+      <% if @racer.needs_transport? -%>
+        <span class="weight_transport"><%= "(#{weight_best + 4}～#{weight_best + 6}kg)" %></span>
+      <% end -%>
 
       <%= link_to 'Back', ranch_path(@racer.ranch, main_display: @main_display, racer_id: @racer),
                           data: {shortcut: 'b'}, tabindex: -1 %>
