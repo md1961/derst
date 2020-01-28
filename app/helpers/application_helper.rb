@@ -59,8 +59,12 @@ module ApplicationHelper
   def racer_attr_display(racer, name, f)
     if name == :main_jockeys
       racer.stable&.jockeys&.join('、')
-    elsif !f && name == :remark && racer.injury
-      racer.injury.description
+    elsif !f && name == :remark
+      if racer.injury
+        racer.injury.description
+      else
+        racer.remark&.sub(/\d{4,}/) { |prize| monetary_display(prize) }
+      end
     elsif !f || name == :grade \
           || (racer.stable && name.to_s.starts_with?('comment_')) \
           || (racer.age != 2 && name == :comment_age2) \
