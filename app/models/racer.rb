@@ -49,8 +49,6 @@ class Racer < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  before_save :convert_remark_to_total_prize
-
   def self.num_in_ranch
     active.count - in_stable.count - num_in_spa
   end
@@ -372,10 +370,4 @@ class Racer < ApplicationRecord
       } || 0
     end
   end
-
-  private
-
-    def convert_remark_to_total_prize
-      self.remark = "総賞金 #{StringUtil.monetary_display(remark)}" if remark.to_i > 1000
-    end
 end
