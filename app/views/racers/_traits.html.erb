@@ -86,7 +86,7 @@
       </tr>
       <tr>
         <th>本賞金</th>
-        <td class="numeric">
+        <td class="numeric <%= @racer.earns_net_prize_last_week? ? 'earns_net_prize_last_week' : '' %>">
           <%= monetary_display(@racer.net_prize) %>
         </td>
       </tr>
