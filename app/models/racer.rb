@@ -324,6 +324,7 @@ class Racer < ApplicationRecord
 
   def retire!
     update!(is_active: false)
+    injure(nil)
   end
 
   def to_s
