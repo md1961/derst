@@ -53,7 +53,7 @@ class RacersController < ApplicationController
     @racer = Racer.find(params[:id])
     ranch = Ranch.find_by(id: params[:ranch_id])
     if @racer.update(racer_params)
-      flash[:racer_id_weekly_entered] = @racer.id
+      flash[:racer_id_to_focus] = @racer.id
       redirect_to ranch || racer_path(@racer, main_display: @main_display)
     elsif ranch
       redirect_to ranch_path(ranch, racer_id_to_edit: @racer)
@@ -102,7 +102,7 @@ class RacersController < ApplicationController
     condition = nil if condition == '-'
     racer.condition = condition
     ranch = Ranch.find_by(id: params[:ranch_id])
-    flash[:racer_id_weekly_entered] = racer.id
+    flash[:racer_id_to_focus] = racer.id
     redirect_to ranch || racer
   end
 
