@@ -59,7 +59,7 @@ module ApplicationHelper
   def racer_attr_display(racer, name, f)
     if name == :main_jockeys
       racer.stable&.jockeys&.join('、')
-    elsif name == :remark && racer.injury
+    elsif !f && name == :remark && racer.injury
       racer.injury.description
     elsif !f || name == :grade \
           || (racer.stable && name.to_s.starts_with?('comment_')) \
