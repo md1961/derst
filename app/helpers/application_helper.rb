@@ -133,7 +133,8 @@ module ApplicationHelper
                 else
                   ranch.max_racers - Racer.num_in_ranch
                 end
-      warning = t("notice.vacancy", count: vacancy)
+      warning  = t("notice.birth", count: RanchMare.count(&:expecting?)) if key == :new_birth
+      warning += t("notice.vacancy", count: vacancy)
     end
     t("notice.#{key}") + warning
   end
