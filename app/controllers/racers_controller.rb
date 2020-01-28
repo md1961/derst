@@ -39,6 +39,7 @@ class RacersController < ApplicationController
     ApplicationRecord.transaction do
       @racer.save!
       ranch_mare&.update!(sire: nil)
+      ranch_mare&.default_child_status!
       redirect_to @racer.ranch
     end
   end
