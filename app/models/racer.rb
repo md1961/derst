@@ -278,10 +278,17 @@ class Racer < ApplicationRecord
     Mare.create_from_mating_of(mother, father, name)
   end
 
+  NUM_WEEKS_TO_DESTROY_TARGET_RACES_WHEN_GRAZE = 6
+
   def graze!
     create_in_ranch!(month: ranch.month, week: ranch.week)
-    # FIXME: destroy target_races in 4 weeks only.
-    target_races.destroy_all
+
+    month_week = ranch.month_week
+    NUM_WEEKS_TO_DESTROY_TARGET_RACES_WHEN_GRAZE.times do |n|
+      target_races.in_week_of(month_week.month, month_week.week)&.destroy
+      month_week = month_week.next
+    end
+
     racer_trip&.destroy
   end
 
