@@ -53,9 +53,12 @@
               <%= f.submit %>
             </td>
             <td colspan="2" class="centered border_left_none">
-              <%= link_to 'Cancel', @racer, class: 'escapeable', data: {shortcut: 'b'} %>
+              <%= link_to 'Cancel', racer_path(@racer, main_display: @main_display),
+                                      class: 'escapeable', data: {shortcut: 'b'} %>
             </td>
           </tr>
+
+          <%= hidden_field_tag :main_display, @main_display %>
         <% end -%>
       </table>
     <% end -%>
@@ -109,7 +112,7 @@
         </span>
 
         <span id="show_form_to_injure" class="button">[負傷]</span>
-        <%= link_to 'Edit', edit_racer_path(@racer), data: {shortcut: 'y'} %>
+        <%= link_to 'Edit', edit_racer_path(@racer, main_display: @main_display), data: {shortcut: 'y'} %>
 
         <div id="form_to_injure" hidden>
           <%= form_with url: injure_racer_path(@racer), local: true, method: :patch do |f| %>

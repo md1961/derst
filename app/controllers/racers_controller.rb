@@ -1,4 +1,5 @@
 class RacersController < ApplicationController
+  before_action :set_main_display_for_ranch, only: %i[show edit update]
 
   def show
     @racer = Racer.includes(:weeklies, results: :race).find(params[:id])
@@ -23,8 +24,6 @@ class RacersController < ApplicationController
     end
     index = racers.find_index(@racer)
     @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index
-
-    @main_display = params[:main_display].yield_self { |x| x.blank? ? nil : x }
   end
 
   def new
@@ -55,7 +54,7 @@ class RacersController < ApplicationController
     ranch = Ranch.find_by(id: params[:ranch_id])
     if @racer.update(racer_params)
       flash[:racer_id_weekly_entered] = @racer.id
-      redirect_to ranch || @racer
+      redirect_to ranch || racer_path(@racer, main_display: @main_display)
     elsif ranch
       redirect_to ranch_path(ranch, racer_id_to_edit: @racer)
     else
@@ -174,5 +173,9 @@ class RacersController < ApplicationController
       }.compact.group_by(&:itself).find_all { |race, races|
         races.size >= 2
       }.map(&:first)
+    end
+
+    def set_main_display_for_ranch
+      @main_display = params[:main_display].yield_self { |x| x.blank? ? nil : x }
     end
 end
