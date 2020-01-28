@@ -27,8 +27,8 @@ class Racer < ApplicationRecord
   end
 
   has_many :target_races do
-    def in_week_of?(month, week)
-      joins(:race).exists?('races.month': month, 'races.week': week)
+    def in_week_of(month, week)
+      joins(:race).find_by('races.month': month, 'races.week': week)
     end
   end
 
