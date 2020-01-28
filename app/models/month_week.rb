@@ -29,14 +29,14 @@ class MonthWeek
     diff
   end
 
-  def next
+  def next(n = 1)
     new_month = month
-    new_week = week + 1
+    new_week = week + n
     if new_week > 4
-      new_week = 1
-      new_month += 1
+      new_month += (new_week - 4 - 1) / 4 + 1
+      new_week = (new_week - 1) % 4 + 1
       if new_month > 12
-        new_month = 1
+        new_month -= 12
       end
     end
     self.class.new(new_month, new_week)
