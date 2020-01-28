@@ -70,10 +70,6 @@
       <% end -%>
       <% if mare = @racer.mare -%>
         <%= link_to '繁殖牝馬', matings_path(mare_id: mare), target: '_blank', tabindex: -1 %>
-        <%= button_to '繁殖入り', ranch_mares_path(ranch_mare: {mare: mare.name, ranch_id: @racer.ranch}),
-                                    class: 'critical',
-                                    data: {confirm: "「#{mare.name}」を引退・繁殖入りさせますか？"},
-                                    tabindex: -1 %>
       <% elsif @racer.female? -%>
         <%= button_to '繁殖候補に', create_mare_racer_path(@racer), tabindex: -1 %>
       <% end -%>
@@ -105,6 +101,12 @@
     <div class="links">
       <% if @editing -%>
         <%= button_to_retire(@racer) %>
+        <% if mare -%>
+          <%= button_to '繁殖入り', ranch_mares_path(ranch_mare: {mare: mare.name, ranch_id: @racer.ranch}),
+                                      class: 'critical',
+                                      data: {confirm: "「#{mare.name}」を引退・繁殖入りさせますか？"},
+                                      tabindex: -1 %>
+        <% end -%>
       <% else -%>
         <%= button_to_graze(@racer) %>
         <span style="margin-left: -10px;">
@@ -112,7 +114,8 @@
         </span>
 
         <span id="show_form_to_injure" class="button">[負傷]</span>
-        <%= link_to 'Edit', edit_racer_path(@racer, main_display: @main_display), data: {shortcut: 'y'} %>
+        <%= link_to 'Edit', edit_racer_path(@racer, main_display: @main_display),
+                              data: {shortcut: 'y'}, tabindex: -1 %>
 
         <div id="form_to_injure" hidden>
           <%= form_with url: injure_racer_path(@racer), local: true, method: :patch do |f| %>
