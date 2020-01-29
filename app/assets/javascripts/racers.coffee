@@ -1,10 +1,18 @@
 $ ->
   if $('.racers_show').length > 0
+    $('.for_action_edit').hide()
+    $('#form_to_injure').hide()
+
     top    = $('#name_and_traits').offset().top
     height = $('#name_and_traits').height()
     $('#results_and_conditions').css('margin-top', top + height + 15)
 
     $('select.condition').focus()
+
+    $('#edit_racer, #cancel').on 'click', ->
+      $('.for_action_show').toggle()
+      $('.for_action_edit').toggle()
+      $('input#racer_weight_fat').focus()
 
     $('#show_form_to_injure').on 'click', ->
       $('#form_to_injure').toggle()

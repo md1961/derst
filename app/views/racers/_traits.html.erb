@@ -29,38 +29,38 @@
   </table>
 
   <div>
-    <%= form_with model: @racer, local: true do |f| %>
-      <% f = nil unless @editing -%>
-      <table class="table_base">
-        <% if f -%>
-          <tr>
-            <th>馬名</th>
-            <td colspan="3"><%= racer_name_display(@racer, f) %></td>
-          </tr>
-        <% end -%>
-        <% racer_attr_names.each do |name| -%>
-          <% html_attrs = {}
-             html_attrs[:colspan] = 3 unless name == :weights
-             html_attrs[:class] = 'larger' if name == :remark && @racer.stable -%>
-          <tr>
-            <th><%= Racer.human_attribute_name(name) %></th>
-            <%= racer_attr_display_in_td(@racer, name, f, html_attrs) %>
-          </tr>
-        <% end -%>
-        <% if f -%>
-          <tr>
-            <td colspan="2" class="centered border_right_none">
-              <%= f.submit %>
-            </td>
-            <td colspan="2" class="centered border_left_none">
-              <%= link_to 'Cancel', racer_path(@racer, main_display: @main_display),
-                                      class: 'escapeable', data: {shortcut: 'b'} %>
-            </td>
-          </tr>
+    <%= form_with model: @racer, local: true do |form| %>
+      <% [nil, form].each do |f| -%>
+        <table class="table_base <%= f ? 'for_action_edit' : 'for_action_show' %>" <%= f ? 'hidden' : '' %>>
+          <% if f -%>
+            <tr>
+              <th>馬名</th>
+              <td colspan="3"><%= racer_name_display(@racer, f) %></td>
+            </tr>
+          <% end -%>
+          <% racer_attr_names.each do |name| -%>
+            <% html_attrs = {}
+               html_attrs[:colspan] = 3 unless name == :weights
+               html_attrs[:class] = 'larger' if name == :remark && @racer.stable -%>
+            <tr>
+              <th><%= Racer.human_attribute_name(name) %></th>
+              <%= racer_attr_display_in_td(@racer, name, f, html_attrs) %>
+            </tr>
+          <% end -%>
+          <% if f -%>
+            <tr>
+              <td colspan="2" class="centered border_right_none">
+                <%= f.submit %>
+              </td>
+              <td colspan="2" class="centered border_left_none">
+                <span id="cancel" class="escapeable button" data-shortcut="b">Cancel</span>
+              </td>
+            </tr>
 
-          <%= hidden_field_tag :main_display, @main_display %>
-        <% end -%>
-      </table>
+            <%= hidden_field_tag :main_display, @main_display %>
+          <% end -%>
+        </table>
+      <% end -%>
     <% end -%>
 
     <div class="links">
@@ -99,23 +99,14 @@
     </table>
 
     <div class="links">
-      <% if @editing -%>
-        <%= button_to_retire(@racer) %>
-        <% if mare -%>
-          <%= button_to '繁殖入り', ranch_mares_path(ranch_mare: {mare: mare.name, ranch_id: @racer.ranch}),
-                                      class: 'critical',
-                                      data: {confirm: "「#{mare.name}」を引退・繁殖入りさせますか？"},
-                                      tabindex: -1 %>
-        <% end -%>
-      <% else -%>
+      <div class="for_action_show">
         <%= button_to_graze(@racer) %>
         <span style="margin-left: -10px;">
           <%= button_to_spa(@racer, '温泉へ') %>
         </span>
 
         <span id="show_form_to_injure" class="button">[負傷]</span>
-        <%= link_to 'Edit', edit_racer_path(@racer, main_display: @main_display),
-                              data: {shortcut: 'y'}, tabindex: -1 %>
+        <span id="edit_racer" class="button" data-shortcut="y">Edit</span>
 
         <div id="form_to_injure" hidden>
           <%= form_with url: injure_racer_path(@racer), local: true, method: :patch do |f| %>
@@ -123,7 +114,16 @@
             <%= f.submit '負傷' %>
           <% end -%>
         </div>
-      <% end -%>
+      </div>
+      <div class="for_action_edit" hidden>
+        <%= button_to_retire(@racer) %>
+        <% if mare -%>
+          <%= button_to '繁殖入り', ranch_mares_path(ranch_mare: {mare: mare.name, ranch_id: @racer.ranch}),
+                                      class: 'critical',
+                                      data: {confirm: "「#{mare.name}」を引退・繁殖入りさせますか？"},
+                                      tabindex: -1 %>
+        <% end -%>
+      </div>
     </div>
   </div>
 </div>

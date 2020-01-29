@@ -93,10 +93,11 @@ $ ->
       return
 
     key = '=' if key == '"'
-    links = $('a[data-shortcut="' + key + '"]:visible')
-    if links.length > 0
-      $('#progress_dialog').show()
-      links[0].click()
+    $links = $('[data-shortcut="' + key + '"]:visible')
+    if $links.length > 0
+      $link = $links.eq(0)
+      $('#progress_dialog').show() if $link.is('a')
+      $link[0].click()
       return false
 
   $(window).on 'keydown', (e) ->

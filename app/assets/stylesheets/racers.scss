@@ -237,12 +237,19 @@ td.computed {
     }
 
     .links {
-      display: flex;
-      margin-top: 5px;
+      margin-top: 10px;
       margin-left: 20px;
+    }
+
+    .links div {
+      display: flex;
 
       input[type="submit"], span.button {
         margin-right: 20px;
+      }
+
+      #edit_racer {
+        text-decoration: underline;
       }
 
       #form_to_injure {
