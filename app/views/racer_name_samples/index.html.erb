@@ -1,9 +1,9 @@
 <div class="racer_name_samples_index">
   <% if @samples -%>
-    <%= render partial: 'table_by_type', locals: {type: nil, samples: @samples} %>
+    <%= render partial: 'table_grouped', locals: {item_name: nil, samples: @samples} %>
   <% else -%>
-    <% RacerNameSample.types.keys.each do |type| -%>
-      <%= render partial: 'table_by_type', locals: {type: type, samples: @samples_by_type[type]} %>
+    <% RacerNameSample.send(@enum_name.pluralize).keys.each do |item_name| -%>
+      <%= render partial: 'table_grouped', locals: {item_name: item_name, samples: @samples_by_group[item_name]} %>
     <% end -%>
   <% end -%>
 

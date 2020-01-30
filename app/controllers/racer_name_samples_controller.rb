@@ -1,8 +1,9 @@
 class RacerNameSamplesController < ApplicationController
 
   def index
-    if params[:type]
-      @samples_by_type = RacerNameSample.group_by_type
+    if params[:group_by] == 'type'
+      @enum_name = params[:group_by]
+      @samples_by_group = RacerNameSample.group_by('type')
     else
       @samples = RacerNameSample.order(:name)
     end
@@ -29,10 +30,12 @@ class RacerNameSamplesController < ApplicationController
     redirect_to params[:url_back] || racer_name_samples_path
   end
 
-  def update_type
+  def update_enum_item
     sample = RacerNameSample.find(params[:id])
-    sample.send("#{params[:type]}!")
+    item_name = params[:item_name]
+    sample.send("#{item_name}!")
     flash[:sample_id] = sample.id
-    redirect_to racer_name_samples_path
+    enum_name = RacerNameSample.types.keys.include?(item_name) ? :type : :sex
+    redirect_to racer_name_samples_path(group_by: enum_name)
   end
 end

@@ -38,8 +38,8 @@ $ ->
       e.stopPropagation()
     $(this).removeClass('over')
     nameSampleId = e.dataTransfer.getData('text').replace('name_sample-', '')
-    type = $(this).data('type')
-    urlDest = '/racer_name_samples/' + nameSampleId + '/update_type?type=' + type
+    item_name = $(this).data('item_name')
+    urlDest = '/racer_name_samples/' + nameSampleId + '/update_enum_item?item_name=' + item_name
     window.location.replace(urlDest)
     return false
 
@@ -47,7 +47,7 @@ $ ->
     $name_sample.addEventListener('dragstart', dragStartHandler, false)
     $name_sample.addEventListener('dragend'  , dragEndHandler  , false)
 
-  for $dropTarget in $('div.racer_name_samples_table_by_type')
+  for $dropTarget in $('div.racer_name_samples_table_grouped')
     $dropTarget.addEventListener('dragover' , dragOverHandler , false)
     $dropTarget.addEventListener('dragenter', dragEnterHandler, false)
     $dropTarget.addEventListener('dragleave', dragLeaveHandler, false)

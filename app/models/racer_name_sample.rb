@@ -17,8 +17,8 @@ class RacerNameSample < ApplicationRecord
     }.take(num)
   end
 
-  def self.group_by_type
-    order(:name).group_by(&:type).map { |type, samples| [type, samples] }.to_h
+  def self.group_by(item)
+    order(:name).group_by(&item.to_sym).map { |item, samples| [item, samples] }.to_h
   end
 
   def self.combinations(num = 1)

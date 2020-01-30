@@ -65,7 +65,7 @@ Rails.application.routes.draw do
 
   resources :racer_name_samples, except: %i[show new edit] do
     member do
-      get :update_type
+      get :update_enum_item
     end
   end
 
