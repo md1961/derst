@@ -16,6 +16,7 @@
     <%= text_field_tag :names, @names, autofocus: true %>
     <% length = @names.length -%>
     <span id="name_length"><%= length.zero? ? '' : length %></span>
+    <%= hidden_field_tag :enum_name, @enum_name %>
     <%= f.submit %>
   <% end -%>
 </div>

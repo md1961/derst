@@ -1,9 +1,9 @@
 class RacerNameSamplesController < ApplicationController
 
   def index
-    if params[:group_by] == 'type'
-      @enum_name = params[:group_by]
-      @samples_by_group = RacerNameSample.group_by('type')
+    @enum_name = params[:group_by]
+    if %w[type sex].include?(@enum_name)
+      @samples_by_group = RacerNameSample.group_by(@enum_name)
     else
       @samples = RacerNameSample.order(:name)
     end
@@ -21,7 +21,7 @@ class RacerNameSamplesController < ApplicationController
       end
     end
     flash[:ids_created] = ids_created
-    redirect_to racer_name_samples_path(names_rejected: names_rejected.join(' '))
+    redirect_to racer_name_samples_path(names_rejected: names_rejected.join(' '), group_by: params[:enum_name])
   end
 
   def destroy
