@@ -8,6 +8,7 @@
           <%= Mare.human_attribute_name(name) %>
         </th>
       <% end -%>
+      <th colspan="5">過去５年産駒</th>
       <th colspan="4">受胎</th>
       <th>備考</th>
       <th colspan="2">
@@ -17,9 +18,9 @@
     <% @mares.each.with_index(1) do |mare, seq_num| -%>
       <% has_all_fathers = @entering_bloodline && mare.all_bloodline_father_present? -%>
       <tr>
+        <% ranch_mare = RanchMare.find_by(ranch: @ranch, mare: mare) -%>
         <td class="numeric">
-          <% if @ranch -%>
-            <% ranch_mare = RanchMare.find_by(ranch: @ranch, mare: mare) -%>
+          <% if ranch_mare -%>
             <%= link_to seq_num, ranch_mare, tabindex: -1 %>
           <% else -%>
             <%= link_to seq_num, mare_path(mare), tabindex: has_all_fathers ? -1 : 0 %>
@@ -28,7 +29,6 @@
         <td style="<%= !@entering_bloodline || has_all_fathers ? '' : 'color: red' %>">
           <%= mare.name %>
         </td>
-        <% ranch_mare = @ranch&.ranch_mares&.find_by(mare: mare) -%>
         <% if @ranch -%>
           <td class="age numeric">
             <%= "#{ranch_mare.age}歳" %>
@@ -40,8 +40,13 @@
             <%= mare.send(name) %>
           </td>
         <% end -%>
-        <% if @ranch -%>
-          <% ranch_mare = @ranch.ranch_mares.find_by(mare: mare) -%>
+        <% if ranch_mare -%>
+          <% (-4 .. 0).each do |diff_year| -%>
+            <% birth_piece = ranch_mare.mare.racers.find_by(year_birth: @ranch.year + diff_year) -%>
+            <td class="<%= birth_piece&.sex %>">
+              <%= birth_piece ? (birth_piece.male? ? '牡' : '牝') : '－' %>
+            </td>
+          <% end -%>
           <% if sire = ranch_mare&.sire -%>
             <td class="<%= ranch_mare.child_status %>"><%= sire %></td>
             <td><%= link_to '配合', ranch_mare, tabindex: -1 %></td>
