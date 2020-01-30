@@ -12,7 +12,10 @@ $ ->
     $('#edit_racer, #cancel').on 'click', ->
       $('.for_action_show').toggle()
       $('.for_action_edit').toggle()
-      $('input#racer_weight_fat').focus()
+      if $('input#racer_weight_fat').length > 0
+        $('input#racer_weight_fat').focus()
+      else
+        $('input#racer_remark').focus()
 
     $('#show_form_to_injure').on 'click', ->
       $('#form_to_injure').toggle()
