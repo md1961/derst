@@ -39,7 +39,7 @@
         <%= form_for_weekly_weight(@racer) %>
       <% end -%>
       <% weight_best = @racer.weight_best -%>
-      <span class="weight_best"><%= "ベスト #{weight_best}kg" %></span>
+      <span class="weight_best"><%= weight_best %></span>
       <% if @racer.needs_transport? -%>
         <span class="weight_transport"><%= "(#{weight_best + 4}～#{weight_best + 6}kg)" %></span>
       <% end -%>

@@ -342,9 +342,19 @@ input.weight {
 
     input.weight {
       margin-left: 10px;
+    }
 
-      &.no_weight {
-        background-color: pink;
+    span.weight_best {
+      font-weight: bold;
+
+      &::before {
+        content: "ベスト ";
+        font-weight: normal;
+      }
+
+      &::after {
+        content: "kg";
+        font-weight: normal;
       }
     }
   }
