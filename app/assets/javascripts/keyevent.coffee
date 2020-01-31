@@ -14,9 +14,13 @@ $ ->
     elem.children('option:selected').prev().prop('selected', true)
 
   $(window).on 'keypress', (e) ->
-    if $('input[type="text"], input[type="number"]').not('.allows_shortcut').is(':focus') || e.ctrlKey
+    if e.ctrlKey
+      return
+    if $('input[type="text"]').not('.allows_shortcut').is(':focus')
       return
     key = String.fromCharCode(e.which)
+    if $('input[type="number"]').not('.allows_shortcut').is(':focus') && [1 .. 9].includes(parseInt(key))
+      return
 
     is_mark_focused = $mark_selects.some((elem) -> elem.is(':focus'))
     if $('#results').hasClass('ready_for_race') && is_mark_focused \
