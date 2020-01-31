@@ -324,7 +324,7 @@ module ApplicationHelper
     button_to label, path, method: :patch, disabled: disabled, class: clazz + ' button_to_spa', tabindex: -1
   end
 
-  def form_for_weekly(racer)
+  def form_for_weekly_condition(racer)
     return nil unless racer.in_stable?
     form_with url: weekly_racer_path(racer), local: true, class: 'condition' do
       concat select_tag :condition, options_for_select(

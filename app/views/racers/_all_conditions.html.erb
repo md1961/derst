@@ -49,7 +49,7 @@
             <td class="centered <%= result ? (is_current_week ? 'race_coming' : 'race') : '' %>"
                 aria-label="<%= result&.race %>">
               <% if is_current_week -%>
-                <%= form_for_weekly(racer) %>
+                <%= form_for_weekly_condition(racer) %>
               <% elsif result -%>
                 <%= result.place %>
               <% else -%>
