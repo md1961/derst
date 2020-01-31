@@ -13,7 +13,7 @@
       <% end -%>
       <th rowspan="2" class="border_bottom_thick border_left_thick border_right_thick">入厩</th>
       <th rowspan="2" class="border_bottom_thick border_left_thick border_right_thick">遠征</th>
-      <th rowspan="2" class="border_bottom_thick border_left_thick border_right_thick">体重</th>
+      <th rowspan="2" class="border_bottom_thick border_left_thick border_right_thick" colspan="2">体重</th>
     </tr>
     <tr>
       <% months.each do |month| -%>
@@ -63,6 +63,9 @@
         </td>
         <td class="border_left_thick border_right_thick <%= racer.injury ? 'injured' : '' %>">
           <%= racer.injury&.description || racer.course_staying %>
+        </td>
+        <td style="padding: 0;">
+          <%= form_for_weekly_weight(racer) %>
         </td>
         <td class="weight_best border_left_thick border_right_thick">
           <%= racer.weight_best %>

@@ -62,6 +62,16 @@ td.computed {
   font-style: italic;
 }
 
+input.weight {
+  height: 12px;
+  width: 40px;
+  text-align: right;
+
+  &.no_weight {
+    background-color: pink;
+  }
+}
+
 .racers_racers {
 
   td a {
@@ -331,8 +341,6 @@ td.computed {
     }
 
     input.weight {
-      width: 40px;
-      text-align: right;
       margin-left: 10px;
 
       &.no_weight {
