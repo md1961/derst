@@ -111,4 +111,5 @@ $ ->
       if $('.esc_hideable:visible').length > 0
         $('.esc_hideable:visible').hide()
       else if $('.escapeable').length > 0
+        $('#progress_dialog').show()
         $('.escapeable')[0].click()
