@@ -29,5 +29,5 @@ $ ->
     $('form.button_to').on 'submit', ->
       $('#progress_dialog').show()
 
-  $('form.condition').on 'submit', ->
+  $('form.condition, form.weekly_weight').on 'submit', ->
     $('#progress_dialog').show()

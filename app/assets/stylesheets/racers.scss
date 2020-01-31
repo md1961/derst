@@ -329,6 +329,16 @@ td.computed {
     a {
       margin-right: 20px;
     }
+
+    input.weight {
+      width: 40px;
+      text-align: right;
+      margin-left: 10px;
+
+      &.no_weight {
+        background-color: pink;
+      }
+    }
   }
 }
 

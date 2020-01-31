@@ -36,6 +36,7 @@
     <div class="links">
       <% unless @editing -%>
         <%= form_for_weekly_condition(@racer) %>
+        <%= form_for_weekly_weight(@racer) %>
       <% end -%>
       <% weight_best = @racer.weight_best -%>
       <span class="weight_best"><%= "ベスト #{weight_best}kg" %></span>
