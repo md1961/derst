@@ -67,7 +67,7 @@
         <td style="padding: 0;">
           <%= form_for_weekly_weight(racer) %>
         </td>
-        <td class="weight_best border_left_thick border_right_thick">
+        <td class="weight_best border_right_thick">
           <%= racer.weight_best %>
         </td>
         <%= render partial: 'racers/coming_races', locals: {racer: racer, num_races: 2} %>
