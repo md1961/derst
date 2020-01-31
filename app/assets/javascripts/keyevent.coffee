@@ -14,7 +14,7 @@ $ ->
     elem.children('option:selected').prev().prop('selected', true)
 
   $(window).on 'keypress', (e) ->
-    if $('input[type="text"]').not('.allows_shortcut').is(':focus') || e.ctrlKey
+    if $('input[type="text"], input[type="number"]').not('.allows_shortcut').is(':focus') || e.ctrlKey
       return
     key = String.fromCharCode(e.which)
 
