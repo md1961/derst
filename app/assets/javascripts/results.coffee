@@ -48,3 +48,6 @@ $ ->
         surface_to_hide = 'none'
         grades_to_hide = []
       filter()
+
+  $('table#results form').on 'submit', ->
+    $('#progress_dialog').show()
