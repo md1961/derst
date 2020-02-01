@@ -26,7 +26,7 @@ $ ->
       $('tr[data-racer_id="' + id + '"]').removeClass('hover')
   )
 
-  $('select.condition')
+  $('select.condition, input.weight')
     .focusin(
       ->
         id = $(this).closest('tr').data('racer_id')

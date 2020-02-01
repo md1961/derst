@@ -334,7 +334,8 @@ module ApplicationHelper
                                     disabled: @racer_id_to_edit.to_i > 0,
                                     id: "condition-#{racer.id}",
                                     class: ['condition', racer.condition.nil? ? 'no_condition' : ''],
-                                    autofocus: racer.id == flash[:racer_id_to_focus] && racer.condition.nil?,
+                                    autofocus: racer.id == flash[:racer_id_to_focus] \
+                                                && (racer.condition.nil? || (racer.condition.present? && racer.weight.present?)),
                                     tabindex: racer.condition ? -1 : 0
       concat submit_tag :enter, hidden: 'hidden'
       concat hidden_field_tag :ranch_id, @ranch&.id, id: "ranch_id-#{racer.id}-condition"
