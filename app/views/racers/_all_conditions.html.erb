@@ -1,5 +1,5 @@
 <% num_months = 6
-   month_end = @ranch.month
+   month_end = @ranch.month + 1
    months = (month_end - num_months + 1 .. month_end).to_a.map { |m| (m + 12 - 1) % 12 + 1 } -%>
 
 <table id="conditions" class="table_base">
@@ -45,8 +45,9 @@
             <% result = racer.result_in(age, month, week)
                result_to_s = result.nil? ? ""
                            : "#{result.race.name} #{result.race.distance_to_s} #{result.place}着"
-               is_current_week = @ranch.in_week_of?(month, week) -%>
-            <td class="centered <%= result ? (is_current_week ? 'race_coming' : 'race') : '' %>"
+               is_current_week = @ranch.in_week_of?(month, week)
+               is_target = racer.target_races.in_week_of(month, week) -%>
+            <td class="centered <%= result ? (is_current_week ? 'race_coming' : 'race') : is_target ? 'target' : '' %>"
                 aria-label="<%= result&.race %>">
               <% if is_current_week -%>
                 <%= form_for_weekly_condition(racer) %>
