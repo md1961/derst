@@ -7,8 +7,6 @@ $ ->
     height = $('#name_and_traits').height()
     $('#results_and_conditions').css('margin-top', top + height + 15)
 
-    $('select.condition').focus()
-
     $('#edit_racer, #cancel').on 'click', ->
       $('.for_action_show').toggle()
       $('.for_action_edit').toggle()

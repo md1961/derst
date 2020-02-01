@@ -25,6 +25,8 @@ class RacersController < ApplicationController
     end
     index = racers.find_index(@racer)
     @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index
+
+    flash[:racer_id_to_focus] = @racer.id
   end
 
   def new

@@ -334,7 +334,7 @@ module ApplicationHelper
                                     disabled: @racer_id_to_edit.to_i > 0,
                                     id: "condition-#{racer.id}",
                                     class: ['condition', racer.condition.nil? ? 'no_condition' : ''],
-                                    autofocus: racer.id == flash[:racer_id_to_focus],
+                                    autofocus: racer.id == flash[:racer_id_to_focus] && racer.condition.nil?,
                                     tabindex: racer.condition ? -1 : 0
       concat submit_tag :enter, hidden: 'hidden'
       concat hidden_field_tag :ranch_id, @ranch&.id, id: "ranch_id-#{racer.id}-condition"
@@ -344,11 +344,12 @@ module ApplicationHelper
   def form_for_weekly_weight(racer)
     form_with url: weekly_racer_path(racer), local: true, class: 'weekly_weight' do
       concat number_field_tag :weight, racer.weight || racer.last_weight,
-                                          step: 2,
-                                          disabled: @racer_id_to_edit.to_i > 0,
-                                          id: "weight-#{racer.id}",
-                                          class: ['weight', racer.weight.nil? ? 'no_weight' : ''],
-                                          tabindex: racer.condition && !racer.weight ? 0 : -1
+                                    step: 2,
+                                    disabled: @racer_id_to_edit.to_i > 0,
+                                    id: "weight-#{racer.id}",
+                                    class: ['weight', racer.weight.nil? ? 'no_weight' : ''],
+                                    autofocus: racer.id == flash[:racer_id_to_focus] && racer.condition && racer.weight.nil?,
+                                    tabindex: racer.condition && !racer.weight ? 0 : -1
       concat submit_tag :enter, hidden: 'hidden'
       concat hidden_field_tag :ranch_id, @ranch&.id, id: "ranch_id-#{racer.id}-weight"
     end
