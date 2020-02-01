@@ -64,8 +64,13 @@ td.computed {
 
 input.weight {
   height: 12px;
-  width: 35px;
+  width: 22px;
   text-align: right;
+
+  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
   &.no_weight {
     background-color: pink;
