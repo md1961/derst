@@ -185,7 +185,7 @@ class Racer < ApplicationRecord
   end
 
   def last_weight
-    weeklies.find_by(age_in_week.prev.to_h)&.weight
+    weeklies.find_by(age_in_week.prev.to_h)&.weight || weight_best
   end
 
   def condition
