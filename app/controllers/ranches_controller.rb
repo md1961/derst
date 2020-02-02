@@ -14,7 +14,7 @@ class RanchesController < ApplicationController
 
     @main_display = params[:main_display].yield_self { |x| x.blank? ? nil : x }
 
-    @racers = @ranch.racers.active.includes(:weeklies).older_first
+    @racers = @ranch.racers.active.includes(:weeklies, target_races: :race).older_first
     if @main_display == 'all_racers'
       @racers = Racer.retired.older_first + [nil] + @racers
     elsif @main_display == 'active_inbreeds'
