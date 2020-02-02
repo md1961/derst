@@ -257,7 +257,7 @@ class Race < ApplicationRecord
         if kind == 'up'
           prize_each = elems[1].to_i * 100
           prize_thres = h_net_prize[racer.age] || h_net_prize['other']
-          return (racer.net_prize - prize_thres) / prize_each * add
+          return [racer.net_prize - prize_thres, 0].max / prize_each * add
         else
           prize_each = h_net_prize[racer.age] || h_net_prize['other']
           return racer.net_prize / prize_each * add
