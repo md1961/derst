@@ -2,7 +2,7 @@ class RacersController < ApplicationController
   before_action :set_main_display_for_ranch, only: %i[show edit update]
 
   def show
-    @racer = Racer.includes(:weeklies, results: :race).find(params[:id])
+    @racer = Racer.includes(:weeklies, results: {race: :grade}, target_races: {race: :grade}).find(params[:id])
     @result_id_to_edit = params[:result_id_to_edit].to_i
     @post_race = PostRace.find_by(id: params[:post_race_id_to_edit])
 
