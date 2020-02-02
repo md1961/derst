@@ -57,8 +57,14 @@ class Racer < ApplicationRecord
     active.includes(:in_ranch).count { |racer| racer.in_spa? }
   end
 
-  def self.all_training_done?
-    in_stable.includes(:weeklies).map(&:condition).all?
+  # FIXME: Correct self.all_training_done?() not to use Ranch.last.
+  def self.all_training_done?(ranch = nil)
+    ranch = Ranch.last unless ranch
+    in_stable.joins(:weeklies)
+             .where("weeklies.age = #{ranch.year} - racers.year_birth + 1")
+             .where('weeklies.month': ranch.month, 'weeklies.week': ranch.week)
+             .where("weeklies.condition > '' AND weeklies.weight > 0").count \
+      == in_stable.count
   end
 
   def self.any_expecting_race?
