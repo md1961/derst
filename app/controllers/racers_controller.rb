@@ -109,7 +109,7 @@ class RacersController < ApplicationController
       racer.condition = condition
     else
       weight = params[:weight].to_i
-      weight = nil if weight < 300
+      weight = nil if weight < 300 || weight > 600
       racer.weight = weight
     end
 

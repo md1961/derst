@@ -63,7 +63,7 @@ module ApplicationHelper
       if racer.injury
         racer.injury.description
       else
-        racer.remark&.sub(/\d{4,}/) { |prize| monetary_display(prize) }
+        racer.remark&.sub(/\d{4,}/) { |prize| "総賞金 #{monetary_display(prize)}" }
       end
     elsif !f || name == :grade \
           || (racer.stable && name.to_s.starts_with?('comment_')) \
