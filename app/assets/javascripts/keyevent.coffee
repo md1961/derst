@@ -113,6 +113,7 @@ $ ->
   $(window).on 'keyup', (e) ->
     if e.keyCode == 27
       if $('.esc_hideable:visible').length > 0
+        $('#race_candidates').show() if $('#racer_menu').is(':visible')
         $('.esc_hideable:visible').hide()
       else if $('.escapeable').length > 0
         $('#progress_dialog').show() unless $('.escapeable').eq(0).hasClass('no_progress')
