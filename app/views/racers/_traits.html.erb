@@ -63,7 +63,7 @@
       <% end -%>
     <% end -%>
 
-    <div class="links">
+    <div class="links" style="display: flex;">
       <% if @racer.stable -%>
         <%= link_to '配合', mating_path(@racer.mother, sire_id: @racer.father.id),
                             target: '_blank', tabindex: -1 %>
