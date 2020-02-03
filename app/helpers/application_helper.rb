@@ -147,6 +147,13 @@ module ApplicationHelper
     %i[lineage fee distances growth dirt temper contend health achievement stability]
   end
 
+  def sire_trait_human_abbr(name)
+    SireTrait.human_attribute_name(name).yield_self { |x|
+      return x if %i[lineage fee distances growth].include?(name)
+      x.first
+    }
+  end
+
   def mare_trait_names
     %i[lineage price speed stamina rating type]
   end
@@ -200,7 +207,7 @@ module ApplicationHelper
   def result_attr_display(result, name, f)
     in_paddock = result.comment_paddock.blank?
     if !f || name == :age
-      return '－' if name == :place and result.place > 20
+      return '－' if name == :place and result.place > 30
       result.send(name)
     elsif name == :jockey
       f.select :jockey_id, options_for_select_for_jockey(result.jockey), {},

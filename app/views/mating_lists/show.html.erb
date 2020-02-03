@@ -5,9 +5,9 @@
         <th>
         <th class="border_right_thick">
         <% sire_trait_names.each do |name| -%>
-          <th><%= SireTrait.human_attribute_name(name) %></th>
+          <th><%= sire_trait_human_abbr(name) %></th>
         <% end -%>
-        <% mare_trait_names.reject { |n| n == :lineage }.each_with_index do |name, index| -%>
+        <% mare_trait_names.each_with_index do |name, index| -%>
           <th class="<%= index.zero? ? 'border_left_thick' : '' %>">
             <%= Mare.human_attribute_name(name) %>
           </th>
@@ -38,7 +38,7 @@
               <%= name == :fee ? "#{value}万" : value %>
             </td>
           <% end -%>
-          <% mare_trait_names.reject { |n| n == :lineage }.each_with_index do |name, index| -%>
+          <% mare_trait_names.each_with_index do |name, index| -%>
             <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>
                        <%= index.zero? ? 'border_left_thick' : '' %>">
               <%= mare.send(name) %>

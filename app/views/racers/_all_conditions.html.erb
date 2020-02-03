@@ -52,7 +52,7 @@
               <% if is_current_week -%>
                 <%= form_for_weekly_condition(racer) %>
               <% elsif result -%>
-                <%= result.place %>
+                <%= result.place.yield_self { |x| x > 30 ? '－' : x } %>
               <% else -%>
                 <%= racer.condition_in(age, month, week) %>
               <% end -%>
