@@ -22,7 +22,8 @@ $ ->
     $('input[type="checkbox"][name="trip"]').on 'change', ->
       $('input[type="hidden"][name="trip"]').val($(this).prop('checked'))
 
-    $(window).scrollTop(9999)
+    if $('.racers_show').eq(0).hasClass('in_stable')
+      $(window).scrollTop(9999)
 
     $('form.button_to').on 'submit', ->
       $('#progress_dialog').show()
