@@ -104,6 +104,16 @@ class Race < ApplicationRecord
     }.to_h
   }
 
+  H_MINIMUM_NET_PRIZE = {
+    '宝塚記念'  => 4000,
+    '有馬記念'  => 5000,
+    'ジャパンC' => 6000
+  }
+
+  def not_enterable_for?(racer)
+    racer.net_prize < H_MINIMUM_NET_PRIZE[name].to_i
+  end
+
   def prize_for(place)
     if grade.high_stake?
       raise "Not implemented for place #{place} of high-stake" if place > 2
