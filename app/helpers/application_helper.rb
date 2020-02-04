@@ -353,7 +353,7 @@ module ApplicationHelper
   end
 
   def form_for_weekly_weight(racer)
-    form_with url: weight_racer_path(racer), local: true, class: 'weekly_weight' do
+    form_with url: weight_racer_path(racer), class: 'weekly_weight' do
       concat number_field_tag :weight, racer.weight || racer.last_weight,
                                     step: 2,
                                     disabled: @racer_id_to_edit.to_i > 0,

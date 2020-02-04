@@ -1,0 +1,16 @@
+$input_for_weight = $('#weight-<%= @racer.id %>').removeClass('no_weight')
+$select_for_condition = $input_for_weight.closest('td').prevAll('td').find('select.condition')
+if ($select_for_condition.length === 0) {
+  $select_for_condition = $input_for_weight.parent('form').prevAll('form.condition').find('select.condition')
+}
+$input_for_weight.attr('tabindex', -1)
+<% if @racer.weight -%>
+  $input_for_weight.removeClass('no_weight')
+  $select_for_condition.focus()
+<% else -%>
+  $input_for_weight.val(<%= @racer.last_weight %>)
+  $input_for_weight.addClass('no_weight')
+  <% unless @racer.condition -%>
+    $select_for_condition.focus()
+  <% end -%>
+<% end -%>
