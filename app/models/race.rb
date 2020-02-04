@@ -110,8 +110,12 @@ class Race < ApplicationRecord
     'ジャパンC' => 6000
   }
 
+  def minimum_net_prize
+    H_MINIMUM_NET_PRIZE[name].to_i
+  end
+
   def not_enterable_for?(racer)
-    racer.net_prize < H_MINIMUM_NET_PRIZE[name].to_i
+    racer.net_prize < minimum_net_prize
   end
 
   def prize_for(place)
