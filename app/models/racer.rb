@@ -116,6 +116,10 @@ class Racer < ApplicationRecord
     in_ranch&.is_in_spa
   end
 
+  def to_be_trained?
+    in_stable? && !(condition && weight)
+  end
+
   def expecting_race?
     !results.empty? && results.last.place.blank?
   end
