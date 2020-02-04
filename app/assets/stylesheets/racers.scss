@@ -323,6 +323,11 @@ input.weight {
       background-color: darkred;
     }
 
+    td.not_enterable {
+      color: gray;
+      font-style: italic;
+    }
+
     input[type="submit"] {
       height: 16px;
       font-weight: bold;

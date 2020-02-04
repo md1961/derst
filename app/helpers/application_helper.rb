@@ -304,12 +304,15 @@ module ApplicationHelper
     clazz = 'target_by_others' if target_racers.size > 0
     entered_racers = (@entered_races_by_others || []).find_all { |r| r.race == race }.map(&:racer)
     clazz = 'entry_by_others' if entered_racers.size > 0
-    other_racers = (target_racers + entered_racers).uniq
+    label_items = (target_racers + entered_racers).uniq
+
+    clazz += ' not_enterable' if race.not_enterable_for?(racer)
+    label_items << "本賞金 #{race.minimum_net_prize}万円以上" if race.minimum_net_prize > 0
 
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target,
-      content_tag(:td, safe_join(a, ' '), class: clazz, aria: {label: other_racers.join(', ')}),
+      content_tag(:td, safe_join(a, ' '), class: clazz, aria: {label: label_items.join(', ')}),
     ].compact)
   end
 
