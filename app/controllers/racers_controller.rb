@@ -100,18 +100,18 @@ class RacersController < ApplicationController
     redirect_to racer
   end
 
-  def weekly
-    racer = Racer.find(params[:id])
+  def condition
+    @racer = Racer.find(params[:id])
+    condition = params[:condition]
+    condition = nil if condition == '-'
+    @racer.condition = condition
+  end
 
-    if params[:condition].present?
-      condition = params[:condition]
-      condition = nil if condition == '-'
-      racer.condition = condition
-    else
-      weight = params[:weight].to_i
-      weight = nil if weight < 300 || weight > 600
-      racer.weight = weight
-    end
+  def weight
+    racer = Racer.find(params[:id])
+    weight = params[:weight].to_i
+    weight = nil if weight < 300 || weight > 600
+    racer.weight = weight
 
     ranch = Ranch.find_by(id: params[:ranch_id])
     flash[:racer_id_to_focus] = racer.id

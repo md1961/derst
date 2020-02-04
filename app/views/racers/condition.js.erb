@@ -1,0 +1,16 @@
+$select_for_condition = $('#condition-<%= @racer.id %>').removeClass('no_condition')
+$input_for_weight = $select_for_condition.closest('td').nextAll('td').find('input.weight')
+if ($input_for_weight.length === 0) {
+  $input_for_weight = $select_for_condition.parent('form').nextAll('form.weekly_weight').find('input.weight')
+}
+<% if @racer.condition -%>
+  $select_for_condition.removeClass('no_condition')
+  $select_for_condition.attr('tabindex', -1)
+  $input_for_weight.attr('tabindex', 0)
+  $input_for_weight.focus()
+<% else -%>
+  $select_for_condition.val('<%= @racer.default_condition %>')
+  $select_for_condition.addClass('no_condition')
+  $select_for_condition.attr('tabindex', 0)
+  $input_for_weight.attr('tabindex', -1)
+<% end -%>

@@ -105,9 +105,12 @@ $ ->
       return false
 
   $(window).on 'keydown', (e) ->
-    focused = $(':focus')
-    if focused.attr('name') == 'condition' && e.keyCode == 13
-      focused.parent('form').submit()
+    $focused = $(':focus')
+    if $focused.attr('name') == 'condition' && e.keyCode == 13
+      $form = $focused.parent('form')
+      action = $form.attr('action')
+      condition = $focused.val()
+      $.post action, {condition: condition}
       return false
 
   $(window).on 'keyup', (e) ->
