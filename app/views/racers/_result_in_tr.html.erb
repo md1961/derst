@@ -1,0 +1,26 @@
+<% race = result.race -%>
+<tr class="place-<%= result.place %> <%= race.surface %>">
+  <td class="numeric"><%= result.age %></td>
+  <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
+  <td nowrap><%= race.course %></td>
+  <td><%= race_name_display(race) %></td>
+  <td><%= race_distance_display(race) %></td>
+  <% if result.place.nil? || result.id == @result_id_to_edit -%>
+    <%= form_with model: result, local: true do |f| %>
+      <%= render partial: 'result', locals: {result: result, f: f} %>
+    <tr>
+      <td colspan="22" class="numeric"><%= f.submit %></td>
+    <% end -%>
+      <td colspan="2" class="numeric">
+        <%= link_to 'Cancel', result.racer %>
+      </td>
+      <td class="numeric">
+        <%= button_to '削除', result, method: :delete, class: 'destroy', tabindex: -1,
+                                      data: {confirm: "削除してよろしいですか？"} %>
+      </td>
+    </tr>
+  <% else -%>
+    <%= render partial: 'result', locals: {result: result, f: nil} %>
+    <td><%= link_to 'e', edit_result_path(result), tabindex: -1 %></td>
+  <% end -%>
+</tr>
