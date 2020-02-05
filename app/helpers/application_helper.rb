@@ -376,7 +376,7 @@ module ApplicationHelper
   end
 
   def count_to_be_trained_display
-    "#{Racer.in_stable.count { |r| r.condition.nil? }} / #{Racer.in_stable.count}"
+    "#{Racer.count(&:to_be_trained?)} / #{Racer.in_stable.count}"
   end
 
   def frame_color(num_frame, num_racers)
