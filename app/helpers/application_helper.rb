@@ -366,6 +366,10 @@ module ApplicationHelper
     end
   end
 
+  def count_to_be_trained_display
+    "#{Racer.in_stable.count { |r| r.condition.nil? }} / #{Racer.in_stable.count}"
+  end
+
   def frame_color(num_frame, num_racers)
     return '' if num_frame.blank? || num_racers.blank?
     excess = num_racers - 8
