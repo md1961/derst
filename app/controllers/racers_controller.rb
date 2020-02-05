@@ -14,11 +14,13 @@ class RacersController < ApplicationController
 
     racers = (@racer.in_stable? ? Racer.in_stable : Racer.in_ranch).older_first
 
+    @racers_in_same_race = []
     if @racer.in_stable? && Racer.any_expecting_race? && Racer.all_training_done?
       racers = racers.find_all { |racer| racer.expecting_race? || racer == @racer }
       race = @racer.results.last&.race
       if races_of_multiple_entries(racers).include?(race)
         racers = racers.find_all { |racer| racer.results.last.race == race }
+        @racers_in_same_race = racers.reject { |racer| racer == @racer }
       end
     else
       racers = racers.reject { |racer| racer.condition && racer != @racer }

@@ -29,6 +29,12 @@
       <% end -%>
     <% end -%>
 
+    <% @racers_in_same_race.each do |racer| -%>
+      <tr><td colspan="26"></tr>
+      <tr><td colspan="26"><%= racer.name %></td></tr>
+      <%= render partial: 'result_in_tr', locals: {result: racer.results.last} %>
+    <% end -%>
+
     <% unless @racer.expecting_race? -%>
       <tr>
         <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
