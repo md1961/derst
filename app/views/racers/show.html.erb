@@ -49,7 +49,7 @@
       <% if @prev_racer && @next_racer -%>
         <%= link_to "<[#{racer_with_race_display(@prev_racer)}]".html_safe, @prev_racer, id: 'to_prev_racer',
                       class: @prev_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
-        <span class="count">
+        <span id="count_to_be_trained" class="count">
           <%= count_to_be_trained_display %>
         </span>
         <%= link_to "[#{racer_with_race_display(@next_racer)}]>".html_safe, @next_racer, id: 'to_next_racer',
