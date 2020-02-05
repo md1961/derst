@@ -13,4 +13,7 @@ if ($input_for_weight.length === 0) {
   $select_for_condition.addClass('no_condition')
   $select_for_condition.attr('tabindex', 0)
   $input_for_weight.attr('tabindex', -1)
+  <% if @racer.weight -%>
+    $input_for_weight.focus()
+  <% end -%>
 <% end -%>
