@@ -8,6 +8,7 @@ $ ->
     $('#results_and_conditions').css('margin-top', top + height + 15)
 
     $('#edit_racer, #cancel').on 'click', ->
+      return if $('#results input').is(':focus')
       $('.for_action_show').toggle()
       $('.for_action_edit').toggle()
       if $('input#racer_weight_fat').length > 0
