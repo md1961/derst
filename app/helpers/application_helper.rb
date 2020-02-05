@@ -286,17 +286,26 @@ module ApplicationHelper
 
     button_to_target = nil
     if displays_target_button
+      is_current_week = race.month_week == racer.ranch.month_week
       is_target = racer.target?(race)
-      label, path, method, clazz = race.month_week == racer.ranch.month_week && racer.condition \
-          ? ['E', create_result_racer_path(racer, race_id: race.id)       , :post  , is_target ? 'target' : ''] \
-        : is_target \
+      button_to_enter = nil
+      if is_current_week
+        button_to_enter = button_to(
+          'E', create_result_racer_path(racer, race_id: race.id),
+          method: :post, class: ['button_to_enter', is_target ? 'target' : ''].join(' '),
+          hidden: racer.to_be_trained?, tabindex: -1
+        )
+      end
+      label, path, method, clazz = is_target \
           ? [' ' ,target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
           : [' ' ,target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
-      button_to_target = content_tag(
-        :td,
-        button_to(label, path, method: method, params: {trip: false}, class: clazz, tabindex: -1),
-        class: 'centered'
-      )
+      clazz += ' button_to_target_in_current' if is_current_week
+      button_to_target = content_tag(:td, class: 'centered') {
+        concat button_to(label, path,
+                         method: method, params: {trip: false}, class: clazz,
+                         hidden: !racer.to_be_trained?, tabindex: -1)
+        concat button_to_enter
+      }
     end
     clazz = race.grade.high_stake? ? 'high_stake' : race.grade <= racer.grade ? '' : 'overgrade'
 
