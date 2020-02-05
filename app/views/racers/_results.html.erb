@@ -29,19 +29,15 @@
       <% end -%>
     <% end -%>
 
-    <% if @racer.is_active -%>
+    <% unless @racer.expecting_race? -%>
       <tr>
-        <% if @racer.expecting_race? -%>
-          <td colspan="16">
-        <% else -%>
-          <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
-            <td class="numeric"><%= @racer.age %></td>
-            <td class="numeric"><%= @racer.ranch.month_week %></td>
-            <td colspan="15">
-              <%= select_tag :race_id, race_options_for_select_for(@racer), tabindex: -1 %>
-              <%= f.submit 'Enter', tabindex: -1 %>
-            </td>
-          <% end -%>
+        <%= form_with url: create_result_racer_path(@racer), local: true do |f| %>
+          <td class="numeric"><%= @racer.age %></td>
+          <td class="numeric"><%= @racer.ranch.month_week %></td>
+          <td colspan="15">
+            <%= select_tag :race_id, race_options_for_select_for(@racer), tabindex: -1 %>
+            <%= f.submit 'Enter', tabindex: -1 %>
+          </td>
         <% end -%>
 
         <td colspan="9">
