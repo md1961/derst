@@ -121,6 +121,19 @@ tbody tr:hover {
   background-color: pink;
 }
 
+span.all_trained {
+  color: white;
+  background-color: blue;
+  padding: 4px;
+}
+
+span.not_all_trained {
+  color: red;
+  background-color: yellow;
+  font-weight: bold;
+  padding: 4px;
+}
+
 .notice {
   color: yellow;
   background-color: red;

@@ -376,7 +376,9 @@ module ApplicationHelper
   end
 
   def count_to_be_trained_display
-    "#{Racer.count(&:to_be_trained?)} / #{Racer.in_stable.count}"
+    display = "#{Racer.count(&:to_be_trained?)} / #{Racer.in_stable.count}"
+    clazz = display.to_i.zero? ? 'all_trained' : 'not_all_trained'
+    content_tag :span, display, class: clazz
   end
 
   def frame_color(num_frame, num_racers)
