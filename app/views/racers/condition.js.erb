@@ -1,8 +1,10 @@
 $select_for_condition = $('#condition-<%= @racer.id %>').removeClass('no_condition')
+
 $input_for_weight = $select_for_condition.closest('td').nextAll('td').find('input.weight')
 if ($input_for_weight.length === 0) {
   $input_for_weight = $select_for_condition.parent('form').nextAll('form.weekly_weight').find('input.weight')
 }
+
 <% if @racer.condition -%>
   $select_for_condition.removeClass('no_condition')
   $select_for_condition.attr('tabindex', -1)
@@ -17,3 +19,5 @@ if ($input_for_weight.length === 0) {
     $input_for_weight.focus()
   <% end -%>
 <% end -%>
+
+<%= render 'toggle_button_to_enter_race' %>

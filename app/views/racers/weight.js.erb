@@ -1,9 +1,12 @@
 $input_for_weight = $('#weight-<%= @racer.id %>').removeClass('no_weight')
+
 $select_for_condition = $input_for_weight.closest('td').prevAll('td').find('select.condition')
 if ($select_for_condition.length === 0) {
   $select_for_condition = $input_for_weight.parent('form').prevAll('form.condition').find('select.condition')
 }
+
 $input_for_weight.attr('tabindex', -1)
+
 <% if @racer.weight -%>
   $input_for_weight.removeClass('no_weight')
   $select_for_condition.focus()
@@ -14,3 +17,5 @@ $input_for_weight.attr('tabindex', -1)
     $select_for_condition.focus()
   <% end -%>
 <% end -%>
+
+<%= render 'toggle_button_to_enter_race' %>

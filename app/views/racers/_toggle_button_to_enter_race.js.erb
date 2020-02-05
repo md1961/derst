@@ -1,0 +1,7 @@
+<% if @racer.to_be_trained? -%>
+  $('input.button_to_enter').hide()
+  $('input.button_to_target_in_current').show()
+<% else -%>
+  $('input.button_to_target_in_current').hide()
+  $('input.button_to_enter').show()
+<% end -%>
