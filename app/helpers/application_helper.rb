@@ -303,7 +303,7 @@ module ApplicationHelper
       button_to_target = content_tag(:td, class: 'centered') {
         concat button_to(label, path,
                          method: method, params: {trip: false}, class: clazz,
-                         hidden: !racer.to_be_trained?, tabindex: -1)
+                         hidden: is_current_week && !racer.to_be_trained?, tabindex: -1)
         concat button_to_enter
       }
     end
