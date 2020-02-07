@@ -26,7 +26,7 @@ class RacersController < ApplicationController
       racers = racers.reject { |racer| racer.condition && racer != @racer }
     end
     index = racers.find_index(@racer)
-    @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index
+    @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index && racers.size >= 2
 
     flash[:racer_id_to_focus] = @racer.id
   end
