@@ -18,6 +18,13 @@ class Result < ApplicationRecord
     end
   }
 
+  scope :in_current_week, ->(ranch = nil) {
+    ranch = Ranch.last unless ranch
+    Result.joins(:racer, :race)
+          .where("results.age = #{ranch.year} - racers.year_birth + 1")
+          .where('races.month': ranch.month, 'races.week': ranch.week)
+  }
+
   scope :wins, -> { where(place: 1) }
 
   def net_prize
