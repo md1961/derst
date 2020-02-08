@@ -42,7 +42,8 @@
           <%= racer %>
         </td>
         <% months.each do |month| -%>
-          <% age = racer.age - (month > month_end ? 1 : 0) -%>
+          <% age = racer.age - (month > month_end ? 1 : 0)
+             age += 1 if month == 1 && month_end == 13 -%>
           <% (1 .. 4).each do |week| -%>
             <% result = racer.result_in(age, month, week)
                result_to_s = result.nil? ? ""
