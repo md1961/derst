@@ -72,7 +72,7 @@ module RacersHelper
     when :mark_development, :mark_stamina, :mark_contend, :mark_temper, :mark_odds
       %w[－ △ ▲ 〇 ◎]
     when :for_bad_surface
-      %w[－ △ 〇 ◎]
+      %w[－ 〇 △ ◎]
     when :position
       %w[－ 逃げ 先行 中団 追込]
     when :condition
