@@ -291,8 +291,8 @@ module ApplicationHelper
       button_to_enter = nil
       if is_current_week
         button_to_enter = button_to(
-          'E', create_result_racer_path(racer, race_id: race.id),
-          method: :post, class: ['button_to_enter', is_target ? 'target' : ''].join(' '),
+          'E', create_result_racer_path(racer, race_id: race.id), params: {trip: false}, method: :post,
+          class: ['button_to_enter', is_target ? 'target' : ''].join(' '),
           hidden: racer.to_be_trained?, tabindex: -1
         )
       end
