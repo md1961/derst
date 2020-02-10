@@ -44,8 +44,7 @@ $ ->
         $('#show_mares')[0].click()
       return
     else if $('#show_no_stable').length > 0 && key == 'x'
-      $('#progress_dialog').show()
-      $('#show_no_stable')[0].click()
+      $('div.racers_racers tr.age2_or_1').toggle()
       return
     else if $('#show_inbreeds').length > 0 && key == 'w'
       $('#progress_dialog').show()

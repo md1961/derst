@@ -10,6 +10,8 @@ class RanchesController < ApplicationController
     @shows_no_stable = params[:shows_no_stable] ? params[:shows_no_stable] == 'true' \
                                                 : session[KEY_SHOWS_NO_STABLE]
     session[KEY_SHOWS_NO_STABLE] = @shows_no_stable
+    # FIXME:
+    @shows_no_stable = Racer.find_by(id: flash[:racer_id_to_focus]).yield_self { |racer| !(racer && racer.age <= 2) }
 
     @main_display = params[:main_display].yield_self { |x| x.blank? ? nil : x }
 
@@ -18,11 +20,10 @@ class RanchesController < ApplicationController
       @racers = Racer.retired.older_first + [nil] + @racers
     elsif @main_display == 'active_inbreeds'
       @racers = @racers.where("year_birth >= ?", @ranch.year - 1)
-    elsif !@shows_no_stable
-      @racers = @racers.where("year_birth <= ?", @ranch.year - 2)
     end
 
     @racer_id_to_edit = params[:racer_id_to_edit].to_i
+    @shows_no_stable = false if @racer_id_to_edit > 0
 
     @shows_mares = session[KEY_SHOWS_MARES]
 

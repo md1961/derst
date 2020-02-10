@@ -17,8 +17,11 @@
     <tbody>
       <% prev_racer = nil -%>
       <% @racers.each.with_index(1) do |racer, index| -%>
-        <tr class="racer <%= prev_racer && racer && racer.age < prev_racer.age ? 'border_top_thick' : '' %>"
-            data-racer_id="<%= racer.id %>">
+        <tr class="racer
+                   <%= racer.age <= 2 ? 'age2_or_1' : '' %>
+                   <%= prev_racer && racer && racer.age < prev_racer.age ? 'border_top_thick' : '' %>"
+            data-racer_id="<%= racer.id %>"
+            <%= @shows_no_stable && racer.age <= 2 ? 'hidden' : '' %>>
           <% prev_racer = racer -%>
           <% if racer.id == @racer_id_to_edit -%>
             <%= form_with model: racer, local: true do |f| %>
