@@ -322,8 +322,9 @@ module ApplicationHelper
     path, method, clazz = racer.target?(race) \
         ? [target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
         : [target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
+    clazz += ' no_progress'
     clazz += ' button_to_target_in_current' if is_current_week
-    button_to(' ', path, method: method,
+    button_to(' ', path, method: method, remote: true,
               id: "target_for_race-#{race.id}", class: clazz,
               hidden: is_current_week && !racer.to_be_trained?, tabindex: -1)
   end

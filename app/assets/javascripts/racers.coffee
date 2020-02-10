@@ -27,4 +27,5 @@ $ ->
       $(window).scrollTop(9999)
 
     $('form.button_to').on 'submit', ->
+      return if $(this).has('input.no_progress')
       $('#progress_dialog').show()
