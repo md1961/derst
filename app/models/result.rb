@@ -27,6 +27,10 @@ class Result < ApplicationRecord
 
   scope :wins, -> { where(place: 1) }
 
+  scope :num_races, -> { joins(:race).select('races.id').distinct.count }
+  scope :num_races_in_current_week, -> { in_current_week.num_races }
+  scope :num_races_yet_to_come    , -> { in_current_week.where(place: nil).num_races }
+
   def net_prize
     return 0 unless place
     race.net_prize_for(place)
