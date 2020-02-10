@@ -134,6 +134,20 @@ span.not_all_trained {
   padding: 4px;
 }
 
+span.all_races_done {
+  color: magenta;
+  background-color: blue;
+  font-weight: bold;
+  padding: 4px;
+}
+
+span.not_all_races_done {
+  color: white;
+  background-color: red;
+  font-weight: bold;
+  padding: 4px;
+}
+
 .notice {
   color: yellow;
   background-color: red;

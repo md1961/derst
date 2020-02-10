@@ -380,8 +380,16 @@ module ApplicationHelper
   end
 
   def count_to_be_trained_display
-    display = "#{Racer.count(&:to_be_trained?)} / #{Racer.in_stable.count}"
-    clazz = display.to_i.zero? ? 'all_trained' : 'not_all_trained'
+    count_to_be_trained = Racer.count(&:to_be_trained?)
+    num_races_in_current_week = Result.num_races_in_current_week
+    if count_to_be_trained.zero? && num_races_in_current_week > 0
+      num_races_yet_to_come = Result.num_races_yet_to_come
+      display = "#{num_races_yet_to_come} / #{num_races_in_current_week}"
+      clazz = num_races_yet_to_come.zero? ? 'all_races_done' : 'not_all_races_done'
+    else
+      display = "#{count_to_be_trained} / #{Racer.in_stable.count}"
+      clazz = count_to_be_trained.zero? ? 'all_trained' : 'not_all_trained'
+    end
     content_tag :span, display, class: clazz
   end
 
