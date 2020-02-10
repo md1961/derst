@@ -26,6 +26,5 @@ $ ->
     if $('.racers_show').eq(0).hasClass('in_stable')
       $(window).scrollTop(9999)
 
-    $('form.button_to').on 'submit', ->
-      return if $(this).has('input.no_progress')
+    $('form.button_to').not('[data-remote="true"]').on 'submit', ->
       $('#progress_dialog').show()
