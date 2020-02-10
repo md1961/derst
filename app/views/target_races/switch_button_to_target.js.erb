@@ -1,2 +1,8 @@
 $('#target_for_race-<%= @race.id %>').parent('form')
   .replaceWith("<%= j button_to_target(@racer, @race) %>")
+
+<% if @racer.condition && !@racer.weight -%>
+  $('select.weight').focus()
+<% else -%>
+  $('select.condition').focus()
+<% end -%>
