@@ -284,26 +284,18 @@ module ApplicationHelper
     a << race_name_display(race)
     a << "#{race.load_for(racer)}kg#{race.load_plus_from_total_prize? ? '+' : ''}" unless race.handicap?
 
-    button_to_target = nil
+    button_to_target_in_td = nil
     if displays_target_button
-      is_current_week = race.month_week == racer.ranch.month_week
-      is_target = racer.target?(race)
       button_to_enter = nil
-      if is_current_week
+      if race.month_week == racer.ranch.month_week
         button_to_enter = button_to(
           'E', create_result_racer_path(racer, race_id: race.id), params: {trip: false}, method: :post,
-          class: ['button_to_enter', is_target ? 'target' : ''].join(' '),
+          class: ['button_to_enter', racer.target?(race) ? 'target' : ''].join(' '),
           hidden: racer.to_be_trained?, tabindex: -1
         )
       end
-      label, path, method, clazz = is_target \
-          ? [' ' ,target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
-          : [' ' ,target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
-      clazz += ' button_to_target_in_current' if is_current_week
-      button_to_target = content_tag(:td, class: 'centered') {
-        concat button_to(label, path,
-                         method: method, params: {trip: false}, class: clazz,
-                         hidden: is_current_week && !racer.to_be_trained?, tabindex: -1)
+      button_to_target_in_td = content_tag(:td, class: 'centered') {
+        concat button_to_target(racer, race)
         concat button_to_enter
       }
     end
@@ -320,9 +312,20 @@ module ApplicationHelper
 
     safe_join([
       content_tag(:td, course, class: transport),
-      button_to_target,
+      button_to_target_in_td,
       content_tag(:td, safe_join(a, ' '), class: clazz, aria: {label: label_items.join(', ')}),
     ].compact)
+  end
+
+  def button_to_target(racer, race)
+    is_current_week = race.month_week == racer.ranch.month_week
+    path, method, clazz = racer.target?(race) \
+        ? [target_race_path(racer.target_races.find_by(race: race)), :delete, 'target'] \
+        : [target_races_path(racer_id: racer.id, race_id: race.id) , :post  , ''      ]
+    clazz += ' button_to_target_in_current' if is_current_week
+    button_to(' ', path, method: method,
+              id: "target_for_race-#{race.id}", class: clazz,
+              hidden: is_current_week && !racer.to_be_trained?, tabindex: -1)
   end
 
   def button_to_graze(racer)
