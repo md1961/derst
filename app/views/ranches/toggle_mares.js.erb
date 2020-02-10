@@ -1,0 +1,13 @@
+$mare_list = $('div.mares')
+$link_to_show_mares = $('a#show_mares')
+href = $link_to_show_mares.attr('href')
+
+$mare_list.toggle()
+if ($mare_list.is(':visible')) {
+  if ($mare_list.children('table').length === 0) {
+    $mare_list.html("<%= j(render 'ranch_mares') %>")
+  }
+  $link_to_show_mares.attr('href', href.replace('true', 'false'))
+} else {
+  $link_to_show_mares.attr('href', href.replace('false', 'true'))
+}

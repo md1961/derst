@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :ranches, only: %i[show] do
     member do
       patch :next_week
+      get :toggle_mares
     end
 
     collection do

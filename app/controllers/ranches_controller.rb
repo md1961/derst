@@ -5,7 +5,6 @@ class RanchesController < ApplicationController
 
   def show
     @ranch = Ranch.last
-
     @mares = @ranch.mares.order(ranch_mare_sort_key)
 
     @shows_no_stable = params[:shows_no_stable] ? params[:shows_no_stable] == 'true' \
@@ -25,9 +24,7 @@ class RanchesController < ApplicationController
 
     @racer_id_to_edit = params[:racer_id_to_edit].to_i
 
-    @shows_mares = params[:shows_mares] ? params[:shows_mares] == 'true' \
-                                        : session[KEY_SHOWS_MARES]
-    session[KEY_SHOWS_MARES] = @shows_mares
+    @shows_mares = session[KEY_SHOWS_MARES]
 
     @ready_for_next_week = params[:next_done] != 'true' \
                         && Racer.all_training_done? \
@@ -47,5 +44,11 @@ class RanchesController < ApplicationController
 
   def mare_sort_key
     session[KEY_RANCH_MARE_SORT_KEY] = params[:key]
+  end
+
+  def toggle_mares
+    @ranch = Ranch.find(params[:id])
+    @mares = @ranch.mares.order(ranch_mare_sort_key)
+    session[KEY_SHOWS_MARES] = params[:shows_mares] == 'true'
   end
 end

@@ -38,7 +38,6 @@ $ ->
       return
 
     if $('#show_mares').length > 0 && key == 'y'
-      $('#progress_dialog').show()
       if $('table.all_racers').is(':visible')
         $('div.mares').toggle()
       else

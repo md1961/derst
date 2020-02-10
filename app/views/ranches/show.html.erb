@@ -1,11 +1,7 @@
 <div class="ranches_show <%= @ready_for_next_week ? 'ready_for_next_week' : '' %>">
   <div class="mares" <%= @shows_mares ? '' : 'hidden' %>>
-    <%= render 'mares' %>
-
-    <% if @racer_id_to_edit.zero? -%>
-      <div class="links">
-        <%= link_to '新規繁殖牝馬', new_ranch_mare_path(ranch_id: @ranch.id), tabindex: -1 %>
-      </div>
+    <% if @shows_mares && @racer_id_to_edit.zero? -%>
+      <%= render 'ranch_mares' %>
     <% end -%>
   </div>
 
@@ -27,7 +23,7 @@
   <% end -%>
 
   <div class="links" hidden>
-    <%= link_to '[繁殖牝馬]', ranch_path(@ranch, shows_mares: !@shows_mares, main_display: @main_display),
+    <%= link_to '[繁殖牝馬]', toggle_mares_ranch_path(@ranch, shows_mares: !@shows_mares), remote: true,
                               id: 'show_mares', tabindex: -1 %>
     <%= link_to '[全現役馬]', ranch_path(@ranch, shows_no_stable: !@shows_no_stable),
                               id: 'show_no_stable', tabindex: -1 %>
