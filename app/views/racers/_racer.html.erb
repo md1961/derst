@@ -36,7 +36,8 @@
   </td>
 <% end -%>
 
-<td class="<%= is_current_racer ? 'current_racer' : '' %>">
+<td class="<%= is_current_racer ? 'current_racer'
+             : is_menu && !racer.to_be_trained? ? 'trained' : '' %>">
   <%= racer_name_display(racer, f) %>
 </td>
 <td><%= racer_sex_display(racer) %></td>
