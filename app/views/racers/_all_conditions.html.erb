@@ -2,6 +2,8 @@
    month_end = @ranch.month + 1
    months = (month_end - num_months + 1 .. month_end).to_a.map { |m| (m + 12 - 1) % 12 + 1 } -%>
 
+<% current_month_and_week = @ranch.month_week.to_a -%>
+
 <table id="conditions" class="table_base">
   <thead>
     <tr>
@@ -20,7 +22,7 @@
     <tr>
       <% months.each do |month| -%>
         <% (1 .. 4).each do |week| -%>
-          <th class="<%= @ranch.in_week_of?(month, week) ? 'current' : '' %>">
+          <th class="<%= [month, week] == current_month_and_week ? 'current' : '' %>">
             <%= week %>
           </th>
         <% end -%>
@@ -30,6 +32,7 @@
   <tbody>
     <% @racers.each.with_index(1) do |racer, index| -%>
       <% next unless racer.in_stable? -%>
+      <% month_and_weeks_of_target_races = racer.target_races.map(&:race).map(&:month_week).map(&:to_a) -%>
       <tr class="racer" data-racer_id="<%= racer.id %>">
         <td class="centered
                    <%= racer.injury ? 'injured'
@@ -48,8 +51,8 @@
             <% result = racer.result_in(age, month, week)
                result_to_s = result.nil? ? ""
                            : "#{result.race.name} #{result.race.distance_to_s} #{result.place}着"
-               is_current_week = @ranch.in_week_of?(month, week)
-               is_target = racer.target_races.in_week_of(month, week) -%>
+               is_current_week = [month, week] == current_month_and_week
+               is_target = month_and_weeks_of_target_races.include?([month, week]) -%>
             <td class="centered <%= result ? (is_current_week ? 'race_coming' : 'race') : is_target ? 'target' : '' %>"
                 aria-label="<%= result&.race %>">
               <% if is_current_week -%>
