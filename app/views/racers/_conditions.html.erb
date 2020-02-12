@@ -1,9 +1,13 @@
+<% current_month_and_week = @racer.ranch.month_week.to_a
+   age_month_and_weeks_of_races = @racer.results.map { |result| [result.age, result.race.month, result.race.week] }
+   month_and_weeks_of_target_races = @racer.target_races.map(&:race).map(&:month_week).map(&:to_a) -%>
+
 <table id="conditions" class="table_base">
   <thead>
     <tr>
       <th rowspan="2" class="border_bottom_thick border_right_thick">
       <% (1 .. 12).each do |month| -%>
-        <th colspan="4" class="centered <%= month == @racer.ranch.month ? 'current' : '' %>">
+        <th colspan="4" class="<%= month == current_month_and_week[0] ? 'current' : '' %>">
           <%= "#{month}月" %>
         </th>
       <% end -%>
@@ -11,7 +15,7 @@
     <tr>
       <% (1 .. 12).each do |month| -%>
         <% (1 .. 4).each do |week| -%>
-          <th class="<%= @racer.ranch.in_week_of?(month, week) ? 'current' : '' %>">
+          <th class="<%= [month, week] == current_month_and_week ? 'current' : '' %>">
             <%= week %>
           </th>
         <% end -%>
@@ -24,11 +28,12 @@
         <th class="border_right_thick"><%= "#{age}歳" %></th>
         <% (1 .. 12).each do |month| -%>
           <% (1 .. 4).each do |week| -%>
-            <% weekly = @racer.weeklies.find_by(age: age, month: month, week: week) -%>
+            <% weekly = @racer.weeklies.find_by(age: age, month: month, week: week)
+               is_current_year = age == @racer.age -%>
             <td class="condition
-                       <%= age == @racer.age && @racer.ranch.in_week_of?(month, week) ? 'current' : '' %>
-                       <%= @racer.race_in?(age, month, week) ? 'race' : '' %>
-                       <%= age == @racer.age && @racer.target_races.in_week_of(month, week) ? 'target' : '' %>"
+                       <%= is_current_year && [month, week] == current_month_and_week ? 'current' : '' %>
+                       <%= age_month_and_weeks_of_races.include?([age, month, week]) ? 'race' : '' %>
+                       <%= is_current_year && month_and_weeks_of_target_races.include?([month, week]) ? 'target' : '' %>"
                 id="<%= html_id_of_td_condition(age, month, week) %>"
                 aria-label="<%= weekly ? "id=#{weekly.id}" : "" %>">
               <%= @racer.condition_in(age, month, week) %>
