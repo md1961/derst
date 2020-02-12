@@ -393,6 +393,10 @@ module ApplicationHelper
     content_tag :span, display, class: clazz
   end
 
+  def html_id_of_td_condition(age, month, week)
+    sprintf("age%d-month%d-week%d", age, month, week)
+  end
+
   def frame_color(num_frame, num_racers)
     return '' if num_frame.blank? || num_racers.blank?
     excess = num_racers - 8

@@ -1,6 +1,11 @@
 $('#target_for_race-<%= @race.id %>').parent('form')
   .replaceWith("<%= j button_to_target(@racer, @race) %>")
 
+<% month = @race.month -%>
+<% if month >= @racer.ranch.month -%>
+  $('#<%= html_id_of_td_condition(@racer.age, month, @race.week) %>').toggleClass('target')
+<% end -%>
+
 <% if @racer.condition && !@racer.weight -%>
   $('input.weight').focus()
 <% else -%>
