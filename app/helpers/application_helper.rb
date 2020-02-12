@@ -268,7 +268,7 @@ module ApplicationHelper
     ].compact.join(' ')
   end
 
-  def race_display(race, racer, displays_target_button: false)
+  def race_display(race, racer, displays_target_button: false, data_for_race_load: nil)
     course = race.course
     stable = racer.stable
     transport = if racer.course_staying
@@ -282,7 +282,11 @@ module ApplicationHelper
     a << race.age
     a << race_distance_display(race)
     a << race_name_display(race)
-    a << "#{race.load_for(racer)}kg#{race.load_plus_from_total_prize? ? '+' : ''}" unless race.handicap?
+    unless race.handicap?
+      load_for = race.load_for(racer, data_for_race_load: data_for_race_load)
+      load_plus = race.load_plus_from_total_prize? ? '+' : ''
+      a << "#{load_for}kg#{load_plus}"
+    end
 
     button_to_target_in_td = nil
     if displays_target_button

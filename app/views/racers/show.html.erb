@@ -94,7 +94,8 @@
              races_by_week = @racer.race_candidates(includes_overgrade: @includes_overgrade).group_by { |race|
                race.month_week
              }
-             month_week = current_week -%>
+             month_week = current_week
+             data_for_race_load = @racer.data_for_race_load -%>
           <% @weeks_for_race_candidates.times do -%>
             <% races = races_by_week[month_week] || []
                races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
@@ -114,11 +115,11 @@
                   <% weeks_later = month_week - week_since -%>
                   <%= weeks_later.zero? ? '-' : "#{weeks_later}w" %>
                 </td>
-                <%= race_display(races.first, @racer, displays_target_button: true) %>
+                <%= race_display(races.first, @racer, displays_target_button: true, data_for_race_load: data_for_race_load) %>
               </tr>
               <% races[1 .. -1].each do |race| -%>
                 <tr>
-                  <%= race_display(race, @racer, displays_target_button: true) %>
+                  <%= race_display(race, @racer, displays_target_button: true, data_for_race_load: data_for_race_load) %>
                 </tr>
               <% end -%>
             <% end -%>

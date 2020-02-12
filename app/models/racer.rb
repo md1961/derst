@@ -352,6 +352,15 @@ class Racer < ApplicationRecord
     injure(nil)
   end
 
+  def data_for_race_load
+    {
+      wins: (1 .. 3).map { |n_grade|
+        [n_grade, results.high_stake(n_grade).where("results.age > 3").wins.count]
+      }.to_h,
+      net_prize: net_prize
+    }
+  end
+
   def to_s
     name
   end

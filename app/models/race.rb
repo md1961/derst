@@ -151,8 +151,12 @@ class Race < ApplicationRecord
     prize < 1200 ? 400 : (prize / 2).floor(-1)
   end
 
-  def load_for(racer)
-    send("load_of_#{weight}", racer)
+  def load_for(racer, data_for_race_load: nil)
+    if weight == 'separate' && data_for_race_load
+      load_of_separate(racer, data_for_race_load)
+    else
+      send("load_of_#{weight}", racer)
+    end
   end
 
   def load_plus_from_total_prize?
@@ -237,7 +241,7 @@ class Race < ApplicationRecord
     end
 
     # 4-52 5u-54
-    def load_of_separate(racer)
+    def load_of_separate(racer, data_for_race_load = nil)
       return load_of_age_constant(racer) if %w[3 4].include?(age)
       base, addition = H_LOADS_SEPARATE[id]
 
@@ -246,20 +250,24 @@ class Race < ApplicationRecord
       }.to_h
       load_base = (h_base[racer.age] || h_base['other']) - (racer.female? ? 2 : 0)
 
-      load_base + load_addition(addition, racer)
+      load_base + load_addition(addition, racer, data_for_race_load = nil)
     end
 
     # g1-1+2 g2-1+1 (ex. age3)
     # g1-1+3 g2-1+2 g3-1+1 (ex. age3)
     # np {4-11M,5-22M,6u-33M}u 11Me +1
     # np {4-16M,5-19M,6u-22M}e +1
-    def load_addition(addition, racer)
+    def load_addition(addition, racer, data_for_race_load = nil)
       if addition.starts_with?('g')
         addition.split.reject { |e| e =~ /\A[(a]/ }.map { |e|
           e.split(/[-+]/)
-        }.each do |grade, place, add|
+        }.each do |grade, __place, add|
           n_grade = grade.sub('g', '').to_i
-          return add.to_i if racer.results.high_stake(n_grade).where(place: place).count > 0
+          to_add = false
+          if data_for_race_load&.dig(:wins, n_grade) \
+             || racer.results.high_stake(n_grade).where("results.age > 3").wins.count > 0
+            return add.to_i
+          end
         end
       elsif addition.starts_with?('np')
         elems = addition.sub('np ', '').split
@@ -268,13 +276,14 @@ class Race < ApplicationRecord
           [age.ends_with?('u') ? 'other' : age.to_i, np.to_i * 100]
         }.to_h
         add = elems[-1].to_i
+        net_prize = data_for_race_load&.dig(:net_prize) || racer.net_prize
         if kind == 'up'
           prize_each = elems[1].to_i * 100
           prize_thres = h_net_prize[racer.age] || h_net_prize['other']
-          return [racer.net_prize - prize_thres, 0].max / prize_each * add
+          return [net_prize - prize_thres, 0].max / prize_each * add
         else
           prize_each = h_net_prize[racer.age] || h_net_prize['other']
-          return racer.net_prize / prize_each * add
+          return net_prize / prize_each * add
         end
       else
         raise "Illegal argument '#{addition}'"
