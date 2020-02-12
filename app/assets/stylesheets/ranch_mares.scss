@@ -31,6 +31,10 @@ td.expecting {
   .links {
     position: absolute;
 
+    > a {
+      margin-right: 40px;
+    }
+
     .links_to_mares {
       margin-top: 20px;
     }

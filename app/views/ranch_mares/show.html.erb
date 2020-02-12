@@ -34,6 +34,7 @@
 
   <div class="links">
     <%= link_to 'Back', ranch_path(@ranch_mare.ranch), data: {shortcut: 'b'}, tabindex: -1 %>
+    <%= link_to '種付', matings_path(mare_id: mare, ranch_id: @ranch_mare.ranch), target: '_blank', tabindex: -1 %>
 
     <div>
       <%= link_to ' ', @prev_mare, data: {shortcut: 'k'}, tabindex: -1 %>
