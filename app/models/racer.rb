@@ -245,11 +245,13 @@ class Racer < ApplicationRecord
     return [] unless ranch && age && grade
     Race.for_racer(self, includes_overgrade: includes_overgrade)
         .in_or_after(ranch.month_week)
-        .order(:month, :week) \
+        .order(:month, :week)
+        .includes(:grade, course: :area) \
     + \
     Race.for_racer(self, for_next_year: true, includes_overgrade: includes_overgrade)
         .before(ranch.month_week)
-        .order(:month, :week) \
+        .order(:month, :week)
+        .includes(:grade, course: :area)
   end
 
   def most_favorable_jockey
