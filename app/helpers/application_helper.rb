@@ -116,6 +116,7 @@ module ApplicationHelper
     [ 3, 1] => :new_birth,
     [ 3, 2] => :new_birth,
     [ 3, 3] => :new_birth,
+    [ 3, 4] => :new_birth,
     [ 7, 2] => :age2_sale,
     [ 8, 2] => :age2_sale,
     [ 1, 4] => :ranch_expansion,
