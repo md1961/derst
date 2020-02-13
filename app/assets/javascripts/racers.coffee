@@ -7,10 +7,13 @@ $ ->
     height = $('#name_and_traits').height()
     $('#results_and_conditions').css('margin-top', top + height + 15)
 
-    $('#edit_racer, #cancel').on 'click', ->
-      return if $('#results input').is(':focus')
-      $('.for_action_show').toggle()
-      $('.for_action_edit').toggle()
+    $('#cancel').on 'click', ->
+      $('.for_action_edit').hide()
+      $('.for_action_show').show()
+
+    $('#edit_racer').on 'click', ->
+      $('.for_action_show').hide()
+      $('.for_action_edit').show()
       if $('input#racer_weight_fat').length > 0
         $('input#racer_weight_fat').focus()
       else
