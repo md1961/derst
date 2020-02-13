@@ -37,7 +37,7 @@ class RanchMaresController < ApplicationController
       ranch_mare.update!(sire_id: params[:sire_id])
       ranch_mare.checking!
     end
-    redirect_to matings_path(mare_id: ranch_mare.mare.id, ranch_id: ranch_mare.ranch.id)
+    redirect_to ranch_mare
   end
 
   def delete_sire
