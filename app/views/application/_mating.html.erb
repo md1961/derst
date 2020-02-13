@@ -3,6 +3,9 @@
   unless defined?(names_for_candidates)
     names_for_candidates = []
   end
+  unless defined?(sex)
+    sex = nil
+  end
 -%>
 
 <div class="matings">
@@ -33,7 +36,7 @@
     <%= render partial: 'root_lineage_numbers', locals: {horse: @mating} %>
 
     <table class="racer_name_candidates">
-      <% @mating.racer_name_candidates(num: 100, names_from: names_for_candidates)
+      <% @mating.racer_name_candidates(num: 100, names_from: names_for_candidates, sex: sex)
             .each_with_index do |(name, distance, father_name), index| -%>
         <tr <%= index >= 25 ? 'hidden' : '' %>>
           <td class="link"><span class="dismiss button">X<span></td>
