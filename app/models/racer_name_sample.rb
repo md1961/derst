@@ -10,8 +10,18 @@ class RacerNameSample < ApplicationRecord
 
   after_initialize :name_to_katakana
 
-  def self.most_similars(name, num = 10)
-    all.map { |sample|
+  def self.most_similars(name, num = 10, sex: nil)
+    f_filter = case sex&.to_sym
+               when :male
+                 ->(sample) { !sample.female? }
+               when :female
+                 ->(sample) { !sample.male? }
+               else
+                 ->(sample) { true }
+               end
+    all.find_all { |sample|
+      f_filter.call(sample)
+    }.map { |sample|
       [sample.name, normalized_distance(name, sample.name), name]
     }.sort_by { |_, distance, _|
       distance
