@@ -2,8 +2,13 @@ $('#target_for_race-<%= @race.id %>').parent('form')
   .replaceWith("<%= j button_to_target(@racer, @race) %>")
 
 <% month = @race.month -%>
+$td_condition = $('#<%= html_id_of_td_condition(@racer.age, month, @race.week) %>')
 <% if month >= @racer.ranch.month -%>
-  $('#<%= html_id_of_td_condition(@racer.age, month, @race.week) %>').toggleClass('target')
+  <% if @racer.target_races.in_week_of(month, @race.week) -%>
+    $td_condition.addClass('target')
+  <% else -%>
+    $td_condition.removeClass('target')
+  <% end -%>
 <% end -%>
 
 <% if @racer.condition && !@racer.weight -%>
