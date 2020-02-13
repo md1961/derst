@@ -73,7 +73,8 @@
     </div>
   </div>
 
-  <% if @racer.is_active && @racer.stable && !@racer.expecting_race? && @result_id_to_edit&.zero? -%>
+  <% if @racer.is_active && @racer.stable && !@racer.expecting_race? && @result_id_to_edit&.zero? \
+        && !@racers_in_same_race.any?(&:expecting_race) -%>
     <div id="race_candidates">
       <div class="links">
         <% unless @racer.open? -%>
