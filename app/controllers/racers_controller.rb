@@ -8,7 +8,7 @@ class RacersController < ApplicationController
 
     @includes_overgrade = params[:includes_overgrade] == 'true' \
       || @racer.target_races.includes(race: :grade).any? { |target_race| target_race.race.grade > @racer.grade }
-    @weeks_for_race_candidates = @racer.grade&.abbr == 'OP' ? 16 : 12
+    @weeks_for_race_candidates = @racer.open? ? (params[:more_candidates] ? 24 : 16) : 12
     @race_ids_targeted = @racer.target_races.map(&:race).map(&:id)
     @target_races_by_others = TargetRace.includes(:race, :racer).where.not(racer: @racer)
     @entered_races_by_others = Result.where(place: nil).includes(:race, :racer).where.not(racer: @racer)
