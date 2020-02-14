@@ -50,13 +50,12 @@ $ ->
       $('#progress_dialog').show()
       $('#show_inbreeds')[0].click()
       return
-    else if $('#show_all_racers').length > 0 && (key == 'z' || key == 'r')
-      if key == 'z'
-        $('#progress_dialog').show()
-        $('#show_all_racers')[0].click()
-      else if $('table.all_racers').is(':visible')
-        $('.default')  .toggle()
-        $('.optional1').toggle()
+    else if $('#show_all_racers').length > 0 && key == 'z'
+      $('#show_all_racers')[0].click()
+      return
+    else if $('table.all_racers').is(':visible') && key == 'r'
+      $('.default')  .toggle()
+      $('.optional1').toggle()
       return
 
     if $('#racer_menu').length > 0 && key == 'z'

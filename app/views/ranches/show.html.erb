@@ -27,7 +27,9 @@
                               id: 'show_mares', tabindex: -1 %>
     <%= link_to '[現役配合]', ranch_path(@ranch, main_display: @main_display ? nil : :active_inbreeds),
                               id: 'show_inbreeds', tabindex: -1 %>
-    <%= link_to '[全競争馬]', ranch_path(@ranch, main_display: @main_display ? nil : :all_racers),
-                              id: 'show_all_racers', tabindex: -1 %>
+    <% unless @main_display -%>
+      <%= link_to '[全競争馬]', ranch_path(@ranch, main_display: :all_racers),
+                                id: 'show_all_racers', target: '_blank', tabindex: -1 %>
+    <% end -%>
   </div>
 </div>
