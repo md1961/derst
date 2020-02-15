@@ -76,7 +76,7 @@ class Racer < ApplicationRecord
   end
 
   def open?
-    grade.abbr == 'OP'
+    grade&.abbr == 'OP'
   end
 
   def grade
