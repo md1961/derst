@@ -1,5 +1,8 @@
-$('#target_for_race-<%= @race.id %>').parent('form')
+$button_to_target = $('#target_for_race-<%= @race.id %>')
+$button_to_target.parent('form')
   .replaceWith("<%= j button_to_target(@racer, @race) %>")
+$button_to_target.parent('form')
+  .next('form').children('input.button_to_enter').toggleClass('target')
 
 <% month = @race.month -%>
 $td_condition = $('#<%= html_id_of_td_condition(@racer.age, month, @race.week) %>')
