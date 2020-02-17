@@ -216,6 +216,7 @@ module ApplicationHelper
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name), {},
                             data: {orig_value: f.object.send(name)},
+                            class: name.to_s.starts_with?('mark_') ? 'mark' : '',
                             tabindex: in_paddock || name == :condition ? -1 : 0
     elsif name == :weight
       f.number_field name, step: 2

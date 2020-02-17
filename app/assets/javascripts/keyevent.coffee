@@ -1,12 +1,4 @@
 $ ->
-  $mark_selects = [
-    $('#result_mark_development'),
-    $('#result_mark_stamina'),
-    $('#result_mark_contend'),
-    $('#result_mark_temper'),
-    $('#result_mark_odds')
-  ]
-
   select_next_option = (elem) ->
     elem.children('option:selected').next().prop('selected', true)
 
@@ -22,19 +14,19 @@ $ ->
     if $('input[type="number"]').not('.allows_shortcut').is(':focus') && [1 .. 9].includes(parseInt(key))
       return
 
-    is_mark_focused = $mark_selects.some((elem) -> elem.is(':focus'))
-    if $('#results').hasClass('ready_for_race') && is_mark_focused \
+    if $('#results').hasClass('ready_for_race') && $('select.mark').is(':focus') \
         && ['a', 'b', 'c', 'y', 'z', 'j', 'k', 'o'].includes(key)
+      $mark_selects = $('select.mark:focus').closest('tr').find('select.mark')
       if key == 'j'
-        $.each($mark_selects, -> select_next_option(this))
+        $.each($mark_selects, -> select_next_option($(this)))
       else if key == 'k'
-        $.each($mark_selects, -> select_prev_option(this))
+        $.each($mark_selects, -> select_prev_option($(this)))
       else if key == 'o'
-        $.each($mark_selects, -> this.val(this.data('orig-value')))
+        $.each($mark_selects, -> $(this).val($(this).data('orig-value')))
       else
         value = if key == 'a' then '－' else if key == 'b' then '△' else
                 if key == 'c' then '▲' else if key == 'y' then '〇' else '◎'
-        $.each($mark_selects, -> this.val(value))
+        $.each($mark_selects, -> $(this).val(value))
       return
 
     if $('#show_mares').length > 0 && key == 'y'
