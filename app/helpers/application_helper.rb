@@ -48,6 +48,7 @@ module ApplicationHelper
       classes << 'default'
       classes << 'numeric'     if name.to_s.starts_with?('weight_')
       classes << 'centered'    if name == :stable || name == :main_jockeys
+      classes << 'weight_fat'  if name == :weight_fat
       classes << 'emphasized'  if name == :weight_best
       classes << 'grade_given' if name == :grade  && racer.grade_given
       classes << 'injured'     if name == :remark && racer.injury
@@ -378,6 +379,7 @@ module ApplicationHelper
                                     disabled: @racer_id_to_edit.to_i > 0,
                                     id: "weight-#{racer.id}",
                                     class: ['weight', racer.weight.nil? ? 'no_weight' : ''],
+                                    data: {racer_id: racer.id},
                                     autofocus: racer.id == flash[:racer_id_to_focus] && racer.condition && racer.weight.nil?,
                                     tabindex: racer.condition && !racer.weight ? 0 : -1
       concat submit_tag :enter, hidden: 'hidden'

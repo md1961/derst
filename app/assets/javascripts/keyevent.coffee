@@ -77,6 +77,14 @@ $ ->
       $('span.lean_to_best')[0].click()
       return false
 
+    if $('td input.weight').is(':focus') && key == 'f'
+      $input_weight = $(':focus')
+      racer_id = $input_weight.data('racer-id')
+      weight_fat = $input_weight.val()
+      action = '/racers/' + racer_id + '/weight_fat'
+      $.post action, {weight_fat: weight_fat}
+      return false
+
     if $('div.all_racers').length > 0 && key != 'z'
       if '1' <= key && key <= '9'
         $('tbody tr').hide()

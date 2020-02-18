@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   resources :racers, only: %i[show new create edit update] do
     member do
       post :create_result, :create_mare
-      post :condition, :weight
+      post :condition, :weight, :weight_fat
       patch :graze, :ungraze, :spa, :trip, :injure, :retire
     end
   end

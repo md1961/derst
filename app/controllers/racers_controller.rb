@@ -117,6 +117,12 @@ class RacersController < ApplicationController
     @racer.weight = weight
   end
 
+  def weight_fat
+    @racer = Racer.find(params[:id])
+    weight_fat = params[:weight_fat].to_i
+    @racer.update!(weight_fat: weight_fat) if weight_fat >= 300
+  end
+
   def graze
     racer = Racer.find(params[:id])
     racer.graze!
