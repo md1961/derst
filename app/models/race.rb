@@ -45,7 +45,7 @@ class Race < ApplicationRecord
     end
     if includes_overgrade
       if age == 3 && %w[新 未].include?(grade.abbr)
-        grades = Grade.where(abbr: [grade.abbr] + %w[5 OP])
+        grades = Grade.where(abbr: [grade.abbr] + %w[5 OP Ⅲ Ⅱ])
       elsif (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '5'
         grades = Grade.where(abbr: %w[5 9 16 OP Ⅲ Ⅱ])
       elsif (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '9'
