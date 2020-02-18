@@ -29,8 +29,10 @@ class Mating
   def h_inbreeds
     @h_inbreeds ||= \
       (@mare_inbreeds.keys & @sire.h_inbreeds.keys).yield_self { |fathers|
-        fathers_father_ids = fathers.map(&:father).compact.map(&:id)
-        fathers.reject { |father| fathers_father_ids.include?(father.id) }
+        mare_children_and_fathers = @mare.children_and_fathers_in_bloodline
+        sire_children_and_fathers = @sire.children_and_fathers_in_bloodline
+        fathers_not_in_effect = (mare_children_and_fathers & sire_children_and_fathers).map(&:last)
+        fathers.reject { |father| fathers_not_in_effect.include?(father) }
       }.map { |father|
         [father, (@mare_inbreeds[father] + @sire.h_inbreeds[father]).sort]
       }.to_h
