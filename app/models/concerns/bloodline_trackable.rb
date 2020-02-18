@@ -39,6 +39,17 @@ module BloodlineTrackable
     }
   end
 
+  def children_and_fathers_in_bloodline
+    [
+      [[1, 1], [2, 1]], [[2, 1], [3, 1]], [[3, 1], [4, 1]],
+                                          [[3, 2], [4, 3]],
+                        [[2, 2], [3, 3]], [[3, 3], [4, 5]],
+                                          [[3, 4], [4, 7]]
+    ].map { |(child_g, child_n), (father_g, father_n)|
+      [bloodline_father(child_g, child_n), bloodline_father(father_g, father_n)]
+    }
+  end
+
   def update_bloodline_father(generation, number, name)
     sire = Sire.find_by_name(name)
     return false unless sire
