@@ -90,4 +90,23 @@
       </tbody>
     </table>
   </div>
+
+  <div class="row">
+    <% [false, true].each do |high_stakes| -%>
+      <table>
+        <caption>
+          <%= "最高オッズ#{high_stakes ? "重賞 " : ""}勝利" %>
+        </caption>
+        <tbody>
+          <% Stats.each_highest_odds_wins(high_stakes: high_stakes) do |result| -%>
+            <tr>
+              <td><%= result.racer %></td>
+              <td><%= age_in_week_display(result.age_in_week) %></td>
+              <td class="numeric"><%= result.odds %></td>
+              <td><%= race_name_display(result.race) %></td>
+            </tr>
+          <% end -%>
+        </tbody>
+    <% end -%>
+  </div>
 </div>

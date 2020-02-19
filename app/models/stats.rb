@@ -59,6 +59,17 @@ module Stats
     }.each(&block)
   end
 
+  def each_highest_odds_wins(high_stakes: false, &block)
+    counter = Counter.new
+    Result.send(high_stakes ? :high_stake : :all).wins.reject { |result|
+      result.odds.blank?
+    }.sort_by { |result|
+      -result.odds
+    }.take_while { |result|
+      counter.count(result.odds)
+    }.each(&block)
+  end
+
     class Counter
 
       def initialize(max_count = 10)
