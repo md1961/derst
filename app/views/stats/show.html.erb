@@ -103,6 +103,7 @@
               <td><%= result.racer %></td>
               <td><%= age_in_week_display(result.age_in_week) %></td>
               <td class="numeric"><%= result.odds %></td>
+              <td class="numeric"><%= "(#{result.rank_odds}/#{result.num_racers})" %></td>
               <td><%= race_name_display(result.race) %></td>
             </tr>
           <% end -%>
