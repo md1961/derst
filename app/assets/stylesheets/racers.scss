@@ -39,6 +39,10 @@ td.earns_net_prize_last_week {
   font-weight: bold;
 }
 
+td.weight_best {
+  font-weight: bold;
+}
+
 td.injured {
   color: red;
   background-color: yellow;
@@ -120,10 +124,6 @@ input.weight {
 
   td.trained {
     background-color: lightgray;
-  }
-
-  td.emphasized {
-    font-weight: bold;
   }
 
   td.grade_given {
@@ -232,10 +232,6 @@ input.weight {
 
     table {
       margin-right: 10px;
-    }
-
-    td.emphasized {
-      font-weight: bold;
     }
 
     td.with_unit:after {

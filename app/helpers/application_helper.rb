@@ -36,7 +36,7 @@ module ApplicationHelper
   def racer_attr_display_in_td(racer, name, f, html_attrs = {})
     if f.nil? && name == :weight_fat && racer.weight_fat.blank?
       weight_fat = racer.weight_best.blank? ? nil : racer.weight_best + 10
-      content_tag :td, weight_fat, class: 'computed numeric'
+      content_tag :td, weight_fat, class: 'weight_fat computed numeric'
     elsif name == :weights
       safe_join([
         racer_attr_display_in_td(racer, :weight_fat , f),
@@ -46,10 +46,8 @@ module ApplicationHelper
     else
       classes = html_attrs[:class]&.split || []
       classes << 'default'
-      classes << 'numeric'     if name.to_s.starts_with?('weight_')
+      classes << name.to_s << 'numeric' if name.to_s.starts_with?('weight_')
       classes << 'centered'    if name == :stable || name == :main_jockeys
-      classes << 'weight_fat'  if name == :weight_fat
-      classes << 'emphasized'  if name == :weight_best
       classes << 'grade_given' if name == :grade  && racer.grade_given
       classes << 'injured'     if name == :remark && racer.injury
       html_attrs.merge!(class: classes.join(' '))

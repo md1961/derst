@@ -1,0 +1,19 @@
+if ($('.racers_show').length > 0) {
+  $tr_racer = $('table.for_action_show tbody tr.weights')
+} else {
+  $tr_racer = $('tr[data-racer_id="<%= @racer.id %>"]')
+}
+
+console.log($tr_racer)
+
+$weight_fat = $tr_racer.children('td.weight_fat')
+
+$weight_fat.text('<%= @racer.weight_fat || @racer.weight_best + 10 %>')
+$tr_racer.children('td.weight_best').text('<%= @racer.weight_best %>')
+$tr_racer.children('td.weight_lean').text('<%= @racer.weight_lean %>')
+
+<% if @racer.weight_fat -%>
+  $weight_fat.removeClass('computed')
+<% else -%>
+  $weight_fat.addClass('computed')
+<% end -%>

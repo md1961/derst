@@ -42,7 +42,7 @@
             <% html_attrs = {}
                html_attrs[:colspan] = 3 unless name == :weights
                html_attrs[:class] = 'larger' if name == :remark && @racer.stable -%>
-            <tr>
+            <tr class="<%= name %>">
               <th><%= Racer.human_attribute_name(name) %></th>
               <%= racer_attr_display_in_td(@racer, name, f, html_attrs) %>
             </tr>
