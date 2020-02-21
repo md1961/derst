@@ -287,8 +287,9 @@ module ApplicationHelper
     a << race_name_display(race)
     unless race.handicap?
       load_for = race.load_for(racer, data_for_race_load: data_for_race_load)
+      is_too_heavy = load_for >= (racer.female? ? 58 : 60)
       load_plus = race.load_plus_from_total_prize? ? '+' : ''
-      a << "#{load_for}kg#{load_plus}"
+      a << content_tag(:span, "#{load_for}kg#{load_plus}", class: is_too_heavy ? 'load_too_heavy' : '')
     end
 
     button_to_target_in_td = nil
