@@ -4,8 +4,6 @@ if ($('.racers_show').length > 0) {
   $tr_racer = $('tr[data-racer_id="<%= @racer.id %>"]')
 }
 
-console.log($tr_racer)
-
 $weight_fat = $tr_racer.children('td.weight_fat')
 
 $weight_fat.text('<%= @racer.weight_fat || @racer.weight_best + 10 %>')

@@ -77,13 +77,15 @@ $ ->
       $('span.lean_to_best')[0].click()
       return false
 
-    if $('input.weight').is(':focus') && key.match(/^[a-zA-Z]/)
+    if $('input.weight').is(':focus') && key.match(/^[a-zA-Z.]$/)
+      $input_weight = $(':focus')
+      racer_id = $input_weight.data('racer-id')
       if key == 'f' || key == 'l'
-        $input_weight = $(':focus')
-        racer_id = $input_weight.data('racer-id')
         weight = $input_weight.val()
         action = '/racers/' + racer_id + '/weight_' + (if key == 'f' then 'fat' else 'lean')
         $.post action, {weight: weight}
+      else if key == '.'
+        $.post '/racers/' + racer_id + '/weight_best'
       return false
 
     if $('div.all_racers').length > 0 && key != 'z'
