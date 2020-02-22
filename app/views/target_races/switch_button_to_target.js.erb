@@ -1,6 +1,7 @@
 $button_to_target = $('#target_for_race-<%= @race.id %>')
 $button_to_target.parent('form')
   .replaceWith("<%= j button_to_target(@racer, @race) %>")
+$button_to_target = $('#target_for_race-<%= @race.id %>')
 $button_to_target.parent('form')
   .next('form').children('input.button_to_enter').toggleClass('target')
 
