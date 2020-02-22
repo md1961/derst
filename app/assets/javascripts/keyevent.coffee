@@ -77,7 +77,7 @@ $ ->
       $('span.lean_to_best')[0].click()
       return false
 
-    if $('input.weight').is(':focus')
+    if $('input.weight').is(':focus') && key.match(/^[a-zA-Z]/)
       if key == 'f' || key == 'l'
         $input_weight = $(':focus')
         racer_id = $input_weight.data('racer-id')
