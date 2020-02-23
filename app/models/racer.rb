@@ -138,7 +138,7 @@ class Racer < ApplicationRecord
     next_race = target_races.map(&:race).sort_by { |race|
       race.month_week.ordering_from(ranch.month_week)
     }.first
-    !next_race.course.same_from?(stable)
+    !next_race.course.same_from?(stable) && next_race.course != course_staying
   end
 
   def result_in(age, month, week)
