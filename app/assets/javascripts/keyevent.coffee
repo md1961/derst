@@ -11,7 +11,8 @@ $ ->
     if $('input[type="text"]').not('.allows_shortcut').is(':focus')
       return
     key = String.fromCharCode(e.which)
-    if $('input[type="number"]').not('.allows_shortcut').is(':focus') && [1 .. 9].includes(parseInt(key))
+    if $('input[type="number"]').not('.allows_shortcut').is(':focus') && [1 .. 9].includes(parseInt(key)) \
+        && $('#racer_menu').length == 0
       return
 
     if $('#results').hasClass('ready_for_race') && $('select.mark').is(':focus') \
