@@ -4,6 +4,11 @@ class RanchesController < ApplicationController
 
   def show
     @ranch = Ranch.last
+    if params[:racer_id].to_i > 0
+      flash[:racer_id_to_focus] = params[:racer_id].to_i
+      redirect_to @ranch
+    end
+
     @mares = @ranch.mares.order(ranch_mare_sort_key)
 
     @main_display = params[:main_display].yield_self { |x| x.blank? ? nil : x }
@@ -28,7 +33,6 @@ class RanchesController < ApplicationController
     @ready_for_next_week = params[:next_done] != 'true' \
                         && Racer.all_training_done? \
                         && Racer.none_expecting_race?
-    flash[:racer_id_to_focus] = params[:racer_id].to_i if params[:racer_id].to_i > 0
     flash[:racer_id_to_focus] = nil if @ready_for_next_week
   end
 
