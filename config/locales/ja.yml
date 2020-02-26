@@ -5,6 +5,7 @@ ja:
     age2_sale: 来週は２歳馬のセールがあります。
     new_birth: そろそろ産駒が生まれる可能性があります。
     ranch_expansion: 来週は牧場拡張の打診がある可能性があります。
+    oversea_sire: 来週は海外種牡馬リースの打診があります。
     sell_age2: ２歳馬を売る期限です。
     birth: "受胎馬が %{count}頭います。"
     vacancy:
