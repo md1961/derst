@@ -16,16 +16,28 @@ class RacersController < ApplicationController
     racers = (@racer.in_stable? ? Racer.in_stable : Racer.in_ranch).older_first
 
     @racers_in_same_race = []
-    if @racer.in_stable? && Racer.any_expecting_race? && Racer.all_training_done?
-      racers = racers.find_all { |racer| racer.expecting_race? || racer == @racer }
-      race = @racer.results.last&.race
+    if @racer.in_stable? && Racer.all_training_done?
+      race = @racer.results.in_current_week.last.yield_self { |result| result&.age == @racer.age ? result.race : nil }
       if races_of_multiple_entries(racers).include?(race)
-        racers = racers.find_all { |racer| racer.results.last.race == race }
-        @racers_in_same_race = racers.reject { |racer| racer == @racer }
+        @racers_in_same_race = racers.find_all { |racer|
+          last_result = racer.results.last
+          last_result&.age == racer.age && last_result&.race == race && racer != @racer
+        }
       end
+      racers_expecting_in_same_race = @racers_in_same_race.find_all(&:expecting_race?).yield_self { |racers|
+        racers + (!@racers_in_same_race.empty? && @racer.expecting_race? ? [@racer] : [])
+      }
+      racers = racers.find_all { |racer|
+        if racers_expecting_in_same_race.empty?
+          racer.expecting_race? || racer == @racer
+        else
+          (racers_expecting_in_same_race.include?(racer) && racer.expecting_race?) || racer == @racer
+        end
+      }
     else
       racers = racers.reject { |racer| racer.condition && racer != @racer }
     end
+
     index = racers.find_index(@racer)
     @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index && racers.size >= 2
 
@@ -200,7 +212,7 @@ class RacersController < ApplicationController
 
     def races_of_multiple_entries(racers)
       racers.map { |racer|
-        racer.results.last&.race
+        racer.results.in_current_week.last.yield_self { |result| result&.age == racer.age ? result.race : nil }
       }.compact.group_by(&:itself).find_all { |race, races|
         races.size >= 2
       }.map(&:first)

@@ -30,8 +30,8 @@
     <% end -%>
 
     <% @racers_in_same_race.each do |racer| -%>
-      <tr><td colspan="26"></tr>
-      <tr><td colspan="26" class="racer_name_in_same_race"><%= racer.name %></td></tr>
+      <tr><td colspan="26" class="racer_name_in_same_race border_top_thick"><%= racer.name %></td></tr>
+      <%= render 'results_header' %>
       <%= render partial: 'result_in_tr', locals: {result: racer.results.last} %>
     <% end -%>
 

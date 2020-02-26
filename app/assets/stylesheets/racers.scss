@@ -374,8 +374,12 @@ input.weight {
 #results {
   margin-top: 10px;
 
-  th, td.racer_name_in_same_race {
+  th {
     background-color: lightgray;
+  }
+
+  td.racer_name_in_same_race {
+    height: 30px;
   }
 
   td.num_racers, td.rank_odds, td.odds, td.weight {
