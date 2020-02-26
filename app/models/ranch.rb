@@ -1,6 +1,8 @@
 class Ranch < ApplicationRecord
   has_many :ranch_mares, dependent: :destroy
   has_many :mares, through: :ranch_mares
+  has_many :ranch_sires, dependent: :destroy
+  has_many :sires, through: :ranch_sires
   has_many :racers
 
   def max_spa
