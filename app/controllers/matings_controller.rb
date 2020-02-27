@@ -6,6 +6,7 @@ class MatingsController < ApplicationController
     @sires = Sire.includes(:trait)
               .breedable.where(@sire_filter.conditions)
               .order(fee: :asc, name_jp: :desc)
+    @sires += Sire.joins(:ranch_sires)
     Mating.new(@mare).write_cache
 
     @ranch = Ranch.find_by(id: params[:ranch_id])
