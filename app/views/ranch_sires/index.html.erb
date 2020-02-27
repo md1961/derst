@@ -2,4 +2,24 @@
   <% @ranch_sires.each do |ranch_sire| -%>
     <%= render ranch_sire %>
   <% end -%>
+
+  <div class="actions">
+    <hr>
+    <%= form_with url: ranch_sires_path, local: true do |f| %>
+      <div class="field">
+        <input type="search" name="sire" value="" autocomplete="on" list="sire_candidates">
+          <%= @sire %>
+        </input>
+      </div>
+      <%= f.hidden_field :ranch_id, value: @ranch.id %>
+
+      <%= f.submit %>
+    <% end -%>
+  </div>
 </div>
+
+<datalist id="sire_candidates">
+  <% Sire.where(name_jp: nil).order(:name_eng).each do |sire| -%>
+    <option value="<%= sire.name_eng %>">
+  <% end -%>
+</datalist>
