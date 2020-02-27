@@ -185,6 +185,10 @@ input.weight {
         border-left: solid 2px black;
       }
     }
+
+    td.with_full_center_name:after {
+      content: attr(data-center_name);
+    }
   }
 
   #results_and_conditions {

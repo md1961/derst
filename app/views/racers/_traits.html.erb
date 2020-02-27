@@ -41,7 +41,11 @@
           <% racer_attr_names.each do |name| -%>
             <% html_attrs = {}
                html_attrs[:colspan] = 3 unless name == :weights
-               html_attrs[:class] = 'larger' if name == :remark && @racer.stable -%>
+               html_attrs[:class] = 'larger' if name == :remark && @racer.stable
+               if name == :stable
+                 html_attrs[:class] = 'with_full_center_name'
+                 html_attrs[:'data-center_name'] = " - #{@racer.stable.center}"
+               end -%>
             <tr class="<%= name %>">
               <th><%= Racer.human_attribute_name(name) %></th>
               <%= racer_attr_display_in_td(@racer, name, f, html_attrs) %>
