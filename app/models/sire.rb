@@ -7,6 +7,7 @@ class Sire < ApplicationRecord
   has_many :sire_inbreed_effects, dependent: :destroy
   has_many :inbreed_effects, through: :sire_inbreed_effects
   has_many :maternal_lines, class_name: 'SireMaternalLine', dependent: :destroy
+  has_many :ranch_sires
 
   scope :breedable, -> { joins(:trait).where.not(name_jp: nil) }
 
