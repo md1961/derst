@@ -31,7 +31,7 @@
     </table>
 
     <div class="actions">
-      <%= button_to '削除', ranch_sire, method: :delete %>
+      <%= button_to '削除', ranch_sire, method: :delete, tabindex: -1 %>
     </div>
   </div>
 
@@ -71,7 +71,8 @@
           <% (-4 .. 0).each do |diff_year| -%>
             <% birth_piece = mare.racers.find_by(year_birth: ranch.year + diff_year) -%>
             <td class="<%= birth_piece&.sex %>" aria-label="<%= birth_piece %>">
-              <%= birth_piece ? (birth_piece.male? ? '牡' : '牝') : '－' %>
+              <%= birth_piece ? (birth_piece.male? ? '牡' : '牝')
+                              : ranch_mare.sire && diff_year.zero? ? '〇' : '－' %>
             </td>
           <% end -%>
           <% if ranch_mare.sire -%>
