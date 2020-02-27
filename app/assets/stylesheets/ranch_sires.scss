@@ -3,6 +3,10 @@
   table {
     margin-bottom: 10px;
 
+    td.female {
+      color: red;
+    }
+
     td.negative_score {
       color: red;
       font-weight: bold;

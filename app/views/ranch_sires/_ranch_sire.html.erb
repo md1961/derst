@@ -1,4 +1,5 @@
-<% sire = ranch_sire.sire -%>
+<% ranch = ranch_sire.ranch
+   sire  = ranch_sire.sire -%>
 
 <div class="_ranch_sire">
   <table class="table_base">
@@ -37,6 +38,8 @@
             <%= Mare.human_attribute_name(name) %>
           </th>
         <% end -%>
+        <th colspan="5">過去５年産駒</th>
+        <th>受胎</th>
         <th class="border_left_thick">点</th>
         <th>ニ</th>
         <th>面</th>
@@ -45,10 +48,9 @@
       </tr>
     </thead>
     <tbody>
-      <% ranch_sire.ranch.mares.sort_by { |mare| -mare.price }.each do |mare| -%>
-        <% mating = Mating.new(mare, sire)
-           mare           = mating.mare
-           sire           = mating.sire
+      <% ranch.ranch_mares.sort_by { |ranch_mare| -ranch_mare.mare.price }.each do |ranch_mare| -%>
+        <% mare = ranch_mare.mare
+           mating = Mating.new(mare, sire)
            is_nicks       = mating.nicks?
            is_interesting = mating.interesting?
            score          = mating.score -%>
@@ -59,6 +61,17 @@
                        <%= index.zero? ? 'border_left_thick' : '' %>">
               <%= mare.send(name) %>
             </td>
+          <% end -%>
+          <% (-4 .. 0).each do |diff_year| -%>
+            <% birth_piece = mare.racers.find_by(year_birth: ranch.year + diff_year) -%>
+            <td class="<%= birth_piece&.sex %>" aria-label="<%= birth_piece %>">
+              <%= birth_piece ? (birth_piece.male? ? '牡' : '牝') : '－' %>
+            </td>
+          <% end -%>
+          <% if ranch_mare.sire -%>
+            <td class="<%= ranch_mare.child_status %>"><%= ranch_mare.sire %></td>
+          <% else -%>
+            <td class="centered">（空胎）</td>
           <% end -%>
           <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>
                      border_left_thick">
