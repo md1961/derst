@@ -31,7 +31,7 @@
     </table>
 
     <div class="actions">
-      <%= button_to '削除', ranch_sire, method: :delete, tabindex: -1 %>
+      <%= button_to '削除', ranch_sire, method: :delete, params: {ranch_id: @ranch}, tabindex: -1 %>
     </div>
   </div>
 
