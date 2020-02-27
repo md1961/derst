@@ -1,0 +1,83 @@
+<% sire = ranch_sire.sire -%>
+
+<div class="_ranch_sire">
+  <table class="table_base">
+    <thead>
+      <tr>
+        <th>
+        <% sire_trait_names.each do |name| -%>
+          <th><%= sire_trait_human_abbr(name) %></th>
+        <% end -%>
+        <th colspan="4">面白系統</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= sire.name %></td>
+        <% trait = sire.trait -%>
+        <% sire_trait_names.each do |name| -%>
+          <% value = trait.send(name) -%>
+          <td class="<%= "#{name}-#{value}" %> <%= name == :fee ? 'numeric' : 'centered' %>">
+            <%= value %>
+          </td>
+        <% end -%>
+        <% sire.root_lineage_numbers.each do |number| -%>
+          <td class="root_lineage_number"><%= number %></td>
+        <% end -%>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table_base">
+    <thead>
+      <tr>
+        <th>
+        <% mare_trait_names.each_with_index do |name, index| -%>
+          <th class="<%= index.zero? ? 'border_left_thick' : '' %>">
+            <%= Mare.human_attribute_name(name) %>
+          </th>
+        <% end -%>
+        <th class="border_left_thick">点</th>
+        <th>ニ</th>
+        <th>面</th>
+        <th colspan="4">面白系統</th>
+        <th>インブリード</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% ranch_sire.ranch.mares.sort_by { |mare| -mare.price }.each do |mare| -%>
+        <% mating = Mating.new(mare, sire)
+           mare           = mating.mare
+           sire           = mating.sire
+           is_nicks       = mating.nicks?
+           is_interesting = mating.interesting?
+           score          = mating.score -%>
+         <tr>
+          <td><%= mare %></td>
+          <% mare_trait_names.each_with_index do |name, index| -%>
+            <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>
+                       <%= index.zero? ? 'border_left_thick' : '' %>">
+              <%= mare.send(name) %>
+            </td>
+          <% end -%>
+          <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>
+                     border_left_thick">
+            <%= score %>
+          </td>
+          <td class="centered <%= is_nicks ? 'nicks' : '' %>">
+            <%= is_nicks ? '〇' : '' %>
+          </td>
+          <td class="centered <%= is_interesting ? 'interesting' : '' %>">
+            <%= is_interesting ? '〇' : '' %>
+          </td>
+          <% mating.root_lineage_numbers.each do |number| -%>
+            <td class="root_lineage_number"><%= number %></td>
+          <% end -%>
+          <td class="allows_wrap">
+            <%= mating.inbreed_display.yield_self { |x| x.blank? ? '（アウトブリード）' : x } %>
+          </td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>

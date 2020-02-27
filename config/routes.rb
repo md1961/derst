@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :ranch_sires, only: %i[index show new create destroy]
+
   resources :racers, only: %i[show new create edit update] do
     member do
       post :create_result, :create_mare
