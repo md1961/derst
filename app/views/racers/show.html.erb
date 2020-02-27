@@ -48,14 +48,16 @@
                           data: {shortcut: 'b'}, tabindex: -1 %>
       <% if @prev_racer -%>
         <%= link_to "<[#{racer_with_race_display(@prev_racer)}]".html_safe, @prev_racer, id: 'to_prev_racer',
-                      class: @prev_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
+                      class: @prev_racer.expecting_race? ? 'expecting_race' : '' ,
+                      data: {shortcut: 'k'}, tabindex: -1 %>
       <% end -%>
       <span id="count_to_be_trained" class="count">
         <%= count_to_be_trained_display %>
       </span>
       <% if @next_racer -%>
         <%= link_to "[#{racer_with_race_display(@next_racer)}]>".html_safe, @next_racer, id: 'to_next_racer',
-                      class: @next_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1 %>
+                      class: @next_racer.expecting_race? ? 'expecting_race' : '' , tabindex: -1,
+                      data: {shortcut: 'j'}, tabindex: -1 %>
       <% end -%>
 
       <% course_staying = @racer.course_staying

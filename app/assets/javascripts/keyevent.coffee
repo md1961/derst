@@ -63,14 +63,6 @@ $ ->
         $('#to_next_mating')[0].click()
       return
 
-    if $('.racers_show').length > 0 && (key == 'j' || key == 'k')
-      $('#progress_dialog').show()
-      if key == 'k'
-        $('#to_prev_racer')[0].click()
-      else
-        $('#to_next_racer')[0].click()
-      return
-
     if $('#racer_weight_fat').is(':focus') && key == '.'
       $('span.fat_to_best')[0].click()
       return false
