@@ -23,4 +23,12 @@
       border-right-style: none;
     }
   }
+
+  .sire {
+    display: flex;
+
+    .actions {
+      margin-left: 20px;
+    }
+  }
 }

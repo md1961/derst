@@ -11,4 +11,10 @@ class RanchSiresController < ApplicationController
     ranch.ranch_sires.create!(sire: sire) if sire
     redirect_to ranch_sires_path
   end
+
+  def destroy
+    ranch_sire = RanchSire.find(params[:id])
+    ranch_sire.destroy
+    redirect_to ranch_sires_path
+  end
 end

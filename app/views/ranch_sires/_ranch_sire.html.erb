@@ -2,32 +2,38 @@
    sire  = ranch_sire.sire -%>
 
 <div class="_ranch_sire">
-  <table class="table_base">
-    <thead>
-      <tr>
-        <th>
-        <% sire_trait_names.each do |name| -%>
-          <th><%= sire_trait_human_abbr(name) %></th>
-        <% end -%>
-        <th colspan="4">面白系統</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= sire.name %></td>
-        <% trait = sire.trait -%>
-        <% sire_trait_names.each do |name| -%>
-          <% value = trait.send(name) -%>
-          <td class="<%= "#{name}-#{value}" %> <%= name == :fee ? 'numeric' : 'centered' %>">
-            <%= value %>
-          </td>
-        <% end -%>
-        <% sire.root_lineage_numbers.each do |number| -%>
-          <td class="root_lineage_number"><%= number %></td>
-        <% end -%>
-      </tr>
-    </tbody>
-  </table>
+  <div class="sire">
+    <table class="table_base">
+      <thead>
+        <tr>
+          <th>
+          <% sire_trait_names.each do |name| -%>
+            <th><%= sire_trait_human_abbr(name) %></th>
+          <% end -%>
+          <th colspan="4">面白系統</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= sire.name %></td>
+          <% trait = sire.trait -%>
+          <% sire_trait_names.each do |name| -%>
+            <% value = trait.send(name) -%>
+            <td class="<%= "#{name}-#{value}" %> <%= name == :fee ? 'numeric' : 'centered' %>">
+              <%= value %>
+            </td>
+          <% end -%>
+          <% sire.root_lineage_numbers.each do |number| -%>
+            <td class="root_lineage_number"><%= number %></td>
+          <% end -%>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="actions">
+      <%= button_to '削除', ranch_sire, method: :delete %>
+    </div>
+  </div>
 
   <table class="table_base">
     <thead>
