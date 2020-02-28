@@ -177,6 +177,10 @@ class Racer < ApplicationRecord
       )
   end
 
+  def post_races
+    results.map(&:post_race).compact
+  end
+
   def mare
     Mare.find_by(name: name)
   end
