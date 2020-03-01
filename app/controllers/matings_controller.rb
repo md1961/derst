@@ -10,6 +10,8 @@ class MatingsController < ApplicationController
     Mating.new(@mare).write_cache
 
     @ranch = Ranch.find_by(id: params[:ranch_id])
+
+    @html_title = @mare.name
   end
 
   def show
