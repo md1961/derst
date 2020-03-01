@@ -45,7 +45,7 @@
             <% birth_piece = ranch_mare.mare.racers.find_by(year_birth: @ranch.year + diff_year) -%>
             <td class="<%= birth_piece&.sex %>" aria-label="<%= birth_piece %>">
               <%= birth_piece ? (birth_piece.male? ? '牡' : '牝')
-                              : ranch_mare.sire && diff_year.zero? ? '〇' : '－' %>
+                              : ranch_mare.expecting? && diff_year.zero? ? '〇' : '－' %>
             </td>
           <% end -%>
           <% if sire = ranch_mare&.sire -%>
