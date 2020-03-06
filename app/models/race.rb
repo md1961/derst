@@ -138,7 +138,7 @@ class Race < ApplicationRecord
     when '16'
       1800
     when 'OP'
-      age == '3' ? 1600 : 2400
+      (age == '3' ? 1600 : age == '4' ? 1900 : 2400) + prize_1_increment
     else
       raise "Not supposed to reach here"
     end
@@ -189,6 +189,12 @@ class Race < ApplicationRecord
   end
 
   private
+
+    def prize_1_increment
+      %w[アネモネS 若葉S スイートピーS プリンシパルS].include?(name) ? 450 : \
+      %w[テレビ愛知OP バーデンバーデンC 札幌日経OP  ].include?(name) ? 100 : \
+      0
+    end
 
     def load_of_age_constant(racer)
       age = racer.age
