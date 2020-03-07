@@ -57,7 +57,7 @@ class Race < ApplicationRecord
       elsif grade.abbr == '9'
         grades = Grade.where(abbr: %w[9 16])
       elsif grade.abbr == '16'
-        grades = Grade.where(abbr: %w[16 OP Ⅲ Ⅱ])
+        grades = Grade.where(abbr: %w[16 OP Ⅲ Ⅱ Ⅰ])
       end
     end
 
