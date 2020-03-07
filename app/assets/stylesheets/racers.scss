@@ -422,6 +422,10 @@ input.weight {
 #conditions, #racer_menu {
   margin-top: 10px;
 
+  td {
+    white-space: nowrap;
+  }
+
   td.condition {
     width: 12px;
     text-align: center;
