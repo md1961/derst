@@ -105,9 +105,16 @@ class Race < ApplicationRecord
   }
 
   H_MINIMUM_NET_PRIZE = {
-    '宝塚記念'  => 4000,
-    '有馬記念'  => 5000,
-    'ジャパンC' => 6000
+    '桜花賞'       => 1200,
+    '皐月賞'       => 1200,
+    'オークス'     => 1600,
+    '日本ダービー' => 1600,
+    '秋華賞'       => 1600,
+    '菊花賞'       => 1600,
+    'NHKマイルC'   => 1600,
+    '宝塚記念'     => 4000,
+    '有馬記念'     => 5000,
+    'ジャパンC'    => 6000
   }
 
   def minimum_net_prize
@@ -115,7 +122,10 @@ class Race < ApplicationRecord
   end
 
   def not_enterable_for?(racer)
-    racer.net_prize < minimum_net_prize
+    return false unless H_MINIMUM_NET_PRIZE[name]
+    has_not_enough_net_prize = racer.net_prize < minimum_net_prize
+    return true if has_not_enough_net_prize && !H_TRIAL_RACES[name]
+    has_not_enough_net_prize && !trial_race_passed?(racer)
   end
 
   def prize_for(place)
@@ -189,6 +199,35 @@ class Race < ApplicationRecord
   end
 
   private
+
+    H_TRIAL_RACES = {
+      '桜花賞'       => %w[アネモネS チューリップ賞 ４歳牝馬特別],
+      '皐月賞'       => %w[弥生賞 若葉S スプリングS],
+      'オークス'     => %w[桜花賞 スイートピーS オークストライアル],
+      '日本ダービー' => %w[皐月賞 青葉賞 プリンシパルS],
+      '秋華賞'       => %w[クイーンS ローズS],
+      '菊花賞'       => %w[セントライト記念 神戸新聞杯 京都新聞杯],
+      'NHKマイルC'   => %w[NZT４歳S],
+    }
+
+    def trial_race_passed?(racer)
+      trial_race_names = H_TRIAL_RACES[name]
+      return true unless trial_race_names
+      racer.results.includes(:race).find_all { |result|
+        trial_race_names.include?(result.race.name)
+      }.detect { |result|
+        case result.race.grade.abbr
+        when 'OP'
+          place <= 2
+        when 'Ⅲ', 'Ⅱ'
+          place <= 3
+        when 'Ⅰ'
+          place <= 4
+        else
+          raise "Not supposed to reach here"
+        end
+      }
+    end
 
     def prize_1_increment
       %w[アネモネS 若葉S スイートピーS プリンシパルS].include?(name) ? 450 : \
