@@ -317,9 +317,10 @@ module ApplicationHelper
     label_items << "本賞金 #{race.minimum_net_prize}万円以上" if race.minimum_net_prize > 0
 
     safe_join([
-      content_tag(:td, course, class: transport),
+      content_tag(:td, course, class: transport, style: "white-space: nowrap"),
       button_to_target_in_td,
-      content_tag(:td, safe_join(a, ' '), class: clazz, aria: {label: label_items.join(', ')}),
+      content_tag(:td, safe_join(a, ' '), class: clazz, style: "white-space: nowrap",
+                  aria: {label: label_items.join(', ')}),
     ].compact)
   end
 
