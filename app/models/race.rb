@@ -218,11 +218,11 @@ class Race < ApplicationRecord
       }.detect { |result|
         case result.race.grade.abbr
         when 'OP'
-          place <= 2
+          result.place <= 2
         when 'Ⅲ', 'Ⅱ'
-          place <= 3
+          result.place <= 3
         when 'Ⅰ'
-          place <= 4
+          result.place <= 4
         else
           raise "Not supposed to reach here"
         end
