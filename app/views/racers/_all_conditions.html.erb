@@ -30,10 +30,14 @@
     </tr>
   </thead>
   <tbody>
+    <% prev_racer = nil -%>
     <% @racers.each.with_index(1) do |racer, index| -%>
       <% next unless racer.in_stable? -%>
       <% month_and_weeks_of_target_races = racer.target_races.map(&:race).map(&:month_week).map(&:to_a) -%>
-      <tr class="racer" data-racer_id="<%= racer.id %>">
+      <tr class="racer
+                 <%= prev_racer && racer && racer.age < prev_racer.age ? 'border_top_thick' : '' %>"
+          data-racer_id="<%= racer.id %>">
+        <% prev_racer = racer -%>
         <td class="centered
                    <%= racer.injury ? 'injured'
                      : racer.expecting_race? ? 'expecting_race'
