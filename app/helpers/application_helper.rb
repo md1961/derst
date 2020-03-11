@@ -96,7 +96,8 @@ module ApplicationHelper
         f.number_field(:weight_lean, step: 2)
       ], "\n")
     else
-      f.text_field name, autofocus: name.to_s.starts_with?('comment_age')
+      f.text_field name, autofocus: name.to_s.starts_with?('comment_age'),
+                         data: {orig_value: racer.send(name)}
     end
   end
 

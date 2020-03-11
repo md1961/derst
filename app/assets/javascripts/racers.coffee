@@ -10,14 +10,13 @@ $ ->
     $('#cancel').on 'click', ->
       $('.for_action_edit').hide()
       $('.for_action_show').show()
+      $remark = $('input#racer_remark')
+      $remark.val($remark.data('orig-value'))
 
     $('#edit_racer').on 'click', ->
       $('.for_action_show').hide()
       $('.for_action_edit').show()
-      if $('input#racer_weight_fat').length > 0
-        $('input#racer_weight_fat').focus()
-      else
-        $('input#racer_remark').focus()
+      $('input#racer_remark').focus()
 
     $('#show_form_to_injure').on 'click', ->
       $('#form_to_injure').toggle()
