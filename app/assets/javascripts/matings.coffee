@@ -68,7 +68,7 @@ $ ->
   $('.select_abc').on 'change', ->
     filter()
 
-  $('#sire_filter_score').on 'change', ->
+  $('#sire_filter_score').on 'input', ->
     $('#header_score').removeClass('excellent_score_only')
     filter()
 
