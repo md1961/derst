@@ -19,12 +19,18 @@ $ ->
       else
         $('.sires tbody tr').show()
 
-     selection = $('#sire_filter_growth').val()
-     values = if selection == '-' then ['早熟', '普通', '晩成'] else selection.split(',')
-     values_to_hide = ['早熟', '普通', '晩成'].filter((e) => !values.includes(e))
-     $.each(values_to_hide, (_, value) ->
-       $('td.growth-' + value).parent('tr').hide()
-     )
+
+    min_fee = $('#sire_filter_fee').val()
+    $('.sires tbody tr').filter(->
+      $(this).data('fee') < min_fee
+    ).hide()
+
+    selection = $('#sire_filter_growth').val()
+    values = if selection == '-' then ['早熟', '普通', '晩成'] else selection.split(',')
+    values_to_hide = ['早熟', '普通', '晩成'].filter((e) => !values.includes(e))
+    $.each(values_to_hide, (_, value) ->
+      $('td.growth-' + value).parent('tr').hide()
+    )
 
     $('.select_abc').each ->
       selection = $(@).val()
@@ -60,6 +66,9 @@ $ ->
 
   $('#header_interesting').on 'click', ->
     $(this).toggleClass('interesting_only')
+    filter()
+
+  $('#sire_filter_fee').on 'input', ->
     filter()
 
   $('#sire_filter_growth').on 'change', ->

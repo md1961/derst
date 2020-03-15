@@ -19,6 +19,8 @@
 
   <div id="sire_filter">
     <%= form_with model: @sire_filter, local: true do |f| %>
+      <%= f.label 'Fee' %>
+      <%= f.number_field :fee, value: 0, step: 10 %>
       <%= f.label '成長' %>
       <%= f.select :growth, options_for_growth %>
       <%= f.label '気性' %>
@@ -72,7 +74,7 @@
     <% mare_inbreeds = @mare&.h_inbreeds -%>
     <% @sires.each.with_index(1) do |sire, seq_num| -%>
       <% has_all_fathers = @entering_bloodline && sire.all_bloodline_father_present? -%>
-      <tr>
+      <tr data-fee="<%= sire.name_jp.present? ? sire.trait.fee : 999999 %>">
         <td class="numeric">
           <% path = @mare ? mating_path(@mare, sire_id: sire.id, ranch_id: @ranch&.id) \
                           : sire -%>
