@@ -67,6 +67,7 @@
         <th id="header_interesting">面</th>
         <th colspan="4">面白系統</th>
         <th>インブリード</th>
+        <th>
       <% end -%>
     </tr>
   </thead>
@@ -121,7 +122,8 @@
             <% if sire == ranch_mare.sire -%>
               受胎
             <% else -%>
-              <%= link_to '種付', ranch_mare_path(ranch_mare, sire_id: sire.id), method: :patch %>
+              <%= link_to '種付', ranch_mare_path(ranch_mare, sire_id: sire.id), method: :patch,
+                                  aria: {label: sire.name} %>
             <% end -%>
           <% end -%>
         <% end -%>
