@@ -9,7 +9,7 @@
     @racer_id_to_edit = is_current_racer ? -1 : 0
   end
 
-  if racer.age == 1
+  if racer.age == 1 || index >= 'w'.ord - 'a'.ord + 10
     shortcut_show = index.to_s
     shortcut_edit = nil
   elsif index < 10
