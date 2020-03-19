@@ -1,5 +1,11 @@
+<%
+  unless defined?(sex)
+    sex = nil
+  end
+-%>
+
 <div class="matings_show">
-  <%= render partial: 'mating', locals: {mare: @mare, sire: @sire} %>
+  <%= render partial: 'mating', locals: {mare: @mare, sire: @sire, sex: sex} %>
 
   <div class="links">
     <% mare_from_mating = Mare.find_by_mating_of(@mare, @sire) -%>
