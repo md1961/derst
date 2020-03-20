@@ -11,7 +11,7 @@ Race.where(month: month).destroy_all
   %w[1 福島 5u 5 nil 2600 t 0 a 0],
   %w[1 福島 5u 9 尾瀬特別 1200 t 0 h 0],
   %w[1 福島 5u 16 福島テレビ杯 2000 t 0 h 0],
-  %w[1 福島 4u o バーデンバーデンC 2000 t 0 s 0],
+  %w[1 福島 4u o バーデンバーデンC 1200 t 0 s 0],
   %w[1 阪神 4 m nil 1400 d 0 a 0],
   %w[1 阪神 4 m nil 2500 t 0 a 0],
   %w[1 阪神 4 5 nil 1400 d f a 0],
