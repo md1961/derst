@@ -346,6 +346,8 @@ class Racer < ApplicationRecord
   def injure(description)
     if description.blank?
       injury&.destroy
+    elsif injury
+      injury.update!(description: description)
     else
       create_injury!(description: description)
     end
