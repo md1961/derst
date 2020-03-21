@@ -81,4 +81,10 @@ module RacersHelper
       %w[－ 任せ 逃げ 先行 中団 追込 マク]
     end
   end
+
+  MONTHS_OF_END_OF_SHORT_TERMS = [2, 5, 8, 11]
+
+  def end_of_short_term?(month)
+    MONTHS_OF_END_OF_SHORT_TERMS.include?(month)
+  end
 end

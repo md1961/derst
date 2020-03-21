@@ -8,7 +8,8 @@
     <tr>
       <th rowspan="2" class="border_bottom_thick border_right_thick">
       <% (1 .. 12).each do |month| -%>
-        <th colspan="4" class="<%= month == current_month_and_week[0] ? 'current' : '' %>">
+        <th colspan="4" class="<%= month == current_month_and_week[0] ? 'current' : '' %>
+                               <%= end_of_short_term?(month) ? 'border_right_thick' : '' %>">
           <%= "#{month}月" %>
         </th>
       <% end -%>
@@ -16,7 +17,8 @@
     <tr>
       <% (1 .. 12).each do |month| -%>
         <% (1 .. 4).each do |week| -%>
-          <th class="<%= [month, week] == current_month_and_week ? 'current' : '' %>">
+          <th class="<%= [month, week] == current_month_and_week ? 'current' : '' %>
+                     <%= end_of_short_term?(month) && week == 4 ? 'border_right_thick' : '' %>">
             <%= week %>
           </th>
         <% end -%>
@@ -34,7 +36,8 @@
             <td class="condition
                        <%= is_current_year && [month, week] == current_month_and_week ? 'current' : '' %>
                        <%= age_month_and_weeks_of_races.include?([age, month, week]) ? 'race' : '' %>
-                       <%= is_current_year && month_and_weeks_of_target_races.include?([month, week]) ? 'target' : '' %>"
+                       <%= is_current_year && month_and_weeks_of_target_races.include?([month, week]) ? 'target' : '' %>
+                       <%= end_of_short_term?(month) && week == 4 ? 'border_right_thick' : '' %>"
                 id="<%= html_id_of_td_condition(age, month, week) %>"
                 aria-label="<%= weekly ? "id=#{weekly.id}" : "" %>">
               <%= @racer.condition_in(age, month, week) %>
