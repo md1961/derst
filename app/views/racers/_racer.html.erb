@@ -81,7 +81,8 @@
       <td class="<%= clazz %>" aria-label="<%= racer.name %>">
         <%= button_to_graze(racer) %>
       </td>
-      <td class="<%= clazz %> border_right_thick" aria-label="<%= racer.name %>">
+      <% tooltip = racer.in_spa? ? "温泉 -> #{racer.name}" : "#{racer.name} -> 温泉" -%>
+      <td class="<%= clazz %> border_right_thick" aria-label="<%= tooltip %>">
         <%= button_to_spa(racer) %>
       </td>
     <% end -%>
