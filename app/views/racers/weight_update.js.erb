@@ -15,3 +15,8 @@ $tr_racer.children('td.weight_lean').text('<%= @racer.weight_lean %>')
 <% else -%>
   $weight_fat.addClass('computed')
 <% end -%>
+
+<% if @racer.weight_best -%>
+  $('span.weight_best')     .text('<%= @racer.weight_best %>')
+  $('span.weight_transport').text('<%= weight_transport_display(@racer) %>')
+<% end -%>
