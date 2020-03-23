@@ -38,10 +38,9 @@
         <%= form_for_weekly_condition(@racer) %>
         <%= form_for_weekly_weight(@racer) %>
       <% end -%>
-      <% weight_best = @racer.weight_best -%>
-      <span class="weight_best"><%= weight_best %></span>
+      <span class="weight_best"><%= @racer.weight_best %></span>
       <% if @racer.needs_transport? -%>
-        <span class="weight_transport"><%= "(#{weight_best + 4}～#{weight_best + 6}kg)" %></span>
+        <span class="weight_transport"><%= weight_transport_display(@racer) %></span>
       <% end -%>
 
       <%= link_to 'Back', ranch_path(@racer.ranch, main_display: @main_display, racer_id: @racer),
