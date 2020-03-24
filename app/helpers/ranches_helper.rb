@@ -20,13 +20,4 @@ module RanchesHelper
       }.join(', ').yield_self { |x| x.blank? ? nil : x }
     }.compact.join('<br>').html_safe
   end
-
-  def weeks_in_ranch_class(racer)
-    racer.weeks_in_ranch.yield_self { |w|
-      racer.injury ?  'injured' : \
-      w >  4 ? 'overstay_in_ranch' : \
-      w == 4 ? 'ready_to_be_stabled' : \
-      'in_ranch'
-    } + (racer.in_spa? ? ' in_spa' : '')
-  end
 end

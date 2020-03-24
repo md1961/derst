@@ -9,6 +9,15 @@ module ApplicationHelper
     classes.join(' ')
   end
 
+  def weeks_in_ranch_class(racer)
+    racer.weeks_in_ranch.yield_self { |w|
+      racer.injury ?  'injured' : \
+      w >  4 ? 'overstay_in_ranch' : \
+      w == 4 ? 'ready_to_be_stabled' : \
+      'in_ranch'
+    } + (racer.in_spa? ? ' in_spa' : '')
+  end
+
   def date_display(ranch)
     "#{ranch.year} 年 #{ranch.month} 月 #{ranch.week} 週"
   end
