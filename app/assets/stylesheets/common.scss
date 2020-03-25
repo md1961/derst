@@ -75,12 +75,12 @@ tbody tr:hover {
     }
 
     .vacancy_in_ranch {
-      padding: 2px;
-      margin-left: 20px;
+      padding: 2px 4px;
+      margin-left: 15px;
 
       &.none {
-        color: red;
-        background-color: yellow;
+        color: yellow;
+        background-color: red;
         font-weight: bold;
       }
 
