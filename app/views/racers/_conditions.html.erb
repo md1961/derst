@@ -1,7 +1,14 @@
 <% current_month_and_week = @racer.ranch.month_week.to_a
    age_month_and_weeks_of_races = @racer.results.map { |result| [result.age, result.race.month, result.race.week] }
-   month_and_weeks_of_target_races = @racer.target_races.map(&:race).map(&:month_week).map(&:to_a)
-                                      .reject { |month_and_week| (month_and_week <=> current_month_and_week) == -1 } -%>
+   age_month_and_weeks_of_target_races = @racer.target_races.map(&:race).map(&:month_week).map(&:to_a)
+       .map { |month, week|
+         [
+           @racer.age + (([month, week] <=> current_month_and_week) == -1 ? 1 : 0),
+           month,
+           week
+         ]
+       }
+-%>
 
 <table id="conditions" class="table_base">
   <thead>
@@ -26,7 +33,8 @@
     </tr>
   </thead>
   <tbody>
-    <% (3 .. @racer.active_age).each do |age| -%>
+    <% age_end = @racer.active_age + (current_month_and_week.first >= 11 ? 1 : 0) -%>
+    <% (3 .. age_end).each do |age| -%>
       <tr>
         <th class="border_right_thick"><%= "#{age}歳" %></th>
         <% (1 .. 12).each do |month| -%>
@@ -36,7 +44,7 @@
             <td class="condition
                        <%= is_current_year && [month, week] == current_month_and_week ? 'current' : '' %>
                        <%= age_month_and_weeks_of_races.include?([age, month, week]) ? 'race' : '' %>
-                       <%= is_current_year && month_and_weeks_of_target_races.include?([month, week]) ? 'target' : '' %>
+                       <%= age_month_and_weeks_of_target_races.include?([age, month, week]) ? 'target' : '' %>
                        <%= end_of_short_term?(month) && week == 4 ? 'border_right_thick' : '' %>"
                 id="<%= html_id_of_td_condition(age, month, week) %>"
                 aria-label="<%= weekly ? "id=#{weekly.id}" : "" %>">
