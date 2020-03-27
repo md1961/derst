@@ -135,10 +135,13 @@ class Racer < ApplicationRecord
 
   def needs_transport?
     return false if target_races.empty?
-    next_race = target_races.map(&:race).sort_by { |race|
+    coming_races_by_ordering = target_races.map(&:race).group_by { |race|
       race.month_week.ordering_from(ranch.month_week)
-    }.first
-    !next_race.course.same_from?(stable) && next_race.course != course_staying
+    }
+    next_races = coming_races_by_ordering[coming_races_by_ordering.keys.min]
+    next_races.any? { |next_race|
+      !next_race.course.same_from?(stable) && next_race.course != course_staying
+    }
   end
 
   def result_in(age, month, week)
