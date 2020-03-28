@@ -54,13 +54,17 @@
       </tr>
     </thead>
     <tbody>
-      <% ranch.ranch_mares.sort_by { |ranch_mare| -ranch_mare.mare.price }.each do |ranch_mare| -%>
-        <% mare = ranch_mare.mare
-           mating = Mating.new(mare, sire)
+      <% mares = ranch.ranch_mares.map(&:mare) + Racer.active.map(&:mare).compact -%>
+      <% mares.sort_by { |mare|
+           mare.yield_self { |mare|
+             mare.price.yield_self { |x| x ? -x * 1000 : -mare.racer_before_retire.net_prize }
+           }
+         }.each do |mare| -%>
+        <% mating = Mating.new(mare, sire)
            is_nicks       = mating.nicks?
            is_interesting = mating.interesting?
            score          = mating.score -%>
-         <tr>
+        <tr>
           <td><%= mare %></td>
           <% mare_trait_names.each_with_index do |name, index| -%>
             <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>
@@ -68,17 +72,22 @@
               <%= mare.send(name) %>
             </td>
           <% end -%>
-          <% (-4 .. 0).each do |diff_year| -%>
-            <% birth_piece = mare.racers.find_by(year_birth: ranch.year + diff_year) -%>
-            <td class="<%= birth_piece&.sex %>" aria-label="<%= birth_piece %>">
-              <%= birth_piece ? (birth_piece.male? ? '牡' : '牝')
-                              : ranch_mare.expecting? && diff_year.zero? ? '〇' : '－' %>
-            </td>
-          <% end -%>
-          <% if ranch_mare.sire -%>
-            <td class="<%= ranch_mare.child_status %>"><%= ranch_mare.sire %></td>
+          <% ranch_mare = mare.ranch_mare -%>
+          <% if ranch_mare -%>
+            <% (-4 .. 0).each do |diff_year| -%>
+              <% birth_piece = mare.racers.find_by(year_birth: ranch.year + diff_year) -%>
+              <td class="<%= birth_piece&.sex %>" aria-label="<%= birth_piece %>">
+                <%= birth_piece ? (birth_piece.male? ? '牡' : '牝')
+                                : ranch_mare.expecting? && diff_year.zero? ? '〇' : '－' %>
+              </td>
+            <% end -%>
+            <% if ranch_mare.sire -%>
+              <td class="<%= ranch_mare.child_status %>"><%= ranch_mare.sire %></td>
+            <% else -%>
+              <td class="centered">（空胎）</td>
+            <% end -%>
           <% else -%>
-            <td class="centered">（空胎）</td>
+            <td colspan="6">
           <% end -%>
           <td class="numeric <%= score < 0 ? 'negative_score' : score >= 20 ? 'excellent_score' : '' %>
                      border_left_thick">
