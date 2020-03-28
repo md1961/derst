@@ -25,6 +25,10 @@ class Mare < ApplicationRecord
     end
   end
 
+  def racer_before_retire
+    Racer.find_by(name: name)
+  end
+
   def to_s
     name
   end
