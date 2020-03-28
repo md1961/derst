@@ -7,6 +7,7 @@ class Racer < ApplicationRecord
   belongs_to :grade_given, class_name: 'Grade', optional: true
   belongs_to :stable, optional: true
   has_many :weeklies, -> { order(:age, :month, :week) }
+  has_many :target_races
   has_one :in_ranch
   has_one :racer_trip
   has_one :course_staying, through: :racer_trip, source: :course
@@ -23,12 +24,6 @@ class Racer < ApplicationRecord
       }.sort_by { |results|
         -results.size
       }
-    end
-  end
-
-  has_many :target_races do
-    def in_week_of(month, week)
-      joins(:race).find_by('races.month': month, 'races.week': week)
     end
   end
 
@@ -315,7 +310,7 @@ class Racer < ApplicationRecord
 
     month_week = ranch.month_week
     NUM_WEEKS_TO_DESTROY_TARGET_RACES_WHEN_GRAZE.times do |n|
-      target_races.in_week_of(month_week.month, month_week.week)&.destroy
+      target_races.in_week_of(month_week.month, month_week.week).destroy_all
       month_week = month_week.next
     end
 

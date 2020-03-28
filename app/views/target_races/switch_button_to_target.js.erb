@@ -8,7 +8,7 @@ $button_to_target.parent('form')
 <% month = @race.month -%>
 $td_condition = $('#<%= html_id_of_td_condition(@racer.age, month, @race.week) %>')
 <% if month >= @racer.ranch.month -%>
-  <% if @racer.target_races.in_week_of(month, @race.week) -%>
+  <% if @racer.target_races.in_week_of(month, @race.week).count > 0 -%>
     $td_condition.addClass('target')
   <% else -%>
     $td_condition.removeClass('target')

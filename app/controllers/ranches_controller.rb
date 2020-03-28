@@ -39,7 +39,7 @@ class RanchesController < ApplicationController
   def next_week
     ranch = Ranch.find(params[:id])
     ApplicationRecord.transaction do
-      TargetRace.in_week_of(ranch.month_week).destroy_all
+      TargetRace.in_week_of(*ranch.month_week.to_a).destroy_all
       ranch.go_to_next_week
     end
     redirect_to ranch_path(ranch, next_done: true)
