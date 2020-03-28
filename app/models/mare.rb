@@ -7,6 +7,8 @@ class Mare < ApplicationRecord
   belongs_to :lineage
   has_many :maternal_lines, class_name: 'MareMaternalLine', dependent: :destroy
   has_many :racers, foreign_key: 'mother_id'
+  # TODO: Strictly speaking, it should be 'has_many' :ranch_mare.
+  has_one :ranch_mare
 
   def self.find_by_mating_of(mother, father)
     find_by(name: name_by_mating_of(mother, father))
