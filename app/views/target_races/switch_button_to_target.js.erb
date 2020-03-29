@@ -10,8 +10,10 @@ $td_condition = $('#<%= html_id_of_td_condition(@racer.age, month, @race.week) %
 <% if month >= @racer.ranch.month -%>
   <% if @racer.target_races.in_week_of(month, @race.week).count > 0 -%>
     $td_condition.addClass('target')
+    $td_condition.text('<%= grade_abbr_of_target_races(@racer, month, @race.week) %>')
   <% else -%>
     $td_condition.removeClass('target')
+    $td_condition.text('')
   <% end -%>
 <% end -%>
 

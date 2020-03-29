@@ -64,7 +64,7 @@
               <% elsif result -%>
                 <%= result.place.yield_self { |x| x > 30 ? '－' : x } %>
               <% else -%>
-                <%= racer.condition_in(age, month, week) %>
+                <%= racer.condition_in(age, month, week) || grade_abbr_of_target_races(racer, month, week) %>
               <% end -%>
             </td>
           <% end -%>

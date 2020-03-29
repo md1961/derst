@@ -40,15 +40,16 @@
         <% (1 .. 12).each do |month| -%>
           <% (1 .. 4).each do |week| -%>
             <% weekly = @racer.weeklies.find_by(age: age, month: month, week: week)
-               is_current_year = age == @racer.age -%>
+               is_current_year = age == @racer.age
+               is_target = age_month_and_weeks_of_target_races.include?([age, month, week]) -%>
             <td class="condition
                        <%= is_current_year && [month, week] == current_month_and_week ? 'current' : '' %>
                        <%= age_month_and_weeks_of_races.include?([age, month, week]) ? 'race' : '' %>
-                       <%= age_month_and_weeks_of_target_races.include?([age, month, week]) ? 'target' : '' %>
+                       <%= is_target ? 'target' : '' %>
                        <%= end_of_short_term?(month) && week == 4 ? 'border_right_thick' : '' %>"
                 id="<%= html_id_of_td_condition(age, month, week) %>"
                 aria-label="<%= weekly ? "id=#{weekly.id}" : "" %>">
-              <%= @racer.condition_in(age, month, week) %>
+              <%= @racer.condition_in(age, month, week) || grade_abbr_of_target_races(@racer, month, week) %>
             </td>
           <% end -%>
         <% end -%>
