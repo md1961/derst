@@ -396,6 +396,12 @@ module ApplicationHelper
     end
   end
 
+  def grade_abbr_of_target_races(racer, month, week)
+    racer.target_races.in_week_of(month, week).map(&:race).sort_by { |race|
+      race.grade.ordering
+    }.last&.grade&.abbr&.sub('OP', 'オ')
+  end
+
   def count_to_be_trained_display
     count_to_be_trained = Racer.count(&:to_be_trained?)
     num_races_in_current_week = Result.num_races_in_current_week
