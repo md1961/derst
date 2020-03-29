@@ -228,6 +228,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_232506) do
   create_table "ranch_sires", force: :cascade do |t|
     t.integer "ranch_id", null: false
     t.integer "sire_id", null: false
+    t.integer "year_leased", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ranch_id"], name: "index_ranch_sires_on_ranch_id"
