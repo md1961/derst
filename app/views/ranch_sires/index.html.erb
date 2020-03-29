@@ -1,10 +1,10 @@
 <div class="ranch_sires_index">
   <% @ranch_sires.each do |ranch_sire| -%>
     <%= render ranch_sire %>
+    <hr>
   <% end -%>
 
   <div class="actions">
-    <hr>
     <%= form_with url: ranch_sires_path, local: true do |f| %>
       <div class="field">
         <input type="search" name="sire" value="" autocomplete="on" list="sire_candidates">

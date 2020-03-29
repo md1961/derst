@@ -1,3 +1,8 @@
+hr {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 ._ranch_sire {
 
   table {
@@ -24,11 +29,28 @@
     }
   }
 
+  div.year_left {
+    margin-left: 30px;
+    margin-top: 10px;
+
+    span.year_left {
+      font-size: 1.6rem;
+
+      &:before {
+        content: '残り ';
+      }
+
+      &:after {
+        content: ' 年';
+      }
+    }
+  }
+
   .sire {
     display: flex;
 
     .actions {
-      margin-left: 20px;
+      margin-left: 30px;
     }
   }
 }

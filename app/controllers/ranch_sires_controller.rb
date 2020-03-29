@@ -7,7 +7,7 @@ class RanchSiresController < ApplicationController
 
   def create
     sire = Sire.find_by_name(params[:sire])
-    @ranch.ranch_sires.create!(sire: sire) if sire
+    @ranch.ranch_sires.create!(sire: sire, year_leased: @ranch.year) if sire
     redirect_to ranch_sires_path(ranch_id: @ranch)
   end
 

@@ -30,6 +30,10 @@
       </tbody>
     </table>
 
+    <div class="year_left">
+      <span class="year_left"><%= ranch_sire.year_left %></span>
+    </div>
+
     <div class="actions">
       <%= button_to '削除', ranch_sire, method: :delete, params: {ranch_id: @ranch}, tabindex: -1 %>
     </div>
