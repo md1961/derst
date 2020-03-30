@@ -3,7 +3,7 @@ $ ->
     if $('#result_comment_paddock').val() == ''
       $('#result_weight').focus()
     else if $('#result_num_racers').val() == ''
-      $('#result_num_racers').focus()
+      $('#result_surface_condition').focus()
     else if $('#result_direction').val() == '－'
       $('#result_direction').focus()
     else if $('#result_comment_race').val() == ''

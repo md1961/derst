@@ -7,7 +7,7 @@
   <div class="actions">
     <%= form_with url: ranch_sires_path, local: true do |f| %>
       <div class="field">
-        <input type="search" name="sire" value="" autocomplete="on" list="sire_candidates">
+        <input type="search" name="sire" value="" autocomplete="on" list="father_candidates">
           <%= @sire %>
         </input>
       </div>
@@ -18,8 +18,4 @@
   </div>
 </div>
 
-<datalist id="sire_candidates">
-  <% Sire.where(name_jp: nil).order(:name_eng).each do |sire| -%>
-    <option value="<%= sire.name_eng %>">
-  <% end -%>
-</datalist>
+<%= render 'father_candidates' %>
