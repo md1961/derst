@@ -1,8 +1,13 @@
+<% ranch_mare = @ranch&.ranch_mares&.find_by(mare: @mare) -%>
+
 <div class="top">
   <% if @mare -%>
     <table class="mare_name_and_traits table_base">
       <tr>
         <td><%= @mare.name %></td>
+        <% if ranch_mare -%>
+          <td><%= "#{ranch_mare.age}歳" %></td>
+        <% end -%>
         <td><%= @mare.lineage %></td>
         <% if @mare.price.blank? -%>
           <td>自家製</td>
@@ -116,7 +121,6 @@
           <td class="allows_wrap <%= inbreed_display.present? ? 'inbreed' : 'outbreed' %>">
             <%= inbreed_display %>
           </td>
-          <% ranch_mare = @ranch&.ranch_mares&.find_by(mare: @mare) -%>
           <% if ranch_mare -%>
             <td>
             <% if sire == ranch_mare.sire -%>
