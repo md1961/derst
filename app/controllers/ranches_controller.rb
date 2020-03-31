@@ -20,6 +20,8 @@ class RanchesController < ApplicationController
       @racers = Racer.retired.older_first + [nil] + @racers
     elsif @main_display == 'active_inbreeds'
       @racers = @racers.where("year_birth >= ?", @ranch.year - 1)
+    else
+      @racers = @racers.sort_by { |racer| [racer.year_birth, racer.stable_id || 99] }
     end
 
     @racer_id_to_edit = params[:racer_id_to_edit].to_i
