@@ -19,7 +19,6 @@ $ ->
       else
         $('.sires tbody tr').show()
 
-
     min_fee = $('#sire_filter_fee').val()
     $('.sires tbody tr').filter(->
       $(this).data('fee') < min_fee
@@ -49,6 +48,10 @@ $ ->
       $('.sires tbody td[data-score]').filter(->
         $(this).data('score') < min_score
       ).parent('tr').hide()
+
+    $('.sires tbody tr').filter(->
+      $(this).data('fee') > 2000
+    ).show()
 
     $('#count_sires').text($('.sires tbody tr:visible').length)
 
