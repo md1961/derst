@@ -128,6 +128,10 @@ class Race < ApplicationRecord
     has_not_enough_net_prize && !trial_race_passed?(racer)
   end
 
+  def oversea?
+    course.oversea?
+  end
+
   def prize_for(place)
     if grade.high_stake?
       raise "Not implemented for place #{place} of high-stake" if place > 2

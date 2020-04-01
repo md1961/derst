@@ -25,6 +25,10 @@ class Course < ApplicationRecord
     !on_the_day_from?(stable)
   end
 
+  def oversea?
+    area.oversea?
+  end
+
   def to_s
     name
   end
