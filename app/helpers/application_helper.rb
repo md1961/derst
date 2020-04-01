@@ -293,7 +293,7 @@ module ApplicationHelper
     a << race.age
     a << race_distance_display(race)
     a << race_name_display(race)
-    unless race.handicap?
+    if !race.handicap? && !race.oversea?
       load_for = race.load_for(racer, data_for_race_load: data_for_race_load)
       is_too_heavy = load_for >= (racer.female? ? 58 : 60)
       load_plus = race.load_plus_from_total_prize? ? '+' : ''

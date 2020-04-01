@@ -271,6 +271,8 @@ class Race < ApplicationRecord
     }
 
     def load_of_constant(racer)
+      return nil if oversea?
+
       if age == '4'
         value = grade.abbr == 'Ⅰ' || month_week.to_a == [10, 2] ? 57 : 56
       else
