@@ -58,8 +58,8 @@ $ ->
 
   $('#header_score').on 'click', ->
     $(this).toggleClass('excellent_score_only')
-    if $(this).hasClass('excellent_score_only')
-      $('#sire_filter_score').val(20)
+    value = if $(this).hasClass('excellent_score_only') then 20 else ''
+    $('#sire_filter_score').val(value)
     filter()
     $('#sire_filter_score')[0].focus()
 
