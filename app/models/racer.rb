@@ -265,6 +265,10 @@ class Racer < ApplicationRecord
     }.first.first
   end
 
+  def ordering_for_list
+    [year_birth, stable_id || ordering_from_mating]
+  end
+
   def place_records(high_stakes: false)
     _results = results
     _results = _results.high_stake if high_stakes
@@ -368,6 +372,17 @@ class Racer < ApplicationRecord
   def to_s
     name
   end
+
+  private
+
+    def ordering_from_mating
+      score_from_mother = if mother.speed
+                            mother.speed * 10 + mother.stamina
+                          else
+                            mother.racer_before_retire.net_prize.to_f / 10000
+                          end
+      -(score_from_mother * 10000 + father.trait.fee)
+    end
 
   class AgeInWeek
     include Comparable
