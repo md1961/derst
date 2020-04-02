@@ -50,7 +50,7 @@ $ ->
       ).parent('tr').hide()
 
     $('.sires tbody tr').filter(->
-      $(this).data('fee') > 2000
+      $(this).data('fee') >= 1000
     ).show()
 
     $('#count_sires').text($('.sires tbody tr:visible').length)
