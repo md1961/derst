@@ -79,8 +79,10 @@
   <tbody>
     <% mare_inbreeds = @mare&.h_inbreeds -%>
     <% @sires.each.with_index(1) do |sire, seq_num| -%>
-      <% has_all_fathers = @entering_bloodline && sire.all_bloodline_father_present? -%>
-      <tr data-fee="<%= sire.name_jp.present? ? sire.trait.fee : 999999 %>">
+      <% has_all_fathers = @entering_bloodline && sire.all_bloodline_father_present?
+         fee = sire.trait.fee -%>
+      <tr data-fee="<%= sire.name_jp.present? ? fee : 999999 %>"
+          class="<%= fee == 2500 ? 'border_top_thick' : fee == 1000 ? 'border_bottom_thick' : '' %>">
         <td class="numeric">
           <% path = @mare ? mating_path(@mare, sire_id: sire.id, ranch_id: @ranch&.id) \
                           : sire -%>
