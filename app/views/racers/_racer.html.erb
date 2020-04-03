@@ -53,7 +53,11 @@
     <%= racer.stable ? racer.net_prize : nil %>
   </td>
   <% racer_attr_names.each do |name| -%>
-    <%= racer_attr_display_in_td(racer, name, f) %>
+    <% if racer.age <= 2 && name == :comment_age3 -%>
+      <td><%= racer_mating_display(racer) %></td>
+    <% else -%>
+      <%= racer_attr_display_in_td(racer, name, f) %>
+    <% end -%>
   <% end -%>
 
   <% if f -%>

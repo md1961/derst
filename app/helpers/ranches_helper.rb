@@ -20,4 +20,10 @@ module RanchesHelper
       }.join(', ').yield_self { |x| x.blank? ? nil : x }
     }.compact.join('<br>').html_safe
   end
+
+  def racer_mating_display(racer)
+    sire_trait = racer.father.trait
+    mare = racer.mother
+    "#{mare.speed} #{mare.stamina} x #{sire_trait.fee} #{sire_trait.stability}"
+  end
 end
