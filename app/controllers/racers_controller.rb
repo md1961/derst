@@ -13,7 +13,7 @@ class RacersController < ApplicationController
     @target_races_by_others = TargetRace.includes(:race, :racer).where.not(racer: @racer)
     @entered_races_by_others = Result.where(place: nil).includes(:race, :racer).where.not(racer: @racer)
 
-    racers = (@racer.in_stable? ? Racer.in_stable : Racer.in_ranch).older_first
+    racers = (@racer.in_stable? ? Racer.in_stable : Racer.in_ranch).sort_by(&:ordering_for_list)
 
     @racers_in_same_race = []
     if @racer.in_stable? && Racer.all_training_done?
