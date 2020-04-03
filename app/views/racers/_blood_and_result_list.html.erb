@@ -13,6 +13,7 @@
       <th>インブリード</th>
       <% if is_all_under_age_2 -%>
         <th>２歳時</th>
+        <th colspan="4">面白系統</th>
       <% elsif shows_results -%>
         <th>引退時クラス</th>
         <% racer_attr_names(is_active: false).each do |name| -%>
@@ -71,6 +72,9 @@
           <td>
             <%= racer.comment_age2 %>
           </td>
+          <% mating.root_lineage_numbers.each do |number| -%>
+            <td class="root_lineage_number <%= racer.sex %>"><%= number %></td>
+          <% end -%>
         <% elsif shows_results -%>
           <td>
             <%= "#{racer.results.last.age}歳 #{racer.grade}" if racer.results.last %>

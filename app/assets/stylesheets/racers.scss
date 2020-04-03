@@ -468,4 +468,15 @@ input.weight {
   td:not(.allows_wrap) {
     white-space: nowrap;
   }
+
+  td.root_lineage_number {
+    width: 14px;
+    text-align: center;
+    border-left-style: none;
+    border-right-style: none;
+
+    &.male {
+      background-color: lightgray;
+    }
+  }
 }
