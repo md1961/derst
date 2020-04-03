@@ -140,7 +140,13 @@ class Racer < ApplicationRecord
   end
 
   def result_in(age, month, week)
-    results.joins(:race).find_by(age: age, 'races.month': month, 'races.week': week)
+    (
+      @h_results ||= results.group_by { |result|
+                       result.age_in_week.to_a
+                     }.map { |age_in_week_in_a, results|
+                       [age_in_week_in_a, results.first]
+                     }.to_h
+    )[[age, month, week]]
   end
 
   def race_in?(age, month, week)
@@ -223,9 +229,15 @@ class Racer < ApplicationRecord
   end
 
   def condition_in(age, month, week)
-    current_week = AgeInWeek.new(age, month, week)
-    return nil if current_week > age_in_week
-    weeklies.find_by(current_week.to_h)&.condition || (current_week == age_in_week ? nil : '…')
+    the_week = AgeInWeek.new(age, month, week)
+    return nil if the_week > age_in_week
+    (
+      @h_weeklies ||= weeklies.group_by { |weekly|
+                        weekly.age_in_week.to_a
+                      }.map { |age_in_week_in_a, weeklies|
+                        [age_in_week_in_a, weeklies.first]
+                      }.to_h
+    )[the_week.to_a]&.condition || (the_week == age_in_week ? nil : '…')
   end
 
   def weeks_in_stable
