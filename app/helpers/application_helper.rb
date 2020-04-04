@@ -216,24 +216,25 @@ module ApplicationHelper
 
   def result_attr_display(result, name, f)
     in_paddock = result.comment_paddock.blank?
+    inputting_result = result.direction.yield_self { |s| s && s.length >= 2 }
     if !f || name == :age
       return '－' if name == :place and result.place > 30
       result.send(name)
     elsif name == :jockey
       f.select :jockey_id, options_for_select_for_jockey(result.jockey), {},
-                            tabindex: in_paddock ? -1 : 0
+                            tabindex: in_paddock || inputting_result ? -1 : 0
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name), {},
                             data: {orig_value: f.object.send(name)},
                             class: name.to_s.starts_with?('mark_') ? 'mark' : '',
-                            tabindex: in_paddock || name == :condition ? -1 : 0
+                            tabindex: in_paddock || inputting_result || name == :condition ? -1 : 0
     elsif name == :weight
-      f.number_field name, step: 2
+      f.number_field name, step: 2, tabindex: inputting_result ? -1 : 0
     elsif name == :load
       race = result.race
       is_uncertain = race.handicap? || race.separate? && %w[3 4].include?(race.age)
       f.number_field name, class: is_uncertain ? 'uncertain' : '',
-                           tabindex: in_paddock ? -1 : 0
+                           tabindex: in_paddock || inputting_result ? -1 : 0
     else
       size = {
         odds:   4,
@@ -242,7 +243,8 @@ module ApplicationHelper
       }[name] || 2
       clazz = name == :comment_paddock ? 'allows_shortcut' \
             : name == :num_frame ? "frame_color#{frame_color(result.num_frame, result.num_racers)}" : ''
-      f.text_field name, size: size, class: clazz
+      f.text_field name, size: size, class: clazz,
+        tabindex: inputting_result && !%i[place comment_race].include?(name) ? -1 : 0
     end
   end
 
