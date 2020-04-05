@@ -9,10 +9,10 @@
     <%= form_with model: result, local: true do |f| %>
       <%= render partial: 'result', locals: {result: result, f: f} %>
     <tr>
-      <td colspan="22" class="numeric"><%= f.submit %></td>
+      <td colspan="22" class="numeric"><%= f.submit tabindex: -1 %></td>
     <% end -%>
       <td colspan="2" class="numeric">
-        <%= link_to 'Cancel', result.racer %>
+        <%= link_to 'Cancel', result.racer, tabindex: -1 %>
       </td>
       <td class="numeric">
         <%= button_to '削除', result, method: :delete, class: 'destroy', tabindex: -1,
