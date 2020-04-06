@@ -36,7 +36,7 @@ $ ->
       else
         $('#show_mares')[0].click()
       return
-    else if $('div.racers_racers').length > 0 && key == 'x'
+    else if $('div.racers_racers').length > 0 && $('div#racer_menu').length == 0 && key == 'x'
       $('div.racers_racers tr.age2_or_1').toggle()
       return
     else if $('#show_inbreeds').length > 0 && key == 'w'

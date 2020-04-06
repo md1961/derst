@@ -42,6 +42,12 @@ class RacersController < ApplicationController
     @prev_racer, @next_racer = (racers + racers).values_at(index - 1, index + 1) if index && racers.size >= 2
 
     flash[:racer_id_to_focus] = @racer.id
+
+    racer_ids_shown = session[:racer_ids_shown] || []
+    racer_ids_shown.pop if racer_ids_shown.last == @racer.id
+    @racer_shown_last = Racer.find_by(id: racer_ids_shown.last)
+    racer_ids_shown.push(@racer.id)
+    session[:racer_ids_shown] = racer_ids_shown.last(2)
   end
 
   def new
