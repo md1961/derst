@@ -27,6 +27,8 @@ class PostRacesController < ApplicationController
   private
 
     def post_race_params
-      params.require(:post_race).permit(:result_id, :comment)
+      params.require(:post_race).permit(:result_id, :comment).tap { |p|
+        p[:comment]&.sub(/気味\z/, '')
+      }
     end
 end
