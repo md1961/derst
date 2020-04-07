@@ -9,7 +9,7 @@
     <div id="racer_menu" class="racers_racers esc_hideable" hidden>
       <table class="table_base">
         <% prev_racer = nil -%>
-        <% Racer.active.where.not(stable: nil).older_first.each.with_index(1) do |racer, index| -%>
+        <% Racer.active.where.not(stable: nil).sort_by(&:ordering_for_list).each.with_index(1) do |racer, index| -%>
           <% next unless racer.in_stable? -%>
           <tr class="<%= prev_racer&.age.to_i > racer.age ? 'border_top_thick' : '' %>">
             <% prev_racer = racer -%>
