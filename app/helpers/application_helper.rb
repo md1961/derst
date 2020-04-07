@@ -284,7 +284,9 @@ module ApplicationHelper
   def race_display(race, racer, displays_target_button: false, data_for_race_load: nil)
     course = race.course
     stable = racer.stable
-    transport = if racer.course_staying
+    transport = if course.oversea?
+                  'oversea'
+                elsif racer.course_staying
                   course.same_area_with?(racer.course_staying) ? 'same_area' : 'remote'
                 else
                   course.same_from?(stable) ? 'same_area' \
