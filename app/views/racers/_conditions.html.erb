@@ -33,7 +33,8 @@
     </tr>
   </thead>
   <tbody>
-    <% age_end = @racer.active_age + (current_month_and_week.first >= 11 ? 1 : 0) -%>
+    <% month_to_display_next_year = 11
+       age_end = @racer.active_age + (current_month_and_week.first >= month_to_display_next_year ? 1 : 0) -%>
     <% (3 .. age_end).each do |age| -%>
       <tr>
         <th class="border_right_thick"><%= "#{age}歳" %></th>
@@ -49,7 +50,10 @@
                        <%= end_of_short_term?(month) && week == 4 ? 'border_right_thick' : '' %>"
                 id="<%= html_id_of_td_condition(age, month, week) %>"
                 aria-label="<%= weekly ? "id=#{weekly.id}" : "" %>">
-              <%= @racer.condition_in(age, month, week) || grade_abbr_of_target_races(@racer, month, week) %>
+              <%= @racer.condition_in(age, month, week) || \
+                    (age > @racer.age && month >= month_to_display_next_year \
+                        ? nil \
+                        : grade_abbr_of_target_races(@racer, month, week)) %>
             </td>
           <% end -%>
         <% end -%>
