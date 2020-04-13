@@ -4,7 +4,7 @@ class Race < ApplicationRecord
   belongs_to :prize_pattern, optional: true
 
   enum surface: {turf: 0, dirt: 1}
-  enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2, no_gelding: 3}
+  enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2, no_gelding: 3, no_female: 4}
   enum weight: {age_constant: 1, constant: 2, separate: 3, handicap: 4}
 
   scope :downgrade_in_summer       , -> { where("course_id  = 2 OR  month >= 8") }
@@ -27,6 +27,7 @@ class Race < ApplicationRecord
     limitations << 1 if racer.female?
     limitations << 2 if racer.father&.domestic?
     limitations << 3 unless racer.gelding?
+    limitations << 4 unless racer.female?
     where(limitation: limitations)
   }
 
