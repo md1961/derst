@@ -1,7 +1,9 @@
 class RacerNameSamplesController < ApplicationController
 
+  DEFAULT_GROUP_BY = 'sex'
+
   def index
-    @enum_name = params[:group_by]
+    @enum_name = params[:group_by] || DEFAULT_GROUP_BY
     if %w[type sex].include?(@enum_name)
       @samples_by_group = RacerNameSample.group_by(@enum_name)
     else

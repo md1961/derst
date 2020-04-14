@@ -62,7 +62,9 @@ class Mating
       additional = ", ..."
     end
 
-    h.map { |father, generations|
+    h.sort_by { |_, generations|
+      generations.sum
+    }.map { |father, generations|
       effects = ""
       effects = "(#{father.inbreed_effects.map(&:abbr).join(' ')})" \
         unless father.inbreed_effects.empty?
