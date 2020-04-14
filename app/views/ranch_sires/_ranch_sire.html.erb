@@ -42,7 +42,7 @@
   <table class="table_base">
     <thead>
       <tr>
-        <th>
+        <th colspan="2">
         <% mare_trait_names.each_with_index do |name, index| -%>
           <th class="<%= index.zero? ? 'border_left_thick' : '' %>">
             <%= Mare.human_attribute_name(name) %>
@@ -67,16 +67,17 @@
         <% mating = Mating.new(mare, sire)
            is_nicks       = mating.nicks?
            is_interesting = mating.interesting?
-           score          = mating.score -%>
+           score          = mating.score
+           ranch_mare = mare.ranch_mare -%>
         <tr>
           <td><%= mare %></td>
+          <td class="age"><%= (ranch_mare || mare.racer_before_retire).age %></td>
           <% mare_trait_names.each_with_index do |name, index| -%>
             <td class="<%= %i[price speed stamina].include?(name) ? 'numeric' : 'centered' %>
                        <%= index.zero? ? 'border_left_thick' : '' %>">
               <%= mare.send(name) %>
             </td>
           <% end -%>
-          <% ranch_mare = mare.ranch_mare -%>
           <% if ranch_mare -%>
             <% (-4 .. 0).each do |diff_year| -%>
               <% birth_piece = mare.racers.find_by(year_birth: ranch.year + diff_year) -%>

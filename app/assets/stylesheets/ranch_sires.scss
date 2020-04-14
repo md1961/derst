@@ -8,6 +8,14 @@ hr {
   table {
     margin-bottom: 10px;
 
+    td.age {
+      text-align: right;
+
+      &:after {
+        content: "歳";
+      }
+    }
+
     td.female {
       color: red;
     }
