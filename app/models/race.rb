@@ -223,7 +223,7 @@ class Race < ApplicationRecord
       trial_race_names = H_TRIAL_RACES[name]
       return true unless trial_race_names
       racer.results.includes(:race).find_all { |result|
-        trial_race_names.include?(result.race.name)
+        trial_race_names.include?(result.race.name) && result.place
       }.detect { |result|
         case result.race.grade.abbr
         when 'OP'
