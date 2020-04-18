@@ -278,7 +278,7 @@ class Racer < ApplicationRecord
   end
 
   def ordering_for_list
-    [year_birth, stable_id || ordering_from_mating]
+    [year_birth, stable_id || 9999, ordering_from_mating]
   end
 
   def place_records(high_stakes: false)
