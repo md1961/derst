@@ -2,10 +2,11 @@
   <table id="results" class="table_base">
     <thead>
       <tr>
-        <th colspan="4">
-        <th>出走数</th>
+        <th colspan="4" class="border_right_thick">
+        <th>出走</th>
         <th>勝利</th>
         <th>勝ち馬</th>
+        <th colspan="2">最先着</th>
       </tr>
     </thead>
     <tbody>
@@ -17,14 +18,20 @@
           <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
           <td><%= race.course %></td>
           <td><%= race_name_display(race) %></td>
-          <td class="numeric"><%= race_distance_display(race) %></td>
+          <td class="numeric border_right_thick"><%= race_distance_display(race) %></td>
           <% results = Array(@results_by_race[race])
-             results_by_place = results.group_by(&:place)
-             -%>
+             results_by_place = results.reject { |result| result.place.nil? }.group_by(&:place)
+             best_place = results_by_place.keys.sort.first -%>
           <td class="numeric"><%= results.size %></td>
           <% results_1st = results_by_place.fetch(1, []) -%>
-          <td class="numeric"><%= results_1st.size %></td>
+          <td class="numeric"><%= results_1st.size.yield_self { |x| x.zero? ? '-' : x } %></td>
           <td><%= racers_display(results_1st) %></td>
+          <% if best_place.nil? || best_place == 1 -%>
+            <td colspan="2">
+          <% else -%>
+            <td class="numeric"><%= "#{best_place}着" %></td>
+            <td><%= racers_display(results_by_place[best_place]) %>
+          <% end -%>
         </tr>
       <% end -%>
     </tbody>
