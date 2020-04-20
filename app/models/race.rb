@@ -7,6 +7,8 @@ class Race < ApplicationRecord
   enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2, no_gelding: 3, no_female: 4}
   enum weight: {age_constant: 1, constant: 2, separate: 3, handicap: 4}
 
+  scope :high_stake, -> { joins(:grade).where("grades.abbr IN (#{%w['Ⅰ' 'Ⅱ' 'Ⅲ'].join(',')})") }
+
   scope :downgrade_in_summer       , -> { where("course_id  = 2 OR  month >= 8") }
   scope :before_downgrade_in_summer, -> { where("course_id != 2 AND month <  8") }
 
