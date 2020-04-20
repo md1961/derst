@@ -1,6 +1,9 @@
 class ResultsController < ApplicationController
 
   def index
+  end
+
+  def list
     @results = Result.high_stake.sort_by(&:ordering)
   end
 
