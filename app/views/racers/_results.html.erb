@@ -13,7 +13,7 @@
       <%= render partial: 'result_in_tr', locals: {result: result} %>
 
       <% if post_race = result.post_race -%>
-        <% if @post_race -%>
+        <% if @post_race == post_race -%>
           <td colspan="24">
             <%= render partial: 'post_race_form', locals: {post_race: @post_race} %>
           </td>
