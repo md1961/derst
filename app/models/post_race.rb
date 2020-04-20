@@ -3,7 +3,7 @@ class PostRace < ApplicationRecord
 
   after_save :injure_racer
 
-  RE_DESCRIPTION_FOR_INJURY = /(?:重傷|骨折|屈腱炎|ハ行|ソエ)\z/
+  RE_DESCRIPTION_FOR_INJURY = /(?:重傷|骨折|屈腱炎|ハ行|ソエ|復帰困難)/
 
   def description
     @description ||= comment.to_s.split.last
