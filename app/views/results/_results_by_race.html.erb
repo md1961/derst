@@ -1,0 +1,32 @@
+<div class="results_results_by_race">
+  <table id="results" class="table_base">
+    <thead>
+      <tr>
+        <th colspan="4">
+        <th>出走数</th>
+        <th>勝利</th>
+        <th>勝ち馬</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% prev_race = nil -%>
+      <% races.each do |race| -%>
+        <% clazz = prev_race && (prev_race.grade != race.grade || prev_race.age != race.age) ? 'border_top_thick' : ''
+           prev_race = race -%>
+        <tr class="<%= clazz %>">
+          <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
+          <td><%= race.course %></td>
+          <td><%= race_name_display(race) %></td>
+          <td class="numeric"><%= race_distance_display(race) %></td>
+          <% results = Array(@results_by_race[race])
+             results_by_place = results.group_by(&:place)
+             -%>
+          <td class="numeric"><%= results.size %></td>
+          <% results_1st = results_by_place.fetch(1, []) -%>
+          <td class="numeric"><%= results_1st.size %></td>
+          <td><%= racers_display(results_1st) %></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>

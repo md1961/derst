@@ -1,27 +1,6 @@
 <div class="results_index">
-  <% rows_between_headers = 10 -%>
-
-  <table id="results" class="table_base">
-    <thead>
-      <%= render 'results_header' %>
-    </thead>
-    <tbody>
-      <% @results.each_with_index do |result, index| -%>
-        <% if index > 0 && index % rows_between_headers == 0 -%>
-          <%= render 'results_header' %>
-        <% end -%>
-        <% race = result.race -%>
-        <tr class="place-<%= result.place %> <%= race.surface %> <%= grade_class(race.grade) %>">
-          <td class="numeric"><%= result.year %></td>
-          <td><%= result.racer %></td>
-          <td class="numeric"><%= result.age %></td>
-          <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
-          <td><%= race.course %></td>
-          <td><%= race_name_display(race) %></td>
-          <td><%= race_distance_display(race) %></td>
-          <%= render partial: 'result', locals: {result: result, f: nil} %>
-        </tr>
-      <% end -%>
-    </tbody>
-  </table>
+  <% %w[Ⅰ Ⅱ Ⅲ].each do |grade_abbr| -%>
+    <% grade = Grade.find_by(abbr: grade_abbr) -%>
+    <%= render partial: 'results_by_race', locals: {races: @races_by_grade[grade]} %>
+  <% end -%>
 </div>

@@ -1,6 +1,18 @@
 class ResultsController < ApplicationController
 
   def index
+    @results_by_race = Result.high_stake.includes(:race).group_by(&:race)
+    @races_by_grade = Race.high_stake.reject { |race|
+      race.oversea?
+    }.group_by(&:grade).map { |grade, races|
+      [
+        grade,
+        races.sort_by { |race|
+          age_ordering = {'3': 3, '4': 4}.fetch(race.age.to_sym, 5)
+          [age_ordering, race.month, race.week]
+        }
+      ]
+    }.to_h
   end
 
   def list
