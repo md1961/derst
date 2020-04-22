@@ -93,7 +93,7 @@
   </div>
 
   <div class="age_2_list">
-    <% racers = Racer.active.find_all { |racer| racer.age == 2 } -%>
+    <% racers = Racer.active.find_all { |racer| racer.age == 2 }.sort_by(&:ordering_for_list) -%>
     <%= render partial: 'racers/blood_and_result_list', locals: {racers: racers} %>
   </div>
 
