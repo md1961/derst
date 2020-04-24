@@ -65,7 +65,7 @@
         <td class="centered">
           <%= mating.interesting? ? '〇' : '×' %>
         </td>
-        <td title="<%= inbreed %>">
+        <td aria-label="<%= inbreed %>">
           <%= inbreed.sub(/, [^.].*/, ', ...') %>
         </td>
         <% if is_all_under_age_2 -%>

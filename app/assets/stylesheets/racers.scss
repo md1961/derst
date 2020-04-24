@@ -489,4 +489,11 @@ input.weight {
       background-color: lightgray;
     }
   }
+
+  [aria-label]:after {
+    top: 150%;
+    color: black;
+    background-color: white;
+    border: solid 1px black;
+  }
 }
