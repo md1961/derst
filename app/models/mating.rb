@@ -112,8 +112,8 @@ class Mating
       RacerNameSample.most_similars(name, num, sex: sex)
     }.reject { |candidate_name, _, _|
       names_to_reject.include?(candidate_name)
-    }.sort_by { |_, distance, _|
-      distance
+    }.sort_by { |candidate_name, distance, _|
+      [distance, candidate_name]
     }.uniq { |candidate_name, distance, father_name|
       candidate_name
     }.take(num)
