@@ -88,6 +88,20 @@ $ ->
     filter()
 
 
+  racer_name_candidates_to_reject = []
+
   $('table.racer_name_candidates span.dismiss').on 'click', ->
-    $(this).parents('tr').hide()
-                         .nextAll('tr:hidden:first').show()
+    mare_id = $(this).data('mare_id')
+    sire_id = $(this).data('sire_id')
+    names_for_candidates = $(this).data('names_for_candidates')
+    sex = $(this).data('sex')
+    name = $(this).closest('td').next('td.name').text()
+    racer_name_candidates_to_reject.push(name)
+    params = {
+      mare_id: mare_id,
+      sire_id: sire_id,
+      names_for_candidates: names_for_candidates,
+      sex: sex,
+      names_to_reject: racer_name_candidates_to_reject.join(',')
+    }
+    $.get('/matings/update_racer_name_candidates', params)

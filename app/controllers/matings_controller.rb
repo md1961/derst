@@ -49,4 +49,13 @@ class MatingsController < ApplicationController
     Mating.new(mare).clear_cache
     redirect_to matings_path(mare_id: mare.id)
   end
+
+  def update_racer_name_candidates
+    mare = Mare.find(params[:mare_id])
+    sire = Sire.find(params[:sire_id])
+    @mating = Mating.new(mare, sire)
+    @names_for_candidates = params[:names_for_candidates].split(',')
+    @sex = params[:sex]
+    @names_to_reject = params[:names_to_reject].split(',')
+  end
 end

@@ -1,0 +1,13 @@
+$tr = $('table.racer_name_candidates tr:first')
+
+<% @mating.racer_name_candidates(
+     num: 25,
+     names_from: @names_for_candidates,
+     sex: @sex,
+     names_to_reject: @names_to_reject
+   ).each do |name, distance, father_name| -%>
+  $tr.find('td.name').text('<%= name %>')
+  $tr.find('td.distance').text('<%= sprintf("%5.3f", distance) %>')
+  $tr.find('td.father_name').text('<= <%= father_name %>')
+  $tr = $tr.next('tr')
+<% end -%>

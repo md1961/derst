@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     end
 
     collection do
-      get :recache
+      get :recache, :update_racer_name_candidates
     end
   end
 
