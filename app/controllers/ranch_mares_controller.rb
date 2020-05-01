@@ -24,6 +24,7 @@ class RanchMaresController < ApplicationController
     ranch_mare = RanchMare.new(
       params.require(:ranch_mare).permit(:ranch_id, :mare_id, :age, :sire_id)
     )
+    ranch_mare.expecting! if ranch_mare.sire
     ApplicationRecord.transaction do
       ranch_mare.save!
       racer&.retire!
