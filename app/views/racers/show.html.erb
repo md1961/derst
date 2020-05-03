@@ -1,6 +1,6 @@
 <div class="racers_show <%= @racer.in_stable? ? 'in_stable' : '' %>">
   <div id="name_and_traits">
-    <%= racer_name_display(@racer) %>
+    <span class="name"><%= racer_name_display(@racer) %></span>
     <span class="sex"><%= racer_sex_display(@racer) %></span>
     <span class="age"><%= "#{@racer.age}歳" %></span>
 
