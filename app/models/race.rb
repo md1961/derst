@@ -166,6 +166,7 @@ class Race < ApplicationRecord
   end
 
   def net_prize_for(place)
+    return 0 if oversea?
     return 0 if  grade.high_stake? && place != 1 && place != 2
     return 0 if !grade.high_stake? && place != 1
     prize = prize_for(place)
