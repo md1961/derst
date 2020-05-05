@@ -21,7 +21,7 @@
           <% races = races_by_week[week]&.map { |race|
                content_tag :span, race.to_s,
                  class: [race.limitation, race.surface, race.grade.high_stake? ? 'high_stake' : ''].join(' '),
-                 title: "id = #{race.id}"
+                 aria: {label: "id = #{race.id}"}
              } -%>
           <%= safe_join(races, '<br>'.html_safe) if races %>
         </td>

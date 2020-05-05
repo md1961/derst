@@ -33,4 +33,8 @@
       margin-left: 20px;
     }
   }
+
+  [aria-label]:after {
+    top: 150%;
+  }
 }
