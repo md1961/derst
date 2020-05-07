@@ -155,6 +155,19 @@ class RacersController < ApplicationController
     render :weight_update
   end
 
+  def increment_weight_fat
+    @racer = Racer.find(params[:id])
+    if @racer.weight_best
+      Racer.transaction do
+        @racer.update!(weight_fat: @racer.weight_best + 10) unless @racer.weight_fat
+        @racer.update!(weight_lean: nil)
+        @racer.increment!(:weight_fat , 2)
+        @racer.increment!(:weight_best, 2)
+      end
+    end
+    render :weight_update
+  end
+
   def graze
     racer = Racer.find(params[:id])
     racer.graze!

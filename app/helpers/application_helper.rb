@@ -377,6 +377,7 @@ module ApplicationHelper
                                     disabled: @racer_id_to_edit.to_i > 0,
                                     id: "condition-#{racer.id}",
                                     class: ['condition', racer.condition.nil? ? 'no_condition' : ''],
+                                    data: {racer_id: racer.id},
                                     autofocus: racer.id == flash[:racer_id_to_focus] \
                                                 && (racer.condition.nil? || (racer.condition.present? && racer.weight.present?)),
                                     tabindex: racer.condition ? -1 : 0

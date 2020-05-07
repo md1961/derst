@@ -64,6 +64,12 @@ $ ->
         $('#to_next_mating')[0].click()
       return
 
+    if $('select.condition').is(':focus') && key == ','
+      $select_condition = $(':focus')
+      racer_id = $select_condition.data('racer-id')
+      $.post '/racers/' + racer_id + '/increment_weight_fat'
+      return false
+
     if $('#racer_weight_fat').is(':focus') && key == '.'
       $('span.fat_to_best')[0].click()
       return false
