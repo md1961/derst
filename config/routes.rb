@@ -57,7 +57,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :results, only: %i[index edit update destroy]
+  resources :results, only: %i[index edit update destroy] do
+    collection do
+      get :multiple_entries
+    end
+  end
 
   resources :target_races, only: %i[create destroy]
 

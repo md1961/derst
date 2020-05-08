@@ -31,6 +31,18 @@ class Result < ApplicationRecord
   scope :num_races_in_current_week, -> { in_current_week.num_races }
   scope :num_races_yet_to_come    , -> { in_current_week.where(place: nil).num_races }
 
+  def self.multiple_entries
+    high_stake(1).includes(:racer, :race).group_by { |result|
+      [result.year, result.race]
+    }.find_all { |_, results|
+      results.size >= 2
+    }.map(&:last).map { |results|
+      results.sort_by(&:place)
+    }.sort_by { |results|
+      results.first(2).map(&:place)
+    }
+  end
+
   def net_prize
     return 0 unless place
     race.net_prize_for(place)

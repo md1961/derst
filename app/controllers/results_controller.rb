@@ -46,6 +46,10 @@ class ResultsController < ApplicationController
     redirect_to result.racer
   end
 
+  def multiple_entries
+    @array_of_results = Result.multiple_entries
+  end
+
   private
 
     def result_params
