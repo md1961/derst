@@ -64,9 +64,8 @@ $ ->
         $('#to_next_mating')[0].click()
       return
 
-    if $('select.condition').is(':focus') && key == ','
-      $select_condition = $(':focus')
-      racer_id = $select_condition.data('racer-id')
+    if ($('select.condition').is(':focus') || $('input.weight').is(':focus')) && key == ','
+      racer_id = $(':focus').data('racer-id')
       $.post '/racers/' + racer_id + '/increment_weight_fat'
       return false
 
