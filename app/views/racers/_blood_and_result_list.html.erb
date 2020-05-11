@@ -29,14 +29,14 @@
     <% prev_racer = nil -%>
     <% racers.each.with_index(1) do |racer, index| -%>
       <tr class="<%= "age-#{racer&.age}" %>
-                 <%= prev_racer&.age.to_i != racer&.age.to_i ? 'border_top_thick' : '' %>">
+                 <%= @sort_by_age && prev_racer&.age.to_i != racer&.age.to_i ? 'border_top_thick' : '' %>">
         <% prev_racer = racer -%>
         <% unless racer -%>
           <td colspan="18">&nbsp;</td>
           <% next -%>
         <% end -%>
         <td class="numeric <%= !racer.is_active || racer.stable ? '' : 'not_stabled' %>">
-          <%= link_to index - (racer.is_active ? 1 : 0),
+          <%= link_to index - (@sort_by_age && racer.is_active ? 1 : 0),
                       racer_path(racer, main_display: @main_display),
                       target: '_blank' %>
         </td>

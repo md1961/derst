@@ -17,7 +17,12 @@ class RanchesController < ApplicationController
                            .includes(:weeklies, :injury, results: {race: :grade}, target_races: :race)
                            .older_first
     if @main_display == 'all_racers'
-      @racers = Racer.retired.older_first + [nil] + @racers
+      @sort_by_age = params[:sort_by_age] == 'true'
+      if @sort_by_age
+        @racers = Racer.retired.older_first + [nil] + @racers
+      else
+        @racers = Racer.all.sort_by { |racer| [-racer.net_prize, racer.ordering_for_list] }
+      end
     elsif @main_display == 'active_inbreeds'
       @racers = @racers.where("year_birth >= ?", @ranch.year - 1).sort_by(&:ordering_for_list)
     else
