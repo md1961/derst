@@ -5,13 +5,13 @@
   <thead>
     <tr>
       <th colspan="4">
-      <th colspan="<%= is_all_under_age_2 ? 5 : 2 %>">父</th>
+      <th colspan="<%= is_all_under_age_2 ? 5 : 3 %>">父</th>
       <th colspan="2">母</th>
-      <th>点</th>
-      <th>ニ</th>
-      <th>面</th>
-      <th>インブリード</th>
       <% if is_all_under_age_2 -%>
+        <th>点</th>
+        <th>ニ</th>
+        <th>面</th>
+        <th>インブリード</th>
         <th>２歳時</th>
         <th colspan="4">面白系統</th>
       <% elsif shows_results -%>
@@ -45,30 +45,30 @@
         <td class="numeric"><%= "#{racer.age}歳" %></td>
         <% father, mother = racer.father, racer.mother -%>
         <td><%= father %></td>
+        <td class="numeric"><%= "#{father.trait.fee}万" %></td>
         <% if is_all_under_age_2 -%>
-          <td class="numeric"><%= "#{father.trait.fee}万" %></td>
           <td><%= father.trait.distances %></td>
           <td><%= father.trait.growth %></td>
         <% end -%>
         <td class="centered"><%= father.trait.stability %></td>
         <td><%= mother %></td>
         <td class="centered"><%= "#{mother.speed} #{mother.stamina}" %></td>
-        <% mating = Mating.new(mother, father)
-           inbreed = mating.inbreed_display
-           inbreed = '（アウトブリード）' if inbreed.blank? -%>
-        <td class="numeric">
-          <%= mating.score %>
-        </td>
-        <td class="centered">
-          <%= mating.nicks? ? '〇' : '×' %>
-        </td>
-        <td class="centered">
-          <%= mating.interesting? ? '〇' : '×' %>
-        </td>
-        <td aria-label="<%= inbreed %>">
-          <%= inbreed.sub(/, [^.].*/, ', ...') %>
-        </td>
         <% if is_all_under_age_2 -%>
+          <% mating = Mating.new(mother, father)
+             inbreed = mating.inbreed_display
+             inbreed = '（アウトブリード）' if inbreed.blank? -%>
+          <td class="numeric">
+            <%= mating.score %>
+          </td>
+          <td class="centered">
+            <%= mating.nicks? ? '〇' : '×' %>
+          </td>
+          <td class="centered">
+            <%= mating.interesting? ? '〇' : '×' %>
+          </td>
+          <td aria-label="<%= inbreed %>">
+            <%= inbreed.sub(/, [^.].*/, ', ...') %>
+          </td>
           <td>
             <%= racer.comment_age2 %>
           </td>
