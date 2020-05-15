@@ -5,6 +5,7 @@ $button_to_target = $('#target_for_race-<%= @race.id %>')
 $button_to_target.parent('form')
   .next('form').children('input.button_to_enter').toggleClass('target')
 
+<%# TODO: Correct to handle target race for next year %>
 <% month = @race.month -%>
 $td_condition = $('#<%= html_id_of_td_condition(@racer.age, month, @race.week) %>')
 <% if month >= @racer.ranch.month -%>
