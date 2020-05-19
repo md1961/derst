@@ -43,6 +43,10 @@ class Result < ApplicationRecord
     }
   end
 
+  def completed?
+    num_racers.present? && place.present? && comment_race.present?
+  end
+
   def net_prize
     return 0 unless place
     race.net_prize_for(place)
