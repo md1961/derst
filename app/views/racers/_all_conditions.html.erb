@@ -59,10 +59,10 @@
                is_target = month_and_weeks_of_target_races.include?([month, week]) -%>
             <td class="centered <%= result ? (is_current_week ? 'race_coming' : 'race') : is_target ? 'target' : '' %>"
                 aria-label="<%= result&.race %>">
-              <% if is_current_week -%>
-                <%= form_for_weekly_condition(racer) %>
-              <% elsif result -%>
+              <% if result&.place -%>
                 <%= result.place.yield_self { |x| x > 30 ? '－' : x } %>
+              <% elsif is_current_week -%>
+                <%= form_for_weekly_condition(racer) %>
               <% else -%>
                 <%= racer.condition_in(age, month, week) || grade_abbr_of_target_races(racer, month, week) %>
               <% end -%>
