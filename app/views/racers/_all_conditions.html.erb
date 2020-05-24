@@ -57,7 +57,8 @@
                            : "#{result.race.name} #{result.race.distance_to_s} #{result.place}着"
                is_current_week = [month, week] == current_month_and_week
                is_target = month_and_weeks_of_target_races.include?([month, week]) -%>
-            <td class="centered <%= result ? (is_current_week ? 'race_coming' : 'race') : is_target ? 'target' : '' %>"
+            <td class="centered <%= result ? (is_current_week && result.place.blank? ? 'race_coming' : 'race')
+                                           : is_target ? 'target' : '' %>"
                 aria-label="<%= result&.race %>">
               <% if result&.place -%>
                 <%= result.place.yield_self { |x| x > 30 ? '－' : x } %>
