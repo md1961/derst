@@ -23,6 +23,9 @@ $td_for_current_condition = $('td.condition.current')
 
   <% if @racer.weight -%>
     $input_for_weight.focus()
+  <% else -%>
+    $input_for_weight.val(<%= @racer.last_weight %>)
+    $input_for_weight.addClass('no_weight')
   <% end -%>
 <% end -%>
 

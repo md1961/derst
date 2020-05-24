@@ -211,7 +211,9 @@ class Racer < ApplicationRecord
   end
 
   def condition=(value)
-    weeklies.find_or_create_by!(age_in_week.to_h).update!(condition: value)
+    params = {condition: value}
+    params[:weight] = nil if value.blank?
+    weeklies.find_or_create_by!(age_in_week.to_h).update!(params)
   end
 
   def default_condition
