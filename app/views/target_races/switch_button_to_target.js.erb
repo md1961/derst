@@ -18,6 +18,8 @@ $td_condition = $('#<%= html_id_of_td_condition(@racer.age, month, @race.week) %
   <% end -%>
 <% end -%>
 
+$('span.weight_transport').text('<%= weight_transport_display(@racer) %>')
+
 <% if @racer.condition && !@racer.weight -%>
   $('input.weight').focus()
 <% else -%>
