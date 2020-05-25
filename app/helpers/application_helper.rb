@@ -425,6 +425,12 @@ module ApplicationHelper
     sprintf("age%d-month%d-week%d", age, month, week)
   end
 
+  def weight_transport_display(racer)
+    return nil unless @racer.needs_transport?
+    weight_best = racer.weight_best
+    "(#{weight_best + 4}～#{weight_best + 6}kg)"
+  end
+
   def frame_color(num_frame, num_racers)
     return '' if num_frame.blank? || num_racers.blank?
     excess = num_racers - 8

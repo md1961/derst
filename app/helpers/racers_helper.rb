@@ -82,11 +82,6 @@ module RacersHelper
     end
   end
 
-  def weight_transport_display(racer)
-    weight_best = racer.weight_best
-    "(#{weight_best + 4}～#{weight_best + 6}kg)"
-  end
-
   MONTHS_OF_END_OF_SHORT_TERMS = [2, 5, 8, 11]
 
   def end_of_short_term?(month)

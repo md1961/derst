@@ -39,9 +39,7 @@
         <%= form_for_weekly_weight(@racer) %>
       <% end -%>
       <span class="weight_best"><%= @racer.weight_best %></span>
-      <% if @racer.needs_transport? -%>
-        <span class="weight_transport"><%= weight_transport_display(@racer) %></span>
-      <% end -%>
+      <span class="weight_transport"><%= weight_transport_display(@racer) %></span>
 
       <%= link_to '', ranch_path(@racer.ranch, main_display: @main_display, racer_id: @racer),
                           data: {shortcut: 'b'}, tabindex: -1 %>
