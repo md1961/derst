@@ -5,17 +5,16 @@ $button_to_target = $('#target_for_race-<%= @race.id %>')
 $button_to_target.parent('form')
   .next('form').children('input.button_to_enter').toggleClass('target')
 
-<%# TODO: Correct to handle target race for next year %>
-<% month = @race.month -%>
-$td_condition = $('#<%= html_id_of_td_condition(@racer.age, month, @race.week) %>')
-<% if month >= @racer.ranch.month -%>
-  <% if @racer.target_races.in_week_of(month, @race.week).count > 0 -%>
-    $td_condition.addClass('target')
-    $td_condition.text('<%= grade_abbr_of_target_races(@racer, month, @race.week) %>')
-  <% else -%>
-    $td_condition.removeClass('target')
-    $td_condition.text('')
-  <% end -%>
+<% month = @race.month
+   age = @racer.age
+   age += 1 if month < @racer.ranch.month -%>
+$td_condition = $('#<%= html_id_of_td_condition(age, month, @race.week) %>')
+<% if @racer.target_races.in_week_of(month, @race.week).count > 0 -%>
+  $td_condition.addClass('target')
+  $td_condition.text('<%= grade_abbr_of_target_races(@racer, month, @race.week) %>')
+<% else -%>
+  $td_condition.removeClass('target')
+  $td_condition.text('')
 <% end -%>
 
 $('span.weight_transport').text('<%= weight_transport_display(@racer) %>')

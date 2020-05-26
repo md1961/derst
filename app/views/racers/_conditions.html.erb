@@ -1,13 +1,13 @@
 <% current_month_and_week = @racer.ranch.month_week.to_a
    age_month_and_weeks_of_races = @racer.results.map { |result| [result.age, result.race.month, result.race.week] }
    age_month_and_weeks_of_target_races = @racer.target_races.map(&:race).map(&:month_week).map(&:to_a)
-       .map { |month, week|
-         [
-           @racer.age + (([month, week] <=> current_month_and_week) == -1 ? 1 : 0),
-           month,
-           week
-         ]
-       }
+     .map { |month, week|
+       [
+         @racer.age + (([month, week] <=> current_month_and_week) == -1 ? 1 : 0),
+         month,
+         week
+       ]
+     }
 -%>
 
 <table id="conditions" class="table_base">
