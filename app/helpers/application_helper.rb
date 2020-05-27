@@ -404,7 +404,7 @@ module ApplicationHelper
   def grade_abbr_of_target_races(racer, month, week)
     racer.target_races.in_week_of(month, week).map(&:race).sort_by { |race|
       race.grade.ordering
-    }.last&.grade&.abbr&.sub('OP', 'オ')
+    }.last&.grade&.abbr&.sub('OP', 'オ')&.sub('16', '准')
   end
 
   def count_to_be_trained_display
