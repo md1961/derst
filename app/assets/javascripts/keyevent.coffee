@@ -16,18 +16,30 @@ $ ->
       return
 
     if $('#results').hasClass('ready_for_race') && $('select.mark').is(':focus') \
-        && ['a', 'b', 'c', 'y', 'z', 'j', 'k', 'o'].includes(key)
-      $mark_selects = $('select.mark:focus').closest('tr').find('select.mark')
+        && ['a', 'b', 'c', 'y', 'z', 'j', 'k', 'o'].includes(key.toLowerCase())
+      isUpper = key <= 'Z'
+      key = key.toLowerCase()
+      $mark = $('select.mark:focus')
+      $mark_selects = $mark.closest('tr').find('select.mark')
       if key == 'j'
-        $.each($mark_selects, -> select_next_option($(this)))
+        if isUpper
+          $.each($mark_selects, -> select_next_option($(this)))
+        else
+          select_next_option($mark)
       else if key == 'k'
-        $.each($mark_selects, -> select_prev_option($(this)))
+        if isUpper
+          $.each($mark_selects, -> select_prev_option($(this)))
+        else
+          select_prev_option($mark)
       else if key == 'o'
         $.each($mark_selects, -> $(this).val($(this).data('orig-value')))
       else
         value = if key == 'a' then '－' else if key == 'b' then '△' else
                 if key == 'c' then '▲' else if key == 'y' then '〇' else '◎'
-        $.each($mark_selects, -> $(this).val(value))
+        if isUpper
+          $.each($mark_selects, -> $(this).val(value))
+        else
+          $mark.val(value)
       return
 
     if $('#show_mares').length > 0 && key == 'y'
