@@ -307,7 +307,7 @@ module ApplicationHelper
     button_to_target_in_td = nil
     if displays_target_button
       button_to_enter = nil
-      if race.month_week == racer.ranch.month_week
+      if racer.in_stable? && race.month_week == racer.ranch.month_week
         button_to_enter = button_to(
           '^', create_result_racer_path(racer, race_id: race.id), params: {trip: false}, method: :post,
           class: ['button_to_enter', @race_ids_targeted.include?(race.id) ? 'target' : ''].join(' '),
