@@ -76,6 +76,7 @@ input.weight {
   width: 22px;
   text-align: right;
   padding-right: 2px;
+  border: solid 1px gray;
 
   &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -316,7 +317,13 @@ input.weight {
     }
 
     td {
+      padding: 0 3px;
       white-space: nowrap;
+
+      form {
+        margin-bottom: -3px;
+        margin-top: 0;
+      }
     }
 
     td.current {
@@ -347,8 +354,10 @@ input.weight {
     }
 
     input[type="submit"] {
-      height: 16px;
+      height: 14px;
+      width: 20px;
       font-weight: bold;
+      padding: 0;
     }
 
     input.target {
