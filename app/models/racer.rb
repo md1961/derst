@@ -371,6 +371,7 @@ class Racer < ApplicationRecord
 
   def retire!
     update!(is_active: false)
+    target_races.destroy_all
     injure(nil)
   end
 

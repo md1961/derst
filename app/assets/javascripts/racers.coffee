@@ -20,7 +20,7 @@ $ ->
 
     $('#show_form_to_injure').on 'click', ->
       $('#form_to_injure').toggle()
-      $('input#description').focus()
+      $('input#description').focus().select()
 
     $('input[type="checkbox"][name="trip"]').on 'change', ->
       $('input[type="hidden"][name="trip"]').val($(this).prop('checked'))
