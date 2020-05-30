@@ -1,4 +1,4 @@
-<% ranch = @ranch || @racer.ranch -%>
+<% ranch = @ranch || @racer&.ranch || @ranch_mare.ranch -%>
 
 <div id="top_bar" class="<%= top_bar_class %> <%= ranch.week == 4 ? 'month_changing' : '' %>">
   <div class="date">

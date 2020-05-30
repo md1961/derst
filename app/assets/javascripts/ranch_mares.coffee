@@ -8,7 +8,7 @@ $ ->
 
     bottoms = $.map($('div.bloodline div.root_lineages'), (e) => $(e).offset().top + $(e).height())
     bottom = Math.max(bottoms...)
-    $div_link = $('div.links').eq(0)
+    $div_link = $('div.ranch_mares_show div.links').eq(0)
     offset = $div_link.offset()
     offset.top = bottom + 20
     $div_link.offset(offset)
