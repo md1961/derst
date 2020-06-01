@@ -2,6 +2,10 @@ span.female {
   color: red;
 }
 
+select#racer_stable_id {
+  height: 18px;
+}
+
 input.in_ranch {
   color: green;
 }
@@ -125,7 +129,6 @@ input.weight {
 
   td.current_racer {
     font-weight: bold;
-    background-color: lightgray;
   }
 
   td.trained {

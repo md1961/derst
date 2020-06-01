@@ -36,8 +36,10 @@
   </td>
 <% end -%>
 
-<td class="<%= is_current_racer ? 'current_racer'
-             : is_menu && !racer.to_be_trained? ? 'trained' : '' %>">
+<% classes = []
+   classes << 'current_racer' if is_current_racer
+   classes << 'trained' if is_menu && !racer.to_be_trained? -%>
+<td class="<%= classes.join(' ') %>">
   <%= racer_name_display(racer, f) %>
 </td>
 <td><%= racer_sex_display(racer) %></td>

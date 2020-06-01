@@ -50,9 +50,9 @@ class Race < ApplicationRecord
       if age == 3 && %w[新 未].include?(grade.abbr)
         grades = Grade.where(abbr: [grade.abbr] + %w[5 OP Ⅲ Ⅱ])
       elsif (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '5'
-        grades = Grade.where(abbr: %w[5 9 16 OP Ⅲ Ⅱ])
+        grades = Grade.where(abbr: %w[5 9 16 OP Ⅲ Ⅱ Ⅰ])
       elsif (age == 3 || (age == 4 && month <= 7)) && grade.abbr == '9'
-        grades = Grade.where(abbr: %w[9 16 OP Ⅲ Ⅱ])
+        grades = Grade.where(abbr: %w[9 16 OP Ⅲ Ⅱ Ⅰ])
       elsif grade.abbr == '未'
         grades = Grade.where(abbr: %w[未 5])
       elsif grade.abbr == '5'
