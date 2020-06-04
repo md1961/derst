@@ -392,7 +392,7 @@ class Racer < ApplicationRecord
 
     def ordering_from_mating
       score_from_mother = if mother.speed
-                            mother.speed * 10 + mother.stamina
+                            mother.speed + mother.stamina
                           else
                             mother.racer_before_retire.net_prize.to_f / 10000
                           end
