@@ -46,7 +46,7 @@
           <%= index < 10 ? index : ('a'.ord + index - 10).chr.upcase %>
         </td>
         <td class="racer_name border_right_thick">
-          <%= racer %>
+          <%= racer_name_display(racer) %>
         </td>
         <% months.each do |month| -%>
           <% age = racer.age - (month > month_end ? 1 : 0)

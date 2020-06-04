@@ -28,7 +28,8 @@ module ApplicationHelper
     else
       mark = ''
       mark = '[父] ' if racer.father.domestic?
-      "#{mark}#{racer.name}"
+      parents = "#{racer.father} x #{racer.mother}"
+      content_tag :span, "#{mark}#{racer.name}", class: 'racer_name', aria: {label: parents}
     end
   end
 

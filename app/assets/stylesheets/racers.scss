@@ -1,3 +1,11 @@
+span.racer_name {
+
+  &[aria-label]:after {
+    font-size: 1.4rem;
+    top: 120%;
+  }
+}
+
 span.female {
   color: red;
 }
