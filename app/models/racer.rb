@@ -305,7 +305,7 @@ class Racer < ApplicationRecord
     max_grade_runner_up = results_runner_up_by_grade.keys.find_all(&:high_stake?)
       .sort_by(&:ordering).last
     max_grade_runner_up = nil if max_grade && max_grade_runner_up \
-                                 && max_grade_runner_up.ordering <= max_grade.ordering
+                                 && max_grade_runner_up.ordering < max_grade.ordering
     results_runner_up = results_runner_up_by_grade[max_grade_runner_up] || []
 
     if max_grade_runner_up.nil? || max_grade_runner_up.g1?
