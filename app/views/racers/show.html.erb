@@ -44,7 +44,7 @@
       <%= link_to '', ranch_path(@racer.ranch, main_display: @main_display, racer_id: @racer),
                           data: {shortcut: 'b'}, tabindex: -1 %>
       <% if @prev_racer -%>
-        <%= link_to "<[#{racer_with_race_display(@prev_racer)}]".html_safe, @prev_racer, id: 'to_prev_racer',
+        <%= link_to "<[ #{racer_with_race_display(@prev_racer)} ]".html_safe, @prev_racer, id: 'to_prev_racer',
                       class: @prev_racer.expecting_race? ? 'expecting_race' : '',
                       data: {shortcut: 'k'}, tabindex: -1 %>
       <% end -%>
@@ -52,14 +52,14 @@
         <%= count_to_be_trained_display %>
       </span>
       <% if @next_racer -%>
-        <%= link_to "[#{racer_with_race_display(@next_racer)}]>".html_safe, @next_racer, id: 'to_next_racer',
+        <%= link_to "[ #{racer_with_race_display(@next_racer)} ]>".html_safe, @next_racer, id: 'to_next_racer',
                       class: @next_racer.expecting_race? ? 'expecting_race' : '',
                       data: {shortcut: 'j'}, tabindex: -1 %>
       <% end -%>
 
       <% if @racer_shown_last -%>
         <span class="link_to_shown_last">
-          <%= link_to ">#{@racer_shown_last}<", @racer_shown_last, data: {shortcut: 'x'}, tabindex: -1 %>
+          <%= link_to "> #{@racer_shown_last} <", @racer_shown_last, data: {shortcut: 'x'}, tabindex: -1 %>
         </span>
       <% end -%>
 
