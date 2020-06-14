@@ -336,7 +336,7 @@ class Racer < ApplicationRecord
   end
 
   def ungraze!
-    in_ranch.destroy
+    in_ranch&.destroy
     injury&.destroy
   end
 
