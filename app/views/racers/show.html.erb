@@ -94,6 +94,8 @@
         <% if @racer.open? -%>
           <%= link_to 'more...', racer_path(@racer, more_candidates: true) %>
         <% end -%>
+
+        <%= render 'handicap_load' %>
       </div>
 
       <table class="table_base">

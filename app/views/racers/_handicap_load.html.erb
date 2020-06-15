@@ -1,0 +1,28 @@
+<% grades = Grade.of_handicap_loads_for(@racer) -%>
+
+<% unless grades.empty? -%>
+  <table id="handicap_load">
+    <% handicap_loads = @racer.handicap_loads -%>
+    <% if handicap_loads.empty? -%>
+      <tr class="form">
+        <td>
+          <%= form_with model: HandicapLoad.new, local: true do |f| %>
+            <%= f.select :grade_id, options_from_collection_for_select(grades, :id, :abbr) %>
+            <%= f.number_field :load, value: @racer.results.last&.load %>
+            <%= f.hidden_field :racer_id, value: @racer.id %>
+            <%= f.submit %>
+          <% end -%>
+        </td>
+      </tr>
+    <% else -%>
+      <% handicap_loads.each do |handicap_load| -%>
+        <tr class="display">
+          <td>Handicap</td>
+          <td><%= handicap_load.grade.abbr %></td>
+          <td><%= "#{handicap_load.load}kg" %></td>
+          <td><%= link_to 'X', handicap_load, method: :delete %></td>
+        </tr>
+      <% end -%>
+    <% end -%>
+  </table>
+<% end -%>

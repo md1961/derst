@@ -67,6 +67,8 @@ Rails.application.routes.draw do
 
   resources :post_races, only: %i[index create edit update destroy]
 
+  resources :handicap_loads, only: %i[create update destroy]
+
   patch 'bloodline/update'
   get 'bloodline/destroy'
 

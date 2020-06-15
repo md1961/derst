@@ -320,10 +320,26 @@ input.weight {
     width: 320px;
 
     .links {
+      margin-top: 0;
       margin-bottom: 5px;
 
       label {
         margin-right: 20px;
+      }
+
+      #handicap_load {
+        display: inline-block;
+
+        input[type="number"] {
+          width: 20px;
+          text-align: right;
+          background-color: lightgray;
+
+          &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
       }
     }
 
