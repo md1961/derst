@@ -3,6 +3,15 @@ class Grade < ApplicationRecord
 
   scope :open_or_higher, -> { where("ordering >= 6") }
 
+  scope :of_handicap_loads_for, ->(racer) {
+    if racer.grade.nil? || racer.age == 3 || (racer.age == 4 && racer.ranch.month <= 6) \
+        || racer.grade.ordering <= Grade.find_by(abbr: '5').ordering
+      []
+    else
+      where("ordering >= ? AND abbr != 'Ⅰ'", racer.grade.ordering)
+    end
+  }
+
   def self.open
     @@grade_open ||= find_by(abbr: 'OP')
   end
