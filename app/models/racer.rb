@@ -12,6 +12,7 @@ class Racer < ApplicationRecord
   has_one :racer_trip
   has_one :course_staying, through: :racer_trip, source: :course
   has_one :injury
+  has_many :handicap_loads
 
   has_many :results, -> { joins(:race).order(:age, 'races.month', 'races.week') } do
     def in_row_of_equal_or_better_place_of(place, high_stakes: false)
