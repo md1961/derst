@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_232506) do
+ActiveRecord::Schema.define(version: 2020_06_15_011046) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2020_02_26_232506) do
     t.integer "ordering", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "handicap_loads", force: :cascade do |t|
+    t.integer "racer_id"
+    t.integer "grade_id"
+    t.integer "load"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grade_id"], name: "index_handicap_loads_on_grade_id"
+    t.index ["racer_id"], name: "index_handicap_loads_on_racer_id"
   end
 
   create_table "in_ranches", force: :cascade do |t|

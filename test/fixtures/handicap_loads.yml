@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  racer: one
+  grade: one
+  load: 1
+
+two:
+  racer: two
+  grade: two
+  load: 1
