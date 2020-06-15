@@ -30,3 +30,9 @@ $ ->
 
     $('form.button_to').not('[data-remote="true"]').on 'submit', ->
       $('#progress_dialog').show()
+
+    $('#handicap_load_load')
+      .focusin(
+        ->
+          $(this).css('background-color', 'white')
+      )
