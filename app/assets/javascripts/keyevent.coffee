@@ -41,6 +41,14 @@ $ ->
         else
           $mark.val(value)
       return
+    else if $('#results').hasClass('ready_for_race') && $('#results select').is(':focus') \
+        && ['j', 'k'].includes(key)
+      $mark = $('select:focus')
+      if key == 'j'
+        select_next_option($mark)
+      else
+        select_prev_option($mark)
+      return false
 
     if $('#show_mares').length > 0 && key == 'y'
       if $('table.all_racers').is(':visible')
