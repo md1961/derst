@@ -353,8 +353,10 @@ module ApplicationHelper
   def button_to_graze(racer)
     label, path, clazz = racer.in_ranch ? ['入厩', ungraze_racer_path(racer), 'in_ranch'] \
                                         : ['放牧',   graze_racer_path(racer), ''        ]
+    ranch = @ranch || racer.ranch
     disabled = @racer_id_to_edit.to_i > 0 \
-            || (label == '放牧' && Racer.num_in_ranch == (@ranch || racer.ranch).max_racers)
+            || (label == '放牧' && Racer.num_in_ranch  == ranch.max_racers) \
+            || (label == '入厩' && Racer.num_in_stable == ranch.max_stable)
     button_to label, path, method: :patch, disabled: disabled, class: clazz, tabindex: -1
   end
 
@@ -363,8 +365,10 @@ module ApplicationHelper
     label_to_spa = 'へ' unless label_to_spa
     label, path, clazz = racer.in_spa? ? ['温'        , ungraze_racer_path(racer), 'in_spa'] \
                                        : [label_to_spa,     spa_racer_path(racer), ''      ]
+    ranch = @ranch || racer.ranch
     disabled = @racer_id_to_edit.to_i > 0 \
-            || (!racer.in_spa? && Racer.num_in_spa == (@ranch || racer.ranch).max_spa)
+            || ( racer.in_spa? && Racer.num_in_stable == ranch.max_stable) \
+            || (!racer.in_spa? && Racer.num_in_spa    == ranch.max_spa)
     button_to label, path, method: :patch, disabled: disabled, class: clazz + ' button_to_spa', tabindex: -1
   end
 

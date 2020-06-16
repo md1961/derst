@@ -45,8 +45,12 @@ class Racer < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  def self.num_in_stable
+    in_stable.count
+  end
+
   def self.num_in_ranch
-    active.count - in_stable.count - num_in_spa
+    active.count - num_in_stable - num_in_spa
   end
 
   def self.num_in_spa

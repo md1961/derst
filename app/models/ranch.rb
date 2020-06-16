@@ -5,6 +5,10 @@ class Ranch < ApplicationRecord
   has_many :sires, through: :ranch_sires
   has_many :racers
 
+  def max_stable
+    20
+  end
+
   def max_spa
     4
   end
