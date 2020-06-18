@@ -115,6 +115,9 @@ $ ->
         $('tbody tr').show()
       return
 
+    if $('#handicap_load').is(':visible') && key == 'h'
+      $('#handicap_load_grade_id').focus()
+
     key = '=' if key == '"'
     $links = $('[data-shortcut="' + key + '"]:visible')
     if $links.length > 0

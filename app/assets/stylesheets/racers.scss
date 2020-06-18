@@ -330,8 +330,17 @@ input.weight {
       #handicap_load {
         display: inline-block;
 
+        tr.display {
+          font-size: 1.3rem;
+        }
+
+        select {
+          height: 18px;
+        }
+
         input[type="number"] {
           width: 20px;
+          height: 12px;
           text-align: right;
           background-color: gray;
 
@@ -339,6 +348,13 @@ input.weight {
             -webkit-appearance: none;
             margin: 0;
           }
+        }
+
+        input[type="submit"] {
+          width: 40px;
+          height: 18px;
+          font-weight: normal;
+          margin-left: 5px;
         }
       }
     }

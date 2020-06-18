@@ -19,7 +19,10 @@
         <tr class="display">
           <td>Handicap</td>
           <td><%= handicap_load.grade.abbr %></td>
-          <td><%= "#{handicap_load.load}kg" %></td>
+          <% load = handicap_load.load -%>
+          <td class="<%= load >= (@racer.female? ? 58 : 60) ? 'load_too_heavy' : '' %>">
+            <%= "#{load}kg" %>
+          </td>
           <td><%= link_to 'X', handicap_load, method: :delete %></td>
         </tr>
       <% end -%>
