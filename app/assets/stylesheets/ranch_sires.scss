@@ -8,6 +8,10 @@ hr {
   table {
     margin-bottom: 10px;
 
+    td {
+      white-space: nowrap;
+    }
+
     td.age {
       text-align: right;
 

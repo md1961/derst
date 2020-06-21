@@ -134,7 +134,7 @@ $ ->
       condition = $focused.val()
       $.post action, {condition: condition}
       return false
-    else if $('#results').hasClass('ready_for_race') && $focused.is('select') && e.keyCode == 13
+    else if !$('#handicap_load').is(':visible') && $focused.is('select') && e.keyCode == 13
       $tr = $focused.closest('tr')
       $select_direction = $tr.find('input#result_direction')
       if $select_direction.val() == '－'
