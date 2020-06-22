@@ -116,7 +116,10 @@ $ ->
       return
 
     if $('#handicap_load').is(':visible') && key == 'h'
-      $('#handicap_load_grade_id').focus()
+      if $('#handicap_load_grade_id').length > 0
+        $('#handicap_load_grade_id').focus()
+      else
+        $('#handicap_load a').eq(0).focus()
 
     key = '=' if key == '"'
     $links = $('[data-shortcut="' + key + '"]:visible')
