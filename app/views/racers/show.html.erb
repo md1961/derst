@@ -8,6 +8,7 @@
 
     <div id="racer_menu" class="racers_racers esc_hideable" hidden>
       <table class="table_base">
+        <caption><%= count_to_be_trained_display %></caption>
         <% prev_racer = nil -%>
         <% Racer.active.where.not(stable: nil).sort_by(&:ordering_for_list).each.with_index(1) do |racer, index| -%>
           <% next unless racer.in_stable? -%>

@@ -309,6 +309,16 @@ input.weight {
     a {
       margin: 0;
     }
+
+    table caption {
+      font-size: 0.8rem;
+      text-align: left;
+      margin-bottom: 1px;
+
+      span {
+        border: solid 2px black;
+      }
+    }
   }
 
   #race_candidates {
