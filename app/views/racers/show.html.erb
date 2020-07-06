@@ -49,7 +49,7 @@
                       class: @prev_racer.expecting_race? ? 'expecting_race' : '',
                       data: {shortcut: 'k'}, tabindex: -1 %>
       <% end -%>
-      <span id="count_to_be_trained" class="count">
+      <span class="count">
         <%= count_to_be_trained_display %>
       </span>
       <% if @next_racer -%>

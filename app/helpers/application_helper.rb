@@ -423,7 +423,7 @@ module ApplicationHelper
       display = "#{count_to_be_trained} / #{Racer.in_stable.count}"
       clazz = count_to_be_trained.zero? ? 'all_trained' : 'not_all_trained'
     end
-    content_tag :span, display, class: clazz
+    content_tag :span, display, class: "count_to_be_trained #{clazz}"
   end
 
   def html_id_of_td_condition(age, month, week)
