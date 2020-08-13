@@ -433,6 +433,7 @@ module ApplicationHelper
   def weight_transport_display(racer)
     return nil unless @racer.needs_transport?
     weight_best = racer.weight_best
+    return nil unless weight_best
     "(#{weight_best + 4}～#{weight_best + 6}kg)"
   end
 
