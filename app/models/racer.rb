@@ -15,9 +15,12 @@ class Racer < ApplicationRecord
   has_many :handicap_loads
 
   has_many :results, -> { joins(:race).order(:age, 'races.month', 'races.week') } do
-    def in_row_of_equal_or_better_place_of(place, high_stakes: false)
-      chunk { |result|
-        result.place && result.place <= place && (!high_stakes || result.race.grade.high_stake?)
+    def in_row_of_equal_or_better_place_of(place, high_stakes: false, n_grade: nil)
+      find_all { |result|
+        grade = result.race.grade
+        !high_stakes || (n_grade.nil? && grade.high_stake?) || (n_grade == 1 && grade.g1?)
+      }.chunk { |result|
+        result.place && result.place <= place
       }.find_all { |is_equal_or_better, _|
         is_equal_or_better
       }.map { |_, results|
@@ -288,9 +291,9 @@ class Racer < ApplicationRecord
     [year_birth, stable_id || 9999, ordering_from_mating]
   end
 
-  def place_records(high_stakes: false)
+  def place_records(high_stakes: false, n_grade: nil)
     _results = results
-    _results = _results.high_stake if high_stakes
+    _results = _results.high_stake(n_grade) if high_stakes
     [_results.size] \
     + _results.pluck(:place).group_by(&:to_i).find_all { |place, _|
         place <= 3

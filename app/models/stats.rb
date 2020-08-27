@@ -7,11 +7,11 @@ module Stats
     3 => [8, 5]
   }
 
-  def each_result_in_row_of_equal_or_better_place_of(place, high_stakes: false, &block)
+  def each_result_in_row_of_equal_or_better_place_of(place, high_stakes: false, n_grade: nil, &block)
     Racer.all.includes(results: {race: :grade}).flat_map { |racer|
-      racer.results.in_row_of_equal_or_better_place_of(place, high_stakes: high_stakes)
+      racer.results.in_row_of_equal_or_better_place_of(place, high_stakes: high_stakes, n_grade: n_grade)
     }.find_all { |results|
-      results.size >= MIN_IN_ROW_OF_PLACE[place][high_stakes ? 1 : 0]
+      results.size >= (n_grade ? 2 : MIN_IN_ROW_OF_PLACE[place][high_stakes ? 1 : 0])
     }.sort_by { |results|
       -results.size
     }.each(&block)
@@ -29,10 +29,10 @@ module Stats
     }.compact.sort_by(&:age_in_week).first(10).each(&block)
   end
 
-  def each_most_number_of_equal_or_better_places_of(place, high_stakes: false, &block)
+  def each_most_number_of_equal_or_better_places_of(place, high_stakes: false, n_grade: nil, &block)
     counter = Counter.new
     Racer.all.includes(results: {race: :grade}).map { |racer|
-      [racer, racer.place_records(high_stakes: high_stakes)[1 .. place].sum]
+      [racer, racer.place_records(high_stakes: high_stakes, n_grade: n_grade)[1 .. place].sum]
     }.sort_by { |_, number|
       -number
     }.take_while { |_, number|
