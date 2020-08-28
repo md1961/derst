@@ -16,8 +16,8 @@
            prev_race = race -%>
         <tr class="<%= clazz %>">
           <td class="numeric"><%= "#{race.month}.#{race.week}" %></td>
-          <td><%= race.course %></td>
-          <td><%= race_name_display(race) %></td>
+          <td nowrap><%= race.course %></td>
+          <td nowrap><%= race_name_display(race) %></td>
           <td class="numeric border_right_thick"><%= race_distance_display(race) %></td>
           <% results = Array(@results_by_race[race])
              results_by_place = results.reject { |result| result.place.nil? }.group_by(&:place)
