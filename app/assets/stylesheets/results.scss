@@ -21,6 +21,15 @@
   input#result_num_frame {
     text-align: center;
   }
+
+  input#result_odds {
+    width: 3.0rem;
+
+    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
 }
 
 .frame_color1 {

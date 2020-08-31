@@ -229,16 +229,17 @@ module ApplicationHelper
                             data: {orig_value: f.object.send(name)},
                             class: name.to_s.starts_with?('mark_') ? 'mark' : '',
                             tabindex: in_paddock || inputting_result || name == :condition ? -1 : 0
+    elsif name == :odds
+      f.number_field :odds, step: 0.1
     elsif name == :weight
-      f.number_field name, step: 2, tabindex: inputting_result ? -1 : 0
+      f.number_field :weight, step: 2, tabindex: inputting_result ? -1 : 0
     elsif name == :load
       race = result.race
       is_uncertain = race.handicap? || race.separate? && %w[3 4].include?(race.age)
-      f.number_field name, class: is_uncertain ? 'uncertain' : '',
+      f.number_field :load, class: is_uncertain ? 'uncertain' : '',
                            tabindex: in_paddock || inputting_result ? -1 : 0
     else
       size = {
-        odds:   4,
         comment_paddock: 20,
         comment_race:    40,
       }[name] || 2
