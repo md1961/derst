@@ -51,7 +51,16 @@ class Mating
 
   def inbreed_display
     s = fetch_from_cache(:inbreed)
-    return s if s
+    if s
+      return s.split(/, */).map { |father_with_generations|
+        father_with_generations.split(/\s+(?=\d)/)
+      }.sort_by { |_, s_generations|
+        generations = s_generations.split('x').map(&:to_i)
+        [generations.first(2), -generations.size]
+      }.map { |father_and_generations|
+        father_and_generations.join(' ')
+      }.join(', ')
+    end
 
     h = h_inbreeds
     additional = ""
