@@ -54,6 +54,8 @@ class Mating
     if s
       return s.split(/, */).map { |father_with_generations|
         father_with_generations.split(/\s+(?=\d)/)
+      }.reject { |father, s_generations|
+        father.nil? || s_generations.nil?
       }.sort_by { |_, s_generations|
         generations = s_generations.split('x').map(&:to_i)
         [generations.first(2), -generations.size]
