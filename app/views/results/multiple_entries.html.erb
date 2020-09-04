@@ -7,8 +7,14 @@
         <td><%= "#{result.year}年" %></td>
         <td><%= race.name %></td>
         <% results.each do |result| -%>
-          <td class="numeric"><%= "#{result.place}着" %></td>
-          <td><%= result.racer %></td>
+          <% place = result.place
+             clazz = "place_#{place}" -%>
+          <td class="<%= clazz %> numeric">
+            <%= "#{place}着" %>
+          </td>
+          <td class="<%= clazz %>">
+            <%= result.racer %>
+          </td>
         <% end -%>
     <% end -%>
   </table>

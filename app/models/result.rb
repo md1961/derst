@@ -39,7 +39,7 @@ class Result < ApplicationRecord
     }.map(&:last).map { |results|
       results.sort_by(&:place)
     }.sort_by { |results|
-      results.first(2).map(&:place)
+      (results.map(&:place) + [99] * 8).first(8)
     }
   end
 
