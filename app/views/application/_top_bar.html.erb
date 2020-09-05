@@ -30,6 +30,7 @@
     <%= link_to '２歳馬セール'    , mating_list_path(ranch_id: ranch), target: '_blank', tabindex: -1 %>
     <%= link_to '海外種牡馬リース', ranch_sires_path(ranch_id: ranch), target: '_blank', tabindex: -1 %>
     <%= link_to '馬名候補'        , racer_name_samples_path          , target: '_blank', tabindex: -1 %>
+    <%= link_to '番組表'          , races_path(month: ranch.month)   , target: '_blank', tabindex: -1 %>
     <%= link_to '重賞レース結果'  , results_path                     , target: '_blank', tabindex: -1 %>
     <%= link_to 'レース記録'      , stats_path                       , target: '_blank', tabindex: -1 %>
     <%= link_to 'G I複数頭結果'   , multiple_entries_results_path    , target: '_blank', tabindex: -1 %>

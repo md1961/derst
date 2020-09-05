@@ -181,7 +181,8 @@ class Race < ApplicationRecord
   end
 
   def load_plus_from_total_prize?
-    %w[3 4].include?(age) && grade.abbr == 'OP'
+    (age == '3' && grade.abbr == 'OP') \
+    || (age == '4' && (grade.abbr == 'OP' || grade.high_stake?) && !constant?)
   end
 
   def month_week
