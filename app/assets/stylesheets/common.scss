@@ -95,7 +95,11 @@ tbody tr:hover {
     margin-left: 20px;
 
     a {
-      margin-right: 20px;
+      margin-right: 10px;
+
+      &.spacer_right {
+        margin-right: 25px;
+      }
     }
   }
 }
