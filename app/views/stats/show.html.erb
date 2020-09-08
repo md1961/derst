@@ -72,7 +72,8 @@
         <% Stats.each_oldest_high_stake_win do |result| -%>
           <tr>
             <td><%= result.racer %></td>
-            <td><%= age_in_week_display(result.age_in_week) %></td>
+            <td class="numeric"><%= "#{result.age}歳" %></td>
+            <td class="numeric"><%= year_month_week_display(result) %></td>
             <td><%= race_name_display(result.race) %></td>
           </tr>
         <% end -%>
@@ -85,7 +86,8 @@
         <% Stats.each_youngest_high_stake_win do |result| -%>
           <tr>
             <td><%= result.racer %></td>
-            <td><%= age_in_week_display(result.age_in_week) %></td>
+            <td class="numeric"><%= "#{result.age}歳" %></td>
+            <td class="numeric"><%= year_month_week_display(result) %></td>
             <td><%= race_name_display(result.race) %></td>
           </tr>
         <% end -%>
@@ -103,7 +105,8 @@
           <% Stats.each_highest_odds_wins(high_stakes: high_stakes, n_grade: n_grade) do |result| -%>
             <tr>
               <td><%= result.racer %></td>
-              <td><%= age_in_week_display(result.age_in_week) %></td>
+              <td class="numeric"><%= "#{result.age}歳" %></td>
+              <td class="numeric"><%= year_month_week_display(result) %></td>
               <td class="numeric"><%= result.odds %></td>
               <td class="numeric"><%= "(#{result.rank_odds}/#{result.num_racers})" %></td>
               <td><%= race_name_display(result.race) %></td>

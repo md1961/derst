@@ -21,8 +21,7 @@ module StatsHelper
     }.join(' -> ').html_safe
   end
 
-  def age_in_week_display(age)
-    sprintf("%d歳 %2d.%1d", *age.to_a)
-      .gsub(' ', '&nbsp;').html_safe
+  def year_month_week_display(result)
+    sprintf("%d.%2d.%1d", result.year, result.race.month, result.race.week)
   end
 end
