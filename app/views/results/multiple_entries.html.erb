@@ -10,7 +10,7 @@
           <% place = result.place
              clazz = "place_#{place}" -%>
           <td class="<%= clazz %> numeric">
-            <%= "#{place}着" %>
+            <%= place > 20 ? '(中止)' : "#{place}着" %>
           </td>
           <td class="<%= clazz %>">
             <%= result.racer %>
