@@ -1,6 +1,16 @@
 class RacersController < ApplicationController
   before_action :set_main_display_for_ranch, only: %i[show edit update]
 
+  def by_mother
+    @racers_by_mother = Racer.all.group_by(&:mother).map { |mother, racers|
+      [mother, racers.sort_by!(&:year_birth)]
+    }.sort_by { |_, racers|
+      -racers.last.year_birth
+    }.to_h
+
+    @no_top_bar = true
+  end
+
   def show
     @racer = Racer.includes(:weeklies, results: {race: :grade}, target_races: {race: :grade}).find(params[:id])
     @result_id_to_edit = params[:result_id_to_edit].to_i

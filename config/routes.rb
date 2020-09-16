@@ -43,6 +43,10 @@ Rails.application.routes.draw do
   resources :ranch_sires, only: %i[index show create destroy]
 
   resources :racers, only: %i[show new create edit update] do
+    collection do
+      get :by_mother
+    end
+
     member do
       post :create_result, :create_mare
       post :condition, :weight

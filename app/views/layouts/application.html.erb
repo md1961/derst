@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <% if %w[ranches racers ranch_mares].include?(controller.controller_name) -%>
+    <% if !@no_top_bar && %w[ranches racers ranch_mares].include?(controller.controller_name) -%>
       <%= render 'top_bar' %>
     <% end -%>
 

@@ -578,3 +578,28 @@ input.weight {
     border: solid 1px black;
   }
 }
+
+.racers_by_mother {
+
+  table.by_mother {
+
+    caption {
+      text-align: left;
+
+      span.mother_name {
+        font-size: 1.6rem;
+        margin-right: 10px;
+      }
+
+      span.mother_trait {
+        margin-left: 5px;
+      }
+    }
+
+    td:not(.allows_wrap) {
+      white-space: nowrap;
+    }
+
+    margin-bottom: 10px;
+  }
+}
