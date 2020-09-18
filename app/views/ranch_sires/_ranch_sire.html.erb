@@ -19,7 +19,8 @@
           <% trait = sire.trait -%>
           <% sire_trait_names.each do |name| -%>
             <% value = trait.send(name) -%>
-            <td class="<%= "#{name}-#{value}" %> <%= name == :fee ? 'numeric' : 'centered' %>">
+            <td class="<%= "#{name}-#{value}" %> <%= name == :fee ? 'numeric' : 'centered' %>"
+                aria-label="<%= "ニックス: #{nicks_linenage_display(trait.lineage, 'なし')}" %>">
               <%= value %>
             </td>
           <% end -%>

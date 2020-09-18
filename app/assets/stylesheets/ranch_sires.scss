@@ -65,4 +65,8 @@ hr {
       margin-left: 30px;
     }
   }
+
+  [aria-label]:after {
+    top: 120%;
+  }
 }

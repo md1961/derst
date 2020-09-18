@@ -460,4 +460,10 @@ module ApplicationHelper
       }.join(', ').yield_self { |x| x.blank? ? nil : x }
     }.compact.join('<br>').html_safe
   end
+
+  def nicks_linenage_display(lineage, display_when_empty = '')
+    lineage.nicks_lineages.yield_self { |lineages|
+      lineages.empty? ? display_when_empty : lineages.map(&:name).join(', ')
+    }
+  end
 end
