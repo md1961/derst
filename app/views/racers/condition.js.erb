@@ -6,8 +6,10 @@ if ($input_for_weight.length === 0) {
 }
 
 $td_for_current_condition = $('td.condition.current')
+$td_for_seq_num = $select_for_condition.closest('tr').children('td:first')
 
 <% if @racer.condition -%>
+  $td_for_seq_num.removeClass('no_condition')
   $select_for_condition.removeClass('no_condition')
   $select_for_condition.attr('tabindex', -1)
   $input_for_weight.attr('tabindex', 0)
@@ -15,6 +17,7 @@ $td_for_current_condition = $('td.condition.current')
 
   $input_for_weight.focus()
 <% else -%>
+  $td_for_seq_num.addClass('no_condition')
   $select_for_condition.val('<%= @racer.default_condition %>')
   $select_for_condition.addClass('no_condition')
   $select_for_condition.attr('tabindex', 0)
