@@ -529,6 +529,12 @@ input.weight {
 
   td.current {
     border: solid 2px red;
+
+    &.target_race {
+      color: black;
+      background-color: #FFBFFF;
+      font-weight: normal;
+    }
   }
 
   td.race {

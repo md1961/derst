@@ -8,7 +8,7 @@
        n_weeks = race.month_week - ranch.month_week if n_weeks && n_weeks > 4
        n_weeks ? "#{n_weeks}w" : nil
      } -%>
-  <td class="<%= race == racer.expecting_race ? 'entered' : '' %>
+  <td class="<%= race == racer.expecting_race ? 'entered' : 'target_race' %>
              <%= race.month_week == ranch.month_week ? 'current' : '' %>
              numeric border_left_thick">
     <%= race.month_week %>
