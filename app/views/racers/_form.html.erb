@@ -13,11 +13,13 @@
     </div>
     <div class="field">
       <%= f.label :father %>
-      <input type="search" name="father" value="<%= @racer.father %>" autocomplete="on" list="sire_candidates">
+      <input type="search" name="father" value="<%= @racer.father %>" autocomplete="on" list="sire_candidates"
+             readonly="readonly">
     </div>
     <div class="field">
       <%= f.label :mother %>
-      <input type="search" name="mother" value="<%= @racer.mother %>" autocomplete="on" list="mother_candidates">
+      <input type="search" name="mother" value="<%= @racer.mother %>" autocomplete="on" list="mother_candidates"
+             readonly="readonly">
     </div>
     <div class="field">
       <%= f.label :age %>
