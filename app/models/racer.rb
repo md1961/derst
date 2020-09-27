@@ -288,7 +288,7 @@ class Racer < ApplicationRecord
   end
 
   def ordering_for_list
-    [year_birth, stable_id || 9999] + [orderings_from_mating]
+    [year_birth, stable_id || 9999] + orderings_from_mating + [name]
   end
 
   def place_records(high_stakes: false, n_grade: nil)
@@ -404,7 +404,7 @@ class Racer < ApplicationRecord
                           else
                             mother.racer_before_retire.net_prize.to_f / 10000
                           end
-      [-score_from_mother, -father.trait.fee, name.hash]
+      [-score_from_mother, -father.trait.fee]
     end
 
   class AgeInWeek
