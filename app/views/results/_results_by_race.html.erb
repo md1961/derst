@@ -20,7 +20,7 @@
           <% results = Array(@results_by_race[race])
              results_by_place = results.reject { |result| result.place.nil? }.group_by(&:place)
              best_place = results_by_place.keys.sort.first -%>
-          <td class="<%= best_place && best_place > 1 ? 'no_win': '' %>" nowrap>
+          <td class="<%= best_place.nil? || best_place > 1 ? 'no_win': '' %>" nowrap>
             <%= race_name_display(race) %>
           </td>
           <td class="numeric border_right_thick"><%= race_distance_display(race) %></td>
