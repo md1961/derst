@@ -2,6 +2,7 @@
   <%= f.label :comment %>
   <%= f.text_field :comment, size: 30, autofocus: @post_race.present? %>
   <%= f.hidden_field :result_id, value: @racer.results.last&.id %>
+  <%= hidden_field_tag :racer_id, @racer.id %>
   <%= f.submit 'Create', tabindex: -1 %>
   <% if @post_race.present? -%>
     <%= link_to 'Cancel', @racer, style: "display: inline-block; margin-left: 20px;" %>
