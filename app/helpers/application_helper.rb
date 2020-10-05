@@ -246,6 +246,7 @@ module ApplicationHelper
       clazz = name == :comment_paddock ? 'allows_shortcut' \
             : name == :num_frame ? "frame_color#{frame_color(result.num_frame, result.num_racers)}" : ''
       f.text_field name, size: size, class: clazz,
+        placeholder: name == :comment_race ? sprintf("%+dkg", result.weight - result.racer.weight_best) : '',
         tabindex: inputting_result && !%i[place comment_race].include?(name) ? -1 : 0
     end
   end
