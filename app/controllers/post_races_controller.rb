@@ -2,6 +2,10 @@ class PostRacesController < ApplicationController
 
   def create
     racer = Racer.find(params[:racer_id])
+    comment = params[:post_race][:comment]
+    if comment.starts_with?('調教時')
+      params[:post_race][:comment] = "#{racer.ranch.month_week} #{comment}"
+    end
     if params[:post_race][:result_id].present?
       post_race = PostRace.new(post_race_params)
       post_race.save!
