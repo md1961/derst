@@ -32,8 +32,8 @@ class Ranch < ApplicationRecord
     update!(attrs)
     return if week > 1
 
-    if [2, 5, 6].include?(month)
-      method_name = month == 2 ? :expecting! : :default_child_status!
+    if [3, 5, 6].include?(month)
+      method_name = month == 3 ? :expecting! : :default_child_status!
       ranch_mares.each do |ranch_mare|
         ranch_mare.send(method_name) if ranch_mare.sire && !ranch_mare.expecting?
       end
