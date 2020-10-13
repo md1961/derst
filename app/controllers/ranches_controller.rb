@@ -41,6 +41,8 @@ class RanchesController < ApplicationController
                         && Racer.all_training_done? \
                         && Racer.none_expecting_race?
     flash[:racer_id_to_focus] = nil if @ready_for_next_week
+
+    @html_title = "#{@ranch.name}牧場"
   end
 
   def next_week

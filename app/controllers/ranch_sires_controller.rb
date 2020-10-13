@@ -3,6 +3,7 @@ class RanchSiresController < ApplicationController
 
   def index
     @ranch_sires = @ranch.ranch_sires
+    @html_title = '海外種牡馬'
   end
 
   def create
