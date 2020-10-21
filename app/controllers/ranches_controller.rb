@@ -23,6 +23,7 @@ class RanchesController < ApplicationController
       else
         @racers = Racer.all.sort_by { |racer| [-racer.net_prize, racer.ordering_for_list] }
       end
+      @no_top_bar = true
     elsif @main_display == 'active_inbreeds'
       @racers = @racers.where("year_birth >= ?", @ranch.year - 1).sort_by(&:ordering_for_list)
     else
@@ -42,7 +43,7 @@ class RanchesController < ApplicationController
                         && Racer.none_expecting_race?
     flash[:racer_id_to_focus] = nil if @ready_for_next_week
 
-    @html_title = "#{@ranch.name}牧場"
+    @html_title = @no_top_bar ? nil : "#{@ranch.name}牧場"
   end
 
   def next_week
