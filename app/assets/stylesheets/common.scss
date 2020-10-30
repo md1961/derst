@@ -156,6 +156,17 @@ span.not_all_races_done {
   padding: 4px;
 }
 
+td.root_lineage_number {
+  width: 14px;
+  text-align: center;
+  border-left-style:  none !important;
+  border-right-style: none !important;
+
+  &.male {
+    background-color: lightgray;
+  }
+}
+
 .notice {
   color: yellow;
   background-color: red;
