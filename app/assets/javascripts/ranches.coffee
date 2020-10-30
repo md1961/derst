@@ -38,6 +38,9 @@ $ ->
         $('tr[data-racer_id="' + id + '"]').removeClass('hover')
     )
 
+  if $('table.mares').length > 0
+    $('table.mares .option').hide()
+
   $('.ranches_show .mares th.sortable').on 'click', ->
     $tbody = $('.ranches_show .mares tbody').eq(0)
     key = if $(this).hasClass('age') then 'age' else 'price'

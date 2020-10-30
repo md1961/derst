@@ -9,8 +9,13 @@
         </th>
       <% end -%>
       <th colspan="5">過去５年産駒</th>
-      <th colspan="4">受胎</th>
-      <th>備考</th>
+      <th colspan="4" class="default">受胎</th>
+      <th class="default">備考</th>
+      <th colspan="5" class="option">父</th>
+      <th class="option">ニ</th>
+      <th class="option">面</th>
+      <th class="option">インブリード</th>
+      <th colspan="4" class="option">面白系統</th>
       <th colspan="2">
     </tr>
   </thead>
@@ -50,13 +55,42 @@
           <% end -%>
           <% if sire = ranch_mare&.sire -%>
             <td class="<%= ranch_mare.child_status %>"><%= sire %></td>
-            <td><%= link_to '配合', ranch_mare, tabindex: -1 %></td>
-            <td><%= link_to '誕生', new_racer_path(ranch_id: @ranch, father_id: sire, mother_id: mare), tabindex: -1 %></td>
-            <td><%= link_to '削除', delete_sire_ranch_mare_path(ranch_mare), method: :patch, tabindex: -1 %></td>
+            <td class="default">
+              <%= link_to '配合', ranch_mare, tabindex: -1 %>
+            </td>
+            <td class="default">
+              <%= link_to '誕生', new_racer_path(ranch_id: @ranch, father_id: sire, mother_id: mare), tabindex: -1 %>
+            </td>
+            <td class="default">
+              <%= link_to '削除', delete_sire_ranch_mare_path(ranch_mare), method: :patch, tabindex: -1 %>
+            </td>
+            <% sire_trait = sire.trait
+               mating = Mating.new(mare, sire)
+               is_nicks       = mating.nicks?
+               is_interesting = mating.interesting?
+               score          = mating.score
+               ranch_mare = mare.ranch_mare -%>
+            <td class="option numeric"><%= "#{sire_trait.fee}万" %></td>
+            <td class="option"><%= sire_trait.distances %></td>
+            <td class="option"><%= sire_trait.growth %></td>
+            <td class="option"><%= sire_trait.stability %></td>
+            <td class="option centered <%= is_nicks ? 'nicks' : '' %>">
+              <%= is_nicks ? '〇' : '' %>
+            </td>
+            <td class="option centered <%= is_interesting ? 'interesting' : '' %>">
+              <%= is_interesting ? '〇' : '' %>
+            </td>
+            <td class="option allows_wrap">
+              <%= mating.inbreed_display.yield_self { |x| x.blank? ? '（アウトブリード）' : x } %>
+            </td>
+            <% mating.root_lineage_numbers.each do |number| -%>
+              <td class="root_lineage_number option"><%= number %></td>
+            <% end -%>
           <% else -%>
-            <td colspan="4" class="centered">（空胎）</td>
+            <td colspan="4" class="default centered">（空胎）</td>
+            <td colspan="12" class="option centered">（空胎）</td>
           <% end -%>
-          <td><%= ranch_mare.remark %></td>
+          <td class="default"><%= ranch_mare.remark %></td>
         <% end -%>
         <td>
           <%= link_to (@ranch ? '種付' : '配合'), matings_path(mare_id: mare, ranch_id: @ranch),

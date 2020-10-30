@@ -107,6 +107,10 @@ $ ->
         $.post '/racers/' + racer_id + '/weight_best'
       return false
 
+    if $('.ranches_show table.mares').length > 0 && key == 'Y'
+      $('table.mares .default').toggle()
+      $('table.mares .option' ).toggle()
+
     if $('div.all_racers').length > 0 && key != 'z'
       if '1' <= key && key <= '9'
         $('tbody tr').hide()
