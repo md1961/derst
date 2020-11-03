@@ -1,7 +1,7 @@
 <div class="ranches_show <%= @ready_for_next_week ? 'ready_for_next_week' : '' %>">
   <div class="mares" <%= @shows_mares ? '' : 'hidden' %>>
     <% if @shows_mares && @racer_id_to_edit.zero? -%>
-      <%= render 'ranch_mares' %>
+      <%= render 'mares' %>
     <% end -%>
   </div>
 
