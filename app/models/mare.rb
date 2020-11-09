@@ -1,5 +1,4 @@
 class Mare < ApplicationRecord
-  extend HorseCreatable
   include BloodlineTrackable
 
   self.inheritance_column = :_type_disabled
@@ -10,6 +9,17 @@ class Mare < ApplicationRecord
   has_many :racers, foreign_key: 'mother_id'
   # TODO: Strictly speaking, it should be 'has_many' :ranch_mare.
   has_one :ranch_mare
+
+  def self.create_from_mating_of(mother, father, name = nil)
+    name = name_by_mating_of(mother, father) unless name
+    transaction do
+      create!(name: name, father: father, lineage: father.trait.lineage).tap { |mare|
+        mare.maternal_lines.create!(generation: 2, father: mother.father)
+        mare.maternal_lines.create!(generation: 3, father: mother.bloodline_father(2, 2))
+        mare.maternal_lines.create!(generation: 4, father: mother.bloodline_father(3, 4))
+      }
+    end
+  end
 
   def self.find_by_mating_of(mother, father)
     find_by(name: name_by_mating_of(mother, father))
