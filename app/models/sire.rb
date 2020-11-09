@@ -24,6 +24,33 @@ class Sire < ApplicationRecord
     find_by(key => name)
   end
 
+  def self.create_from_mating_of(mother, father, name)
+    transaction do
+      create!(name_jp: name, father: father).tap { |sire|
+        sire.create_empty_trait!(father.trait.lineage)
+        sire.maternal_lines.create!(generation: 2, father: mother.father)
+        sire.maternal_lines.create!(generation: 3, father: mother.bloodline_father(2, 2))
+        sire.maternal_lines.create!(generation: 4, father: mother.bloodline_father(3, 4))
+      }
+    end
+  end
+
+  def create_empty_trait!(lineage)
+    create_trait!(
+      lineage: lineage,
+      fee: 0,
+      min_distance: 0,
+      max_distance: 0,
+      dirt: '',
+      growth: '',
+      temper: '',
+      contend: '',
+      health: '',
+      achievement: '',
+      stability: ''
+    )
+  end
+
   def domestic?
     name_eng.blank?
   end
