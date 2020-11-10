@@ -329,6 +329,11 @@ class Racer < ApplicationRecord
     Mare.create_from_mating_of(mother, father, name)
   end
 
+  def create_sire
+    return nil unless male?
+    Sire.create_from_mating_of(mother, father, name)
+  end
+
   NUM_WEEKS_TO_DESTROY_TARGET_RACES_WHEN_GRAZE = 6
 
   def graze!
