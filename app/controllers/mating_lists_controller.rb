@@ -9,6 +9,8 @@ class MatingListsController < ApplicationController
     @sire = params[:sire]
     session[:ranch_id] = params[:ranch_id] if params[:ranch_id]
     @ranch = Ranch.find(session[:ranch_id])
+
+    @html_title = '２歳馬セール'
   end
 
   def update
