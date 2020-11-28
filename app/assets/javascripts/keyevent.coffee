@@ -10,6 +10,9 @@ $ ->
       return
     if $('input[type="text"]').not('.allows_shortcut').is(':focus')
       return
+    if $('input#result_comment_paddock').is(':focus')
+      return
+
     key = String.fromCharCode(e.which)
     if $('input[type="number"]').not('.allows_shortcut').is(':focus') && [1 .. 9].includes(parseInt(key)) \
         && $('#racer_menu').length == 0

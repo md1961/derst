@@ -51,3 +51,19 @@ $ ->
 
   $('table#results form').on 'submit', ->
     $('#progress_dialog').show()
+
+  H_COMMENT_PADDOCK_LOOKUP = {
+    f: '踏み込み', g: '元気ない', h: '平行線',
+    ii: 'イレ今いち', ik: 'イレ苦しい', ir: 'イレ込み',
+    j: '順調',
+    ki: '気合い', ku: '苦しい',
+    m: 'まずまず', n: 'のんびり', o: '落着き', s: '寂しい',
+    tk: '使い詰め', to: '使い詰OK',
+    u: 'うるさい',
+    wg: '悪くないが', wn: '悪くない',
+    y: 'よく見せるが', z: '絶好調'
+  }
+
+  $('input#result_comment_paddock').on 'input', ->
+    value = H_COMMENT_PADDOCK_LOOKUP[$(this).val()]
+    $(this).val(value) if value
