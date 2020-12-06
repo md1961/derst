@@ -67,3 +67,15 @@ $ ->
   $('input#result_comment_paddock').on 'input', ->
     value = H_COMMENT_PADDOCK_LOOKUP[$(this).val()]
     $(this).val(value) if value
+
+  H_POST_RACE_COMMENT_LOOKUP = {
+    ke: '軽骨折', ku: '屈腱炎', ky: '去勢',
+    h: 'ハ行',
+    s: 'ソエ',
+    j: '重傷',
+    y: '予後不良',
+  }
+
+  $('input#post_race_comment').on 'input', ->
+    value = H_POST_RACE_COMMENT_LOOKUP[$(this).val()]
+    $(this).val(value) if value
