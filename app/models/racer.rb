@@ -220,6 +220,10 @@ class Racer < ApplicationRecord
     weeklies.find_by(age_in_week.to_h)&.condition
   end
 
+  def rest?
+    condition == '休'
+  end
+
   def condition=(value)
     params = {condition: value}
     params[:weight] = nil if value.blank?
