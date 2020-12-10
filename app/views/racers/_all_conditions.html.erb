@@ -8,7 +8,7 @@
   <thead>
     <tr>
       <th rowspan="2" colspan="2" class="border_bottom_thick border_right_thick">
-        <%= count_to_be_trained_display %>
+        <%= count_to_be_trained_display(shows_num_of_rests: true) %>
       </th>
       <% months.each do |month| -%>
         <th colspan="4" class="centered <%= month == @ranch.month ? 'current' : '' %>">

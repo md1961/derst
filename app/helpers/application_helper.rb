@@ -413,12 +413,13 @@ module ApplicationHelper
     }.last&.grade&.abbr&.sub('OP', 'オ')&.sub('16', '准')
   end
 
-  def count_to_be_trained_display
+  def count_to_be_trained_display(shows_num_of_rests: false)
     count_to_be_trained = Racer.count(&:to_be_trained?)
     num_races_in_current_week = Result.num_races_in_current_week
     if count_to_be_trained.zero? && num_races_in_current_week > 0
       num_races_yet_to_come = Result.num_races_yet_to_come
       display = "#{num_races_yet_to_come} / #{num_races_in_current_week} (#{Racer.in_stable.count})"
+      display += " 休 #{Racer.count(&:rest?)}" if shows_num_of_rests
       clazz = num_races_yet_to_come.zero? ? 'all_races_done' : 'not_all_races_done'
     else
       display = "#{count_to_be_trained} / #{Racer.in_stable.count}"
