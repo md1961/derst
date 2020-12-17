@@ -209,7 +209,7 @@ module ApplicationHelper
     %i[
       surface_condition num_racers num_frame rank_odds odds place weight
       mark_development mark_stamina mark_contend mark_temper mark_odds
-      load jockey for_bad_surface position direction condition
+      jockey load for_bad_surface position direction condition
       comment_paddock comment_race
     ]
   end
