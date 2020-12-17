@@ -284,6 +284,14 @@ class Racer < ApplicationRecord
         .includes(:grade, course: :area)
   end
 
+  def main_jockeys
+    stable&.jockeys || []
+  end
+
+  def last_jockey
+    results.last&.jockey
+  end
+
   def most_favorable_jockey
     return nil if results.empty?
     results.includes(:jockey).group_by(&:jockey).reject { |jockey, _|
