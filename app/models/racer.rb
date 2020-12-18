@@ -293,12 +293,20 @@ class Racer < ApplicationRecord
   end
 
   def most_favorable_jockey
-    return nil if results.empty?
-    results.includes(:jockey).group_by(&:jockey).reject { |jockey, _|
-      jockey.nil? || jockey.short_term?
-    }.sort_by { |jockey, results|
-      [-results.size, jockey.main_for?(self) ? 0 : 1, jockey.id]
+    h_num_rides_by_jockey.reject { |jockey, _|
+      jockey.short_term?
     }.first.first
+  end
+
+  def h_num_rides_by_jockey
+    return {} if results.empty?
+    results.includes(:jockey).group_by(&:jockey).reject { |jockey, _|
+      jockey.nil?
+    }.map { |jockey, results|
+      [jockey, results.size]
+    }.sort_by { |jockey, num_rides|
+      [-num_rides, jockey.main_for?(self) ? 0 : 1, jockey.id]
+    }.to_h
   end
 
   def ordering_for_list
