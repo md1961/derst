@@ -57,7 +57,7 @@ module ApplicationHelper
       classes = html_attrs[:class]&.split || []
       classes << 'default'
       classes << name.to_s << 'numeric' if name.to_s.starts_with?('weight_')
-      classes << 'centered'    if name == :stable || name == :main_jockeys
+      classes << 'centered'    if %i[stable primary_jockey main_jockeys].include?(name)
       classes << 'grade_given' if name == :grade  && racer.grade_given
       classes << 'injured'     if name == :remark && racer.injury
       html_attrs.merge!(class: classes.join(' '))
@@ -66,8 +66,15 @@ module ApplicationHelper
   end
 
   def racer_attr_display(racer, name, f)
-    if name == :main_jockeys
-      racer.stable&.jockeys&.join('、')
+    if name == :primary_jockey
+      racer.h_num_rides_by_jockey.first&.yield_self { |jockey, num_rides|
+        classes = []
+        classes << 'rides_last' if jockey == racer.last_jockey
+        classes << 'not_main' unless racer.main_jockeys.include?(jockey)
+        %Q!<span class="#{classes.join(' ')}">#{jockey}(#{num_rides})</span>!.html_safe
+      }
+    elsif name == :main_jockeys
+      racer.main_jockeys&.join('、')
     elsif !f && name == :remark
       if racer.injury
         racer.injury.description

@@ -34,6 +34,24 @@ span.g1 {
     }
   }
 
+  .racers_racers {
+
+    table {
+
+      th, td {
+        white-space: nowrap;
+      }
+
+      span.rides_last {
+        font-weight: bold;
+      }
+
+      span.not_main {
+        font-style: italic;
+      }
+    }
+  }
+
   .links {
     margin-top: 10px;
   }

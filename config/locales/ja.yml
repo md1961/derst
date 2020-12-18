@@ -36,9 +36,10 @@ ja:
         comment_age2: ２歳時
         comment_age3: ３歳時
         stable:       厩舎
-        main_jockeys: 主戦騎手
+        primary_jockey: 主戦騎手
+        main_jockeys:   所属騎手
         weight_fat:   太残
-        weight_best : ベスト
+        weight_best:  ベスト
         weight_lean:  痩せ
         weights:      体重
         remark:       特記事項

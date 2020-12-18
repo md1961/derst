@@ -1,7 +1,7 @@
 module RanchesHelper
 
   def racer_attr_names(is_active: true)
-    %i[comment_age2 comment_age3 stable weight_fat weight_best weight_lean remark] \
+    %i[comment_age2 comment_age3 stable primary_jockey weight_fat weight_best weight_lean remark] \
       - (is_active ? [] : %i[weight_fat weight_lean])
   end
 
