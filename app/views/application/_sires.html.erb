@@ -80,8 +80,9 @@
     <% mare_inbreeds = @mare&.h_inbreeds -%>
     <% @sires.each.with_index(1) do |sire, seq_num| -%>
       <% has_all_fathers = @entering_bloodline && sire.all_bloodline_father_present?
-         fee = sire.trait.fee -%>
-      <tr data-fee="<%= sire.name_jp.present? ? fee : 999999 %>"
+         fee = sire.trait.fee
+         ranch_sire = sire.ranch_sires.first -%>
+      <tr data-fee="<%= ranch_sire ? 999999 : fee %>"
           class="<%= fee == 2500 ? 'border_top_thick' : fee == 1000 ? 'border_bottom_thick' : '' %>">
         <td class="numeric">
           <% path = @mare ? mating_path(@mare, sire_id: sire.id, ranch_id: @ranch&.id) \
@@ -92,7 +93,9 @@
         <td style="<%= !@entering_bloodline || has_all_fathers ? '' : 'color: red' %>">
           <%= sire.name %>
         </td>
-        <td><%= sire.domestic? ? '内' : '' %></td>
+        <td class="centered">
+          <%= ranch_sire ? "#{ranch_sire.year_left}年" : sire.domestic? ? '内' : '' %>
+        </td>
         <% trait = sire.trait -%>
         <% sire_trait_names.each do |name| -%>
           <% value = trait.send(name) -%>
