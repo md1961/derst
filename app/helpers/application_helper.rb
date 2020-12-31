@@ -426,12 +426,12 @@ module ApplicationHelper
     if count_to_be_trained.zero? && num_races_in_current_week > 0
       num_races_yet_to_come = Result.num_races_yet_to_come
       display = "#{num_races_yet_to_come} / #{num_races_in_current_week} (#{Racer.in_stable.count})"
-      display += " 休 #{Racer.count(&:rest?)}" if shows_num_of_rests
       clazz = num_races_yet_to_come.zero? ? 'all_races_done' : 'not_all_races_done'
     else
       display = "#{count_to_be_trained} / #{Racer.in_stable.count}"
       clazz = count_to_be_trained.zero? ? 'all_trained' : 'not_all_trained'
     end
+    display += " 休 #{Racer.count(&:rest?)}" if shows_num_of_rests && count_to_be_trained.zero?
     content_tag :span, display, class: "count_to_be_trained #{clazz}"
   end
 
