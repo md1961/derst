@@ -28,6 +28,6 @@ class ApplicationController < ActionController::Base
     end
 
     def ranch_mare_sort_key
-      session[KEY_RANCH_MARE_SORT_KEY] == 'price' ? {price: :desc} : :year_birth
+      session[KEY_RANCH_MARE_SORT_KEY] == 'age' ? :year_birth : {price: :desc}
     end
 end
