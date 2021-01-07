@@ -36,3 +36,43 @@ $ ->
         ->
           $(this).css('background-color', 'white')
       )
+
+  LOOKUP_COMMENT_AGE2 = [
+    [',', '、'  ],
+    ['s', '素質、'],
+    ['k', '賢い、'],
+    ['c', '力強、'],
+    ['j', '丈夫、'],
+    ['a', '脚元、'],
+  ]
+
+  $('input#racer_comment_age2').on 'input', ->
+    $input = $(this)
+    $.each(LOOKUP_COMMENT_AGE2, (_, pair) ->
+      oldSub = pair[0]
+      newSub = pair[1]
+      $input.val($input.val().replace(oldSub, newSub))
+    )
+
+  LOOKUP_COMMENT_AGE3 = [
+    [',' , '、'  ],
+    ['sp', 'スピード、'],
+    ['st', 'スタミナ、'],
+    ['k' , '根性、'],
+    ['j' , '丈夫、'],
+    ['o' , '落着、'],
+    ['n' , '難、'],
+    ['h' , '早、'],
+    ['b' , '晩成、'],
+    ['f' , '父似'],
+    ['m' , '母似'],
+    ['スピード、スタミナ', 'スピ、スタ'],
+  ]
+
+  $('input#racer_comment_age3').on 'input', ->
+    $input = $(this)
+    $.each(LOOKUP_COMMENT_AGE3, (_, pair) ->
+      oldSub = pair[0]
+      newSub = pair[1]
+      $input.val($input.val().replace(oldSub, newSub))
+    )

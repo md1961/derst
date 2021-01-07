@@ -46,8 +46,6 @@ class Racer < ApplicationRecord
   }
   scope :older_first, -> { order(:year_birth) }
 
-  before_save :interpret_comment
-
   validates :name, presence: true, uniqueness: true
 
   def self.num_in_stable
@@ -432,29 +430,6 @@ class Racer < ApplicationRecord
                             mother.racer_before_retire.net_prize.to_f / 10000
                           end
       [-score_from_mother, -father.trait.fee]
-    end
-
-    def interpret_comment
-      self.comment_age3 = comment_age3
-        &.gsub(','  , '、')
-        &.gsub(/sp/i, 'スピード')
-        &.gsub(/st/i, 'スタミナ')
-        &.gsub(/k/i , '根性')
-        &.gsub(/j/i , '丈夫')
-        &.gsub(/o/i , '落着')
-        &.gsub(/n/i , '難')
-        &.gsub(/h/i , '早')
-        &.gsub(/b/i , '晩成')
-        &.gsub(/f/i , '父似')
-        &.gsub(/m/i , '母似')
-        &.gsub('スピード、スタミナ', 'スピ、スタ')
-      self.comment_age2 = comment_age2
-        &.gsub(','  , '、')
-        &.gsub(/s/i , '素質')
-        &.gsub(/k/i , '賢い')
-        &.gsub(/c/i , '力強')
-        &.gsub(/j/i , '丈夫')
-        &.gsub(/a/i , '脚元')
     end
 
   class AgeInWeek
