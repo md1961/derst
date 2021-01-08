@@ -1,8 +1,13 @@
 $ ->
   if $('#results').hasClass('ready_for_race')
+    surface_condition = $('select[name="result[surface_condition]"]').val()
+    $('select[name="result[surface_condition]"]').val(surface_condition)
+    num_racers = $('input[name="result[num_racers]"]').val()
+    $('input[name="result[num_racers]"]').val(num_racers)
+
     if $('#result_comment_paddock').val() == ''
       $('#result_weight').focus()
-    else if $('#result_num_racers').val() == ''
+    else if $('#result_num_frame').val() == ''
       $('#result_surface_condition').focus()
     else if $('#result_direction').val() == '－'
       $('#result_direction').focus()
