@@ -15,6 +15,9 @@ $ ->
       $('#result_comment_race').focus()
     else
       $('#result_place').focus()
+  else
+    $('#result_jockey_id').focus()
+    $('#result_load').attr('tabindex', 0)
 
   place = 16
   surface_to_hide = 'none'
