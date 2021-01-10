@@ -6,7 +6,8 @@
   <td><%= race_name_display(race) %></td>
   <td><%= race_distance_display(race) %></td>
   <% if result.place.nil? || result.id == @result_id_to_edit -%>
-    <%= form_with model: result, local: true do |f| %>
+    <% result.num_racers = 16 if result.num_racers.blank? -%>
+    <%= form_with model: result, local: true, class: 'result' do |f| %>
       <%= render partial: 'result', locals: {result: result, f: f} %>
     <tr>
       <td colspan="22" class="numeric"><%= f.submit tabindex: -1 %></td>
