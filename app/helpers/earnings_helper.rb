@@ -1,5 +1,9 @@
 module EarningsHelper
 
+  def earning_display(amount)
+    ("%d億%04d万円" % amount.divmod(10000)).sub(/\A0億/, '').sub(/\A0+/, '')
+  end
+
   def results_display(results)
     safe_join(
       results.sort_by { |result|
@@ -22,7 +26,7 @@ module EarningsHelper
       }.sort_by { |_, total|
         -total
       }.map { |racer, total|
-        "#{racer} #{total}"
+        "#{racer} #{earning_display(total)}"
       },
       '<br>'.html_safe
     )

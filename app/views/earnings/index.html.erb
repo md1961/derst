@@ -5,14 +5,14 @@
         <tr>
           <% if index.zero? -%>
             <td rowspan="<%= earnings.size %>" class="clickable numeric">
-              <%= year %>
+              <%= "#{year}年目" %>
             </td>
             <td rowspan="<%= earnings.size %>" class="clickable numeric">
-              <%= earnings.map(&:total).sum %>
+              <%= earning_display(earnings.map(&:total).sum) %>
             </td>
           <% end -%>
-          <td class="hideable numeric"><%= earning.month %></td>
-          <td class="hideable numeric"><%= earning.total %></td>
+          <td class="hideable numeric"><%= "#{earning.month}月" %></td>
+          <td class="hideable numeric"><%= earning_display(earning.total) %></td>
           <td class="hideable"><%= results_display(earning.results) %></td>
           <% if index.zero? -%>
             <td rowspan="<%= earnings.size %>" class="hideable">
