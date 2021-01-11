@@ -51,7 +51,8 @@ $ ->
     $.each(LOOKUP_COMMENT_AGE2, (_, pair) ->
       oldSub = pair[0]
       newSub = pair[1]
-      $input.val($input.val().replace(oldSub, newSub).replace(/、$/, ''))
+      newSub = '、' + newSub unless newSub == '、'
+      $input.val($input.val().replace(oldSub, newSub).replace(/^、/, '').replace(/、$/, ''))
     )
 
   LOOKUP_COMMENT_AGE3 = [
@@ -74,5 +75,6 @@ $ ->
     $.each(LOOKUP_COMMENT_AGE3, (_, pair) ->
       oldSub = pair[0]
       newSub = pair[1]
-      $input.val($input.val().replace(oldSub, newSub).replace(/、$/, ''))
+      newSub = '、' + newSub unless newSub == '、'
+      $input.val($input.val().replace(oldSub, newSub).replace(/^、/, '').replace(/、$/, ''))
     )
