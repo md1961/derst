@@ -14,6 +14,14 @@ class Sire < ApplicationRecord
   validates :name_jp , uniqueness: true, allow_nil: true
   validates :name_eng, uniqueness: true, allow_nil: true
 
+  def self.all_available
+      Sire.joins(:ranch_sires).joins(:trait)
+          .where(name_jp: nil)
+          .order(fee: :desc, name_eng: :asc) \
+    + Sire.breedable.includes(:trait)
+          .order(fee: :desc, name_jp: :asc)
+  end
+
   def self.english_name?(name)
     name =~ /\A[A-Za-z .'-]+\z/
   end

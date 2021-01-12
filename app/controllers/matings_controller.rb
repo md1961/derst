@@ -3,12 +3,7 @@ class MatingsController < ApplicationController
   def index
     @mare = Mare.find(params[:mare_id])
     @sire_filter = SireFilter.new(sire_filter_params)
-    @sires = Sire.joins(:ranch_sires).joins(:trait)
-                 .where(name_jp: nil)
-                 .order(fee: :desc, name_eng: :asc) \
-           + Sire.includes(:trait)
-                 .breedable.where(@sire_filter.conditions)
-                 .order(fee: :desc, name_jp: :asc)
+    @sires = Sire.all_available
     Mating.new(@mare).write_cache
 
     @ranch = Ranch.find_by(id: params[:ranch_id])
