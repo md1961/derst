@@ -8,7 +8,7 @@ class MareListsController < ApplicationController
     @sire = params[:sire]
     session[:ranch_id] = params[:ranch_id] if params[:ranch_id]
     @ranch = Ranch.find(session[:ranch_id])
-    @mares = @ranch.mares
+    @mares = @ranch.mares.sort_by(&:ordering)
 
     @html_title = '繁殖牝馬セール'
   end
