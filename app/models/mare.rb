@@ -11,11 +11,7 @@ class Mare < ApplicationRecord
   has_one :ranch_mare
 
   def self.in_ranch_including_future(ranch)
-    (ranch.ranch_mares.map(&:mare) + Racer.active.map(&:mare).compact).sort_by { |mare|
-      mare.yield_self { |mare|
-        mare.price.yield_self { |x| x ? -x * 1000 : -mare.racer_before_retire.net_prize }
-      }
-    }
+    (ranch.ranch_mares.map(&:mare) + Racer.active.map(&:mare).compact).sort_by(&:ordering)
   end
 
   def self.create_from_mating_of(mother, father, name = nil)
@@ -35,6 +31,10 @@ class Mare < ApplicationRecord
 
   def racer_before_retire
     Racer.find_by(name: name)
+  end
+
+  def ordering
+    price.yield_self { |x| x ? -x * 1000 : -racer_before_retire.net_prize }
   end
 
   def to_s
