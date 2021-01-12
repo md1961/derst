@@ -12,6 +12,10 @@ span.g1 {
   .mares {
     margin-top: 10px;
 
+    td {
+      white-space: nowrap;
+    }
+
     input[type="submit"] {
       height: 16px;
       padding: 0 4px;
