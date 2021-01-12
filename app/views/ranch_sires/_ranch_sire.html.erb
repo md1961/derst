@@ -59,12 +59,7 @@
       </tr>
     </thead>
     <tbody>
-      <% mares = ranch.ranch_mares.map(&:mare) + Racer.active.map(&:mare).compact -%>
-      <% mares.sort_by { |mare|
-           mare.yield_self { |mare|
-             mare.price.yield_self { |x| x ? -x * 1000 : -mare.racer_before_retire.net_prize }
-           }
-         }.each do |mare| -%>
+      <% Mare.in_ranch_including_future(ranch).each do |mare| -%>
         <% mating = Mating.new(mare, sire)
            is_nicks       = mating.nicks?
            is_interesting = mating.interesting?

@@ -10,6 +10,14 @@ class Mare < ApplicationRecord
   # TODO: Strictly speaking, it should be 'has_many' :ranch_mare.
   has_one :ranch_mare
 
+  def self.in_ranch_including_future(ranch)
+    (ranch.ranch_mares.map(&:mare) + Racer.active.map(&:mare).compact).sort_by { |mare|
+      mare.yield_self { |mare|
+        mare.price.yield_self { |x| x ? -x * 1000 : -mare.racer_before_retire.net_prize }
+      }
+    }
+  end
+
   def self.create_from_mating_of(mother, father, name = nil)
     name = name_by_mating_of(mother, father) unless name
     transaction do
