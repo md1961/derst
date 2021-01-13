@@ -37,9 +37,27 @@ class Mare < ApplicationRecord
     price.yield_self { |x| x ? -x * 1000 : -racer_before_retire.net_prize }
   end
 
+  def count_nicks
+    all_matings.count(&:nicks?)
+  end
+
+  def count_interesting
+    all_matings.count(&:interesting?)
+  end
+
+  def count_nicks_and_interesting
+    all_matings.count { |mating| mating.nicks? && mating.interesting? }
+  end
+
   def to_s
     name
   end
+
+  private
+
+    def all_matings
+      @all_matings ||= Sire.breedable.map { |sire| Mating.new(self, sire) }
+    end
 
     def self.name_by_mating_of(mother, father)
       "#{mother.name} x #{father.name}"
