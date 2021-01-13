@@ -8,3 +8,14 @@ table.mares {
     color: red;
   }
 }
+
+.mares_potentials {
+
+  td.age {
+    text-align: right;
+
+    &:after {
+      content: "歳";
+    }
+  }
+}

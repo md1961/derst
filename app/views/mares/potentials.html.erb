@@ -1,0 +1,23 @@
+<div class="mares_potentials">
+  <table class="table_base">
+    <thead>
+      <tr>
+        <th colspan="2">
+        <th>ﾆｯｸｽ</th>
+        <th>面白</th>
+        <th>ﾆｸ&amp;面</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @mares.each do |mare| -%>
+        <tr>
+          <td><%= mare %></td>
+          <td class="age"><%= (mare.ranch_mare || mare.racer_before_retire).age %></td>
+          <td class="numeric"><%= mare.count_nicks %></td>
+          <td class="numeric"><%= mare.count_interesting %></td>
+          <td class="numeric"><%= mare.count_nicks_and_interesting %></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>

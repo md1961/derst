@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   end
 
   resources :sires, except: %i[destroy]
-  resources :mares, only: %i[index show]
+
+  resources :mares, only: %i[index show] do
+    collection do
+      get :potentials
+    end
+  end
 
   resource :mare_list, only: %i[show update destroy] do
     get :delete
