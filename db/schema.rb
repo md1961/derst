@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_011046) do
+ActiveRecord::Schema.define(version: 2021_01_13_002133) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
@@ -113,6 +113,16 @@ ActiveRecord::Schema.define(version: 2020_06_15_011046) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["mare_id"], name: "index_mare_maternal_lines_on_mare_id"
+  end
+
+  create_table "mare_potentials", force: :cascade do |t|
+    t.integer "mare_id", null: false
+    t.integer "count_nicks"
+    t.integer "count_interesting"
+    t.integer "count_nicks_and_interesting"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mare_id"], name: "index_mare_potentials_on_mare_id"
   end
 
   create_table "mares", force: :cascade do |t|
