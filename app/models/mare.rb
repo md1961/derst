@@ -9,6 +9,7 @@ class Mare < ApplicationRecord
   has_many :racers, foreign_key: 'mother_id'
   # TODO: Strictly speaking, it should be 'has_many' :ranch_mare.
   has_one :ranch_mare
+  has_one :mare_potential
 
   def self.in_ranch_including_future(ranch)
     (ranch.ranch_mares.map(&:mare) + Racer.active.map(&:mare).compact).sort_by(&:ordering)
@@ -38,15 +39,29 @@ class Mare < ApplicationRecord
   end
 
   def count_nicks
-    all_matings.count(&:nicks?)
+    create_mare_potential! unless mare_potential
+    mare_potential.count_nicks \
+      || all_matings.count(&:nicks?).tap { |count|
+           mare_potential.update!(count_nicks: count)
+         }
   end
 
   def count_interesting
-    all_matings.count(&:interesting?)
+    create_mare_potential! unless mare_potential
+    mare_potential.count_interesting \
+      || all_matings.count(&:interesting?).tap { |count|
+           mare_potential.update!(count_interesting: count)
+         }
   end
 
   def count_nicks_and_interesting
-    all_matings.count { |mating| mating.nicks? && mating.interesting? }
+    create_mare_potential! unless mare_potential
+    mare_potential.count_nicks_and_interesting \
+      || all_matings.count { |mating|
+           mating.nicks? && mating.interesting?
+         }.tap { |count|
+           mare_potential.update!(count_nicks_and_interesting: count)
+         }
   end
 
   def to_s
