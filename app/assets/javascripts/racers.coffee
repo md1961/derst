@@ -37,6 +37,9 @@ $ ->
           $(this).css('background-color', 'white')
       )
 
+  trimJpComma = (str) ->
+    str.replace(/^、/, '').replace(/、$/, '').replace(/、、/, '、')
+
   LOOKUP_COMMENT_AGE2 = [
     [',', '、'  ],
     ['s', '素質、'],
@@ -52,7 +55,7 @@ $ ->
       oldSub = pair[0]
       newSub = pair[1]
       newSub = '、' + newSub unless newSub == '、'
-      $input.val($input.val().replace(oldSub, newSub).replace(/^、/, '').replace(/、$/, ''))
+      $input.val(trimJpComma($input.val().replace(oldSub, newSub)))
     )
 
   LOOKUP_COMMENT_AGE3 = [
@@ -76,5 +79,5 @@ $ ->
       oldSub = pair[0]
       newSub = pair[1]
       newSub = '、' + newSub unless newSub == '、'
-      $input.val($input.val().replace(oldSub, newSub).replace(/^、/, '').replace(/、$/, ''))
+      $input.val(trimJpComma($input.val().replace(oldSub, newSub)))
     )
