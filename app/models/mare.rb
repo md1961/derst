@@ -35,7 +35,12 @@ class Mare < ApplicationRecord
   end
 
   def ordering
-    price.yield_self { |x| x ? -x * 1000 : -racer_before_retire.net_prize }
+    racer = racer_before_retire
+    [
+      price ? -price : 0,
+      ranch_mare ? -1 : 0,
+      racer ? -racer.net_prize : 0
+    ]
   end
 
   def count_nicks
