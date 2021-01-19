@@ -5,7 +5,9 @@ class PostRacesController < ApplicationController
     comment = params[:post_race][:comment]
     m_injury = PostRace::RE_DESCRIPTION_FOR_INJURY.match(comment)
     if m_injury && comment !~ / /
-      at = racer.race_in?(*racer.age_in_week.prev.to_a) ? 'レース後' : '調教時'
+      last_week = racer.age_in_week.prev
+      last_result = racer.result_in(*last_week.to_a)
+      at = last_result ? (last_result.did_not_finish? ? 'レース中' : 'レース後') : '調教時'
       params[:post_race][:comment] = "#{at} #{comment}"
       comment = params[:post_race][:comment]
     end
