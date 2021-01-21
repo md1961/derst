@@ -40,6 +40,7 @@ $ ->
 
   if $('table.mares').length > 0
     $('table.mares .option').hide()
+    $('table.mares .default').show()
 
   $('.ranches_show .mares th.sortable').on 'click', ->
     $tbody = $('.ranches_show .mares tbody').eq(0)
