@@ -123,6 +123,10 @@ class Racer < ApplicationRecord
     in_stable? && !(condition && weight)
   end
 
+  def to_be_retired?
+    weeklies.last&.condition == '引'
+  end
+
   def expecting_race?
     !results.empty? && results.last.place.blank?
   end
