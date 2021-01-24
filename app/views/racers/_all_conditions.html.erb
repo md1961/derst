@@ -45,7 +45,8 @@
                      : '' %>">
           <%= index < 10 ? index : ('a'.ord + index - 10).chr.upcase %>
         </td>
-        <td class="racer_name border_right_thick">
+        <td class="racer_name border_right_thick
+                   <%= racer.to_be_retired? ? 'to_be_retired' : '' %>">
           <%= racer_name_display(racer) %>
         </td>
         <% months.each do |month| -%>
