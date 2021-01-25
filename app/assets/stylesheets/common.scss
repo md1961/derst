@@ -38,6 +38,7 @@ tbody tr:hover {
   padding: 5px 10px;
   background-color: #DFDFDF;
   display: flex;
+  justify-content: space-between;
 
   &.all_training_done {
     background-color: lightpink;
@@ -101,6 +102,10 @@ tbody tr:hover {
         margin-right: 25px;
       }
     }
+  }
+
+  .rails_env {
+    color: gray;
   }
 }
 
