@@ -235,6 +235,8 @@ module ApplicationHelper
                             data: {orig_value: f.object.send(name)},
                             class: name.to_s.starts_with?('mark_') ? 'mark' : '',
                             tabindex: in_paddock || inputting_result || name == :condition ? -1 : 0
+    elsif name == :num_racers
+      f.number_field :num_racers, step: 1, max: 16
     elsif name == :odds
       f.number_field :odds, step: 0.1
     elsif name == :weight

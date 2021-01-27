@@ -22,6 +22,16 @@
     text-align: center;
   }
 
+  input#result_num_racers {
+    text-align: right;
+    width: 2.0rem;
+
+    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
   input#result_odds {
     width: 3.0rem;
 
