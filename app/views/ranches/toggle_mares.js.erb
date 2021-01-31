@@ -6,6 +6,8 @@ $mare_list.toggle()
 if ($mare_list.is(':visible')) {
   if ($mare_list.children('table').length === 0) {
     $mare_list.html("<%= j(render 'mares') %>")
+    $('table.mares .option').hide()
+    $('table.mares .default').show()
   }
   $link_to_show_mares.attr('href', href.replace('true', 'false'))
 } else {
