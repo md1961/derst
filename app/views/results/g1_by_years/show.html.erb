@@ -1,0 +1,30 @@
+<div class="results_g1_by_years_show">
+  <table class="table_base">
+    <thead>
+      <tr>
+        <th id="marker" class="year">
+        <% @races.each do |race| -%>
+          <th class="<%= "race-#{race.id}" %>">
+            <%= race_abbr_display(race) %>
+          </th>
+        <% end -%>
+      </tr>
+    <thead>
+    <tbody>
+      <% @years.each do |year| -%>
+        <% results_by_race = @results_by_race_and_year[year] -%>
+        <tr>
+          <th class="year numeric"><%= "#{year}年" %></th>
+          <% @races.map(&:id).each do |race_id| -%>
+            <% results = results_by_race.fetch(race_id, []) -%>
+            <% if results.empty? -%>
+              <td class="<%= "race-#{race_id}" %>" data-race-id="<%= race_id %>">
+            <% else -%>
+              <%= places_display_in_td(results) %>
+            <% end -%>
+          <% end -%>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>

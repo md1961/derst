@@ -1,0 +1,22 @@
+.results_g1_by_years_show {
+
+  tbody tr:hover {
+    background-color: white;
+  }
+
+  td {
+    width: 6.0rem;
+  }
+
+  td.win {
+    background: pink;
+
+    &.runner_up {
+      background: plum;
+    }
+  }
+
+  td.runner_up {
+    background: powderblue;
+  }
+}

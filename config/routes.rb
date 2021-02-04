@@ -72,6 +72,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :results do
+    resource :g1_by_year, only: %i[show]
+  end
+
   resources :target_races, only: %i[create destroy]
 
   resources :post_races, only: %i[index create edit update destroy]
