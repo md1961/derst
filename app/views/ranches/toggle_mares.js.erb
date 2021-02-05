@@ -10,6 +10,8 @@ if ($mare_list.is(':visible')) {
     $('table.mares .default').show()
   }
   $link_to_show_mares.attr('href', href.replace('true', 'false'))
+  $(window).scrollTop(0)
 } else {
   $link_to_show_mares.attr('href', href.replace('false', 'true'))
+  $(window).scrollTop(9999)
 }
