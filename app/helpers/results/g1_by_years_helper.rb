@@ -29,10 +29,12 @@ module Results::G1ByYearsHelper
 
     places_display = places.first(2).join(', ').gsub('99', '－')
     places_display += "...(#{places.size})" if places.size > 2
-    racers_display = results.sort_by(&:place).map { |r| "#{r.place}着 #{r.racer}" }.join('、')
-    content_tag :td, class: classes.join(' '), data: {race_id: race_id} do
+    racer_names = results.sort_by(&:place).map { |r| "#{r.did_not_finish? ? '中止' : "#{r.place}着"} #{r.racer}" }
+    tooltip = racer_names.first
+    tooltip += '、...' if racer_names.size >= 2
+    content_tag :td, class: classes.join(' '), aria: {label: tooltip}, data: {race_id: race_id} do
       concat content_tag :span, places_display, class: 'places'
-      concat content_tag :span, racers_display, class: 'racers', hidden: true
+      concat content_tag :span, racer_names.join('、'), class: 'racers', hidden: true
     end
   end
 end
