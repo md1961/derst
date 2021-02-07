@@ -124,7 +124,7 @@ class Racer < ApplicationRecord
   end
 
   def to_be_retired?
-    weeklies.last&.condition == '引'
+    weeklies.pluck(:condition).compact.last == '引'
   end
 
   def expecting_race?
