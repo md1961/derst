@@ -459,7 +459,7 @@ class Racer < ApplicationRecord
     def -(other)
       month_week       = MonthWeek.new(month, week)
       other_month_week = MonthWeek.new(other.month, other.week)
-      month_week - other_month_week
+      month_week - other_month_week + (age - other.age) * 4 * 12
     end
 
     def to_a
