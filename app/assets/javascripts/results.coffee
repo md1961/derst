@@ -87,3 +87,8 @@ $ ->
   $('input#post_race_comment').on 'input', ->
     value = H_POST_RACE_COMMENT_LOOKUP[$(this).val()]
     $(this).val(value) if value
+
+  $('input#result_num_racers').on 'input', ->
+    value = parseInt($(this).val().substr(-1))
+    value = '1' + value if value <= 6
+    $(this).val(value)
