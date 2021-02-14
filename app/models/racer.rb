@@ -223,7 +223,7 @@ class Racer < ApplicationRecord
   end
 
   def rest?
-    %w[休 崩 怪 引].include?(condition)
+    %w[休 崩 疲 怪 引].include?(condition)
   end
 
   def condition=(value)

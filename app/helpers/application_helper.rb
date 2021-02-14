@@ -386,7 +386,7 @@ module ApplicationHelper
     return nil unless racer.in_stable?
     form_with url: condition_racer_path(racer), class: 'condition' do
       concat select_tag :condition, options_for_select(
-                                      %w[◎ ↑ ◉  ○ △ ▽ × ｜ ↓ 休 崩 太 重 怪 外 引 -],
+                                      %w[◎ ↑ ◉  ○ △ ▽ × ｜ ↓ 休 崩 疲 太 重 怪 外 引 -],
                                       racer.condition || racer.default_condition
                                     ),
                                     disabled: @racer_id_to_edit.to_i > 0,
