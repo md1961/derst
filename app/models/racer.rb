@@ -233,6 +233,7 @@ class Racer < ApplicationRecord
   end
 
   def default_condition
+    return '引' if to_be_retired?
     return '重' if weeklies.empty?
     return '怪' if injury
     week_prev = age_in_week.prev
