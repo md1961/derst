@@ -72,7 +72,7 @@
           <% end -%>
         <% end -%>
         <td class="numeric border_left_thick border_right_thick">
-          <%= "#{racer.weeks_in_stable}w" %>
+          <%= racer.to_be_retired? ? '－' : "#{racer.weeks_in_stable}w" %>
         </td>
         <td class="centered border_left_thick border_right_thick <%= racer.injury ? 'injured' : '' %>">
           <%= racer.injury&.description&.sub(/、.*\z/, '') || racer.course_staying %>
