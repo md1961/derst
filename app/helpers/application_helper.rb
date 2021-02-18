@@ -11,10 +11,10 @@ module ApplicationHelper
 
   def weeks_in_ranch_class(racer)
     racer.weeks_in_ranch.yield_self { |w|
-      racer.injury ?  'injured' : \
-      w >  4 ? 'overstay_in_ranch' : \
-      w == 4 ? 'ready_to_be_stabled' : \
-      'in_ranch'
+      racer.injury ? 'injured' : \
+            w >  4 ? 'overstay_in_ranch' : \
+            w == 4 ? 'ready_to_be_stabled' \
+                   : 'in_ranch'
     } + (racer.in_spa? ? ' in_spa' : '')
   end
 
@@ -67,6 +67,7 @@ module ApplicationHelper
 
   def racer_attr_display(racer, name, f)
     if name == :primary_jockey
+      return '－' if racer.to_be_retired?
       racer.h_num_rides_by_jockey.first&.yield_self { |jockey, num_rides|
         classes = []
         classes << 'rides_last' if jockey == racer.last_jockey
