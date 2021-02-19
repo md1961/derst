@@ -27,8 +27,9 @@ module Results::G1ByYearsHelper
     classes << 'win' if places.first == 1
     classes << 'runner_up' if places.include?(2)
 
-    places_display = places.first(2).join(', ').gsub('99', '－')
-    places_display += "...(#{places.size})" if places.size > 2
+    num_racers = places.size
+    places_display = places.first(num_racers > 3 ? 2 : 3).join(', ').gsub('99', '－')
+    places_display += "...(#{num_racers})" if num_racers > 3
     racer_names = results.sort_by(&:place).map { |r| "#{r.did_not_finish? ? '中止' : "#{r.place}着"} #{r.racer}" }
     tooltip = racer_names.first
     tooltip += '、...' if racer_names.size >= 2
