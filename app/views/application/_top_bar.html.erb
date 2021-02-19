@@ -32,9 +32,10 @@
     <%= link_to '産駒一覧'        , by_mother_racers_path            , target: '_blank', tabindex: -1 %>
     <%= link_to '馬名候補'        , racer_name_samples_path          , target: '_blank', tabindex: -1, class: 'spacer_right' %>
     <%= link_to '番組表'          , races_path(month: ranch.month)   , target: '_blank', tabindex: -1 %>
+    <%= link_to 'G1 結果年表'     , results_g1_by_year_path          , target: '_blank', tabindex: -1 %>
     <%= link_to '重賞レース結果'  , results_path                     , target: '_blank', tabindex: -1 %>
     <%= link_to 'レース記録'      , stats_path                       , target: '_blank', tabindex: -1 %>
-    <%= link_to 'G I複数頭結果'   , multiple_entries_results_path    , target: '_blank', tabindex: -1 %>
+    <%= link_to 'G1 複数頭結果'   , multiple_entries_results_path    , target: '_blank', tabindex: -1 %>
   </div>
 
   <div class="rails_env">
