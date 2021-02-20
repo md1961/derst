@@ -79,6 +79,8 @@ module ApplicationHelper
     elsif !f && name == :remark
       if racer.injury
         racer.injury.description
+      elsif @ranch
+        racer.remark&.sub(/\d{4,}/, '')
       else
         racer.remark&.sub(/\d{4,}/) { |prize| "総賞金 #{monetary_display(prize)}" }
       end
