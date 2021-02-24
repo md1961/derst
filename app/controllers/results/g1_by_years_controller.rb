@@ -5,8 +5,7 @@ class Results::G1ByYearsController < ApplicationController
                  .where("grades.abbr = 'Ⅰ'")
                  .order(:month, :week)
                  .reject(&:oversea?)
-    @results_by_race_and_year = Result.joins(race: :grade)
-                                      .where("grades.abbr = 'Ⅰ'")
+    @results_by_race_and_year = Result.high_stake(1)
                                       .group_by(&:year)
                                       .map { |year, results|
                                         [year, results.group_by { |result| result.race.id }]
