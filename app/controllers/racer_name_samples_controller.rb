@@ -10,6 +10,7 @@ class RacerNameSamplesController < ApplicationController
       @samples = RacerNameSample.order(:name)
     end
     @names = params[:names_rejected].to_s.split.join('、')
+    @html_title = '馬名候補'
   end
 
   def create

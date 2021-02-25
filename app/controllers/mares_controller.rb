@@ -18,5 +18,6 @@ class MaresController < ApplicationController
   def potentials
     ranch = Ranch.last
     @mares = Mare.in_ranch_including_future(ranch)
+    @html_title = '繁殖牝馬'
   end
 end
