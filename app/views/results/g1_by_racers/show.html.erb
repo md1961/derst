@@ -1,0 +1,54 @@
+<div class="results_g1_by_racers_show">
+  <div class="links">
+    <%= link_to '<10', results_g1_by_racer_path(year_start: @year_start - 10) %>
+    <%= link_to '<3' , results_g1_by_racer_path(year_start: @year_start -  3) %>
+    <%= link_to '<'  , results_g1_by_racer_path(year_start: @year_start -  1) %>
+    <%= link_to   '>', results_g1_by_racer_path(year_start: @year_start +  1) %>
+    <%= link_to  '3>', results_g1_by_racer_path(year_start: @year_start +  3) %>
+    <%= link_to '10>', results_g1_by_racer_path(year_start: @year_start + 10) %>
+  </div>
+
+  <table class="table_base">
+    <thead>
+      <tr>
+        <th rowspan="2" class="border_bottom_thick border_right_thick">
+        <% (@year_start .. @year_end).each do |year| -%>
+          <th colspan="<%= @races.size %>" class="border_right_thick">
+            <%= "#{year}年" %>
+          </th>
+        <% end -%>
+      </tr>
+      <tr>
+        <% (@year_start .. @year_end).each do |year| -%>
+          <% @races.each do |race| -%>
+            <th class="race_name <%= race.name == '有馬記念' ? 'border_right_thick' : '' %>">
+              <%= race_abbr_display(race) %>
+            </th>
+          <% end -%>
+        <% end -%>
+      </tr>
+    <thead>
+    <tbody>
+      <% @racers.each do |racer| -%>
+        <% age_g1_start, age_g1_end = racer.results.high_stake(1).yield_self { |rs| [rs.first, rs.last] }.map(&:age_in_week) -%>
+        <tr>
+          <td class="racer_name border_right_thick"><%= racer %></td>
+          <% age_start = @year_start - racer.year_birth + 1
+             is_active = Racer::AgeInWeek.new(age_start, 1, 1) >= age_g1_start -%>
+          <% (@year_start .. @year_end).each do |year| -%>
+            <% @races.each do |race| -%>
+              <% result = @results_by_racer_year_and_race[racer][[year, race.id]]
+                 place = result&.place
+                 place = '-' if result&.did_not_finish?
+                 is_active = true if result && result.age_in_week >= age_g1_start -%>
+               <td class="place <%= place == 1 ? 'win' : place == 2 ? 'runner_up' : is_active ? 'active' : '' %>
+                                <%= race.name == '有馬記念' ? 'border_right_thick' : '' %>">
+                <%= place %>
+              </td>
+              <%  is_active = false if result && result.age_in_week == age_g1_end -%>
+            <% end -%>
+          <% end -%>
+        </tr>
+      <% end -%>
+    </tbody>
+</div>

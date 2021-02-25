@@ -1,0 +1,43 @@
+.results_g1_by_racers_show {
+
+  .links {
+    font-size: 2.0rem;
+    margin-left: 50px;
+    margin-bottom: 5px;
+
+    a {
+      text-decoration: none;
+      margin-right: 10px;
+    }
+  }
+
+  .table_base {
+
+    th, td {
+      width: 1.8rem;
+      padding: 0;
+    }
+
+    td.racer_name {
+      width: 11.0rem;
+      padding: 0 4px;
+    }
+
+    td.place {
+      text-align: center;
+      background-color: #DFDFDF;
+
+      &.active {
+        background-color: white;
+      }
+
+      &.win {
+        background-color: pink;
+      }
+
+      &.runner_up {
+        background-color: powderblue;
+      }
+    }
+  }
+}

@@ -10,14 +10,14 @@
   }
 
   td.win {
-    background: pink;
+    background-color: pink;
 
     &.runner_up {
-      background: plum;
+      background-color: plum;
     }
   }
 
   td.runner_up {
-    background: powderblue;
+    background-color: powderblue;
   }
 }
