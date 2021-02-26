@@ -13,13 +13,14 @@
       <tr>
         <th rowspan="2" class="border_bottom_thick border_right_thick">
         <% (@year_start .. @year_end).each do |year| -%>
-          <th colspan="<%= @races.size %>" class="border_right_thick">
+          <th colspan="<%= @races.size + 1 %>" class="border_bottom_thick border_right_thick">
             <%= "#{year}年" %>
           </th>
         <% end -%>
       </tr>
       <tr>
         <% (@year_start .. @year_end).each do |year| -%>
+          <th rowspan="2" class="border_bottom_thick border_right_thick">
           <% @races.each do |race| -%>
             <th class="race_name <%= race.name == '有馬記念' ? 'border_right_thick' : '' %>">
               <%= race_abbr_display(race) %>
@@ -33,9 +34,10 @@
         <% age_g1_start, age_g1_end = racer.results.high_stake(1).yield_self { |rs| [rs.first, rs.last] }.map(&:age_in_week) -%>
         <tr>
           <td class="racer_name border_right_thick"><%= racer %></td>
-          <% age_start = @year_start - racer.year_birth + 1
-             is_active = Racer::AgeInWeek.new(age_start, 1, 1) >= age_g1_start -%>
-          <% (@year_start .. @year_end).each do |year| -%>
+          <% age_start = @year_start - racer.year_birth + 1 -%>
+          <% is_active = Racer::AgeInWeek.new(age_start, 1, 1) >= age_g1_start -%>
+          <% (@year_start .. @year_end).each_with_index do |year, index| -%>
+            <td class="age border_right_thick"><%= "#{age_start + index}歳" %></td>
             <% @races.each do |race| -%>
               <% result = @results_by_racer_year_and_race[racer][[year, race.id]]
                  place = result&.place
