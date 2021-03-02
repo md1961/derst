@@ -17,15 +17,15 @@ module Stats
     }.each(&block)
   end
 
-  def each_oldest_high_stake_win(&block)
-    Racer.all.includes(results: {race: :grade}).map { |racer|
-      racer.results.high_stake.wins&.last
+  def each_oldest_high_stake_win(n_grade: nil, &block)
+    Racer.all.includes(results: {race: :grade}).flat_map { |racer|
+      racer.results.high_stake(n_grade).wins
     }.compact.sort_by(&:age_in_week).reverse.first(10).each(&block)
   end
 
   def each_youngest_high_stake_win(&block)
-    Racer.all.includes(results: {race: :grade}).map { |racer|
-      racer.results.high_stake.wins&.first
+    Racer.all.includes(results: {race: :grade}).flat_map { |racer|
+      racer.results.high_stake.wins
     }.compact.sort_by(&:age_in_week).first(10).each(&block)
   end
 
