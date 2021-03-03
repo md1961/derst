@@ -1,11 +1,11 @@
 <div class="results_g1_by_racers_show">
   <div class="links">
-    <%= link_to '<10', results_g1_by_racer_path(year_start: @year_start - 10) %>
-    <%= link_to '<3' , results_g1_by_racer_path(year_start: @year_start -  3) %>
-    <%= link_to '<'  , results_g1_by_racer_path(year_start: @year_start -  1) %>
-    <%= link_to   '>', results_g1_by_racer_path(year_start: @year_start +  1) %>
-    <%= link_to  '3>', results_g1_by_racer_path(year_start: @year_start +  3) %>
-    <%= link_to '10>', results_g1_by_racer_path(year_start: @year_start + 10) %>
+    <%= link_to '<10', results_g1_by_racer_path(year_end: @year_end - 10) %>
+    <%= link_to '<3' , results_g1_by_racer_path(year_end: @year_end -  3) %>
+    <%= link_to '<'  , results_g1_by_racer_path(year_end: @year_end -  1) %>
+    <%= link_to   '>', results_g1_by_racer_path(year_end: @year_end +  1) %>
+    <%= link_to  '3>', results_g1_by_racer_path(year_end: @year_end +  3) %>
+    <%= link_to '10>', results_g1_by_racer_path(year_end: @year_end + 10) %>
   </div>
 
   <table class="table_base">

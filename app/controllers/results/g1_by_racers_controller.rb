@@ -1,10 +1,10 @@
 class Results::G1ByRacersController < ApplicationController
 
-  DEFAULT_YEAR_START = Ranch.last.year - 2
+  DEFAULT_YEAR_END = Ranch.last.year
 
   def show
-    @year_start = [(params[:year_start] || DEFAULT_YEAR_START).to_i, DEFAULT_YEAR_START].min
-    @year_end   = @year_start + 2
+    @year_end   = [(params[:year_end] || DEFAULT_YEAR_END).to_i, DEFAULT_YEAR_END].min
+    @year_start = @year_end - 2
 
     @races = Race.joins(:grade)
                  .where("grades.abbr = 'Ⅰ'")
