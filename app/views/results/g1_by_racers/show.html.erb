@@ -1,11 +1,26 @@
 <div class="results_g1_by_racers_show">
   <div class="links">
-    <%= link_to '<10', results_g1_by_racer_path(year_end: @year_end - 10) %>
-    <%= link_to '<3' , results_g1_by_racer_path(year_end: @year_end -  3) %>
-    <%= link_to '<'  , results_g1_by_racer_path(year_end: @year_end -  1) %>
-    <%= link_to   '>', results_g1_by_racer_path(year_end: @year_end +  1) %>
-    <%= link_to  '3>', results_g1_by_racer_path(year_end: @year_end +  3) %>
-    <%= link_to '10>', results_g1_by_racer_path(year_end: @year_end + 10) %>
+    <div>
+      <%= link_to '<8', results_g1_by_racer_path(racer_age: @racer_age, year_end: @year_end - 8) %>
+      <%= link_to '<5', results_g1_by_racer_path(racer_age: @racer_age, year_end: @year_end - 5) %>
+      <%= link_to '<3', results_g1_by_racer_path(racer_age: @racer_age, year_end: @year_end - 3) %>
+      <%= link_to '<' , results_g1_by_racer_path(racer_age: @racer_age, year_end: @year_end - 1) %>
+      <%= link_to  '>', results_g1_by_racer_path(racer_age: @racer_age, year_end: @year_end + 1) %>
+      <%= link_to '3>', results_g1_by_racer_path(racer_age: @racer_age, year_end: @year_end + 3) %>
+      <%= link_to '5>', results_g1_by_racer_path(racer_age: @racer_age, year_end: @year_end + 5) %>
+      <%= link_to '8>', results_g1_by_racer_path(racer_age: @racer_age, year_end: @year_end + 8) %>
+    </div>
+    <div class="racer_age">
+      <span>
+        <%= link_to_if @racer_age, '全て', results_g1_by_racer_path(year_end: @year_end) %>
+      </span>
+      <span>
+        <%= link_to_unless @racer_age == '4', '４歳', results_g1_by_racer_path(racer_age: '4', year_end: @year_end) %>
+      </span>
+      <span>
+        <%= link_to_unless @racer_age == '4U', '４歳上', results_g1_by_racer_path(racer_age: '4U', year_end: @year_end) %>
+      </span>
+    </div>
   </div>
 
   <table class="table_base">
@@ -20,9 +35,9 @@
       </tr>
       <tr>
         <% (@year_start .. @year_end).each do |year| -%>
-          <th rowspan="2" class="border_bottom_thick border_right_thick">
+          <th rowspan="2" class="border_bottom_thick border_left_thick border_right_thick">
           <% @races.each do |race| -%>
-            <th class="race_name <%= race.name == '有馬記念' ? 'border_right_thick' : '' %>">
+            <th class="race_name">
               <%= race_abbr_display(race) %>
             </th>
           <% end -%>
@@ -37,14 +52,16 @@
           <% age_start = @year_start - racer.year_birth + 1 -%>
           <% is_active = Racer::AgeInWeek.new(age_start, 1, 1) >= age_g1_start -%>
           <% (@year_start .. @year_end).each_with_index do |year, index| -%>
-            <td class="age border_right_thick"><%= "#{age_start + index}歳" %></td>
+            <td class="age border_left_thick border_right_thick">
+              <% age = age_start + index -%>
+              <%= age < 3 ? nil : "#{age}歳" %>
+            </td>
             <% @races.each do |race| -%>
               <% result = @results_by_racer_year_and_race[racer][[year, race.id]]
                  place = result&.place
                  place = '-' if result&.did_not_finish?
                  is_active = true if result && result.age_in_week >= age_g1_start -%>
-               <td class="place <%= place == 1 ? 'win' : place == 2 ? 'runner_up' : is_active ? 'active' : '' %>
-                                <%= race.name == '有馬記念' ? 'border_right_thick' : '' %>">
+               <td class="place <%= place == 1 ? 'win' : place == 2 ? 'runner_up' : is_active ? 'active' : '' %>">
                 <%= place %>
               </td>
               <%  is_active = false if result && result.age_in_week == age_g1_end -%>

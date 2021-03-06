@@ -1,13 +1,31 @@
 .results_g1_by_racers_show {
 
   .links {
+    display: flex;
     font-size: 2.0rem;
-    margin-left: 50px;
+    margin-left: 10px;
     margin-bottom: 5px;
 
+    div {
+      margin-left: 40px;
+    }
+
     a {
+      color: #0000EE;
       text-decoration: none;
       margin-right: 10px;
+    }
+
+    div.racer_age {
+
+      span {
+        margin-right: 10px;
+      }
+
+      a {
+        text-decoration: underline;
+        margin-right: 0;
+      }
     }
   }
 
