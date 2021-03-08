@@ -1,7 +1,7 @@
 $ ->
   if $('.ranches_show.ready_for_next_week').length > 0
     $('#top_bar').addClass('ready_for_next_week').removeClass('all_training_done')
-    $('#button_to_next_week').focus()
+    $('#button_to_next_week').prop('disabled', false).focus()
 
   if $('.ranches_show').length > 0
     $('form.button_to').on 'submit', ->

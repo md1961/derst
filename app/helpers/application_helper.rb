@@ -160,7 +160,8 @@ module ApplicationHelper
   end
 
   def button_to_next_week(ranch)
-    button_to '翌週', next_week_ranch_path(ranch), method: :patch, id: 'button_to_next_week', tabindex: -1
+    button_to '翌週', next_week_ranch_path(ranch), method: :patch,
+                      id: 'button_to_next_week', disabled: true, tabindex: -1
   end
 
   def sire_trait_names
