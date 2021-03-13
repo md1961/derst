@@ -2,7 +2,7 @@
    attr_names.reject! { |name| name.to_s.starts_with?('comment_') } if f -%>
 
 <% attr_names.each do |name| -%>
-  <td class="centered <%= name %>">
+  <td class="centered <%= name %> <%= result.race.grade.g1? ? 'g1' : '' %>">
     <%= result_attr_display(result, name, f) %>
   </td>
 <% end -%>
