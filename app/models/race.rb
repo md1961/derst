@@ -2,6 +2,7 @@ class Race < ApplicationRecord
   belongs_to :course
   belongs_to :grade
   belongs_to :prize_pattern, optional: true
+  has_many :results
 
   enum surface: {turf: 0, dirt: 1}
   enum limitation: {unrestricted: 0, female_only: 1, domestic_only: 2, no_gelding: 3, no_female: 4}
@@ -137,6 +138,10 @@ class Race < ApplicationRecord
 
   def oversea?
     course.oversea?
+  end
+
+  def no_win?
+    grade.high_stake? && !oversea? && results.wins.empty?
   end
 
   def prize_for(place)
