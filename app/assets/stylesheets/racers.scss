@@ -399,6 +399,13 @@ input.weight {
 
     td.high_stake {
       background-color: palegreen;
+
+      &.no_win:before {
+        content: '(未)';
+        color: red;
+        background-color: yellow;
+        margin-right: 3px;
+      }
     }
 
     td.overgrade {

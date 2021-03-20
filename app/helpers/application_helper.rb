@@ -345,6 +345,8 @@ module ApplicationHelper
     clazz += ' not_enterable' if race.not_enterable_for?(racer)
     label_items << "本賞金 #{race.minimum_net_prize}万円以上" if race.minimum_net_prize > 0
 
+    clazz += ' no_win' if race.no_win?
+
     safe_join([
       content_tag(:td, course, class: transport),
       button_to_target_in_td,
