@@ -50,19 +50,13 @@
       <%= link_to '', ranch_path(@racer.ranch, main_display: @main_display, racer_id: @racer),
                           data: {shortcut: 'b'}, tabindex: -1 %>
       <% if @prev_racer -%>
-        <%= link_to "<[ #{racer_with_race_display(@prev_racer)} ]".html_safe, @prev_racer, id: 'to_prev_racer',
-                      class: @prev_racer.expecting_race? ? 'expecting_race'
-                           : @prev_racer.to_be_retired? ? 'to_be_retired' : '',
-                      data: {shortcut: 'k'}, tabindex: -1 %>
+        <%= link_to_prev_or_next_racer(@prev_racer, is_to_prev: true) %>
       <% end -%>
       <span class="count">
         <%= count_to_be_trained_display %>
       </span>
       <% if @next_racer -%>
-        <%= link_to "[ #{racer_with_race_display(@next_racer)} ]>".html_safe, @next_racer, id: 'to_next_racer',
-                      class: @next_racer.expecting_race? ? 'expecting_race'
-                           : @next_racer.to_be_retired? ? 'to_be_retired' : '',
-                      data: {shortcut: 'j'}, tabindex: -1 %>
+        <%= link_to_prev_or_next_racer(@next_racer, is_to_prev: false) %>
       <% end -%>
 
       <% if @racer_shown_last -%>

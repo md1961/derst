@@ -87,4 +87,14 @@ module RacersHelper
   def end_of_short_term?(month)
     MONTHS_OF_END_OF_SHORT_TERMS.include?(month)
   end
+
+  def link_to_prev_or_next_racer(racer, is_to_prev: true)
+    label = racer_with_race_display(racer).yield_self { |x|
+      is_to_prev ? "<[ #{x} ]" :  "[ #{x} ]>"
+    }.html_safe
+    id = is_to_prev ? 'to_prev_racer' : 'to_next_racer'
+    clazz = racer.expecting_race? ? 'expecting_race' : racer.to_be_retired? ? 'to_be_retired' : ''
+    shortcut = is_to_prev ? 'k' : 'j'
+    link_to label, racer, id: id, class: clazz, data: {shortcut: shortcut}, tabindex: -1
+  end
 end
