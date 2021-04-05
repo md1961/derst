@@ -112,7 +112,10 @@
              data_for_race_load = @racer.data_for_race_load -%>
           <% @weeks_for_race_candidates.times do -%>
             <% races = races_by_week[month_week] || []
-               races.sort_by! { |r| (r.course.area.location - @racer.stable.center.area.location).abs } -%>
+               races.sort_by! { |race|
+                 (race.course.area.location - @racer.stable.center.area.location).abs \
+                   - (race.month == 8 && @racer.stable.center.name == '栗東' && race.course.name == '小倉' ? 2 : 0)
+               } -%>
             <% if races.empty? -%>
               <tr>
                 <td class="numeric <%= month_week == current_week ? 'current' : '' %>">
