@@ -439,7 +439,7 @@ module ApplicationHelper
       display = "#{count_to_be_trained} / #{Racer.in_stable.count}"
       clazz = count_to_be_trained.zero? ? 'all_trained' : 'not_all_trained'
     end
-    display += " 休 #{Racer.count(&:rest?)}" if shows_num_of_rests && count_to_be_trained.zero?
+    display += " 休 #{Racer.in_stable.count(&:rest?)}" if shows_num_of_rests && count_to_be_trained.zero?
     content_tag :span, display, class: "count_to_be_trained #{clazz}"
   end
 
