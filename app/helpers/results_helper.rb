@@ -7,13 +7,15 @@ module ResultsHelper
 
   def racers_display(results)
     return nil if results.nil? || results.empty?
-    results.group_by(&:racer).map { |racer, results|
-      age_display = results.map { |result|
-        result.race.age.ends_with?('U') ? result.age : nil
-      }.compact.map { |age|
-        "#{age}歳"
-      }.join(', ')
-      [racer, age_display].join(' ')
-    }.join('、')
+    content_tag(:span, style: 'display: flex') do
+      results.group_by(&:racer).map { |racer, results|
+        age_display = results.map { |result|
+          result.race.age.ends_with?('U') ? result.age : nil
+        }.compact.map { |age|
+          "#{age}歳"
+        }.join(', ')
+        [link_to(racer, racer, target: 'blank'), age_display].join('&nbsp;')
+      }.join('、').html_safe
+    end
   end
 end
