@@ -222,6 +222,10 @@ class Racer < ApplicationRecord
     weeklies.find_by(age_in_week.to_h)&.condition
   end
 
+  def weight_best_to_be_determined?
+    weight_best.nil? && weight && weight_fat && weight_fat - weight >= 4
+  end
+
   def rest?
     %w[休 崩 疲 怪 引].include?(condition)
   end
