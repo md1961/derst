@@ -127,13 +127,15 @@
             <%= inbreed_display %>
           </td>
           <% if ranch_mare -%>
-            <td>
-            <% if sire == ranch_mare.sire -%>
-              受胎
-            <% else -%>
-              <%= link_to '種付', ranch_mare_path(ranch_mare, sire_id: sire.id), method: :patch,
-                                  aria: {label: sire.name} %>
-            <% end -%>
+            <td class="centered">
+              <% if sire == ranch_mare.sire && !ranch_mare.default_child_status? -%>
+                受胎
+              <% else -%>
+                <% label = sire == ranch_mare.sire ? '再種付' : '種付' -%>
+                <%= link_to label, ranch_mare_path(ranch_mare, sire_id: sire.id), method: :patch,
+                                   aria: {label: sire.name} %>
+              <% end -%>
+            </td>
           <% end -%>
         <% end -%>
       </tr>
