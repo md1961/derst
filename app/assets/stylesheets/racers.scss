@@ -102,6 +102,11 @@ input.weight {
   &.no_weight {
     background-color: #FFE0EB;
   }
+
+  &.weight_best_to_be_determined {
+    color: white;
+    background-color: red;
+  }
 }
 
 .racers_racers {

@@ -413,7 +413,11 @@ module ApplicationHelper
                                     step: 2,
                                     disabled: @racer_id_to_edit.to_i > 0,
                                     id: "weight-#{racer.id}",
-                                    class: ['weight', racer.weight.nil? ? 'no_weight' : ''],
+                                    class: [
+                                      'weight',
+                                      racer.weight.nil? ? 'no_weight' : '',
+                                      racer.weight_best_to_be_determined? ? 'weight_best_to_be_determined' : ''
+                                    ],
                                     data: {racer_id: racer.id},
                                     autofocus: racer.id == flash[:racer_id_to_focus] && racer.condition && racer.weight.nil?,
                                     tabindex: racer.condition && !racer.weight ? 0 : -1

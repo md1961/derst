@@ -9,6 +9,11 @@ $input_for_weight.attr('tabindex', -1)
 
 <% if @racer.weight -%>
   $input_for_weight.removeClass('no_weight')
+  <% if @racer.weight_best_to_be_determined? -%>
+    $input_for_weight.addClass('weight_best_to_be_determined')
+  <% else -%>
+    $input_for_weight.removeClass('weight_best_to_be_determined')
+  <% end -%>
   $select_for_condition.focus()
 <% else -%>
   $input_for_weight.val(<%= @racer.last_weight %>)
