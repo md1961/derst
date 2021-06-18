@@ -223,7 +223,10 @@ class Racer < ApplicationRecord
   end
 
   def weight_best_to_be_determined?
-    weight_best.nil? && weight && weight_fat && weight_fat - weight >= 4
+    return false if weight_best
+    return false if weight_fat.nil?
+    w = weight || last_weight
+    w && weight_fat - w >= 4
   end
 
   def rest?
