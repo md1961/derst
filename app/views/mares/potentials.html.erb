@@ -6,6 +6,7 @@
         <th>価格</th>
         <th>母</th>
         <th>母母</th>
+        <th>母母母</th>
         <th>G1勝利</th>
         <th>ﾆｯｸｽ</th>
         <th>面白</th>
@@ -24,8 +25,11 @@
           <td class="age"><%= (ranch_mare || racer).age %></td>
           <td><%= !ranch_mare && racer&.to_be_retired? ? '引退' : '' %></td>
           <td><%= mare.price %></td>
-          <td><%= racer&.mother %></td>
-          <td><%= racer&.mother&.racer_before_retire&.mother %></td>
+          <% mother = racer&.mother
+             grandmother = mother&.racer_before_retire&.mother -%>
+          <td><%= mother %></td>
+          <td><%= grandmother %></td>
+          <td><%= grandmother&.racer_before_retire&.mother %></td>
           <td class="g1_wins"><%= g1_wins_display(:count, racer) %></td>
           <td class="count"><%= mare.count_nicks %></td>
           <td class="count"><%= mare.count_interesting %></td>
