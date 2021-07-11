@@ -231,7 +231,7 @@ input.weight {
   }
 
   #results_and_conditions {
-    margin-top: 180px;
+    margin-top: 180px;  /* to be overwritten in racers.coffee */
 
     .links {
       display: flex;
@@ -341,11 +341,10 @@ input.weight {
 
   #race_candidates {
     position: fixed;
-    right: 0;
+    left: 960px;  /* to be overwritten in racers.coffee */
     top: 50px;
     bottom: 0;
     overflow-y: auto;
-    width: 320px;
 
     .links {
       margin-top: 0;

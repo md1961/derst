@@ -7,6 +7,9 @@ $ ->
     height = $('#name_and_traits').height()
     $('#results_and_conditions').css('margin-top', top + height + 15)
 
+    width = Math.max($('table#results').width(), $('table#conditions').width())
+    $('#race_candidates').css('left', width + 30)
+
     $('#cancel').on 'click', ->
       $('.for_action_edit').hide()
       $('.for_action_show').show()
