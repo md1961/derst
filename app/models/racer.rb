@@ -250,7 +250,7 @@ class Racer < ApplicationRecord
         c = weeklies.find_by(week_prev.prev.to_h)&.condition
         c = '◉' if c == '◎'
       end
-      c == '崩' ? '↓' : c
+      c == '疲' ? '休' : (c == '崩' ? '↓' : c)
     }
   end
 
