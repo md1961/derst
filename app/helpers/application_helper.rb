@@ -437,7 +437,8 @@ module ApplicationHelper
     num_races_in_current_week = Result.num_races_in_current_week
     if count_to_be_trained.zero? && num_races_in_current_week > 0
       num_races_yet_to_come = Result.num_races_yet_to_come
-      display = "#{num_races_yet_to_come} / #{num_races_in_current_week} (#{Racer.in_stable.count})"
+      display = "#{num_races_yet_to_come} / #{num_races_in_current_week} " \
+                "(#{Result.num_racers_in_race_in_current_week}/#{Racer.in_stable.count})"
       clazz = num_races_yet_to_come.zero? ? 'all_races_done' : 'not_all_races_done'
     else
       display = "#{count_to_be_trained} / #{Racer.in_stable.count}"
