@@ -10,6 +10,7 @@ module ApplicationHelper
   end
 
   def weeks_in_ranch_class(racer)
+    return 'to_be_retired' if racer.to_be_retired?
     racer.weeks_in_ranch.yield_self { |w|
       racer.injury ? 'injured' : \
             w >  4 ? 'overstay_in_ranch' : \
