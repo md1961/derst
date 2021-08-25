@@ -39,7 +39,8 @@
           data-racer_id="<%= racer.id %>">
         <% prev_racer = racer -%>
         <td class="centered
-                   <%= racer.injury ? 'injured'
+                   <%= racer.to_be_retired? ? 'to_be_retired'
+                     : racer.injury ? 'injured'
                      : racer.expecting_race? ? 'expecting_race'
                      : racer.condition.nil? ? 'no_condition'
                      : '' %>">
@@ -80,7 +81,8 @@
         <td style="padding: 0;">
           <%= form_for_weekly_weight(racer) %>
         </td>
-        <td class="weight_best border_right_thick">
+        <td class="weight_best border_right_thick
+                   <%= racer.to_be_retired? ? 'to_be_retired' : '' %>">
           <%= racer.weight_best %>
         </td>
         <%= render partial: 'racers/coming_races', locals: {racer: racer, num_races: 2} %>
