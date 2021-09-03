@@ -193,6 +193,14 @@ class Racer < ApplicationRecord
       )
   end
 
+  def downgrade_two_in_summer?
+    age == 5 && ranch.month <= 7 \
+      && (
+           (grade.abbr == 'OP' && net_prize <= 1800) \
+        || (grade.abbr == '16' && net_prize <= 1000)
+      )
+  end
+
   def post_races
     results.map(&:post_race).compact
   end
