@@ -77,8 +77,10 @@ class Race < ApplicationRecord
               .before(month_week)
            )
     elsif racer.downgrade_in_summer?
-      before_downgrade_in_summer.for_age(age).where(grade: grades).unlimited_for(racer)
-        .or(downgrade_in_summer.for_age(age).where(grade: grade.one_down).unlimited_for(racer))
+      grades_down = [grade.one_down]
+      grades_down << grade.one_down.one_down if racer.downgrade_two_in_summer?
+      before_downgrade_in_summer.for_age(age).where(grade: grades     ).unlimited_for(racer)
+        .or( downgrade_in_summer.for_age(age).where(grade: grades_down).unlimited_for(racer))
     else
       for_age(age).where(grade: grades).unlimited_for(racer)
     end
