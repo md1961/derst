@@ -11,22 +11,26 @@ class RacerNameSample < ApplicationRecord
   after_initialize :name_to_katakana
 
   def self.most_similars(name, num = 10, sex: nil)
-    f_filter = case sex&.to_sym
-               when :male
-                 ->(sample) { !sample.female? }
-               when :female
-                 ->(sample) { !sample.male? }
-               else
-                 ->(sample) { true }
-               end
     all.find_all { |sample|
-      f_filter.call(sample)
+      f_filter_by_sex(sex).call(sample)
     }.map { |sample|
       [sample.name, normalized_distance(name, sample.name), name]
     }.sort_by { |_, distance, _|
       distance
     }.take(num)
   end
+
+    def self.f_filter_by_sex(sex)
+      case sex&.to_sym
+      when :male
+        ->(sample) { !sample.female? }
+      when :female
+        ->(sample) { !sample.male? }
+      else
+        ->(sample) { true }
+      end
+    end
+    private_class_method :f_filter_by_sex
 
   def self.group_by(item)
     order(:name).group_by(&item.to_sym).map { |item, samples| [item, samples] }.to_h
