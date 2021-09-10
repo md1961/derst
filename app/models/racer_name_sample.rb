@@ -10,6 +10,16 @@ class RacerNameSample < ApplicationRecord
 
   after_initialize :name_to_katakana
 
+  def self.all_by(sex: nil, num: 10, names_to_reject: [])
+    all.find_all { |sample|
+      f_filter_by_sex(sex).call(sample)
+    }.yield_self { |samples|
+      samples - names_to_reject
+    }.sort_by {
+      rand
+    }.take(num)
+  end
+
   def self.most_similars(name, num = 10, sex: nil)
     all.find_all { |sample|
       f_filter_by_sex(sex).call(sample)
