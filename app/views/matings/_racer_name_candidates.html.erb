@@ -4,6 +4,7 @@
   end
 -%>
 
+<% names_shown = [] -%>
 <table class="racer_name_candidates">
   <% @mating.racer_name_candidates(
        num: 25,
@@ -11,6 +12,7 @@
        sex: sex,
        names_to_reject: names_to_reject
      ).each do |name, distance, father_name| -%>
+    <% names_shown << name -%>
     <tr>
       <td class="link">
         <span class="dismiss button"
@@ -33,3 +35,7 @@
     </tr>
   <% end -%>
 </table>
+
+<div style="width: 300px; margin-top: 10px;">
+  <%= RacerNameSample.all_by(sex: sex, num: 10, names_to_reject: names_shown).join('、') %>
+</div>
