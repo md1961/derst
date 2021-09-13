@@ -24,7 +24,7 @@
           <td><%= link_to mare, matings_path(mare_id: mare), target: '_blank', tabindex: -1 %></td>
           <td class="age"><%= (ranch_mare || racer).age %></td>
           <td><%= !ranch_mare && racer&.to_be_retired? ? '引退' : '' %></td>
-          <td><%= mare.price %></td>
+          <td class="numeric"><%= mare.price %></td>
           <% mother = racer&.mother
              grandmother = mother&.racer_before_retire&.mother -%>
           <td><%= mother %></td>

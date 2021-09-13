@@ -55,13 +55,13 @@
           <% end -%>
           <% if sire = ranch_mare&.sire -%>
             <td class="<%= ranch_mare.child_status %>"><%= sire %></td>
-            <td class="default">
+            <td class="default" aria-label="<%= ranch_mare %>">
               <%= link_to '配合', ranch_mare, tabindex: -1 %>
             </td>
-            <td class="default">
+            <td class="default" aria-label="<%= ranch_mare %>">
               <%= link_to '誕生', new_racer_path(ranch_id: @ranch, father_id: sire, mother_id: mare), tabindex: -1 %>
             </td>
-            <td class="default">
+            <td class="default" aria-label="<%= ranch_mare %>">
               <%= link_to '削除', delete_sire_ranch_mare_path(ranch_mare), method: :patch, tabindex: -1 %>
             </td>
             <% sire_trait = sire.trait
@@ -92,14 +92,14 @@
           <% end -%>
           <td class="default"><%= ranch_mare.remark %></td>
         <% end -%>
-        <td>
+        <td aria-label="<%= ranch_mare %>">
           <%= link_to (@ranch ? '種付' : '配合'), matings_path(mare_id: mare, ranch_id: @ranch),
                                                     target: '_blank', tabindex: -1 %>
         </td>
         <% if @ranch -%>
-          <td>
+          <td aria-label="<%= "#{mare.name}を売却" %>">
             <%= button_to '売却', ranch_mare, method: :delete, tabindex: -1,
-                                    data: {confirm: "「#{mare.name}」を売却してよろしいですか?"} %>
+                                  data: {confirm: "「#{mare.name}」を売却してよろしいですか?"} %>
           </td>
         <% end -%>
       </tr>
