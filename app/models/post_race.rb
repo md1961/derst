@@ -30,10 +30,14 @@ class PostRace < ApplicationRecord
 
     def injure_racer
       return if description.blank?
+      racer = result.racer
       if description == '去勢'
-        result.racer.gelding!
+        racer.gelding!
         return
       end
-      result.racer.injure(description) if injury?
+      if injury?
+        racer.injure(description)
+        racer.target_races.destroy_all
+      end
     end
 end
