@@ -113,8 +113,12 @@
           <% @weeks_for_race_candidates.times do -%>
             <% races = races_by_week[month_week] || []
                races.sort_by! { |race|
-                 (race.course.area.location - @racer.stable.center.area.location).abs \
-                   - (race.month == 8 && @racer.stable.center.name == '栗東' && race.course.name == '小倉' ? 2 : 0)
+                 [
+                   race.grade.ordering,
+                   (race.course.area.location - @racer.stable.center.area.location).abs \
+                     - (race.month == 6 && @racer.stable.center.name == '栗東' && race.course.name == '中京' ? 2 : 0) \
+                     - (race.month == 8 && @racer.stable.center.name == '栗東' && race.course.name == '小倉' ? 2 : 0)
+                 ]
                } -%>
             <% if races.empty? -%>
               <tr>
