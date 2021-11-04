@@ -76,7 +76,7 @@
           <%= racer.to_be_retired? ? '－' : "#{racer.weeks_in_stable}w" %>
         </td>
         <td class="centered border_left_thick border_right_thick <%= racer.injury ? 'injured' : '' %>">
-          <%= racer.injury&.description&.sub(/、.*\z/, '') || racer.course_staying %>
+          <%= racer.injury&.description&.sub(/、.*\z/, '') || racer.course_staying || (racer.condition == '外' ? '海外' : nil) %>
         </td>
         <td style="padding: 0;">
           <%= form_for_weekly_weight(racer) %>
