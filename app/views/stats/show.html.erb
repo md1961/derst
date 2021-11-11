@@ -122,7 +122,7 @@
               <td class="numeric"><%= "#{result.age}歳" %></td>
               <td class="numeric"><%= year_month_week_display(result) %></td>
               <td class="numeric"><%= result.odds %></td>
-              <td class="numeric"><%= "(#{result.rank_odds}/#{result.num_racers})" %></td>
+              <td class="numeric"><%= "(#{result.rank_odds}人気/#{result.num_racers}頭)" %></td>
               <td><%= race_name_display(result.race) %></td>
             </tr>
           <% end -%>
