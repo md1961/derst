@@ -44,6 +44,25 @@ class Result < ApplicationRecord
     }
   end
 
+  def self.rivalries
+    includes(:racer, :race).group_by { |result|
+      [result.year, result.race]
+    }.find_all { |_, results|
+      results.size >= 2
+    }.flat_map { |_, results|
+      results.combination(2).to_a
+    }.group_by { |results|
+      results.map(&:racer_id).sort
+    }.sort_by { |_, array_of_results|
+      -array_of_results.size
+    }.tap { |results_by_racers|
+      array_of_results = results_by_racers.flat_map(&:last)
+      raise "Different races!" unless array_of_results.all? { |results|
+        results.size == 2 && results.map { |result| [result.year, result.race_id] }.uniq.size == 1
+      }
+    }
+  end
+
   def completed?
     num_racers.present? && place.present? && comment_race.present?
   end
