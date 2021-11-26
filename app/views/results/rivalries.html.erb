@@ -1,0 +1,26 @@
+<div class="results_rivalries">
+  <% @results_by_racers.each do |racer_ids, array_of_results| -%>
+    <% racers = racer_ids.map { |id| Racer.find(id) }.sort_by!(&:net_prize).reverse
+       array_of_results.sort_by! { |results| results.first.ordering } -%>
+    <table class="table_base">
+      <tr>
+        <td>
+        <% racers.each do |racer| -%>
+          <td><%= racer %></td>
+        <% end -%>
+      </tr>
+      <% array_of_results.each do |results| -%>
+        <% results_by_racer = results.map { |result| [result.racer, result] }.to_h -%>
+        <tr>
+          <td><%= results.first.race %></td>
+          <% racers.each do |racer| -%>
+            <% result = results_by_racer[racer] -%>
+            <td class="numeric">
+              <%= result.place.yield_self { |p| p > 16 ? '競走中止' : "#{p}着" } %>
+            </td>
+          <% end -%>
+        </tr>
+      <% end -%>
+    </table>
+  <% end -%>
+</div>

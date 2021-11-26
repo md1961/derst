@@ -68,7 +68,7 @@ Rails.application.routes.draw do
 
   resources :results, only: %i[index edit update destroy] do
     collection do
-      get :multiple_entries
+      get :multiple_entries, :rivalries
     end
   end
 

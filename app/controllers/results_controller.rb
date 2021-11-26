@@ -50,6 +50,12 @@ class ResultsController < ApplicationController
     @array_of_results = Result.multiple_entries
   end
 
+  def rivalries
+    @results_by_racers = Result.rivalries.find_all { |_, array_of_results|
+      array_of_results.size >= 5
+    }
+  end
+
   private
 
     def result_params
