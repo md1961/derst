@@ -88,6 +88,9 @@ $ ->
     filter()
 
 
+  $('#header_score').click()
+
+
   racer_name_candidates_to_reject = []
 
   $('table.racer_name_candidates span.dismiss').on 'click', ->
