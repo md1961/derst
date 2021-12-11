@@ -8,6 +8,7 @@ class RacersController < ApplicationController
       -racers.last.year_birth
     }.to_h
 
+    @html_title = '産駒一覧'
     @no_top_bar = true
   end
 
