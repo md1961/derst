@@ -11,10 +11,7 @@
     <% mare_from_mating = Mare.find_by_mating_of(@mare, @sire) -%>
     <% if mare_from_mating -%>
       <%= link_to '代重ね配合', matings_path(mare_id: mare_from_mating) %>
-    <% else -%>
-      <%= button_to '繁殖牝馬に', create_mare_mating_path(@mare, sire_id: @sire) %>
     <% end -%>
-    <%= link_to 'Back', matings_path(mare_id: @mare, ranch_id: @ranch&.id) %>
   </div>
 
   <% if @in_list && @mating_list.size > 1 -%>
