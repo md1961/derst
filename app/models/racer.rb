@@ -71,7 +71,7 @@ class Racer < ApplicationRecord
   end
 
   def self.any_expecting_race?
-    includes(:results).any?(&:expecting_race?)
+    in_stable.includes(:results).any?(&:expecting_race?)
   end
 
   def self.none_expecting_race?
