@@ -32,6 +32,18 @@ class Result < ApplicationRecord
   scope :num_races_yet_to_come    , -> { in_current_week.where(place: nil).num_races }
   scope :num_racers_in_race_in_current_week, -> { in_current_week.count }
 
+  def self.double_booked_jockeys
+    Result.includes(:race)
+          .where(place: nil)
+          .group_by(&:jockey_id)
+          .find_all { |_, results|
+            results.size >= 2
+          }.reject { |_, results|
+            races = results.map(&:race)
+            races.map(&:course_id).uniq.size == 1 && races.uniq.size == results.size
+          }.map(&:first).map { |id| Jockey.find(id) }
+  end
+
   def self.multiple_entries
     high_stake(1).includes(:racer, :race).group_by { |result|
       [result.year, result.race]
