@@ -1,8 +1,9 @@
-<% ranch = racer.ranch -%>
+<% ranch = racer.ranch
+   double_booked_jockeys = Result.double_booked_jockeys -%>
 
 <% racer.coming_races.map(&:race).sort_by { |race|
      race.month_week.ordering_from(ranch.month_week)
-   }.take(num_races).each do |race| -%>
+   }.take(num_races).each_with_index do |race, index| -%>
   <% n_weeks_between = (racer.results.empty? ? nil \
                         : race.month_week - racer.results.last.race.month_week).yield_self { |n_weeks|
        n_weeks = race.month_week - ranch.month_week if n_weeks && n_weeks > 4
@@ -15,4 +16,11 @@
   </td>
   <td class="numeric"><%= n_weeks_between %></td>
   <%= race_display(race, racer) %>
+  <% if Racer.any_expecting_race? && index.zero? -%>
+    <% jockey = racer.expecting_race? ? (racer.results.last.jockey || '−') : nil -%>
+    <td class="<%= double_booked_jockeys.include?(jockey) ? 'double_booked_jockey' : '' %>
+               centered">
+      <%= jockey %>
+    </td>
+  <% end -%>
 <% end -%>
