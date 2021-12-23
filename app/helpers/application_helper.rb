@@ -233,7 +233,10 @@ module ApplicationHelper
       return '－' if name == :place and result.place > 30
       result.send(name)
     elsif name == :jockey
-      f.select :jockey_id, options_for_select_for_jockey(result.jockey), {},
+      jockey = result.jockey
+      clazz = Result.double_booked_jockeys.include?(jockey) ? 'double_booked_jockey' : ''
+      f.select :jockey_id, options_for_select_for_jockey(jockey), {},
+                            class: clazz,
                             tabindex: in_paddock || inputting_result ? -1 : 0
     elsif result_attr_names_using_select.include?(name)
       f.select name, result_options_for_select_for(name), {},
