@@ -55,13 +55,13 @@
           <% end -%>
           <% if sire = ranch_mare&.sire -%>
             <td class="<%= ranch_mare.child_status %>"><%= sire %></td>
-            <td class="default" aria-label="<%= ranch_mare %>">
+            <td class="default" aria-label="<%= "#{ranch_mare} 配合" %>">
               <%= link_to '配合', ranch_mare, tabindex: -1 %>
             </td>
-            <td class="default" aria-label="<%= ranch_mare %>">
+            <td class="default" aria-label="<%= "#{ranch_mare} 誕生" %>">
               <%= link_to '誕生', new_racer_path(ranch_id: @ranch, father_id: sire, mother_id: mare), tabindex: -1 %>
             </td>
-            <td class="default" aria-label="<%= ranch_mare %>">
+            <td class="default" aria-label="<%= "#{ranch_mare} 受胎せず" %>">
               <%= link_to '削除', delete_sire_ranch_mare_path(ranch_mare), method: :patch, tabindex: -1 %>
             </td>
             <% sire_trait = sire.trait
@@ -92,7 +92,7 @@
           <% end -%>
           <td class="default"><%= ranch_mare.remark %></td>
         <% end -%>
-        <td aria-label="<%= ranch_mare %>">
+        <td aria-label="<%= "#{ranch_mare} 種付" %>">
           <%= link_to (@ranch ? '種付' : '配合'), matings_path(mare_id: mare, ranch_id: @ranch),
                                                     target: '_blank', tabindex: -1 %>
         </td>

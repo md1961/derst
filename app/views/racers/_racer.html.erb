@@ -85,11 +85,13 @@
       <td>
       <td class="border_right_thick">
     <% else -%>
+      <% racer_name = racer.name -%>
       <% clazz = "#{racer.to_be_trained? ? 'no_condition' : ''}" -%>
-      <td class="<%= clazz %>" aria-label="<%= racer.name %>">
+      <% tooltip = racer.in_ranch ? "#{racer_name} 入厩" : "#{racer_name} 放牧" -%>
+      <td class="<%= clazz %>" aria-label="<%= tooltip %>">
         <%= button_to_graze(racer) %>
       </td>
-      <% tooltip = racer.in_spa? ? "温泉 -> #{racer.name}" : "#{racer.name} -> 温泉" -%>
+      <% tooltip = racer.in_spa? ? "温泉 -> #{racer_name}" : "#{racer_name} -> 温泉" -%>
       <td class="<%= clazz %> border_right_thick" aria-label="<%= tooltip %>">
         <%= button_to_spa(racer) %>
       </td>
