@@ -146,6 +146,10 @@ class Race < ApplicationRecord
     grade.high_stake? && !oversea? && results.wins.empty?
   end
 
+  def oversea_step?
+    grade.g1? && !oversea? && (distance >= 2200 || name.starts_with?('天皇賞'))
+  end
+
   def prize_for(place)
     if grade.high_stake?
       raise "Not implemented for place #{place} of high-stake" if place > 2
