@@ -4,7 +4,7 @@ class Stable < ApplicationRecord
   has_many :racers
 
   def name_with_num_racers
-    "#{name} (#{racers.find_all(&:is_active).size})"
+    "#{name} (#{racers.find_all(&:is_active).size}) (#{jockeys.join(' ')})"
   end
 
   def to_s
