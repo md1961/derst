@@ -42,10 +42,10 @@ module Stats
 
   MIN_RACES_FOR_BEST_PCT = [10, 5]
 
-  def each_best_pct_of_equal_or_better_places_of(place, high_stakes: false, &block)
+  def each_best_pct_of_equal_or_better_places_of(place, high_stakes: false, n_grade: n_grade, &block)
     counter = Counter.new
     Racer.all.includes(results: {race: :grade}).map { |racer|
-      place_records = racer.place_records(high_stakes: high_stakes)
+      place_records = racer.place_records(high_stakes: high_stakes, n_grade: n_grade)
       num_races = place_records[0]
       if num_races < MIN_RACES_FOR_BEST_PCT[high_stakes ? 1 : 0]
         nil
