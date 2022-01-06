@@ -264,7 +264,7 @@ class Race < ApplicationRecord
     def load_of_age_constant(racer)
       age = racer.age
       value = if age <= 4
-                53
+                name == 'ラジオたんぱ賞' ? 52 : 53
               elsif (age == 5 && month >= 7) || (age == 6 && month <= 8)
                 55
               else
