@@ -30,7 +30,7 @@ class Result < ApplicationRecord
   scope :num_races, -> { joins(:race).select('races.id').distinct.count }
   scope :num_races_in_current_week, -> { in_current_week.num_races }
   scope :num_races_yet_to_come    , -> { in_current_week.where(place: nil).num_races }
-  scope :num_racers_in_race_in_current_week, -> { in_current_week.count }
+  scope :num_racers_in_race_in_current_week, -> { in_current_week.where(place: nil).count }
 
   def self.double_booked_jockeys
     Result.includes(:race)
