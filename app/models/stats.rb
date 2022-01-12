@@ -8,12 +8,13 @@ module Stats
   }
 
   def each_result_in_row_of_equal_or_better_place_of(place, high_stakes: false, n_grade: nil, &block)
+    counter = Counter.new
     Racer.all.includes(results: {race: :grade}).flat_map { |racer|
       racer.results.in_row_of_equal_or_better_place_of(place, high_stakes: high_stakes, n_grade: n_grade)
-    }.find_all { |results|
-      results.size >= MIN_IN_ROW_OF_PLACE[place][n_grade ? 2 : (high_stakes ? 1 : 0)]
     }.sort_by { |results|
       -results.size
+    }.take_while { |results|
+      counter.count(results.size)
     }.each(&block)
   end
 
