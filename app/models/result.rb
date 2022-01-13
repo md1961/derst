@@ -18,6 +18,10 @@ class Result < ApplicationRecord
     end
   }
 
+  scope :old_horse_race, -> {
+    joins(:race).where('races.age': %w[4U 5U])
+  }
+
   scope :in_current_week, ->(ranch = nil) {
     ranch = Ranch.last unless ranch
     Result.joins(:racer, :race)
