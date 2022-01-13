@@ -24,9 +24,11 @@ module Stats
     }.compact.sort_by(&:age_in_week).reverse.first(10).each(&block)
   end
 
-  def each_youngest_high_stake_win(&block)
+  def each_youngest_old_horse_g1_win(&block)
     Racer.all.includes(results: {race: :grade}).flat_map { |racer|
-      racer.results.high_stake.wins
+      racer.results.high_stake(1).wins.old_horse_race
+    }.reject { |result|
+      %w[エリザベス女王杯 フェブラリーS].include?(result.race.name)
     }.compact.sort_by(&:age_in_week).first(10).each(&block)
   end
 
