@@ -1,6 +1,10 @@
 <div class="stats_show">
   <div class="tab_navi">
-    <% %w[num_wins win_pcts wins_in_row oldest_wins highest_odds_wins].each do |name| -%>
+    <% %w[
+           g1_wins high_stake_wins allover_wins
+           num_wins win_pcts
+           wins_in_row oldest_wins highest_odds_wins
+         ].each do |name| -%>
       <span class="tab">
         <% label = name.titleize -%>
         <%= link_to_unless(name == @name, label, stats_path(name: name)) do -%>
