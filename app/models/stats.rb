@@ -7,6 +7,19 @@ module Stats
     3 => [10, 8, 5]
   }
 
+  def each_most_races(high_stakes: false, n_grade: nil, &block)
+    counter = Counter.new
+    Racer.all.includes(results: {race: :grade}).map { |racer|
+      results = racer.results
+      results = results.high_stake(n_grade) if high_stakes
+      [racer, results.find_all(&:completed?).size]
+    }.sort_by { |_, num|
+      -num
+    }.take_while { |_, num|
+      counter.count(num)
+    }.each(&block)
+  end
+
   def each_result_in_row_of_equal_or_better_place_of(place, high_stakes: false, n_grade: nil, &block)
     counter = Counter.new
     Racer.all.includes(results: {race: :grade}).flat_map { |racer|
