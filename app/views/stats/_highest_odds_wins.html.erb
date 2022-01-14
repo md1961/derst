@@ -1,0 +1,22 @@
+<div class="stats_highest_odds_wins">
+  <div class="row">
+    <% [[false, nil], [true, nil], [true, 1]].each do |high_stakes, n_grade| -%>
+      <table>
+        <caption>
+          <%= "最高オッズ#{high_stakes ? (n_grade ? "G1" : "重賞") : ""}勝利" %>
+        </caption>
+        <tbody>
+          <% Stats.each_highest_odds_wins(high_stakes: high_stakes, n_grade: n_grade) do |result| -%>
+            <tr>
+              <td><%= result.racer %></td>
+              <td class="numeric"><%= "#{result.age}歳" %></td>
+              <td class="numeric"><%= year_month_week_display(result) %></td>
+              <td class="numeric"><%= result.odds %></td>
+              <td class="numeric"><%= "(#{result.rank_odds}人気/#{result.num_racers}頭)" %></td>
+              <td><%= race_name_display(result.race) %></td>
+            </tr>
+          <% end -%>
+        </tbody>
+    <% end -%>
+  </div>
+</div>

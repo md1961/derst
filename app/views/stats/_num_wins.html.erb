@@ -1,0 +1,22 @@
+<div class="stats_num_wins">
+  <div class="row">
+    <% [[false, nil], [true, nil], [true, 1]].each do |high_stakes, n_grade| -%>
+      <% [1, 2, 3].each do |place| -%>
+        <table>
+          <caption>
+            <%= "#{high_stakes ? (n_grade ? "G1 " : "重賞 ") : ""}#{{1 => "勝利数", 2 => "連対数", 3 => "複勝数"}[place]}" %>
+          </caption>
+          <tbody>
+            <% Stats.each_most_number_of_equal_or_better_places_of(
+                  place, high_stakes: high_stakes, n_grade: n_grade) do |racer, number| -%>
+              <tr>
+                <td><%= racer %></td>
+                <td class="numeric"><%= number %></td>
+              </tr>
+            <% end -%>
+          </tbody>
+        </table>
+      <% end -%>
+    <% end -%>
+  </div>
+</div>
