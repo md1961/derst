@@ -1,5 +1,16 @@
 <div class="stats_show">
-  <% %w[num_wins win_pcts wins_in_row oldest_wins highest_odds_wins].each do |name| -%>
-    <%= render name %>
+  <div class="tab_navi">
+    <% %w[num_wins win_pcts wins_in_row oldest_wins highest_odds_wins].each do |name| -%>
+      <span class="tab">
+        <% label = name.titleize -%>
+        <%= link_to_unless(name == @name, label, stats_path(name: name)) do -%>
+          <span class="current"><%= label %></span>
+        <% end -%>
+      </span>
+    <% end -%>
+  </div>
+
+  <% if @name -%>
+    <%= render @name %>
   <% end -%>
 </div>

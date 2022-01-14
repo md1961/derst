@@ -1,5 +1,17 @@
 div.stats_show {
 
+  div.tab_navi {
+    margin-bottom: 10px;
+
+    span.tab {
+      margin-right: 5px;
+
+      span.current {
+        font-weight: bold;
+      }
+    }
+  }
+
   div.row {
     display: flex;
     margin-bottom: 10px;
