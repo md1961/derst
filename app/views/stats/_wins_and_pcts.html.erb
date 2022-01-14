@@ -1,0 +1,54 @@
+<div class="stats_wins_and_pcts">
+  <% kind = "#{high_stakes ? (n_grade ? "G1 " : "重賞 ") : ""}" -%>
+
+  <div class="row">
+    <table>
+      <caption>
+        <%= "#{kind}出走数" %>
+      </caption>
+      <tbody>
+        <% Stats.each_most_races(high_stakes: high_stakes, n_grade: n_grade) do |racer, number| -%>
+          <tr>
+            <td><%= racer %></td>
+            <td class="numeric"><%= number %></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+
+    <% [1, 2, 3].each do |place| -%>
+      <table>
+        <caption>
+          <%= "#{kind}#{{1 => "勝利数", 2 => "連対数", 3 => "複勝数"}[place]}" %>
+        </caption>
+        <tbody>
+          <% Stats.each_most_number_of_equal_or_better_places_of(
+                place, high_stakes: high_stakes, n_grade: n_grade) do |racer, number| -%>
+            <tr>
+              <td><%= racer %></td>
+              <td class="numeric"><%= number %></td>
+            </tr>
+          <% end -%>
+        </tbody>
+      </table>
+    <% end -%>
+
+    <% [1, 2, 3].each do |place| -%>
+      <table>
+        <caption>
+          <%= "#{kind}#{{1 => "勝率", 2 => "連対率", 3 => "複勝率"}[place]}" %>
+        </caption>
+        <tbody>
+          <% Stats.each_best_pct_of_equal_or_better_places_of(
+                place, high_stakes: high_stakes, n_grade: n_grade) do |racer, num_places, num_races| -%>
+            <tr>
+              <td><%= racer %></td>
+              <td class="numeric close_to_right"><%= sprintf("%5.3f", num_places.to_f / num_races) %></td>
+              <td class="numeric"><%= sprintf("(%2d/%2d)", num_places, num_races) %></td>
+            </tr>
+          <% end -%>
+        </tbody>
+      </table>
+    <% end -%>
+  <div class="row">
+</div>
