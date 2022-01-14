@@ -1,23 +1,29 @@
 <div class="stats_oldest_wins">
   <div class="row">
-    <table class="youngest_old_horse_g1_wins">
-      <caption>最年少古馬G1勝利</caption>
-      <tbody>
-        <% Stats.each_youngest_old_horse_g1_win_by_race do |race, results| -%>
-          <tr>
-            <td colspan="2" class="race">
-              <%= "#{race.name}（#{results.first.age}歳）" %>
-            </td>
-          </tr>
-          <% results.each do |result| -%>
+    <% is_first_half = true -%>
+    <% Stats.each_youngest_old_horse_g1_win_by_race.partition { |race, results|
+         race.month <= 9 || (race.month == 10 && race.week == 1)
+       }.each do |results_by_race| -%>
+      <table class="youngest_old_horse_g1_wins">
+        <caption><%= is_first_half ? '最年少古馬G1勝利' : '　' %></caption>
+        <% is_first_half = false -%>
+        <tbody>
+         <% results_by_race.each do |race, results| -%>
             <tr>
-              <td class="year"><%= result.year %></td>
-              <td><%= result.racer %></td>
+              <td colspan="2" class="race">
+                <%= "#{race.name}（#{results.first.age}歳）" %>
+              </td>
             </tr>
+            <% results.each do |result| -%>
+              <tr>
+                <td class="year"><%= result.year %></td>
+                <td><%= result.racer %></td>
+              </tr>
+            <% end -%>
           <% end -%>
-        <% end -%>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    <% end -%>
 
     <table>
       <caption>最年長重賞勝利</caption>
