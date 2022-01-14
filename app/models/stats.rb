@@ -37,12 +37,22 @@ module Stats
     }.compact.sort_by(&:age_in_week).reverse.first(10).each(&block)
   end
 
-  def each_youngest_old_horse_g1_win(&block)
-    Racer.all.includes(results: {race: :grade}).flat_map { |racer|
-      racer.results.high_stake(1).wins.old_horse_race
-    }.reject { |result|
-      %w[エリザベス女王杯 フェブラリーS].include?(result.race.name)
-    }.compact.sort_by(&:age_in_week).first(10).each(&block)
+  def each_youngest_old_horse_g1_win_by_race(&block)
+    Result.includes(:racer, race: :grade)
+          .high_stake(1).wins.old_horse_race
+          .group_by(&:race).map { |race, results|
+      [
+        race,
+        results.sort_by(&:age_in_week).yield_self { |results|
+          youngest = results.first
+          results.find_all { |result|
+            result.age_in_week == youngest.age_in_week
+          }.sort_by(&:year)
+        }
+      ]
+    }.sort_by { |race, _|
+      [race.month, race.week]
+    }.each(&block)
   end
 
   def each_most_number_of_equal_or_better_places_of(place, high_stakes: false, n_grade: nil, &block)

@@ -30,12 +30,28 @@ div.stats_show {
       padding-right: 10px;
     }
 
+    td:not(.results) {
+      white-space: nowrap;
+    }
+
     td.close_to_right {
       padding-right: 0;
     }
 
-    td:not(.results) {
-      white-space: nowrap;
+    &.youngest_old_horse_g1_wins {
+
+      td.race {
+        padding-top: 5px;
+      }
+
+      td.year {
+        text-align: right;
+        padding-left: 10px;
+
+        &:after {
+          content: '年';
+        }
+      }
     }
   }
 
