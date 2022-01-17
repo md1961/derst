@@ -24,6 +24,10 @@
     </div>
   </div>
 
+  <div class="notice">
+    <%= notice(@ranch_mare.ranch) %>
+  </div>
+
   <div class="mating">
     <% if @ranch_mare.sire -%>
       <% names_for_candidates = StringUtil.extract_horse_names(@ranch_mare.remark) -%>
