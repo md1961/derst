@@ -148,7 +148,6 @@ module ApplicationHelper
     return nil unless key
     warning = ""
     if key.to_s =~ /(?:sale|birth)\z/
-      ranch = @ranch || @racer.ranch
       vacancy = if key == :mare_sale
                   ranch.max_mares - ranch.ranch_mares.count
                 else
