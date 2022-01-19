@@ -31,22 +31,22 @@ module Stats
     }.each(&block)
   end
 
-  def each_oldest_high_stake_win(n_grade: nil, &block)
+  def each_oldest_high_stake_win(&block)
     Racer.all.includes(results: {race: :grade}).flat_map { |racer|
-      racer.results.high_stake(n_grade).wins
+      racer.results.high_stake.wins
     }.compact.sort_by(&:age_in_week).reverse.first(10).each(&block)
   end
 
-  def each_youngest_old_horse_g1_win_by_race(&block)
+  def each_youngest_or_oldest_old_horse_g1_win_by_race(youngest: true, &block)
     Result.includes(:racer, race: :grade)
           .high_stake(1).wins.old_horse_race
           .group_by(&:race).map { |race, results|
       [
         race,
         results.sort_by(&:age_in_week).yield_self { |results|
-          youngest = results.first
+          target = youngest ? results.first : results.last
           results.find_all { |result|
-            result.age_in_week == youngest.age_in_week
+            result.age_in_week == target.age_in_week
           }.sort_by(&:year)
         }
       ]

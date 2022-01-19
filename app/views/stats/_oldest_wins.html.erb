@@ -1,48 +1,37 @@
 <div class="stats_oldest_wins">
   <div class="row">
-    <% is_first_half = true -%>
-    <% Stats.each_youngest_old_horse_g1_win_by_race.partition { |race, results|
-         race.month <= 9 || (race.month == 10 && race.week == 1)
-       }.each do |results_by_race| -%>
-      <table class="youngest_old_horse_g1_wins">
-        <caption><%= is_first_half ? '最年少古馬G1勝利' : '　' %></caption>
-        <% is_first_half = false -%>
-        <tbody>
-         <% results_by_race.each do |race, results| -%>
-            <tr>
-              <td colspan="2" class="race">
-                <%= "#{race.name}（#{results.first.age}歳）" %>
-              </td>
-            </tr>
-            <% results.each do |result| -%>
+    <% [true, false].each do |youngest| -%>
+      <% is_first_half = true -%>
+      <% Stats.each_youngest_or_oldest_old_horse_g1_win_by_race(youngest: youngest).partition { |race, results|
+           race.month <= 9 || (race.month == 10 && race.week == 1)
+         }.each do |results_by_race| -%>
+        <table class="youngest_or_oldest_old_horse_g1_wins">
+          <% caption = "最年#{youngest ? '少' : '長'}古馬G1勝利" -%>
+          <caption><%= is_first_half ? caption : '　' %></caption>
+          <% is_first_half = false -%>
+          <tbody>
+           <% results_by_race.each do |race, results| -%>
               <tr>
-                <td class="year"><%= result.year %></td>
-                <td><%= result.racer %></td>
+                <td colspan="2" class="race">
+                  <%= "#{race.name}（#{results.first.age}歳）" %>
+                </td>
               </tr>
+              <% results.each do |result| -%>
+                <tr>
+                  <td class="year"><%= result.year %></td>
+                  <td><%= result.racer %></td>
+                </tr>
+              <% end -%>
             <% end -%>
-          <% end -%>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      <% end -%>
     <% end -%>
 
     <table>
       <caption>最年長重賞勝利</caption>
       <tbody>
         <% Stats.each_oldest_high_stake_win do |result| -%>
-          <tr>
-            <td><%= result.racer %></td>
-            <td class="numeric"><%= "#{result.age}歳" %></td>
-            <td class="numeric"><%= year_month_week_display(result) %></td>
-            <td><%= race_name_display(result.race) %></td>
-          </tr>
-        <% end -%>
-      </tbody>
-    </table>
-
-    <table>
-      <caption>最年長G1勝利</caption>
-      <tbody>
-        <% Stats.each_oldest_high_stake_win(n_grade: 1) do |result| -%>
           <tr>
             <td><%= result.racer %></td>
             <td class="numeric"><%= "#{result.age}歳" %></td>
