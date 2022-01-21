@@ -2,7 +2,7 @@ class RanchSiresController < ApplicationController
   before_action :set_ranch
 
   def index
-    @ranch_sires = @ranch.ranch_sires
+    @ranch_sires = @ranch.ranch_sires.order(:year_leased)
     @html_title = '海外種牡馬'
   end
 
