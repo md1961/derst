@@ -39,6 +39,10 @@ class Ranch < ApplicationRecord
       end
     end
 
+    if month == 6
+      RanchSire.destroy_lease_expiring
+    end
+
     courses_current = courses_with_races
     course_current_hokkaido = courses_current.detect(&:hokkaido?)
     RacerTrip.find_each do |trip|
