@@ -14,6 +14,7 @@ ja:
       other: "牧場の空きは %{count}頭分あります。"
   activerecord:
     models:
+      racer: 競走馬
     attributes:
       sire_trait:
         lineage: 系統
@@ -33,6 +34,11 @@ ja:
         rating: 評価
         type: タイプ
       racer:
+        name: 馬名
+        sex: 性別
+        father: 父
+        mother: 母
+        age: 年齢
         comment_age2: ２歳時
         comment_age3: ３歳時
         stable:       厩舎

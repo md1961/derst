@@ -1,6 +1,6 @@
 <div class="racers_form">
   <%= form_with model: @racer, local: true do |f| %>
-    <%= @racer.errors unless @racer.errors.empty? %>
+    <%= error_messages_for(@racer) %>
 
     <div class="field">
       <%= f.label :name %>
