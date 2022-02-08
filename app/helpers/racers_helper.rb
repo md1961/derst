@@ -14,6 +14,12 @@ module RacersHelper
     ], '<br>'.html_safe)
   end
 
+  def mare_display(mare)
+    name_display = mare&.name || ''
+    name_display += "（繁殖）" if RanchMare.all.map(&:mare).include?(mare)
+    safe_join([name_display, mare_trait_display(mare)], '<br>'.html_safe)
+  end
+
   def mare_trait_display(mare)
     return "" if mare.nil? || mare.speed.nil?
     "スピード #{mare.speed}、スタミナ #{mare.stamina}"

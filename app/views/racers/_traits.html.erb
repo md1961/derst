@@ -20,11 +20,11 @@
     </tr>
     <tr>
       <th>母</th>
-      <td><%= safe_join([mother&.name, mare_trait_display(mother)], '<br>'.html_safe) %></td>
+      <td><%= mare_display(mother) %></td>
     </tr>
     <tr>
       <th>母父</th>
-      <td><%= sire_display(@racer.mother&.father) %></td>
+      <td><%= sire_display(mother&.father) %></td>
     </tr>
   </table>
 
@@ -69,7 +69,7 @@
 
     <div class="links" style="display: flex;">
       <% if @racer.stable -%>
-        <%= link_to '配合', mating_path(@racer.mother, sire_id: @racer.father.id),
+        <%= link_to '配合', mating_path(mother, sire_id: @racer.father.id),
                             target: '_blank', tabindex: -1 %>
       <% end -%>
       <% if mare = @racer.mare -%>
