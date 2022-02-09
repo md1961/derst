@@ -65,19 +65,29 @@ class RacersController < ApplicationController
 
   def new
     @racer = Racer.new(params.permit(:ranch_id, :father_id, :mother_id))
-    ranch_mare = @racer.ranch.ranch_mares.find_by(mare: @racer.mother, sire: @racer.father)
-    @racer.age = ranch_mare ? 1 : 2
-    @remark = ranch_mare&.remark
+    prepare_for_new
   end
+
+    def prepare_for_new
+      ranch_mare = @racer.ranch.ranch_mares.find_by(mare: @racer.mother, sire: @racer.father)
+      @racer.age = ranch_mare ? 1 : 2
+      @remark = ranch_mare&.remark
+    end
+    private :prepare_for_new
 
   def create
     @racer = Racer.new(racer_params)
     ranch_mare = @racer.ranch.ranch_mares.find_by(mare: @racer.mother, sire: @racer.father)
-    ApplicationRecord.transaction do
-      @racer.save!
-      ranch_mare&.update!(sire: nil)
-      ranch_mare&.default_child_status!
-      redirect_to @racer.ranch
+    begin
+      ApplicationRecord.transaction do
+        @racer.save!
+        ranch_mare&.update!(sire: nil)
+        ranch_mare&.default_child_status!
+        redirect_to @racer.ranch
+      end
+    rescue ActiveRecord::RecordInvalid
+      prepare_for_new
+      render :new
     end
   end
 
