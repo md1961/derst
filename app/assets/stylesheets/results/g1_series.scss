@@ -1,0 +1,17 @@
+.results_g1_series_show {
+
+  table {
+
+    td.race_name {
+      padding-left: 10px;
+    }
+
+    td.place {
+      text-align: right;
+
+      &:after {
+        content: '着';
+      }
+    }
+  }
+}

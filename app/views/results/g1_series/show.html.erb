@@ -1,0 +1,15 @@
+<div class="results_g1_series_show">
+  <% @h_results.each do |name, array_of_results| -%>
+    <table>
+      <% array_of_results.each do |results| -%>
+        <tr>
+          <td><%= results.first.racer %></td>
+          <% results.each do |result| -%>
+            <td class="race_name"><%= result.race.name %></td>
+            <td class="place"><%= result.place %></td>
+          <% end -%>
+        </tr>
+      <% end -%>
+    </table>
+  <% end -%>
+</div>
