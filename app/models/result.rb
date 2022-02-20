@@ -79,6 +79,31 @@ class Result < ApplicationRecord
     }
   end
 
+  H_G1_SERIES_RACES = {
+    牡馬三冠: %w[皐月賞 日本ダービー 菊花賞],
+    牝馬三冠: %w[桜花賞 オークス 秋華賞],
+    秋季三冠: %w[天皇賞(秋) ジャパンC 有馬記念],
+  }
+
+  def self.g1_series
+    array_of_results_by_racer_and_year = includes(:racer, :race).high_stake(1).group_by { |result|
+      [result.racer.id, result.year]
+    }.values
+
+    H_G1_SERIES_RACES.map { |series_name, race_names|
+      [
+        series_name,
+        array_of_results_by_racer_and_year.map { |results|
+          results.find_all { |result|
+            race_names.include?(result.race.name)
+          }
+        }.reject { |results|
+          results.size < race_names.size
+        }
+      ]
+    }.to_h
+  end
+
   def completed?
     num_racers.present? && place.present? && comment_race.present?
   end
