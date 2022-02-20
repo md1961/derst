@@ -86,7 +86,7 @@ module Stats
   end
 
   def each_highest_odds_wins(high_stakes: false, n_grade: nil, &block)
-    counter = Counter.new
+    counter = Counter.new(20)
     results = high_stakes ? Result.high_stake(n_grade) : Result.all
     results.wins.reject { |result|
       result.odds.blank?
