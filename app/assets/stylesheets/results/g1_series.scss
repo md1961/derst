@@ -1,6 +1,15 @@
 .results_g1_series_show {
 
   table {
+    margin-bottom: 10px;
+
+    caption {
+      text-align: left;
+    }
+
+    td.racer_name {
+      padding-left: 10px;
+    }
 
     td.race_name {
       padding-left: 10px;
