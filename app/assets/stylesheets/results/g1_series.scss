@@ -36,6 +36,28 @@
       }
     }
 
+    td.odds {
+      text-align: right;
+      padding-right: 0;
+
+      &:before {
+        content: '(';
+      }
+
+      &:after {
+        content: '/';
+      }
+    }
+
+    td.rank_odds {
+      text-align: right;
+      padding-left: 0;
+
+      &:after {
+        content: '人気)';
+      }
+    }
+
     td.achieved {
       font-weight: bold;
     }
