@@ -4,10 +4,13 @@
       <caption><%= name %></caption>
       <% array_of_results.each do |results| -%>
         <tr>
-          <td class="racer_name"><%= results.first.racer %></td>
+          <% clazz = results.map(&:place).all? { |p| p == 1 } ? 'achieved' : '' -%>
+          <td class="<%= clazz %> racer_name"><%= results.map(&:racer).uniq.join(',') %></td>
+          <td class="year"><%= results.map(&:year).uniq.join(',') %></td>
           <% results.each do |result| -%>
-            <td class="race_name"><%= result.race.name %></td>
-            <td class="place"><%= result.place %></td>
+            <% clazz = result.place == 1 ? 'win' : result.place == 2 ? 'runner_up' : '' -%>
+            <td class="<%= clazz %> race_name"><%= result.race.name %></td>
+            <td class="<%= clazz %> place"    ><%= result.place %></td>
           <% end -%>
         </tr>
       <% end -%>

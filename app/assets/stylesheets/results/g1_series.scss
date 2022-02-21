@@ -11,6 +11,15 @@
       padding-left: 10px;
     }
 
+    td.year {
+      text-align: right;
+      padding-left: 5px;
+
+      &:after {
+        content: '年';
+      }
+    }
+
     td.race_name {
       padding-left: 10px;
     }
@@ -21,6 +30,18 @@
       &:after {
         content: '着';
       }
+
+      &.runner_up {
+        font-weight: bold;
+      }
+    }
+
+    td.achieved {
+      font-weight: bold;
+    }
+
+    td.win {
+      font-weight: bold;
     }
   }
 }
