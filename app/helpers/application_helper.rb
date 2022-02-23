@@ -380,6 +380,7 @@ module ApplicationHelper
                                         : ['放牧',   graze_racer_path(racer), ''        ]
     ranch = @ranch || racer.ranch
     disabled = @racer_id_to_edit.to_i > 0 \
+            || racer.expecting_race? \
             || (label == '放牧' && Racer.num_in_ranch  == ranch.max_racers) \
             || (label == '入厩' && Racer.num_in_stable == ranch.max_stable)
     button_to label, path, method: :patch, disabled: disabled, class: clazz, tabindex: -1
@@ -392,6 +393,7 @@ module ApplicationHelper
                                        : [label_to_spa,     spa_racer_path(racer), ''      ]
     ranch = @ranch || racer.ranch
     disabled = @racer_id_to_edit.to_i > 0 \
+            || racer.expecting_race? \
             || ( racer.in_spa? && Racer.num_in_stable == ranch.max_stable) \
             || (!racer.in_spa? && Racer.num_in_spa    == ranch.max_spa)
     button_to label, path, method: :patch, disabled: disabled, class: clazz + ' button_to_spa', tabindex: -1
