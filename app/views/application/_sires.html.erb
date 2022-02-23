@@ -83,7 +83,9 @@
          fee = sire.trait.fee
          ranch_sire = sire.ranch_sires.first -%>
       <tr data-fee="<%= ranch_sire ? 999999 : fee %>"
-          class="<%= fee == 2500 ? 'border_top_thick' : fee == 1000 ? 'border_bottom_thick' : '' %>">
+          class="<%= sire.name == 'サンデーサイレンス' ? 'border_top_thick' \
+                   : sire.name == 'リアルシャダイ'     ? 'border_bottom_thick' \
+                   : '' %>">
         <td class="numeric">
           <% path = @mare ? mating_path(@mare, sire_id: sire.id, ranch_id: @ranch&.id) \
                           : sire -%>
