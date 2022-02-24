@@ -107,6 +107,13 @@ tbody tr:hover {
   .rails_env {
     margin-left: auto;
     color: gray;
+
+    &.development {
+      font-size: 2.0em;
+      font-weight: bold;
+      color: black;
+      margin-right: 80px;
+    }
   }
 }
 
