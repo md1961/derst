@@ -3,8 +3,12 @@ class Stable < ApplicationRecord
   has_many :jockeys
   has_many :racers
 
+  def num_racers
+    racers.find_all(&:is_active).size
+  end
+
   def name_with_num_racers
-    "#{name} (#{racers.find_all(&:is_active).size}) (#{jockeys.join(' ')})"
+    "#{name} (#{num_racers}) (#{jockeys.join(' ')})"
   end
 
   def to_s
