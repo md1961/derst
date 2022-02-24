@@ -99,7 +99,7 @@ module ApplicationHelper
     elsif name == :stable
       options = Stable.all.group_by(&:center).map { |center, stables|
         [
-          center.name,
+          center.name_with_num_racers,
           stables.map { |stable| [stable.name_with_num_racers, stable.id] }
         ]
       }
