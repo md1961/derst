@@ -7,15 +7,20 @@
           <% clazz = results.map(&:place).all? { |p| p == 1 } ? 'achieved' : '' -%>
           <td class="<%= clazz %> racer_name"><%= results.map(&:racer).uniq.join(',') %></td>
           <td class="year"><%= results.map(&:year).uniq.join(',') %></td>
-          <% results.each do |result| -%>
-            <% clazz = result.place == 1 ? 'win' : result.place == 2 ? 'runner_up' : '' -%>
-            <td class="<%= clazz %> race_name"><%= result.race.name %></td>
-            <td class="<%= clazz %> place"    ><%= result.place %></td>
-            <td class="odds"><%= result.odds %></td>
-            <td class="rank_odds"><%= result.rank_odds %></td>
-            <td class="comment_race"><%= result.comment_race %></td>
+          <% results.insert(2, nil) if name == :古馬五冠 -%>
+          <% results.first(3).each do |result| -%>
+            <% next unless result -%>
+            <%= render partial: 'results/g1_series/result', locals: {result: result} %>
           <% end -%>
         </tr>
+        <% if name == :古馬五冠 -%>
+          <tr class="border_bottom">
+            <td colspan="2">
+            <% results.last(3).each do |result| -%>
+              <%= render partial: 'results/g1_series/result', locals: {result: result} %>
+            <% end -%>
+          </tr>
+        <% end -%>
       <% end -%>
     </table>
   <% end -%>

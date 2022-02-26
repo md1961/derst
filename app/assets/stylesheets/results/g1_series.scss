@@ -1,6 +1,7 @@
 .results_g1_series_show {
 
   table {
+    border-collapse: collapse;
     margin-bottom: 10px;
 
     caption {
@@ -68,6 +69,10 @@
 
     td.win {
       font-weight: bold;
+    }
+
+    .border_bottom {
+      border-bottom: solid 1px black;
     }
   }
 }
