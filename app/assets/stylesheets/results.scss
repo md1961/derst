@@ -110,6 +110,14 @@ table.g1_records {
     }
   }
 
+  td.age {
+    text-align: right;
+
+    &:after {
+      content: '歳';
+    }
+  }
+
   td.place {
     text-align: right;
 

@@ -7,6 +7,7 @@
       <td class="race_name"><%= results.map(&:race).map(&:name).uniq.join('、') %></td>
       <% results.each do |result| -%>
         <td class="year"><%= result.year %></td>
+        <td class="age"><%= result.age %></td>
         <td class="odds"><%= result.odds %></td>
         <td class="rank_odds"><%= result.rank_odds %></td>
         <td class="comment_race"><%= result.comment_race %></td>
