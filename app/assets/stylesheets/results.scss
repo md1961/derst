@@ -98,3 +98,45 @@
 .frame_color8 {
   background-color: #FFD0E0;
 }
+
+
+table.g1_records {
+
+  td.year {
+    text-align: right;
+
+    &:after {
+      content: '年';
+    }
+  }
+
+  td.place {
+    text-align: right;
+
+    &:after {
+      content: '着';
+    }
+  }
+
+  td.odds {
+    text-align: right;
+    padding-right: 0;
+
+    &:before {
+      content: '(';
+    }
+
+    &:after {
+      content: '/';
+    }
+  }
+
+  td.rank_odds {
+    text-align: right;
+    padding-left: 0;
+
+    &:after {
+      content: '人気)';
+    }
+  }
+}

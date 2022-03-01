@@ -17,50 +17,15 @@
     }
 
     td.year {
-      text-align: right;
       padding-left: 5px;
-
-      &:after {
-        content: '年';
-      }
     }
 
     td.race_name {
       padding-left: 10px;
     }
 
-    td.place {
-      text-align: right;
-
-      &:after {
-        content: '着';
-      }
-
-      &.runner_up {
-        font-weight: bold;
-      }
-    }
-
-    td.odds {
-      text-align: right;
-      padding-right: 0;
-
-      &:before {
-        content: '(';
-      }
-
-      &:after {
-        content: '/';
-      }
-    }
-
-    td.rank_odds {
-      text-align: right;
-      padding-left: 0;
-
-      &:after {
-        content: '人気)';
-      }
+    td.place.runner_up {
+      font-weight: bold;
     }
 
     td.achieved {
