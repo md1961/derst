@@ -79,6 +79,17 @@ class Result < ApplicationRecord
     }
   end
 
+  def self.multiple_same_g1_race_winners
+    high_stake(1).wins.includes(:race, :racer).group_by { |result|
+      [result.racer, result.race]
+    }.find_all { |_, results|
+      results.size >= 2
+    }.map { |(racer, race), results|
+      [racer, results]
+      # "#{racer}: #{race.name} #{results.map { |result| "#{result.age}歳" }.join(', ')}"
+    }.to_h
+  end
+
   H_G1_SERIES_RACES = {
     牡馬三冠: %w[皐月賞 日本ダービー 菊花賞],
     牝馬三冠: %w[桜花賞 オークス 秋華賞],
