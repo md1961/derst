@@ -1,0 +1,18 @@
+<div class="results_same_g1_wins_show">
+
+<table class="g1_records">
+  <% @results_by_racer.each do |racer, results| -%>
+    <tr>
+      <td class="racer_name"><%= racer %></td>
+      <td class="race_name"><%= results.map(&:race).map(&:name).uniq.join('、') %></td>
+      <% results.each do |result| -%>
+        <td class="year"><%= result.year %></td>
+        <td class="odds"><%= result.odds %></td>
+        <td class="rank_odds"><%= result.rank_odds %></td>
+        <td class="comment_race"><%= result.comment_race %></td>
+      <% end -%>
+    </tr>
+  <% end -%>
+</table>
+
+</div>
