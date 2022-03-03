@@ -1,5 +1,9 @@
 module StatsHelper
 
+  def racer_as_link(racer)
+    link_to racer.name, racer, target: '_blank', class: 'no_style'
+  end
+
   def age_range_display(results)
     [results.first, results.last].map(&:age).uniq.map { |age| "#{age}歳" }.join('～')
   end
