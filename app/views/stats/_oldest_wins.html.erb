@@ -19,7 +19,7 @@
               <% results.each do |result| -%>
                 <tr>
                   <td class="year"><%= result.year %></td>
-                  <td><%= result.racer %></td>
+                  <td><%= racer_as_link(result.racer) %></td>
                 </tr>
               <% end -%>
             <% end -%>
@@ -33,7 +33,7 @@
       <tbody>
         <% Stats.each_oldest_high_stake_win do |result| -%>
           <tr>
-            <td><%= result.racer %></td>
+            <td><%= racer_as_link(result.racer) %></td>
             <td class="numeric"><%= "#{result.age}歳" %></td>
             <td class="numeric"><%= year_month_week_display(result) %></td>
             <td><%= race_name_display(result.race) %></td>

@@ -11,7 +11,7 @@
                   place, high_stakes: high_stakes, n_grade: n_grade) do |results| -%>
               <tr>
                 <td class="numeric"><%= results.size %></td>
-                <td><%= results.first.racer %></td>
+                <td><%= racer_as_link(results.first.racer) %></td>
                 <td class="centered"><%= age_range_display(results) %></td>
                 <td class="centered"><%= week_range_display(results) %></td>
                 <td class="results"><%= races_display(results) %></td>

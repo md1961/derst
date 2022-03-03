@@ -10,7 +10,7 @@
             <% Stats.each_most_number_of_equal_or_better_places_of(
                   place, high_stakes: high_stakes, n_grade: n_grade) do |racer, number| -%>
               <tr>
-                <td><%= racer %></td>
+                <td><%= racer_as_link(racer) %></td>
                 <td class="numeric"><%= number %></td>
               </tr>
             <% end -%>

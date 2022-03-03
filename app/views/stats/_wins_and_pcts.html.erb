@@ -9,7 +9,7 @@
       <tbody>
         <% Stats.each_most_races(high_stakes: high_stakes, n_grade: n_grade) do |racer, number| -%>
           <tr>
-            <td><%= racer %></td>
+            <td><%= racer_as_link(racer) %></td>
             <td class="numeric"><%= number %></td>
           </tr>
         <% end -%>
@@ -25,7 +25,7 @@
           <% Stats.each_most_number_of_equal_or_better_places_of(
                 place, high_stakes: high_stakes, n_grade: n_grade) do |racer, number| -%>
             <tr>
-              <td><%= racer %></td>
+              <td><%= racer_as_link(racer) %></td>
               <td class="numeric"><%= number %></td>
             </tr>
           <% end -%>
@@ -42,7 +42,7 @@
           <% Stats.each_best_pct_of_equal_or_better_places_of(
                 place, high_stakes: high_stakes, n_grade: n_grade) do |racer, num_places, num_races| -%>
             <tr>
-              <td><%= racer %></td>
+              <td><%= racer_as_link(racer) %></td>
               <td class="numeric close_to_right"><%= sprintf("%5.3f", num_places.to_f / num_races) %></td>
               <td class="numeric"><%= sprintf("(%2d/%2d)", num_places, num_races) %></td>
             </tr>

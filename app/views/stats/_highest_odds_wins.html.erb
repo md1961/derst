@@ -8,7 +8,7 @@
         <tbody>
           <% Stats.each_highest_odds_wins(high_stakes: high_stakes, n_grade: n_grade) do |result| -%>
             <tr>
-              <td><%= result.racer %></td>
+              <td><%= racer_as_link(result.racer) %></td>
               <td class="numeric"><%= "#{result.age}歳" %></td>
               <td class="numeric"><%= year_month_week_display(result) %></td>
               <td class="numeric"><%= result.odds %></td>
