@@ -428,6 +428,10 @@ class Racer < ApplicationRecord
     injure(nil)
   end
 
+  def honored?
+    results.high_stake(1).wins.joins(:race).where("races.age != '3'").count >= 3
+  end
+
   def data_for_race_load
     {
       wins: (1 .. 3).map { |n_grade|
