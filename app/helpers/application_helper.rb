@@ -27,10 +27,11 @@ module ApplicationHelper
     if f && racer.results.empty?
       f.text_field :name
     else
-      mark = ''
-      mark = '[父] ' if racer.father.domestic?
+      displays = [racer.name]
+      displays.unshift('[父] ') if racer.father.domestic?
+      displays << ' ★' if racer.honored?
       parents = "#{racer.father} x #{racer.mother}"
-      content_tag :span, "#{mark}#{racer.name}", class: 'racer_name', aria: {label: parents}
+      content_tag :span, displays.join, class: 'racer_name', aria: {label: parents}
     end
   end
 
