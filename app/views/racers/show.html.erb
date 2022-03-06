@@ -7,6 +7,11 @@
         <span class="age"><%= "#{@racer.age}歳" %></span>
       </div>
       <div class="lineage"><%= "#{@racer.father.trait.lineage}系" %></div>
+      <% if @racer.honored? -%>
+        <div class="honored">
+          <%= image_tag 'honored.jpg', size: '60x60' %>
+        </div>
+      <% end -%>
     </div>
 
     <%= render 'traits' %>
