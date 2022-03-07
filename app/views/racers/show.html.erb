@@ -18,8 +18,8 @@
           </div>
         <% end -%>
 
-        <% if @racer.ready_for_oversea? -%>
-          <%= image_tag 'cargo.jpg', class: 'ready_for_oversea' %>
+        <% if @racer.is_active && !@racer.to_be_retired? && @racer.ready_for_oversea? -%>
+          <%= image_tag 'oversea.png', class: 'ready_for_oversea' %>
         <% end -%>
       </div>
     </div>
