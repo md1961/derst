@@ -128,13 +128,7 @@ class Race < ApplicationRecord
   end
 
   def not_enterable_for?(racer)
-    if oversea?
-      return racer.results.wins.high_stake(1)
-                          .includes(race: %i[grade course])
-                          .map(&:race)
-                          .find_all(&:oversea_step?).size < 2
-    end
-
+    return !racer.ready_for_oversea? if oversea?
     return false unless H_MINIMUM_NET_PRIZE[name]
     has_not_enough_net_prize = racer.net_prize < minimum_net_prize
     return true if has_not_enough_net_prize && !H_TRIAL_RACES[name]
