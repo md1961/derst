@@ -216,6 +216,24 @@ input.weight {
   div.honored {
     margin-top: 10px;
     margin-left: 20px;
+
+    img.honored {
+      height: 60px;
+      width: 60px;
+      border: solid 2px black;
+    }
+
+    img.honoring_count_2 {
+      height: 50px;
+      width: 50px;
+      opacity: 0.5;
+    }
+
+    img.honoring_count_1 {
+      height: 40px;
+      width: 40px;
+      opacity: 0.3;
+    }
   }
 
   #name_and_traits {

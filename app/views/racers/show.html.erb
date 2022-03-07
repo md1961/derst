@@ -7,9 +7,13 @@
         <span class="age"><%= "#{@racer.age}歳" %></span>
       </div>
       <div class="lineage"><%= "#{@racer.father.trait.lineage}系" %></div>
-      <% if @racer.honored? -%>
+
+      <% honoring_count = @racer.honoring_wins.count -%>
+      <% if honoring_count >= 1 -%>
         <div class="honored">
-          <%= image_tag 'honored.jpg', size: '60x60' %>
+          <% classes = ["honoring_count_#{honoring_count}"]
+             classes << 'honored' if @racer.honored? -%>
+          <%= image_tag 'honored.jpg', class: classes.join(' ') %>
         </div>
       <% end -%>
     </div>
