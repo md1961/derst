@@ -19,7 +19,11 @@
         <% end -%>
 
         <% if @racer.is_active && !@racer.to_be_retired? && @racer.ready_for_oversea? -%>
-          <%= image_tag 'oversea.png', class: 'ready_for_oversea' %>
+          <div aria-label="<%= @racer.results.high_stake(1).wins.map(&:race).find_all { |race|
+                                 race.oversea_step?
+                               }.map(&:name).join(' ') %>">
+            <%= image_tag 'oversea.png', class: 'ready_for_oversea' %>
+          </div>
         <% end -%>
       </div>
     </div>
