@@ -213,26 +213,33 @@ input.weight {
     margin-left: 5px;
   }
 
-  div.honored {
+  div.marks {
+    display: flex;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
 
     img.honored {
-      height: 60px;
-      width: 60px;
+      height: 50px;
+      width: 50px;
       border: solid 2px black;
     }
 
     img.honoring_count_2 {
-      height: 50px;
-      width: 50px;
+      height: 40px;
+      width: 40px;
       opacity: 0.5;
     }
 
     img.honoring_count_1 {
-      height: 40px;
-      width: 40px;
+      height: 30px;
+      width: 30px;
       opacity: 0.3;
+    }
+
+    img.ready_for_oversea {
+      height: 10px;
+      width: 40px;
+      margin-left: 10px;
     }
   }
 

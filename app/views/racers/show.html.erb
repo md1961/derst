@@ -8,14 +8,20 @@
       </div>
       <div class="lineage"><%= "#{@racer.father.trait.lineage}系" %></div>
 
-      <% honoring_count = @racer.honoring_wins.count -%>
-      <% if honoring_count >= 1 -%>
-        <div class="honored" aria-label="<%= @racer.honoring_wins.map(&:race).map(&:name).join(' ') %>">
-          <% classes = ["honoring_count_#{honoring_count}"]
-             classes << 'honored' if @racer.honored? -%>
-          <%= image_tag 'honored.jpg', class: classes.join(' ') %>
-        </div>
-      <% end -%>
+      <div class="marks">
+        <% honoring_count = @racer.honoring_wins.count -%>
+        <% if honoring_count >= 1 -%>
+          <div aria-label="<%= @racer.honoring_wins.map(&:race).map(&:name).join(' ') %>">
+            <% classes = ["honoring_count_#{honoring_count}"]
+               classes << 'honored' if @racer.honored? -%>
+            <%= image_tag 'honored.jpg', class: classes.join(' ') %>
+          </div>
+        <% end -%>
+
+        <% if @racer.ready_for_oversea? -%>
+          <%= image_tag 'cargo.jpg', class: 'ready_for_oversea' %>
+        <% end -%>
+      </div>
     </div>
 
     <%= render 'traits' %>
