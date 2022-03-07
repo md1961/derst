@@ -10,7 +10,7 @@
 
       <% honoring_count = @racer.honoring_wins.count -%>
       <% if honoring_count >= 1 -%>
-        <div class="honored">
+        <div class="honored" aria-label="<%= @racer.honoring_wins.map(&:race).map(&:name).join(' ') %>">
           <% classes = ["honoring_count_#{honoring_count}"]
              classes << 'honored' if @racer.honored? -%>
           <%= image_tag 'honored.jpg', class: classes.join(' ') %>
