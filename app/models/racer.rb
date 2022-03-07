@@ -111,6 +111,13 @@ class Racer < ApplicationRecord
     Grade.find_by(abbr: abbr)
   end
 
+  def ready_for_oversea?
+    results.wins.high_stake(1)
+           .includes(race: %i[grade course])
+           .map(&:race)
+           .find_all(&:oversea_step?).size >= 2
+  end
+
   def in_stable?
     is_active && stable && !in_ranch
   end
