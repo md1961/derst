@@ -61,6 +61,8 @@ class RacersController < ApplicationController
     @racer_shown_last = Racer.find_by(id: racer_ids_shown.last)
     racer_ids_shown.push(@racer.id)
     session[:racer_ids_shown] = racer_ids_shown.last(2)
+
+    @no_top_bar = true if params[:top_bar] == 'false'
   end
 
   def new

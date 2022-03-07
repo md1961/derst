@@ -1,5 +1,8 @@
 $ ->
   if $('.racers_show').length > 0
+    if $('#top_bar').length == 0
+      $('#name_and_traits').css('top', 0)
+
     $('.for_action_edit').hide()
     $('#form_to_injure').hide()
 
