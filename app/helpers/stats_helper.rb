@@ -1,7 +1,7 @@
 module StatsHelper
 
   def racer_as_link(racer)
-    link_to racer.name, racer, target: '_blank', class: 'no_style'
+    link_to racer.name, racer_path(racer, top_bar: false), target: '_blank', class: 'no_style'
   end
 
   def age_range_display(results)
