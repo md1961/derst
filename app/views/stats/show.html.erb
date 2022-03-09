@@ -6,7 +6,7 @@
            wins_in_row oldest_wins highest_odds_wins
          ].each do |name| -%>
       <span class="tab">
-        <% label = name.titleize -%>
+        <% label = label_for_tabnavi(name) -%>
         <%= link_to_unless(name == @name, label, stats_path(name: name)) do -%>
           <span class="current"><%= label %></span>
         <% end -%>

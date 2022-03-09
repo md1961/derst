@@ -1,5 +1,20 @@
 module StatsHelper
 
+  H_LABEL_FOR_TABNAVI = {
+    g1_wins:           'GⅠ成績',
+    high_stake_wins:   '重賞成績',
+    allover_wins:      '全成績',
+    num_wins:          '勝利数',
+    win_pcts:          '勝率',
+    wins_in_row:       '連勝',
+    oldest_wins:       '最年長勝利',
+    highest_odds_wins: '最高オッズ勝利'
+  }
+
+  def label_for_tabnavi(page_name)
+    H_LABEL_FOR_TABNAVI[page_name.to_sym]
+  end
+
   def racer_as_link(racer)
     link_to racer.name, racer_path(racer, top_bar: false), target: '_blank', class: 'no_style'
   end
