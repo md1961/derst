@@ -134,6 +134,10 @@ class Racer < ApplicationRecord
     weeklies.pluck(:condition).compact.last == '引'
   end
 
+  def to_be_sire?
+    male? && results.high_stake(1).wins.exists?
+  end
+
   def expecting_race?
     !results.empty? && results.last.place.blank?
   end
