@@ -16,6 +16,8 @@
                classes << 'honored' if @racer.honored? -%>
             <%= image_tag 'honored.jpg', class: classes.join(' ') %>
           </div>
+        <% elsif @racer.to_be_sire? -%>
+          <%= image_tag 'sire.jpg', class: 'sire' %>
         <% end -%>
 
         <% if @racer.is_active && !@racer.to_be_retired? && @racer.ready_for_oversea? -%>
