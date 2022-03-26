@@ -190,7 +190,7 @@ class Race < ApplicationRecord
 
   def load_plus_from_total_prize?
     (age == '3' && grade.abbr == 'OP') \
-    || (age == '4' && (grade.abbr == 'OP' || grade.high_stake?) && !constant? && name != 'フラワーC')
+    || (age == '4' && (grade.abbr == 'OP' || grade.high_stake?) && !constant? && name != 'フラワーC' && name != '弥生賞')
   end
 
   def month_week
