@@ -29,7 +29,11 @@ module ApplicationHelper
     else
       displays = [racer.name]
       displays.unshift('[父] ') if racer.father.domestic?
-      displays << ' ★' if racer.honored?
+      if racer.honored?
+        displays << ' ★'
+      elsif racer.to_be_sire?
+        displays << ' ⇒'
+      end
       parents = "#{racer.father} x #{racer.mother}"
       content_tag :span, displays.join, class: 'racer_name', aria: {label: parents}
     end
