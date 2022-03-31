@@ -31,6 +31,8 @@ module ApplicationHelper
       displays.unshift('[父] ') if racer.father.domestic?
       if racer.honored?
         displays << ' ★'
+      elsif racer.honoring_wins.count == 2
+        displays << ' ☆'
       elsif racer.to_be_sire?
         displays << ' ⇒'
       end
