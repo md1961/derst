@@ -10,7 +10,10 @@
           <caption><%= is_first_half ? caption : '　' %></caption>
           <% is_first_half = false -%>
           <tbody>
-           <% results_by_race.each do |race, results| -%>
+            <% results_by_race.each do |race, results| -%>
+              <% if race.name == 'KG VI & QE S' -%>
+                <tr><td>&nbsp;</td></tr>
+              <% end -%>
               <tr>
                 <td colspan="2" class="race">
                   <%= "#{race.name}（#{results.first.age}歳）" %>

@@ -51,7 +51,7 @@ module Stats
         }
       ]
     }.sort_by { |race, _|
-      [race.month, race.week]
+      [race.month, race.week, race.course_id]
     }.each(&block)
   end
 
