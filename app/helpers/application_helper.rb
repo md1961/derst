@@ -35,6 +35,8 @@ module ApplicationHelper
         displays << ' ☆'
       elsif racer.to_be_sire?
         displays << ' ⇒'
+      elsif racer.to_be_mare?
+        displays << ' ○'
       end
       parents = "#{racer.father} x #{racer.mother}"
       content_tag :span, displays.join, class: 'racer_name', aria: {label: parents}
