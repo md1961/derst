@@ -138,6 +138,10 @@ class Racer < ApplicationRecord
     male? && results.high_stake(1).wins.exists?
   end
 
+  def to_be_mare?
+    female? && results.high_stake(1).wins.exists?
+  end
+
   def expecting_race?
     !results.empty? && results.last.place.blank?
   end
