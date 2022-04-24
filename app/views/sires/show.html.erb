@@ -1,5 +1,7 @@
 <div class="sires_show">
   <%= render partial: 'sire', locals: {sire: @sire} %>
 
+  <%= link_to 'Edit', bloodline_edit_path(sire_id: @sire) %>
+  &nbsp; &nbsp; &nbsp; &nbsp;
   <%= link_to 'Back', sires_path %>
 </div>
