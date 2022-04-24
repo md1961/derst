@@ -1,5 +1,9 @@
 class BloodlineController < ApplicationController
 
+  def edit
+    @sire = Sire.find(params[:sire_id])
+  end
+
   def update
     horse_class = params[:type].constantize
     horse = horse_class.find(params[:id])
@@ -11,7 +15,7 @@ class BloodlineController < ApplicationController
     is_updated = horse.update_bloodline_father(generation, number, father_name)
 
     if is_updated || params_father.empty?
-      redirect_to horse
+      redirect_to bloodline_edit_path(sire_id: horse)
     else
       redirect_to new_sire_path(name: father_name,
                                 horse_back_type: horse.class.name, horse_back_id: horse.id,
