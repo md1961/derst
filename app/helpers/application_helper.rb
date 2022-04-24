@@ -210,7 +210,7 @@ module ApplicationHelper
                     link_to('x', bloodline_destroy_path(
                       type: horse.class.name, id: horse.id, generation: generation, number: number
                     ), tabindex: -1)
-                  ], '&nbsp;&nbsp;'.html_safe
+                  ], ''
                 )]
               end
       items << father.name_eng if father.name_eng
