@@ -2,35 +2,35 @@
   <%= form_with url: bloodline_update_path, local: true, method: :patch do |f| %>
     <table class="table_base">
       <tr>
-        <td rowspan="8"><%= father_in_bloodline(horse, 1, 1) %></td>
-        <td rowspan="4"><%= father_in_bloodline(horse, 2, 1) %></td>
-        <td rowspan="2"><%= father_in_bloodline(horse, 3, 1) %></td>
-        <td>            <%= father_in_bloodline(horse, 4, 1) %></td>
+        <td rowspan="8"><%= father_in_bloodline(horse, 1, 1, readonly) %></td>
+        <td rowspan="4"><%= father_in_bloodline(horse, 2, 1, readonly) %></td>
+        <td rowspan="2"><%= father_in_bloodline(horse, 3, 1, readonly) %></td>
+        <td>            <%= father_in_bloodline(horse, 4, 1, readonly) %></td>
       </tr>
       <tr>
-        <td>            <%= father_in_bloodline(horse, 4, 2) %></td>
+        <td>            <%= father_in_bloodline(horse, 4, 2, readonly) %></td>
       </tr>
       <tr>
-        <td rowspan="2"><%= father_in_bloodline(horse, 3, 2) %></td>
-        <td>            <%= father_in_bloodline(horse, 4, 3) %></td>
+        <td rowspan="2"><%= father_in_bloodline(horse, 3, 2, readonly) %></td>
+        <td>            <%= father_in_bloodline(horse, 4, 3, readonly) %></td>
       </tr>
       <tr>
-        <td>            <%= father_in_bloodline(horse, 4, 4) %></td>
+        <td>            <%= father_in_bloodline(horse, 4, 4, readonly) %></td>
       </tr>
       <tr>
-        <td rowspan="4"><%= father_in_bloodline(horse, 2, 2) %></td>
-        <td rowspan="2"><%= father_in_bloodline(horse, 3, 3) %></td>
-        <td>            <%= father_in_bloodline(horse, 4, 5) %></td>
+        <td rowspan="4"><%= father_in_bloodline(horse, 2, 2, readonly) %></td>
+        <td rowspan="2"><%= father_in_bloodline(horse, 3, 3, readonly) %></td>
+        <td>            <%= father_in_bloodline(horse, 4, 5, readonly) %></td>
       </tr>
       <tr>
-        <td>            <%= father_in_bloodline(horse, 4, 6) %></td>
+        <td>            <%= father_in_bloodline(horse, 4, 6, readonly) %></td>
       </tr>
       <tr>
-        <td rowspan="2"><%= father_in_bloodline(horse, 3, 4) %></td>
-        <td>            <%= father_in_bloodline(horse, 4, 7) %></td>
+        <td rowspan="2"><%= father_in_bloodline(horse, 3, 4, readonly) %></td>
+        <td>            <%= father_in_bloodline(horse, 4, 7, readonly) %></td>
       </tr>
       <tr>
-        <td>            <%= father_in_bloodline(horse, 4, 8) %></td>
+        <td>            <%= father_in_bloodline(horse, 4, 8, readonly) %></td>
       </tr>
     </table>
 

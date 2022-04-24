@@ -1,3 +1,5 @@
+<% readonly = !defined?(is_editing) || !is_editing -%>
+
 <div class="application_sire">
   <div class="name_and_trait">
     <div class="name">
@@ -11,6 +13,6 @@
   </div>
 
   <div class="bloodline">
-    <%= render partial: 'bloodline', locals: {horse: sire} %>
+    <%= render partial: 'bloodline', locals: {horse: sire, readonly: readonly} %>
   </div>
 </div>
