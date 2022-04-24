@@ -85,6 +85,7 @@ Rails.application.routes.draw do
 
   resources :handicap_loads, only: %i[create update destroy]
 
+  get 'bloodline/edit'
   patch 'bloodline/update'
   get 'bloodline/destroy'
 
