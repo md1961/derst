@@ -1,3 +1,9 @@
+<%
+  unless defined?(readonly)
+    readonly = true
+  end
+-%>
+
 <div class="application_bloodline">
   <%= form_with url: bloodline_update_path, local: true, method: :patch do |f| %>
     <table class="table_base">
